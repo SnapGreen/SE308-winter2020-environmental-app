@@ -5,10 +5,9 @@ const bodyParser = require("body-parser");
 const jwt = require('jsonwebtoken');
 const port = 3000;
 
-const firebase = require("../../firebase");
-//
+//const firebase = require("../../firebase");
 // Makes the db connection to firebase
-firebase.initFirebase();
+//firebase.initFirebase();
 
 /* these will be integrated later, when we need socket.io comms
 const http = require('http').createServer(app);
