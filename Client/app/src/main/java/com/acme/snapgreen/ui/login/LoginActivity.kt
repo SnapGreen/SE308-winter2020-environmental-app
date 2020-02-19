@@ -14,8 +14,19 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
-
+import android.graphics.BitmapFactory
 import com.acme.snapgreen.R
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.util.SparseArray;
+import android.widget.ImageView;
+import android.widget.TextView;
+import androidx.core.util.size
+import com.google.android.gms.vision.Frame
+import com.google.android.gms.vision.barcode.Barcode
+import com.google.android.gms.vision.barcode.BarcodeDetector
+import kotlinx.android.synthetic.main.activity_login.*
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -30,7 +41,40 @@ class LoginActivity : AppCompatActivity() {
         val password = findViewById<EditText>(R.id.password)
         val login = findViewById<Button>(R.id.login)
         val loading = findViewById<ProgressBar>(R.id.loading)
+        val scanner = findViewById<Button>(R.id.scanner)
 
+        val myImageView = findViewById(R.id.imgview) as ImageView
+        val myBitmap = BitmapFactory.decodeResource(
+            applicationContext.resources,
+            R.drawable.puppy
+        )
+        myImageView.setImageBitmap(myBitmap)
+
+
+        scanner.setOnClickListener{
+
+            val detector = BarcodeDetector.Builder(getApplicationContext())
+                        .setBarcodeFormats(Barcode.DATA_MATRIX or Barcode.QR_CODE)
+                        .build()
+            if(!detector.isOperational())
+            {
+                txtview.setText("Could not set up the detector!")
+            }
+
+            val frame = Frame.Builder().setBitmap(myBitmap).build()
+            val barcodes = detector.detect(frame)
+
+            if(barcodes.size > 0)
+            {
+                val thisCode = barcodes.valueAt(0)
+                txtview.setText(thisCode.rawValue)
+            }
+            else
+            {
+                txtview.setText("Failed to scan code, please try again!")
+            }
+
+        }
 
         loginViewModel = ViewModelProviders.of(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
