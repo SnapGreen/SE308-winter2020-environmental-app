@@ -1,0 +1,17 @@
+{
+  "name": "SnapGreen",
+  "version": "0.0.1",
+  "description": "Environmental App for Cal Poly CSC308, winter 202, Professor Bruno da Silva",
+  "main": "index.js",
+  "scripts": {
+    "serve": "node backend/server/app/index.js"
+  },
+  "author": "308Squad",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "firebase-admin": "^8.9.2",
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {}
+}
