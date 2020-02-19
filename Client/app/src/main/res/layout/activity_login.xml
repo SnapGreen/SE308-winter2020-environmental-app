@@ -76,11 +76,31 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.3" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="40dp" />
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="16dp">
+
+        <ImageView
+            android:id="@+id/imgview"
+            android:layout_width="176dp"
+            android:layout_height="220dp"
+            tools:srcCompat="@drawable/puppy" />
+
+        <Button
+            android:id="@+id/scanner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scan Code" />
+
+        <TextView
+            android:id="@+id/txtview"
+            android:layout_width="235dp"
+            android:layout_height="38dp"
+            android:text="Bar Code Result" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
