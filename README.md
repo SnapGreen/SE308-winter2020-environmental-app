@@ -1,6 +1,6 @@
 # SE308-winter2020-environmental-app
 
-Competitive, gamified behavior tracker to encourage awareness and encourage sustainable practices. Scan product bar codes to see their environmental impact.
+Competitive, gamified behavior tracker to encourage awareness and encourage sustainable practices. Ability to scan product bar codes to see their environmental impact.
 
 # See UI Mockup Here:
 
@@ -95,6 +95,12 @@ command line. Otherwise, uninstall programs as you normally would.
 
 > `brew uninstall node`
 
+## Key Dependencies
+
+### Dev Dependencies
+
+nodemon: Utilized to have the server refresh automatically with every change
+
 ## Running the Server
 
 Running the server is as simple as two commands
@@ -103,7 +109,7 @@ Running the server is as simple as two commands
 
 > `npm run serve`
 
-You will probably get a warning from your firewall--go ahead and let it slide.
+You may get a warning from your firewall--go ahead and let it slide.
 Your terminal should announce that the server is running. Open up a browser
 window, and go to "localhost:3000". You should see a blank page with a button
 at the bottom; you should also see a message in the terminal that states "user
