@@ -6,8 +6,7 @@ const jwt = require("jsonwebtoken");
 const port = 3000;
 
 const firebase = require("../../firebase");
-// Makes the db connection to firebase
-firebase.initFirebase();
+let FIREBASE;
 
 /* these will be integrated later, when we need socket.io comms
 const http = require('http').createServer(app);
@@ -21,44 +20,44 @@ var ExtractJwt = passportJWT.ExtractJwt;
 var JwtStrategy = passportJWT.Strategy;
 
 // this is just a dummy database for testing
-var users = [
-  {
-    id: 1,
-    name: "john",
-    password: "%2xyz"
-  },
-  {
-    id: 2,
-    name: "test",
-    password: "test"
-  }
-];
+// var users = [
+//   {
+//     id: 1,
+//     name: "john",
+//     password: "%2xyz"
+//   },
+//   {
+//     id: 2,
+//     name: "test",
+//     password: "test"
+//   }
+// ];
 
-var jwtOptions = {};
-jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-jwtOptions.secretOrKey = "308Squad";
+// var jwtOptions = {};
+// jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
+// jwtOptions.secretOrKey = "308Squad";
 
-var strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
-  console.log("payload received", jwt_payload);
-  // this will be a database call
-  var user =
-    users[
-      _.findIndex(users, {
-        id: jwt_payload.id
-      })
-    ];
+// var strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
+//   console.log("payload received", jwt_payload);
+//   // this will be a database call
+//   var user =
+//     users[
+//       _.findIndex(users, {
+//         id: jwt_payload.id
+//       })
+//     ];
 
-  if (user) {
-    next(null, user);
-  } else {
-    next(null, false);
-  }
-});
+//   if (user) {
+//     next(null, user);
+//   } else {
+//     next(null, false);
+//   }
+// });
 
-passport.use(strategy);
+// passport.use(strategy);
 
 const app = express();
-app.use(passport.initialize());
+// app.use(passport.initialize());
 
 // this is to test with Postman
 app.use(
@@ -84,38 +83,45 @@ app.get("/", function(req, res) {
   });
 });
 
+// Used to verify login info is correct
 app.post("/login", function(req, res) {
+  if (!req.body) {
+    res.status(401).json({
+      message: "No req.body present"
+    });
+  }
+
   if (req.body.name && req.body.password) {
-    var name = req.body.name;
-    var password = req.body.password;
-  }
-  // this will be replaced with a database call
-  var user =
-    users[
-      _.findIndex(users, {
-        name: name
+    // checks the database and then determines if the passwords matchs
+    FIREBASE.getUser(req.body.name)
+      .then(user => {
+        if (!user) {
+          res.status(401).json({
+            message: "no such user found"
+          });
+        }
+
+        if (user.password === req.body.password) {
+          //   // var payload = {
+          //   //   id: user.id
+          //   // };
+          //   // var token = jwt.sign(payload, jwtOptions.secretOrKey);
+          res.json({
+            message: "ok"
+            // token: tokens
+          });
+        } else {
+          res.status(401).json({
+            message: "passwords do not match"
+          });
+        }
       })
-    ];
-
-  if (!user) {
-    res.status(401).json({
-      message: "no such user found"
-    });
-  }
-
-  if (user.password === req.body.password) {
-    var payload = {
-      id: user.id
-    };
-    var token = jwt.sign(payload, jwtOptions.secretOrKey);
-    res.json({
-      message: "ok",
-      token: token
-    });
-  } else {
-    res.status(401).json({
-      message: "passwords do not match"
-    });
+      .catch(err => {
+        console.log(err);
+        res.status(401).json({
+          message: err
+        });
+      });
   }
 });
 
@@ -127,4 +133,7 @@ io.on('connection', function(socket){
 
 app.listen(port, function() {
   console.log("Express running");
+
+  // Initializes the firebase object, which makes the connection to firebase
+  FIREBASE = new firebase.Firebase();
 });
