@@ -16,27 +16,21 @@ class Firebase {
     this.db = admin.firestore();
   }
 
-  getUser(username) {
+  async getUser(username) {
     username = username.toLowerCase();
 
     // Queries for the specified user
-    return this.db
+    let userQuery = await this.db
       .collection("users")
       .where("username", "==", username)
-      .get()
-      .then(snapshot => {
-        if (snapshot.empty) {
-          console.log("No matching documents.");
-          return null;
-        }
-        // console.log(snapshot.docs[0].data());
-        // if username matches, returns the document for that user
-        return snapshot.docs[0].data();
-      })
-      .catch(err => {
-        console.log("Error getting documents", err);
-      });
-    // return user;
+      .get();
+
+    if (userQuery.empty) {
+      console.log("No matching documents.");
+      return null;
+    }
+    // if username matches, returns the document for that user
+    return userQuery.docs[0].data();
   }
 
   getAllUsers() {
