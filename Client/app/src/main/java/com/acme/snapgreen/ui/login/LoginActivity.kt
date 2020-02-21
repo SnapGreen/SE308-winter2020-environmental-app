@@ -33,6 +33,10 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var loginViewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // set context for Valley calls
+        NetworkManager.setInstanceContext(this)
+
+
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_login)
@@ -105,8 +109,8 @@ class LoginActivity : AppCompatActivity() {
             }
             setResult(Activity.RESULT_OK)
 
-            //Complete and destroy login activity once successful
-            finish()
+            // TODO: Complete and destroy login activity once successful
+            // finish()
         })
 
         username.afterTextChanged {

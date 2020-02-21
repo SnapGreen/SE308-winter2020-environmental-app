@@ -3,3 +3,5 @@
 **/se-environmental-app-firebase-adminsdk-fx69d-601b8c5684.json
 key
 key.pub
+*.log
+
