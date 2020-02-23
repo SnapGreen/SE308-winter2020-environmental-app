@@ -13,6 +13,8 @@ import java.io.IOException
 
 /**
  * Class that handles authentication w/ login credentials and retrieves user information.
+ * Build and send a POST request to the background with the username and password provided in the
+ * UI using the NetworkManager singleton to access the request queue.
  */
 class LoginDataSource {
 
@@ -20,35 +22,42 @@ class LoginDataSource {
 
         val queue = NetworkManager.getInstance()?.requestQueue
 
+        //TODO: connect to real server instead of localhost
+        val url = "http://10.0.2.2/login:8080"
+        val jsonObj = JSONObject()
+        jsonObj.put("name",username)
+        jsonObj.put("password",password)
+        val user = LoggedInUser(java.util.UUID.randomUUID().toString(), username)
+
         try {
-            val url = "http://10.0.2.2/login:8080"
-            val jsonObj = JSONObject()
-            jsonObj.put("name","kgoo")
-            jsonObj.put("password","123")
-            var fakeUser = LoggedInUser("Fail", "Fail")
 
             val jsonObjectRequest = JsonObjectRequest(
-                Request.Method.POST, url, jsonObj,
+                Request.Method.GET, url, jsonObj,
                 Response.Listener { response ->
-                    fakeUser = LoggedInUser(java.util.UUID.randomUUID().toString(), response.toString())
-
+                    //TODO: Handle successful link to server backend
+                    //     incorrect password -> Result.Failure
+                    //     Successful Authentication -> Result.success
                 },
                 Response.ErrorListener { error ->
                     error.printStackTrace()
                 }
             )
 
-            val socketTimeout = 3000 //30 seconds - change to what you want
-
+            // set length until login failure
+            val socketTimeout = 3000 // 3 seconds
             val policy: RetryPolicy = DefaultRetryPolicy(
                 socketTimeout,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
             )
-            jsonObjectRequest.setRetryPolicy(policy)
+            jsonObjectRequest.retryPolicy = policy
+
             queue?.add(jsonObjectRequest)
-           return Result.Success(fakeUser)
-        } catch (e: Throwable) {
+
+            //TODO: return result of server auth instead of fake success
+            return Result.Success(user)
+        }
+        catch (e: Throwable) {
             return Result.Error(IOException("Error logging in", e))
         }
     }
