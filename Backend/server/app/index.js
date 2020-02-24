@@ -19,20 +19,6 @@ const passportJWT = require("passport-jwt");
 var ExtractJwt = passportJWT.ExtractJwt;
 var JwtStrategy = passportJWT.Strategy;
 
-// this is just a dummy database for testing
-// var users = [
-//   {
-//     id: 1,
-//     name: "john",
-//     password: "%2xyz"
-//   },
-//   {
-//     id: 2,
-//     name: "test",
-//     password: "test"
-//   }
-// ];
-
 // var jwtOptions = {};
 // jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 // jwtOptions.secretOrKey = "308Squad";
@@ -59,13 +45,6 @@ var JwtStrategy = passportJWT.Strategy;
 const app = express();
 // app.use(passport.initialize());
 
-// this is to test with Postman
-app.use(
-  bodyParser.urlencoded({
-    extended: true
-  })
-);
-
 // this is what we will actually use
 // this will receive a "raw json" string from Android
 // it allows for around two 32-character (UTF8) fields, with their
@@ -85,10 +64,12 @@ app.get("/", function(req, res) {
 
 // Used to verify login info is correct
 app.post("/login", async function(req, res) {
+  console.log("user login attempt");
   if (!req.body) {
     res.status(401).json({
       message: "No req.body present"
     });
+    console.log("No req.body present");
   }
 
   if (req.body.name && req.body.password) {
@@ -99,6 +80,7 @@ app.post("/login", async function(req, res) {
       res.status(401).json({
         message: "no such user found"
       });
+      console.log("no such user found");
     }
 
     if (user.password === req.body.password) {
@@ -110,10 +92,12 @@ app.post("/login", async function(req, res) {
         message: "ok"
         // token: tokens
       });
+      console.log("ok");
     } else {
       res.status(401).json({
         message: "passwords do not match"
       });
+      console.log("passwords do not match");
     }
   }
 });
