@@ -4,4 +4,6 @@
 key
 key.pub
 *.log
+**/Backend/rawdata/EPA/**
+**/Backend/rawdata/FDA/**
 
