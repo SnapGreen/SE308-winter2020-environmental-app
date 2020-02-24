@@ -13,7 +13,6 @@ import com.google.android.gms.vision.Frame
 import com.google.android.gms.vision.barcode.Barcode
 import com.google.android.gms.vision.barcode.BarcodeDetector
 import kotlinx.android.synthetic.main.activity_dashboard.*
-import kotlinx.android.synthetic.main.activity_login.*
 
 const val EXTRA_MESSAGE = "com.acme.snapgreen.MESSAGE"
 

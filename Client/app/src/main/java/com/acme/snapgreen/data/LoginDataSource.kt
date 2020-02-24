@@ -1,6 +1,7 @@
 package com.acme.snapgreen.data
 
 import NetworkManager
+import android.widget.Toast
 import com.acme.snapgreen.data.model.LoggedInUser
 import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
@@ -23,17 +24,18 @@ class LoginDataSource {
         val queue = NetworkManager.getInstance()?.requestQueue
 
         //TODO: connect to real server instead of localhost
-        val url = "http://10.0.2.2/login:8080"
+        val url = "http://10.0.2.2:8080/login"
         val jsonObj = JSONObject()
-        jsonObj.put("name",username)
-        jsonObj.put("password",password)
+        jsonObj.put("name", username)
+        jsonObj.put("password", password)
         val user = LoggedInUser(java.util.UUID.randomUUID().toString(), username)
 
         try {
 
             val jsonObjectRequest = JsonObjectRequest(
-                Request.Method.GET, url, jsonObj,
+                Request.Method.POST, url, jsonObj,
                 Response.Listener { response ->
+
                     //TODO: Handle successful link to server backend
                     //     incorrect password -> Result.Failure
                     //     Successful Authentication -> Result.success
