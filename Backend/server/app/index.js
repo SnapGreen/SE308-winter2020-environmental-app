@@ -71,33 +71,36 @@ app.post("/login", async function(req, res) {
     });
     console.log("No req.body present");
   }
+  else if (req.body.name && req.body.password) {
+    try{
+       // checks the database and then determines if the passwords matchs
+       let user = await FIREBASE.getUser(req.body.name);
 
-  if (req.body.name && req.body.password) {
-    // checks the database and then determines if the passwords matchs
-    let user = await FIREBASE.getUser(req.body.name);
+       if (!user) {
+         res.status(401).json({
+           message: "username not found"
+         });
+       }
 
-    if (!user) {
-      res.status(401).json({
-        message: "no such user found"
-      });
-      console.log("no such user found");
+       if (user.password === req.body.password) {
+         //   // var payload = {
+         //   //   id: user.id
+         //   // };
+         //   // var token = jwt.sign(payload, jwtOptions.secretOrKey);
+         res.json({
+           message: "ok"
+           // token: tokens
+         });
+         console.log("ok");
+       } else {
+         res.status(401).json({
+           message: "passwords do not match"
+         });
+         console.log("passwords do not match");
+       }
     }
-
-    if (user.password === req.body.password) {
-      //   // var payload = {
-      //   //   id: user.id
-      //   // };
-      //   // var token = jwt.sign(payload, jwtOptions.secretOrKey);
-      res.json({
-        message: "ok"
-        // token: tokens
-      });
-      console.log("ok");
-    } else {
-      res.status(401).json({
-        message: "passwords do not match"
-      });
-      console.log("passwords do not match");
+    catch(err){
+       console.log("username not found");
     }
   }
 });
