@@ -3,7 +3,7 @@ const _ = require("lodash");
 const express = require("express");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
-const port = 3000;
+const port = 8080;
 
 const firebase = require("../../firebase");
 let FIREBASE;
