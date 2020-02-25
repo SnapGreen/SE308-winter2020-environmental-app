@@ -62,6 +62,27 @@ app.get("/", function(req, res) {
   });
 });
 
+// Used to create a new user
+app.post("/user", async function(req, res) {
+  if (!req.body) {
+    res.status(401).json({
+      message: "No req.body present"
+    });
+  }
+
+  let user = await FIREBASE.getUser(req.body.username);
+  if (user) {
+    res.json({
+      message: "User already exists. Please try a different username."
+    });
+  } else {
+    let newId = await FIREBASE.createUser(req.body);
+    res.json({
+      message: `New user added. Id is ${newId}`
+    });
+  }
+});
+
 // Used to verify login info is correct
 app.post("/login", async function(req, res) {
   console.log("user login attempt");
