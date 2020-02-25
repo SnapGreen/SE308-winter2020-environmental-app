@@ -37,11 +37,19 @@ class DashboardActivity : AppCompatActivity() {
             text = "Welcome " + username
         }
 
+
         val waterButton = findViewById<Button>(R.id.water)
 
         waterButton.setOnClickListener {
             val intent = Intent(this, WaterActivity::class.java)
-            startActivity(intent);
+            startActivity(intent)
+        }
+      
+        val wasteButton = findViewById<Button>(R.id.waste)
+      
+        wasteButton.setOnClickListener {
+            val intent = Intent(this, WasteActivity::class.java)
+            startActivity(intent)
         }
 
         val scanner = findViewById<Button>(R.id.scanner)
