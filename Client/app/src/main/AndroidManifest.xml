@@ -29,6 +29,11 @@
             android:label="@string/app_name">
         </activity>
         <activity
+
+            android:name=".ui.dashboard.WaterActivity"
+            android:label="Water">
+         </activity>
+         <activity
             android:name=".ui.dashboard.WasteActivity"
             android:label="Waste">
         </activity>
