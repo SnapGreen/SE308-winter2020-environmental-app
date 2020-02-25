@@ -16,6 +16,7 @@ class Firebase {
     this.db = admin.firestore();
   }
 
+  // Returns the user that matches the provided username
   async getUser(username) {
     username = username.toLowerCase();
 
@@ -31,6 +32,20 @@ class Firebase {
     }
     // if username matches, returns the document for that user
     return userQuery.docs[0].data();
+  }
+
+  // Check to ensure username doesn't exist, then creates a user
+  async createUser(user) {
+    let ref = await this.db.collection("users").add(
+      {
+        username: user.username,
+        password: user.password,
+        firstName: user.firstName,
+        lastName: user.lastName
+      },
+      { merge: true }
+    );
+    return ref.id;
   }
 
   getAllUsers() {
