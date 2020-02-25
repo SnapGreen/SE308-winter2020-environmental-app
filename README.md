@@ -111,6 +111,6 @@ Running the server is as simple as two commands
 
 You may get a warning from your firewall--go ahead and let it slide.
 Your terminal should announce that the server is running. Open up a browser
-window, and go to "localhost:3000". You should see a blank page with a button
+window, and go to "localhost:8080". You should see a blank page with a button
 at the bottom; you should also see a message in the terminal that states "user
 connected." Try clicking on the button--you will see repeated messages.
