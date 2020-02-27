@@ -51,6 +51,10 @@
             android:name=".ui.dashboard.SettingsActivity"
             android:label="Adjust Your Settings">
         </activity>
+        <activity
+            android:name=".ui.dashboard.StatsActivity"
+            android:label="Stats">
+        </activity>
 
     </application>
 

@@ -66,6 +66,13 @@ class DashboardActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val statsButton = findViewById<Button>(R.id.stats)
+
+        statsButton.setOnClickListener {
+            val intent = Intent(this, StatsActivity::class.java)
+            startActivity(intent)
+        }
+
         val scanner = findViewById<Button>(R.id.scanner)
         val myImageView = findViewById(R.id.imgview) as ImageView
         val myBitmap = BitmapFactory.decodeResource(
