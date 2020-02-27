@@ -31,12 +31,26 @@
         </activity>
         <activity
 
-            android:name=".ui.dashboard.WaterActivity"
-            android:label="Water">
+            android:name=".ui.dashboard.UsageInputActivity"
+            android:label="Usage Inputs">
          </activity>
-         <activity
-            android:name=".ui.dashboard.WasteActivity"
-            android:label="Waste">
+
+        <activity
+
+            android:name=".ui.dashboard.ShoppingListActivity"
+            android:label="Your Shopping List">
+        </activity>
+
+        <activity
+
+            android:name=".ui.dashboard.InviteActivity"
+            android:label="Invite Some Friends!">
+        </activity>
+
+        <activity
+
+            android:name=".ui.dashboard.SettingsActivity"
+            android:label="Adjust Your Settings">
         </activity>
         <activity
             android:name=".ui.scanner.PreviewActivity"

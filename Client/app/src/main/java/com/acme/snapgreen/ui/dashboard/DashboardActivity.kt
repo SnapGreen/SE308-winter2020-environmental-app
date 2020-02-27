@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.util.size
 import androidx.lifecycle.ViewModelProviders
 import com.acme.snapgreen.R
-import com.acme.snapgreen.ui.scanner.PreviewActivity
 import com.google.android.gms.vision.Frame
 import com.google.android.gms.vision.barcode.Barcode
 import com.google.android.gms.vision.barcode.BarcodeDetector
@@ -39,25 +38,31 @@ class DashboardActivity : AppCompatActivity() {
         }
 
 
-        // dashboard navigation buttons to go to other parts of the app
-        val waterButton = findViewById<Button>(R.id.water)
+        val waterButton = findViewById<Button>(R.id.usage_input)
 
         waterButton.setOnClickListener {
-            val intent = Intent(this, WaterActivity::class.java)
-            startActivity(intent)
-        }
-      
-        val wasteButton = findViewById<Button>(R.id.waste)
-      
-        wasteButton.setOnClickListener {
-            val intent = Intent(this, WasteActivity::class.java)
+            val intent = Intent(this, UsageInputActivity::class.java)
             startActivity(intent)
         }
 
-        val scannerButton = findViewById<Button>(R.id.scan)
+        val shopListButton = findViewById<Button>(R.id.shopping_list)
 
-        scannerButton.setOnClickListener {
-            val intent = Intent(this, PreviewActivity::class.java)
+        shopListButton.setOnClickListener {
+            val intent = Intent(this, ShoppingListActivity::class.java)
+            startActivity(intent)
+        }
+
+        val inviteButton = findViewById<Button>(R.id.invite)
+
+        inviteButton.setOnClickListener {
+            val intent = Intent(this, InviteActivity::class.java)
+            startActivity(intent)
+        }
+
+        val settingsButton = findViewById<Button>(R.id.settings)
+
+        settingsButton.setOnClickListener {
+            val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
         }
 
