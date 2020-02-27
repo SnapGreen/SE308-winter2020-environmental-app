@@ -38,17 +38,31 @@ class DashboardActivity : AppCompatActivity() {
         }
 
 
-        val waterButton = findViewById<Button>(R.id.water)
+        val waterButton = findViewById<Button>(R.id.usage_input)
 
         waterButton.setOnClickListener {
-            val intent = Intent(this, WaterActivity::class.java)
+            val intent = Intent(this, UsageInputActivity::class.java)
             startActivity(intent)
         }
-      
-        val wasteButton = findViewById<Button>(R.id.waste)
-      
-        wasteButton.setOnClickListener {
-            val intent = Intent(this, WasteActivity::class.java)
+
+        val shopListButton = findViewById<Button>(R.id.shopping_list)
+
+        shopListButton.setOnClickListener {
+            val intent = Intent(this, ShoppingListActivity::class.java)
+            startActivity(intent)
+        }
+
+        val inviteButton = findViewById<Button>(R.id.invite)
+
+        inviteButton.setOnClickListener {
+            val intent = Intent(this, InviteActivity::class.java)
+            startActivity(intent)
+        }
+
+        val settingsButton = findViewById<Button>(R.id.settings)
+
+        settingsButton.setOnClickListener {
+            val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
         }
 
