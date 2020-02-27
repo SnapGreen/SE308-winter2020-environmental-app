@@ -58,6 +58,10 @@
             android:name=".ui.scanner.PreviewActivity"
             android:label="Scanner">
         </activity>
+        <activity
+            android:name=".ui.dashboard.StatsActivity"
+            android:label="Stats">
+        </activity>
 
     </application>
 

@@ -57,10 +57,15 @@ class DashboardActivity : AppCompatActivity() {
         }
 
         val scannerButton = findViewById<Button>(R.id.scan)
-        scannerButton.setOnClickListener{
+        scannerButton.setOnClickListener {
             val intent = Intent(this, PreviewActivity::class.java)
             startActivity(intent)
-        }
+            val statsButton = findViewById<Button>(R.id.stats)
 
+            statsButton.setOnClickListener {
+                val intent = Intent(this, StatsActivity::class.java)
+                startActivity(intent)
+            }
+        }
     }
 }
