@@ -4,6 +4,7 @@ package com.acme.snapgreen.ui.scanner
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.graphics.ImageFormat
 import android.graphics.SurfaceTexture
 import android.hardware.camera2.*
@@ -19,7 +20,12 @@ import android.view.TextureView
 import android.view.TextureView.SurfaceTextureListener
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.util.size
 import com.acme.snapgreen.R
+import com.google.android.gms.vision.Frame
+import com.google.android.gms.vision.barcode.Barcode
+import com.google.android.gms.vision.barcode.BarcodeDetector
+import kotlinx.android.synthetic.main.activity_dashboard.*
 import java.util.*
 
 
@@ -39,15 +45,7 @@ class PreviewActivity : AppCompatActivity() {
     private lateinit var textureView: TextureView
     private var cameraDevice: CameraDevice? = null
     private lateinit var captureCallBack: CameraCaptureSession.CaptureCallback
-
-    /**
-     * An [ImageReader] that handles still image capture.
-     */
-    private var imageReader: ImageReader? = null
-
-    private val onImageAvailableListener = ImageReader.OnImageAvailableListener {
-
-    }
+    private lateinit var detector : BarcodeDetector
 
     companion object {
         private const val CAMERA_REQUEST_CODE = 10001
@@ -63,7 +61,9 @@ class PreviewActivity : AppCompatActivity() {
             CAMERA_REQUEST_CODE
         )
 
-
+        detector = BarcodeDetector.Builder(getApplicationContext())
+            .setBarcodeFormats(Barcode.UPC_A)
+            .build()
         cameraManager = getSystemService(Context.CAMERA_SERVICE) as CameraManager
         captureCallBack = object : CameraCaptureSession.CaptureCallback() {
             override fun onCaptureCompleted(
@@ -72,7 +72,7 @@ class PreviewActivity : AppCompatActivity() {
                 result: TotalCaptureResult
             ) {
                 super.onCaptureCompleted(session, request, result)
-                textureView.getBitmap()
+
             }
         }
 
@@ -97,7 +97,10 @@ class PreviewActivity : AppCompatActivity() {
                 return false
             }
 
-            override fun onSurfaceTextureUpdated(surfaceTexture: SurfaceTexture) {}
+            override fun onSurfaceTextureUpdated(surfaceTexture: SurfaceTexture)
+            {
+                scanBarCode(textureView.bitmap)
+            }
         }
 
         stateCallback = object : CameraDevice.StateCallback() {
@@ -152,23 +155,6 @@ class PreviewActivity : AppCompatActivity() {
                 val map = characteristics.get(
                     CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP
                 )
-                // For still image captures, we use the largest available size.
-                val largest = Collections.max(
-                    Arrays.asList(*map.getOutputSizes(ImageFormat.JPEG)),
-                    CompareSizesByArea()
-                )
-
-                imageReader = ImageReader.newInstance(
-                    largest.width / 16,
-                    largest.height / 16, ImageFormat.YUV_420_888, 2
-                )
-                    .apply {
-                        setOnImageAvailableListener(
-                            onImageAvailableListener,
-                            backgroundHandler
-                        )
-                    };
-
             }
         } catch (e: CameraAccessException) {
             e.printStackTrace()
@@ -228,7 +214,6 @@ class PreviewActivity : AppCompatActivity() {
             val previewSurface = Surface(surfaceTexture)
 
             // new output surface for preview frame data
-            val mImageSurface: Surface = imageReader!!.surface
             val captureRequestBuilder =
                 cameraDevice!!.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW)
             captureRequestBuilder.addTarget(previewSurface)
@@ -244,7 +229,7 @@ class PreviewActivity : AppCompatActivity() {
                             captureRequest = captureRequestBuilder.build()
                             cameraCaptureSession.setRepeatingRequest(
                                 captureRequest,
-                                null, backgroundHandler
+                                captureCallBack, backgroundHandler
                             )
                             this@PreviewActivity.cameraCaptureSession = cameraCaptureSession
 
@@ -258,6 +243,27 @@ class PreviewActivity : AppCompatActivity() {
             )
         } catch (e: CameraAccessException) {
             e.printStackTrace()
+        }
+    }
+
+    /**
+     * Break out of this activity as soon as a barcode is scanned
+     * TODO: This definitely needs to be asynchronous and shouldnt happen from the activity class
+     */
+    fun scanBarCode(bitmap: Bitmap)
+    {
+        if(!detector.isOperational())
+        {
+            assert(false)
+        }
+
+        val frame = Frame.Builder().setBitmap(bitmap).build()
+        val barcodes = detector.detect(frame)
+
+        if(barcodes.size > 0)
+        {
+            val thisCode = barcodes.valueAt(0)
+            finish()
         }
     }
 }

@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.util.size
 import androidx.lifecycle.ViewModelProviders
 import com.acme.snapgreen.R
+import com.acme.snapgreen.ui.scanner.PreviewActivity
 import com.google.android.gms.vision.Frame
 import com.google.android.gms.vision.barcode.Barcode
 import com.google.android.gms.vision.barcode.BarcodeDetector
@@ -66,38 +67,11 @@ class DashboardActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val scanner = findViewById<Button>(R.id.scanner)
-        val myImageView = findViewById(R.id.imgview) as ImageView
-        val myBitmap = BitmapFactory.decodeResource(
-            applicationContext.resources,
-            R.drawable.puppy
-        )
-        myImageView.setImageBitmap(myBitmap)
+        val scannerButton = findViewById<Button>(R.id.scan)
 
-
-        scanner.setOnClickListener{
-
-            val detector = BarcodeDetector.Builder(getApplicationContext())
-                .setBarcodeFormats(Barcode.DATA_MATRIX or Barcode.QR_CODE)
-                .build()
-            if(!detector.isOperational())
-            {
-                txtview.setText("Could not set up the detector!")
-            }
-
-            val frame = Frame.Builder().setBitmap(myBitmap).build()
-            val barcodes = detector.detect(frame)
-
-            if(barcodes.size > 0)
-            {
-                val thisCode = barcodes.valueAt(0)
-                txtview.setText(thisCode.rawValue)
-            }
-            else
-            {
-                txtview.setText("Failed to scan code, please try again!")
-            }
-
+        scannerButton.setOnClickListener{
+            val intent = Intent(this, PreviewActivity::class.java)
+            startActivity(intent)
         }
 
     }
