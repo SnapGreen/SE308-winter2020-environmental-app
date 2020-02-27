@@ -2,10 +2,7 @@ package com.acme.snapgreen.ui.dashboard
 
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.util.size
 import androidx.lifecycle.ViewModelProviders
@@ -22,6 +19,9 @@ class WasteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         Toast.makeText(applicationContext, "Activity Launched!", Toast.LENGTH_SHORT).show()
+
+        val wasteInput = findViewById<EditText>(R.id.wasteInput)
+        val dataToSendToServerOrWhatever = wasteInput.text.toString();
 
     }
 }

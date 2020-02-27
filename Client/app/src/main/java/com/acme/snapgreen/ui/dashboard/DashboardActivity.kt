@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.util.size
 import androidx.lifecycle.ViewModelProviders
 import com.acme.snapgreen.R
+import com.acme.snapgreen.ui.scanner.PreviewActivity
 import com.google.android.gms.vision.Frame
 import com.google.android.gms.vision.barcode.Barcode
 import com.google.android.gms.vision.barcode.BarcodeDetector
@@ -38,6 +39,7 @@ class DashboardActivity : AppCompatActivity() {
         }
 
 
+        // dashboard navigation buttons to go to other parts of the app
         val waterButton = findViewById<Button>(R.id.water)
 
         waterButton.setOnClickListener {
@@ -49,6 +51,13 @@ class DashboardActivity : AppCompatActivity() {
       
         wasteButton.setOnClickListener {
             val intent = Intent(this, WasteActivity::class.java)
+            startActivity(intent)
+        }
+
+        val scannerButton = findViewById<Button>(R.id.scan)
+
+        scannerButton.setOnClickListener {
+            val intent = Intent(this, PreviewActivity::class.java)
             startActivity(intent)
         }
 

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.acme.snapgreen">
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
 
     <application
@@ -36,6 +37,10 @@
          <activity
             android:name=".ui.dashboard.WasteActivity"
             android:label="Waste">
+        </activity>
+        <activity
+            android:name=".ui.scanner.PreviewActivity"
+            android:label="Scanner">
         </activity>
 
     </application>
