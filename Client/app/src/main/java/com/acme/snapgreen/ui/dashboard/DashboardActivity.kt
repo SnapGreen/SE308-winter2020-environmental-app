@@ -28,7 +28,6 @@ class DashboardActivity : AppCompatActivity() {
         dashboardViewModel = ViewModelProviders.of(this, DashboardViewModelFactory())
             .get(DashboardViewModel::class.java)
         setContentView(R.layout.activity_dashboard)
-        setContentView(R.layout.activity_waste)
 
         // get the username from the login activity
         val username = intent.getStringExtra(EXTRA_MESSAGE)
