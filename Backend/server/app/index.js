@@ -85,12 +85,10 @@ app.post("/users", async function(req, res) {
 
 // Used to verify login info is correct
 app.post("/login", async function(req, res) {
-  console.log("user login attempt");
   if (!req.body) {
     res.status(401).json({
       message: "No req.body present"
     });
-    console.log("No req.body present");
   } else if (req.body.name && req.body.password) {
     try {
       // checks the database and then determines if the passwords matchs
@@ -103,23 +101,18 @@ app.post("/login", async function(req, res) {
       }
 
       if (user.password === req.body.password) {
-        //   // var payload = {
-        //   //   id: user.id
-        //   // };
-        //   // var token = jwt.sign(payload, jwtOptions.secretOrKey);
         res.json({
           message: "ok"
-          // token: tokens
         });
-        console.log("ok");
       } else {
         res.status(401).json({
           message: "passwords do not match"
         });
-        console.log("passwords do not match");
       }
     } catch (err) {
-      console.log("username not found");
+      res.status(401).json({
+        message: "Login Error"
+      });
     }
   }
 });
