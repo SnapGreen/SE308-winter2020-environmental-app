@@ -20,9 +20,7 @@ class WasteActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_waste)
-
         Toast.makeText(applicationContext, "Activity Launched!", Toast.LENGTH_SHORT).show()
-
+        setContentView(R.layout.activity_waste)
     }
 }

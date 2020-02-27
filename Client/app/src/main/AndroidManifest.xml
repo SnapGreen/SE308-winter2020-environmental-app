@@ -37,6 +37,10 @@
             android:name=".ui.dashboard.WasteActivity"
             android:label="Waste">
         </activity>
+        <activity
+            android:name=".ui.dashboard.StatsActivity"
+            android:label="Stats">
+        </activity>
 
     </application>
 
