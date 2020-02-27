@@ -52,20 +52,20 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/water"
-            android:drawableTop="@drawable/water"
+            android:id="@+id/usage_input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Water" />
+            android:drawableTop="@drawable/water"
+            android:text="Usage Input" />
 
         <Button
-            android:id="@+id/waste"
-            android:drawableTop="@drawable/waste"
+            android:id="@+id/stats"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Waste" />
+            android:drawableTop="@drawable/stats"
+            android:text="Stats" />
 
         <Button
             android:id="@+id/scan"
@@ -82,12 +82,12 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/stats"
-            android:drawableTop="@drawable/stats"
+            android:id="@+id/shopping_list"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Stats" />
+            android:drawableTop="@drawable/waste"
+            android:text="Shopping List" />
 
         <Button
             android:id="@+id/invite"
