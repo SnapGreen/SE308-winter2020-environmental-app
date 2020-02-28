@@ -18,7 +18,6 @@ class DashboardActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        NetworkManager.setInstanceContext(this)
 
         dashboardViewModel = ViewModelProviders.of(this, DashboardViewModelFactory())
             .get(DashboardViewModel::class.java)
@@ -60,12 +59,12 @@ class DashboardActivity : AppCompatActivity() {
         scannerButton.setOnClickListener {
             val intent = Intent(this, PreviewActivity::class.java)
             startActivity(intent)
-            val statsButton = findViewById<Button>(R.id.stats)
+        }
 
-            statsButton.setOnClickListener {
-                val intent = Intent(this, StatsActivity::class.java)
-                startActivity(intent)
-            }
+        val statsButton = findViewById<Button>(R.id.stats)
+        statsButton.setOnClickListener {
+            val intent = Intent(this, StatsActivity::class.java)
+            startActivity(intent)
         }
     }
 }

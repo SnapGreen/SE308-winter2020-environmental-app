@@ -1,7 +1,4 @@
 package com.acme.snapgreen.data
-
-import NetworkManager
-import android.widget.Toast
 import com.acme.snapgreen.data.model.LoggedInUser
 import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request

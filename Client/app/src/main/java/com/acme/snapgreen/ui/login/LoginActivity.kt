@@ -16,6 +16,7 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import com.acme.snapgreen.R
+import com.acme.snapgreen.data.NetworkManager
 import com.acme.snapgreen.ui.dashboard.DashboardActivity
 import com.acme.snapgreen.ui.dashboard.EXTRA_MESSAGE
 
@@ -24,8 +25,8 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var loginViewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        // set context for Valley calls
-        NetworkManager.setInstanceContext(applicationContext)
+        // set context for Valley calls for the remainder of the app
+        NetworkManager.getInstance(applicationContext)
 
 
         super.onCreate(savedInstanceState)
