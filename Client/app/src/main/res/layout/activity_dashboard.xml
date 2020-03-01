@@ -18,37 +18,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="16dp">
 
-        <ImageView
-            android:id="@+id/imgview"
-            android:layout_width="176dp"
-            android:layout_height="220dp"
-            tools:srcCompat="@drawable/puppy" />
-
-        <Button
-            android:id="@+id/scanner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Scan Code" />
-
-        <TextView
-            android:id="@+id/txtview"
-            android:layout_width="235dp"
-            android:layout_height="38dp"
-            android:text="Bar Code Result"
-            android:textAlignment="center" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
+        android:layout_weight="1"
+        android:gravity="bottom"
         android:orientation="horizontal">
 
         <Button
@@ -69,16 +41,19 @@
 
         <Button
             android:id="@+id/scan"
-            android:drawableTop="@drawable/scan"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:drawableTop="@drawable/scan"
             android:text="Scan" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:baselineAligned="false"
+        android:gravity="bottom"
         android:orientation="horizontal">
 
         <Button
@@ -91,18 +66,18 @@
 
         <Button
             android:id="@+id/invite"
-            android:drawableTop="@drawable/invite"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:drawableTop="@drawable/invite"
             android:text="Invite" />
 
         <Button
             android:id="@+id/settings"
-            android:drawableTop="@drawable/settings"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:drawableTop="@drawable/settings"
             android:text="Settings" />
     </LinearLayout>
 

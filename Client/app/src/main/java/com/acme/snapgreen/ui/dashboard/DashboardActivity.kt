@@ -4,16 +4,11 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.util.size
 import androidx.lifecycle.ViewModelProviders
 import com.acme.snapgreen.R
-import com.google.android.gms.vision.Frame
-import com.google.android.gms.vision.barcode.Barcode
-import com.google.android.gms.vision.barcode.BarcodeDetector
-import kotlinx.android.synthetic.main.activity_dashboard.*
+import com.acme.snapgreen.ui.scanner.PreviewActivity
 
 const val EXTRA_MESSAGE = "com.acme.snapgreen.MESSAGE"
 
@@ -23,7 +18,6 @@ class DashboardActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        NetworkManager.setInstanceContext(this)
 
         dashboardViewModel = ViewModelProviders.of(this, DashboardViewModelFactory())
             .get(DashboardViewModel::class.java)
@@ -37,75 +31,40 @@ class DashboardActivity : AppCompatActivity() {
             text = "Welcome " + username
         }
 
-
         val waterButton = findViewById<Button>(R.id.usage_input)
-
         waterButton.setOnClickListener {
             val intent = Intent(this, UsageInputActivity::class.java)
             startActivity(intent)
         }
 
         val shopListButton = findViewById<Button>(R.id.shopping_list)
-
         shopListButton.setOnClickListener {
             val intent = Intent(this, ShoppingListActivity::class.java)
             startActivity(intent)
         }
 
         val inviteButton = findViewById<Button>(R.id.invite)
-
         inviteButton.setOnClickListener {
             val intent = Intent(this, InviteActivity::class.java)
             startActivity(intent)
         }
 
         val settingsButton = findViewById<Button>(R.id.settings)
-
         settingsButton.setOnClickListener {
             val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
         }
 
-        val statsButton = findViewById<Button>(R.id.stats)
+        val scannerButton = findViewById<Button>(R.id.scan)
+        scannerButton.setOnClickListener {
+            val intent = Intent(this, PreviewActivity::class.java)
+            startActivity(intent)
+        }
 
+        val statsButton = findViewById<Button>(R.id.stats)
         statsButton.setOnClickListener {
             val intent = Intent(this, StatsActivity::class.java)
             startActivity(intent)
         }
-
-        val scanner = findViewById<Button>(R.id.scanner)
-        val myImageView = findViewById(R.id.imgview) as ImageView
-        val myBitmap = BitmapFactory.decodeResource(
-            applicationContext.resources,
-            R.drawable.puppy
-        )
-        myImageView.setImageBitmap(myBitmap)
-
-
-        scanner.setOnClickListener{
-
-            val detector = BarcodeDetector.Builder(getApplicationContext())
-                .setBarcodeFormats(Barcode.DATA_MATRIX or Barcode.QR_CODE)
-                .build()
-            if(!detector.isOperational())
-            {
-                txtview.setText("Could not set up the detector!")
-            }
-
-            val frame = Frame.Builder().setBitmap(myBitmap).build()
-            val barcodes = detector.detect(frame)
-
-            if(barcodes.size > 0)
-            {
-                val thisCode = barcodes.valueAt(0)
-                txtview.setText(thisCode.rawValue)
-            }
-            else
-            {
-                txtview.setText("Failed to scan code, please try again!")
-            }
-
-        }
-
     }
 }

@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.acme.snapgreen">
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
 
 
     <application
@@ -14,6 +16,7 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES" android:value="barcode"/>
 
         <activity
             android:name=".ui.login.LoginActivity"
@@ -52,9 +55,14 @@
             android:label="Adjust Your Settings">
         </activity>
         <activity
+            android:name=".ui.scanner.PreviewActivity"
+            android:label="Scanner">
+        </activity>
+        <activity
             android:name=".ui.dashboard.StatsActivity"
             android:label="Stats">
         </activity>
+        <activity android:name=".ui.scanner.ScanResultActivity" />
 
     </application>
 
