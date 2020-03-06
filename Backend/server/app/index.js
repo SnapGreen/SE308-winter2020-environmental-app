@@ -125,19 +125,13 @@ app.post("/login", async function(req, res) {
 app.get("/products/:id", async function(req, res) {
   console.log("barcode scan request received");
   if (!req.params || !req.params.id) {
-    res.status(401).json({
-      description: "No barcode provided"
-    });
-    console.log("No barcode provided");
-  } else if (req.params.id == "123456789012") {
-    res.status(302).json({
-      description: "barcode found"
-    });
+     res.send("No Barcode provided")
+     console.log("No barcode provided");
+  } else if (req.params.id == "012546011075") {
+    res.send("Barcode found");
     console.log("barcode request %s found", req.params.id);
   } else {
-    res.status(404).json({
-      description: "barcode not found"
-    });
+    res.send("Barcode not found");
     console.log("barcode scan request %s not found", req.params.id);
   }
 
