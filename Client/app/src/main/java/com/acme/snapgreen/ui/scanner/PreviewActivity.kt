@@ -79,7 +79,9 @@ class PreviewActivity : AppCompatActivity() {
     /**
      * Handles scanning the image provided by the preview
      */
-    private lateinit var detector: BarcodeDetector
+    private val detector: BarcodeDetector by lazy {BarcodeDetector.Builder(applicationContext)
+        .setBarcodeFormats(Barcode.UPC_A)
+        .build() }
 
     /**
      * These are equivalent to static variables in java
@@ -158,11 +160,9 @@ class PreviewActivity : AppCompatActivity() {
             CAMERA_REQUEST_CODE
         )
 
-        detector = BarcodeDetector.Builder(applicationContext)
-            .setBarcodeFormats(Barcode.UPC_A)
-            .build()
-
         cameraManager = getSystemService(Context.CAMERA_SERVICE) as CameraManager
+        textureView.surfaceTextureListener = surfaceTextureListener
+
 
     }
 
@@ -248,6 +248,7 @@ class PreviewActivity : AppCompatActivity() {
     private fun closeCamera() {
         if (cameraCaptureSession != null) {
             cameraCaptureSession!!.close()
+
             cameraCaptureSession = null
         }
         if (cameraDevice != null) {
@@ -330,14 +331,15 @@ class PreviewActivity : AppCompatActivity() {
      * Launches another activity with the result of the successful barcode scan.
      * @param barcode: The barcode scanned by the camera
      */
+    @Synchronized
     private fun onBarcodeScanSuccess(barcode: Barcode) {
 
         val intent = Intent(this, ScanResultActivity::class.java).apply {
             putExtra(EXTRA_MESSAGE, barcode.displayValue)
         }
-
+        startActivity(intent)
         closeCamera()
         closeBackgroundThread()
-        startActivity(intent)
+        finish()
     }
 }
