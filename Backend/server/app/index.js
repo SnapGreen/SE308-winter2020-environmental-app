@@ -91,7 +91,7 @@ app.post("/login", async function(req, res) {
     });
   } else if (req.body.name && req.body.password) {
     try {
-      // checks the database and then determines if the passwords matchs
+      // checks the database and then determines if the passwords match
       console.log("user login attempt");
       let user = await FIREBASE.getUser(req.body.name);
 
@@ -122,28 +122,26 @@ app.post("/login", async function(req, res) {
   }
 });
 
-app.get("/barcode", async function(req, res) {
+app.get("/products/:id", async function(req, res) {
   console.log("barcode scan request received");
-  if (!req.body) {
+  if (!req.params || !req.params.id) {
     res.status(401).json({
-      description: "No req.body present"
+      description: "No barcode provided"
     });
-    console.log("No req.body present");
-  }
-  else if(req.body.barcode == "123456789012"){
+    console.log("No barcode provided");
+  } else if (req.params.id == "123456789012") {
     res.status(302).json({
-       description: "barcode found"
+      description: "barcode found"
     });
-    console.log("barcode request %s found", req.body.barcode);
-  }
-  else{
+    console.log("barcode request %s found", req.params.id);
+  } else {
     res.status(404).json({
-       description: "barcode not found"
+      description: "barcode not found"
     });
-    console.log("barcode scan request %s not found", req.body.barcode);
+    console.log("barcode scan request %s not found", req.params.id);
   }
 
-   /* Firebase part to be added later
+  /* Firebase part to be added later
   let user = await FIREBASE.getUser(req.body.username);
   if (user) {
     res.json({
