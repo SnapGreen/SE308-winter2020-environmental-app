@@ -76,10 +76,17 @@ app.post("/users", async function(req, res) {
       message: "User already exists. Please try a different username."
     });
   } else {
-    let newId = await FIREBASE.createUser(req.body);
-    res.json({
-      message: `New user added. Id is ${newId}`
-    });
+    try {
+      let newId = await FIREBASE.createUser(req.body);
+      res.json({
+        message: `New user added. Id is ${newId}`
+      });
+    } catch (err) {
+      res.status(401).json({
+        message: "Add User Error"
+      });
+      console.log("Add User Error");
+    }
   }
 });
 
@@ -150,6 +157,27 @@ app.get("/products/:id", async function(req, res) {
       });
       console.log(err);
     }
+  }
+});
+
+// Used to add/update a product
+app.put("/products/:id", async function(req, res) {
+  if (!req.params || !req.params.id || !req.body) {
+    res.status(401).json({
+      message: "No req.params.id or req.body present"
+    });
+  }
+
+  try {
+    let newId = await FIREBASE.updateProduct(req.params.id, req.body);
+    res.json({
+      message: `Product ${newId} is added/updated`
+    });
+  } catch (err) {
+    res.status(401).json({
+      message: "Update Product Error"
+    });
+    console.log(err);
   }
 });
 
