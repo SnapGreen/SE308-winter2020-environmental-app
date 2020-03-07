@@ -78,6 +78,15 @@ class Firebase {
     // if a product exists, returns the document
     return productQuery.data();
   }
+
+  // Updates a product in the database
+  async updateProduct(id, product) {
+    await this.db
+      .collection("products")
+      .doc(id)
+      .set(product, { merge: true });
+    return id;
+  }
 }
 
 // Exports firebase functions to be used in a different file
