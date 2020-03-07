@@ -125,29 +125,32 @@ app.post("/login", async function(req, res) {
 app.get("/products/:id", async function(req, res) {
   console.log("barcode scan request received");
   if (!req.params || !req.params.id) {
-     res.send("No Barcode provided")
-     console.log("No barcode provided");
-  } else if (req.params.id == "012546011075") {
-    res.send("Barcode found");
-    console.log("barcode request %s found", req.params.id);
-  } else {
-    res.send("Barcode not found");
-    console.log("barcode scan request %s not found", req.params.id);
-  }
+    res.send("No Barcode provided");
+    console.log("No barcode provided");
+  } else if (req.params.id) {
+    try {
+      // checks the database and then determines if the passwords match
+      console.log("product lookup attempt");
+      let product = await FIREBASE.getProduct(req.params.id);
 
-  /* Firebase part to be added later
-  let user = await FIREBASE.getUser(req.body.username);
-  if (user) {
-    res.json({
-      message: "User already exists. Please try a different username."
-    });
-  } else {
-    let newId = await FIREBASE.createUser(req.body);
-    res.json({
-      message: `New user added. Id is ${newId}`
-    });
+      if (!product) {
+        res.status(401).json({
+          message: "Product Not Found"
+        });
+        console.log("product not found");
+      }
+
+      // Returns a json of the product scanned
+      res.json(product);
+
+      console.log("ok");
+    } catch (err) {
+      res.status(401).json({
+        message: "Product Lookup Error"
+      });
+      console.log(err);
+    }
   }
-  */
 });
 
 /* These are for later, when we integrate real-time game comms
