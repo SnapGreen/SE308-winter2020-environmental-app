@@ -76,10 +76,17 @@ app.post("/users", async function(req, res) {
       message: "User already exists. Please try a different username."
     });
   } else {
-    let newId = await FIREBASE.createUser(req.body);
-    res.json({
-      message: `New user added. Id is ${newId}`
-    });
+    try {
+      let newId = await FIREBASE.createUser(req.body);
+      res.json({
+        message: `New user added. Id is ${newId}`
+      });
+    } catch (err) {
+      res.status(401).json({
+        message: "Add User Error"
+      });
+      console.log("Add User Error");
+    }
   }
 });
 
@@ -125,29 +132,53 @@ app.post("/login", async function(req, res) {
 app.get("/products/:id", async function(req, res) {
   console.log("barcode scan request received");
   if (!req.params || !req.params.id) {
-     res.send("No Barcode provided")
-     console.log("No barcode provided");
-  } else if (req.params.id == "012546011075") {
-    res.send("Barcode found");
-    console.log("barcode request %s found", req.params.id);
-  } else {
-    res.send("Barcode not found");
-    console.log("barcode scan request %s not found", req.params.id);
+    res.send("No Barcode provided");
+    console.log("No barcode provided");
+  } else if (req.params.id) {
+    try {
+      // checks the database and then determines if the passwords match
+      console.log("product lookup attempt");
+      let product = await FIREBASE.getProduct(req.params.id);
+
+      if (!product) {
+        res.status(401).json({
+          message: "Product Not Found"
+        });
+        console.log("product not found");
+      }
+
+      // Returns a json of the product scanned
+      res.json(product);
+
+      console.log("ok");
+    } catch (err) {
+      res.status(401).json({
+        message: "Product Lookup Error"
+      });
+      console.log(err);
+    }
+  }
+});
+
+// Used to add/update a product
+app.put("/products/:id", async function(req, res) {
+  if (!req.params || !req.params.id || !req.body) {
+    res.status(401).json({
+      message: "No req.params.id or req.body present"
+    });
   }
 
-  /* Firebase part to be added later
-  let user = await FIREBASE.getUser(req.body.username);
-  if (user) {
+  try {
+    let newId = await FIREBASE.updateProduct(req.params.id, req.body);
     res.json({
-      message: "User already exists. Please try a different username."
+      message: `Product ${newId} is added/updated`
     });
-  } else {
-    let newId = await FIREBASE.createUser(req.body);
-    res.json({
-      message: `New user added. Id is ${newId}`
+  } catch (err) {
+    res.status(401).json({
+      message: "Update Product Error"
     });
+    console.log(err);
   }
-  */
 });
 
 /* These are for later, when we integrate real-time game comms
