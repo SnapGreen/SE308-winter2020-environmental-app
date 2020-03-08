@@ -6,6 +6,31 @@ Competitive, gamified behavior tracker to encourage awareness and encourage sust
 
 https://www.figma.com/proto/bh5f84oIEU3nPKicuKOBUI/SnapGreen?node-id=1%3A10&scaling=min-zoom
 
+# Analysis and Design Models
+
+## Component Diagram
+![Annotation 2020-03-08 141438](https://user-images.githubusercontent.com/38018381/76172520-25f23980-6154-11ea-9d1f-c3ae9858771d.png)
+
+## Use Case Diagram
+
+The app involves two actors, one being a player(user) and the other being a clock. The player can perform various activities. They can login to the app and if they don't have an account they can create a new account. A player can also access their settings, add friends, enter usage stats which will also lead to the system to calculate the stats. They can create a new game, which in turn will start the game clock countdown and this is managed by the clock. Finally the player can scan the product barcode and in return view the environmental impact of it.
+<img width="605" alt="Screen Shot 2020-03-08 at 3 20 23 PM" src="https://user-images.githubusercontent.com/38018381/76172459-71581800-6153-11ea-88e2-5ae69b7becf9.png">
+
+## Activity Diagram
+
+This diagram displays the process of creating, playing, and ending a game. Reading from top to bottom you can see the different decisions at each step and what happens after the user makes a decision on whether or not to perform a certain action. The diagram is pretty self-explanatory and easy to follow.
+<img width="626" alt="Screen Shot 2020-02-21 at 11 51 02 AM" src="https://user-images.githubusercontent.com/38018381/76172476-ab291e80-6153-11ea-8859-beb67f91f88d.png">
+
+## Class Diagram
+
+This diagram is a rough draft that shows the interaction between the different main classes of the game. It also shows the different methods that perform the various actions within the app. It also highlights the dependencies between one class and another.
+<img width="680" alt="Screen Shot 2020-03-08 at 4 15 50 PM" src="https://user-images.githubusercontent.com/38018381/76172963-1d9bfd80-6158-11ea-8b19-47a29ac5901c.png">
+
+## Sequence Diagram
+
+This diagram shows the interaction between the app, server, and database when a user tries to login. The app sends the login attempt information to the server and the server queries the database and recieves a response. The server then sends a response to the app based on whether the login attempt was valid, whether the user doesn't exist, or whether the password doesn't match.
+![Annotation 2020-03-02 212312](https://user-images.githubusercontent.com/38018381/76172505-f80cf500-6153-11ea-8d9c-cf0885f0c9ec.png)
+
 # Environmental App Server
 
 ## Requirements
