@@ -62,6 +62,31 @@ class Firebase {
         console.log("Error getting documents", err);
       });
   }
+
+  // Queries and returns a product document
+  async getProduct(id) {
+    let productQuery = await this.db
+      .collection("products")
+      .doc(`${id}`)
+      .get();
+
+    console.log(productQuery);
+    if (productQuery.empty) {
+      console.log("No matching documents.");
+      return null;
+    }
+    // if a product exists, returns the document
+    return productQuery.data();
+  }
+
+  // Updates a product in the database
+  async updateProduct(id, product) {
+    await this.db
+      .collection("products")
+      .doc(id)
+      .set(product, { merge: true });
+    return id;
+  }
 }
 
 // Exports firebase functions to be used in a different file
