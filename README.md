@@ -24,6 +24,7 @@ This diagram displays the process of creating, playing, and ending a game. Readi
 ## Class Diagram
 
 This diagram is a rough draft that shows the interaction between the different main classes of the game. It also shows the different methods that perform the various actions within the app. It also highlights the dependencies between one class and another.
+
 <img width="680" alt="Screen Shot 2020-03-08 at 4 15 50 PM" src="https://user-images.githubusercontent.com/38018381/76172963-1d9bfd80-6158-11ea-8b19-47a29ac5901c.png">
 
 ## Sequence Diagram
