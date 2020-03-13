@@ -21,6 +21,9 @@ The app involves two actors, one being a player(user) and the other being a cloc
 This diagram displays the process of creating, playing, and ending a game. Reading from top to bottom you can see the different decisions at each step and what happens after the user makes a decision on whether or not to perform a certain action. The diagram is pretty self-explanatory and easy to follow.
 <img width="626" alt="Screen Shot 2020-02-21 at 11 51 02 AM" src="https://user-images.githubusercontent.com/38018381/76172476-ab291e80-6153-11ea-8859-beb67f91f88d.png">
 
+This diagram shows the basic workflow when adding usage data into SnapGreen. Several different statistics are updated including any games in progress.
+![StatsActivityDiagram](https://user-images.githubusercontent.com/44537937/76588351-0a649700-64a4-11ea-8824-5d71447ea23f.png)
+
 ## Class Diagram
 
 This diagram is a rough draft that shows the interaction between the different main classes of the game. It also shows the different methods that perform the various actions within the app. It also highlights the dependencies between one class and another.
