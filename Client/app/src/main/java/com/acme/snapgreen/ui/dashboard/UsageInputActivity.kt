@@ -12,4 +12,6 @@ class UsageInputActivity : AppCompatActivity() {
         Toast.makeText(applicationContext, "Activity launched!", Toast.LENGTH_SHORT).show()
         setContentView(R.layout.activity_usage_input)
     }
+
+
 }

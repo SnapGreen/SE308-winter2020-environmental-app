@@ -76,7 +76,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0"
                 android:paddingTop="10dp"
-                android:text="How many minutes do you shower each week?" />
+                android:text="How many minutes did you shower today?" />
 
             <TextView
                 android:id="@+id/water_input2"
@@ -84,7 +84,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0"
                 android:paddingTop="10dp"
-                android:text="How many times do you flush the toilet each day?" />
+                android:text="How many times did you flush the toilet today?" />
 
             <TextView
                 android:id="@+id/water_input3"
@@ -92,7 +92,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0"
                 android:paddingTop="10dp"
-                android:text="How many times do you run the dishwasher at home per week?" />
+                android:text="How many times did you run the dishwasher at home today?" />
 
             <TextView
                 android:id="@+id/water_input4"
@@ -100,7 +100,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0"
                 android:paddingTop="10dp"
-                android:text="How many minutes are you running the washing machine per month?" />
+                android:text="How many minutes did you run the washing machine today?" />
 
         </LinearLayout>
 
@@ -113,7 +113,7 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="42dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:autofillHints="Number"
                 android:hint="0"
                 android:textSize="20dp" />
@@ -121,7 +121,7 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_marginTop="0dp"
                 android:autofillHints="Number"
                 android:hint="0"
@@ -130,7 +130,7 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_marginTop="0dp"
                 android:autofillHints="Number"
                 android:hint="0"
@@ -139,7 +139,7 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_marginTop="0dp"
                 android:autofillHints="Number"
                 android:hint="0"
@@ -192,7 +192,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0"
                 android:paddingTop="15dp"
-                android:text="How long have you kept the light on today (in hours)?" />
+                android:text="How long did you keep the light on today (in hours)?" />
 
             <TextView
                 android:id="@+id/waste_input2"
@@ -200,7 +200,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0"
                 android:paddingTop="15dp"
-                android:text="How many aluminum cans have you used this week?" />
+                android:text="How many aluminum cans did you use today?" />
 
             <TextView
                 android:id="@+id/waste_input3"
@@ -208,7 +208,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0"
                 android:paddingTop="15dp"
-                android:text="How many styrofoam container have you used this week?" />
+                android:text="How many styrofoam container did you use today?" />
 
             <TextView
                 android:id="@+id/waste_input4"
@@ -216,7 +216,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0"
                 android:paddingTop="15dp"
-                android:text="How many plastic straws have you used this week?" />
+                android:text="How many plastic straws did you use today?" />
 
             <TextView
                 android:id="@+id/waste_input5"
@@ -224,7 +224,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0"
                 android:paddingTop="15dp"
-                android:text="How many plastic utensils have you used this week?" />
+                android:text="How many plastic utensils did you use today?" />
 
         </LinearLayout>
 
@@ -237,7 +237,7 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="42dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:autofillHints="Number"
                 android:hint="0"
                 android:textSize="20dp" />
@@ -245,7 +245,7 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_marginTop="6dp"
                 android:autofillHints="Number"
                 android:hint="0"
@@ -254,7 +254,7 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_marginTop="5dp"
                 android:autofillHints="Number"
                 android:hint="0"
@@ -263,7 +263,7 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_marginTop="5dp"
                 android:autofillHints="Number"
                 android:hint="0"
@@ -272,7 +272,7 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_marginTop="5dp"
                 android:autofillHints="Number"
                 android:hint="0"
