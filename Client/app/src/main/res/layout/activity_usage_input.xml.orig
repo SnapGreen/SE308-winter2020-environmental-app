@@ -1,0 +1,572 @@
+<<<<<<< HEAD
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="0dp">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="143dp"
+        android:orientation="vertical">
+
+        <Button
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:backgroundTint="#C4C4C4"
+            android:text="Edit"
+            android:textAllCaps="true" />
+
+        <TextView
+            android:id="@+id/usage_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text=" Your Usage"
+            android:textAlignment="viewStart"
+            android:textColor="#000000"
+            android:textSize="50sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="229dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:layout_weight=".2"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="25dp"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/arrow_button" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="5dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginRight="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="7dp"
+                android:text="Water"
+                android:textColor="#000000"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/water_input1"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:paddingTop="10dp"
+                android:text="How many minutes do you shower each week?" />
+
+            <TextView
+                android:id="@+id/water_input2"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:paddingTop="10dp"
+                android:text="How many times do you flush the toilet each day?" />
+
+            <TextView
+                android:id="@+id/water_input3"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:paddingTop="10dp"
+                android:text="How many times do you run the dishwasher at home per week?" />
+
+            <TextView
+                android:id="@+id/water_input4"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:paddingTop="10dp"
+                android:text="How many minutes are you running the washing machine per month?" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="182dp"
+            android:layout_marginTop="41dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:layout_marginLeft="20dp"
+                android:autofillHints="Number"
+                android:hint="0"
+                android:textSize="20dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="0dp"
+                android:autofillHints="Number"
+                android:hint="0"
+                android:textSize="20dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="0dp"
+                android:autofillHints="Number"
+                android:hint="0"
+                android:textSize="20dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="0dp"
+                android:autofillHints="Number"
+                android:hint="0"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="494dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:layout_weight=".2"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="25dp"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/arrow_button" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="5dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginRight="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="7dp"
+                android:text="Waste"
+                android:textColor="#000000"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/waste_input1"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:paddingTop="15dp"
+                android:text="How long have you kept the light on today (in hours)?" />
+
+            <TextView
+                android:id="@+id/waste_input2"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:paddingTop="15dp"
+                android:text="How many aluminum cans have you used this week?" />
+
+            <TextView
+                android:id="@+id/waste_input3"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:paddingTop="15dp"
+                android:text="How many styrofoam container have you used this week?" />
+
+            <TextView
+                android:id="@+id/waste_input4"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:paddingTop="15dp"
+                android:text="How many plastic straws have you used this week?" />
+
+            <TextView
+                android:id="@+id/waste_input5"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:paddingTop="15dp"
+                android:text="How many plastic utensils have you used this week?" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="256dp"
+            android:layout_marginTop="45dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:layout_marginLeft="20dp"
+                android:autofillHints="Number"
+                android:hint="0"
+                android:textSize="20dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="6dp"
+                android:autofillHints="Number"
+                android:hint="0"
+                android:textSize="20dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:autofillHints="Number"
+                android:hint="0"
+                android:textSize="20dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:autofillHints="Number"
+                android:hint="0"
+                android:textSize="20dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:autofillHints="Number"
+                android:hint="0"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+=======
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="0dp">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="143dp"
+        android:orientation="vertical">
+
+        <Button
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:backgroundTint="#C4C4C4"
+            android:text="Edit"
+            android:textAllCaps="true" />
+
+        <TextView
+            android:id="@+id/usage_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text=" Your Usage"
+            android:textAlignment="viewStart"
+            android:textColor="#000000"
+            android:textSize="50sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="229dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:layout_weight=".2"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="25dp"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/arrow_button" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="5dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginRight="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="7dp"
+                android:text="Water"
+                android:textColor="#000000"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/water_input1"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:paddingTop="10dp"
+                android:text="How many minutes do you shower each week?" />
+
+            <TextView
+                android:id="@+id/water_input2"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:paddingTop="10dp"
+                android:text="How many times do you flush the toilet each day?" />
+
+            <TextView
+                android:id="@+id/water_input3"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:paddingTop="10dp"
+                android:text="How many times do you run the dishwasher at home per week?" />
+
+            <TextView
+                android:id="@+id/water_input4"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:paddingTop="10dp"
+                android:text="How many minutes are you running the washing machine per month?" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="182dp"
+            android:layout_marginTop="41dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:layout_marginLeft="20dp"
+                android:autofillHints="Number"
+                android:hint="0"
+                android:textSize="20dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="0dp"
+                android:autofillHints="Number"
+                android:hint="0"
+                android:textSize="20dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="0dp"
+                android:autofillHints="Number"
+                android:hint="0"
+                android:textSize="20dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="0dp"
+                android:autofillHints="Number"
+                android:hint="0"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="494dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:layout_weight=".2"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="25dp"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/arrow_button" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="5dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginRight="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="7dp"
+                android:text="Waste"
+                android:textColor="#000000"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/waste_input1"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:paddingTop="15dp"
+                android:text="How long have you kept the light on today (in hours)?" />
+
+            <TextView
+                android:id="@+id/waste_input2"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:paddingTop="15dp"
+                android:text="How many aluminum cans have you used this week?" />
+
+            <TextView
+                android:id="@+id/waste_input3"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:paddingTop="15dp"
+                android:text="How many styrofoam container have you used this week?" />
+
+            <TextView
+                android:id="@+id/waste_input4"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:paddingTop="15dp"
+                android:text="How many plastic straws have you used this week?" />
+
+            <TextView
+                android:id="@+id/waste_input5"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:paddingTop="15dp"
+                android:text="How many plastic utensils have you used this week?" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="256dp"
+            android:layout_marginTop="45dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:layout_marginLeft="20dp"
+                android:autofillHints="Number"
+                android:hint="0"
+                android:textSize="20dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="6dp"
+                android:autofillHints="Number"
+                android:hint="0"
+                android:textSize="20dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:autofillHints="Number"
+                android:hint="0"
+                android:textSize="20dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:autofillHints="Number"
+                android:hint="0"
+                android:textSize="20dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:autofillHints="Number"
+                android:hint="0"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+>>>>>>> ebfb21a0737a49cfa88dc05c6051a8eb35846c9c
+</LinearLayout>

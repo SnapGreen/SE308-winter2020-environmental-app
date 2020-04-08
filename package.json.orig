@@ -1,0 +1,49 @@
+<<<<<<< HEAD
+{
+  "name": "SnapGreen",
+  "version": "0.0.1",
+  "description": "Environmental App for Cal Poly CSC308, winter 202, Professor Bruno da Silva",
+  "main": "index.js",
+  "scripts": {
+    "serve": "nodemon backend/server/app/index.js",
+    "test": "jest"
+  },
+  "author": "308Squad",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "firebase-admin": "^8.9.2",
+    "lodash": "^4.17.15",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {
+    "jest": "^25.3.0",
+    "nodemon": "^2.0.2"
+  }
+}
+=======
+{
+  "name": "SnapGreen",
+  "version": "0.0.1",
+  "description": "Environmental App for Cal Poly CSC308, winter 202, Professor Bruno da Silva",
+  "main": "index.js",
+  "scripts": {
+    "serve": "nodemon backend/server/app/index.js"
+  },
+  "author": "308Squad",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "firebase-admin": "^8.9.2",
+    "lodash": "^4.17.15",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
+>>>>>>> ebfb21a0737a49cfa88dc05c6051a8eb35846c9c
