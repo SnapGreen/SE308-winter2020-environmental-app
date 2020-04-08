@@ -12,6 +12,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.HandlerThread
 import android.util.Size
+import android.util.SparseArray
 import android.view.Surface
 import android.view.TextureView
 import android.view.TextureView.SurfaceTextureListener
@@ -19,20 +20,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.util.size
 import com.acme.snapgreen.R
-import com.acme.snapgreen.data.NetworkManager
-import com.acme.snapgreen.data.Result
 import com.acme.snapgreen.ui.dashboard.EXTRA_MESSAGE
-import com.android.volley.DefaultRetryPolicy
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.RetryPolicy
-import com.android.volley.toolbox.JsonObjectRequest
 import com.google.android.gms.vision.Frame
 import com.google.android.gms.vision.barcode.Barcode
 import com.google.android.gms.vision.barcode.BarcodeDetector
-import kotlinx.android.synthetic.main.activity_login.*
-import org.json.JSONObject
-import java.io.IOException
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.invoke
+import kotlinx.coroutines.launch
 import java.util.*
 
 class PreviewActivity : AppCompatActivity() {
@@ -123,7 +118,10 @@ class PreviewActivity : AppCompatActivity() {
 
         override fun onSurfaceTextureUpdated(surfaceTexture: SurfaceTexture) {
             //TODO: possible performance implications of scanning every frame
-            scanBarCode(textureView.bitmap)
+            CoroutineScope(Dispatchers.Main).launch{
+                // runs on UI thread
+               scanBarcodeMainThread(textureView.bitmap)
+            }
         }
     }
 
@@ -313,33 +311,35 @@ class PreviewActivity : AppCompatActivity() {
 
     /**
      * Attempt to scan barcode and transition if successful
-     * TODO: Should separate scanning / network functionality to an async task to increase perf
      */
-    @Synchronized
-    fun scanBarCode(bitmap: Bitmap) {
-
+    suspend fun getResult(bitmap: Bitmap) = Dispatchers.Default {
+        val result: SparseArray<Barcode>
         assert(detector.isOperational)
-        val frame = Frame.Builder().setBitmap(bitmap).build()
-        val barcodes = detector.detect(frame)
 
-        if (barcodes.size > 0) {
-            onBarcodeScanSuccess(barcodes.valueAt(0))
-        }
+        val frame = Frame.Builder().setBitmap(bitmap).build()
+        result = detector.detect(frame)
+        // make network call
+        return@Default result
     }
 
     /**
      * Launches another activity with the result of the successful barcode scan.
      * @param barcode: The barcode scanned by the camera
      */
-    @Synchronized
-    private fun onBarcodeScanSuccess(barcode: Barcode) {
+    private suspend fun scanBarcodeMainThread(bitmap: Bitmap) {
 
-        val intent = Intent(this, ScanResultActivity::class.java).apply {
-            putExtra(EXTRA_MESSAGE, barcode.displayValue)
+        val barcodes = getResult(bitmap)
+
+        if(barcodes.size > 0)
+        {
+            val barcode = barcodes.get(0)
+            val intent = Intent(this, ScanResultActivity::class.java).apply {
+                putExtra(EXTRA_MESSAGE, barcode.displayValue)
+            }
+            startActivity(intent)
+            closeCamera()
+            closeBackgroundThread()
+            finish()
         }
-        startActivity(intent)
-        closeCamera()
-        closeBackgroundThread()
-        finish()
     }
 }
