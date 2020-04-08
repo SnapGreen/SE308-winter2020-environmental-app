@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<!-- saved from url=(0089)https://polylearn.calpoly.edu/AY_2019-2020/mod/quiz/review.php?attempt=306804&cmid=209857 -->
+<html dir="ltr" lang="en-us" xml:lang="en-us" class="yui3-js-enabled"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Quiz 5: Flow Network Basics</title>
+    <link rel="shortcut icon" href="https://polylearn.calpoly.edu/AY_2019-2020/theme/image.php/cpboost/theme/1581265379/favicon">
+    <script src="./Quiz 5_ Flow Network Basics_files/nr-1167.min.js.download"></script><script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={licenseKey:"4e34bbaf17",applicationID:"1977984"};window.NREUM||(NREUM={}),__nr_require=function(e,n,t){function r(t){if(!n[t]){var i=n[t]={exports:{}};e[t][0].call(i.exports,function(n){var i=e[t][1][n];return r(i||n)},i,i.exports)}return n[t].exports}if("function"==typeof __nr_require)return __nr_require;for(var i=0;i<t.length;i++)r(t[i]);return r}({1:[function(e,n,t){function r(){}function i(e,n,t){return function(){return o(e,[u.now()].concat(f(arguments)),n?null:this,t),n?void 0:this}}var o=e("handle"),a=e(4),f=e(5),c=e("ee").get("tracer"),u=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],l="api-",d=l+"ixn-";a(p,function(e,n){s[n]=i(l+n,!0,"api")}),s.addPageAction=i(l+"addPageAction",!0),s.setCurrentRouteName=i(l+"routeName",!0),n.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,n){var t={},r=this,i="function"==typeof n;return o(d+"tracer",[u.now(),e,t],r),function(){if(c.emit((i?"":"no-")+"fn-start",[u.now(),r,i],t),i)try{return n.apply(this,arguments)}catch(e){throw c.emit("fn-err",[arguments,this,e],t),e}finally{c.emit("fn-end",[u.now()],t)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,n){m[n]=i(d+n)}),newrelic.noticeError=function(e,n){"string"==typeof e&&(e=new Error(e)),o("err",[e,u.now(),!1,n])}},{}],2:[function(e,n,t){function r(e,n){var t=e.getEntries();t.forEach(function(e){"first-paint"===e.name?c("timing",["fp",Math.floor(e.startTime)]):"first-contentful-paint"===e.name&&c("timing",["fcp",Math.floor(e.startTime)])})}function i(e,n){var t=e.getEntries();t.length>0&&c("lcp",[t[t.length-1]])}function o(e){if(e instanceof s&&!l){var n,t=Math.round(e.timeStamp);n=t>1e12?Date.now()-t:u.now()-t,l=!0,c("timing",["fi",t,{type:e.type,fid:n}])}}if(!("init"in NREUM&&"page_view_timing"in NREUM.init&&"enabled"in NREUM.init.page_view_timing&&NREUM.init.page_view_timing.enabled===!1)){var a,f,c=e("handle"),u=e("loader"),s=NREUM.o.EV;if("PerformanceObserver"in window&&"function"==typeof window.PerformanceObserver){a=new PerformanceObserver(r),f=new PerformanceObserver(i);try{a.observe({entryTypes:["paint"]}),f.observe({entryTypes:["largest-contentful-paint"]})}catch(p){}}if("addEventListener"in document){var l=!1,d=["click","keydown","mousedown","pointerdown","touchstart"];d.forEach(function(e){document.addEventListener(e,o,!1)})}}},{}],3:[function(e,n,t){function r(e,n){if(!i)return!1;if(e!==i)return!1;if(!n)return!0;if(!o)return!1;for(var t=o.split("."),r=n.split("."),a=0;a<r.length;a++)if(r[a]!==t[a])return!1;return!0}var i=null,o=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var f=navigator.userAgent,c=f.match(a);c&&f.indexOf("Chrome")===-1&&f.indexOf("Chromium")===-1&&(i="Safari",o=c[1])}n.exports={agent:i,version:o,match:r}},{}],4:[function(e,n,t){function r(e,n){var t=[],r="",o=0;for(r in e)i.call(e,r)&&(t[o]=n(r,e[r]),o+=1);return t}var i=Object.prototype.hasOwnProperty;n.exports=r},{}],5:[function(e,n,t){function r(e,n,t){n||(n=0),"undefined"==typeof t&&(t=e?e.length:0);for(var r=-1,i=t-n||0,o=Array(i<0?0:i);++r<i;)o[r]=e[n+r];return o}n.exports=r},{}],6:[function(e,n,t){n.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,n,t){function r(){}function i(e){function n(e){return e&&e instanceof r?e:e?c(e,f,o):o()}function t(t,r,i,o){if(!l.aborted||o){e&&e(t,r,i);for(var a=n(i),f=v(t),c=f.length,u=0;u<c;u++)f[u].apply(a,r);var p=s[y[t]];return p&&p.push([b,t,r,a]),a}}function d(e,n){h[e]=v(e).concat(n)}function m(e,n){var t=h[e];if(t)for(var r=0;r<t.length;r++)t[r]===n&&t.splice(r,1)}function v(e){return h[e]||[]}function g(e){return p[e]=p[e]||i(t)}function w(e,n){u(e,function(e,t){n=n||"feature",y[t]=n,n in s||(s[n]=[])})}var h={},y={},b={on:d,addEventListener:d,removeEventListener:m,emit:t,get:g,listeners:v,context:n,buffer:w,abort:a,aborted:!1};return b}function o(){return new r}function a(){(s.api||s.feature)&&(l.aborted=!0,s=l.backlog={})}var f="nr@context",c=e("gos"),u=e(4),s={},p={},l=n.exports=i();l.backlog=s},{}],gos:[function(e,n,t){function r(e,n,t){if(i.call(e,n))return e[n];var r=t();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,n,{value:r,writable:!0,enumerable:!1}),r}catch(o){}return e[n]=r,r}var i=Object.prototype.hasOwnProperty;n.exports=r},{}],handle:[function(e,n,t){function r(e,n,t,r){i.buffer([e],r),i.emit(e,n,t)}var i=e("ee").get("handle");n.exports=r,r.ee=i},{}],id:[function(e,n,t){function r(e){var n=typeof e;return!e||"object"!==n&&"function"!==n?-1:e===window?0:a(e,o,function(){return i++})}var i=1,o="nr@id",a=e("gos");n.exports=r},{}],loader:[function(e,n,t){function r(){if(!x++){var e=E.info=NREUM.info,n=d.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&n))return s.abort();u(y,function(n,t){e[n]||(e[n]=t)}),c("mark",["onload",a()+E.offset],null,"api");var t=d.createElement("script");t.src="https://"+e.agent,n.parentNode.insertBefore(t,n)}}function i(){"complete"===d.readyState&&o()}function o(){c("mark",["domContent",a()+E.offset],null,"api")}function a(){return O.exists&&performance.now?Math.round(performance.now()):(f=Math.max((new Date).getTime(),f))-E.offset}var f=(new Date).getTime(),c=e("handle"),u=e(4),s=e("ee"),p=e(3),l=window,d=l.document,m="addEventListener",v="attachEvent",g=l.XMLHttpRequest,w=g&&g.prototype;NREUM.o={ST:setTimeout,SI:l.setImmediate,CT:clearTimeout,XHR:g,REQ:l.Request,EV:l.Event,PR:l.Promise,MO:l.MutationObserver};var h=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1167.min.js"},b=g&&w&&w[m]&&!/CriOS/.test(navigator.userAgent),E=n.exports={offset:f,now:a,origin:h,features:{},xhrWrappable:b,userAgent:p};e(1),e(2),d[m]?(d[m]("DOMContentLoaded",o,!1),l[m]("load",r,!1)):(d[v]("onreadystatechange",i),l[v]("onload",r)),c("mark",["firstbyte",f],null,"api");var x=0,O=e(6)},{}],"wrap-function":[function(e,n,t){function r(e){return!(e&&e instanceof Function&&e.apply&&!e[a])}var i=e("ee"),o=e(5),a="nr@original",f=Object.prototype.hasOwnProperty,c=!1;n.exports=function(e,n){function t(e,n,t,i){function nrWrapper(){var r,a,f,c;try{a=this,r=o(arguments),f="function"==typeof t?t(r,a):t||{}}catch(u){l([u,"",[r,a,i],f])}s(n+"start",[r,a,i],f);try{return c=e.apply(a,r)}catch(p){throw s(n+"err",[r,a,p],f),p}finally{s(n+"end",[r,a,c],f)}}return r(e)?e:(n||(n=""),nrWrapper[a]=e,p(e,nrWrapper),nrWrapper)}function u(e,n,i,o){i||(i="");var a,f,c,u="-"===i.charAt(0);for(c=0;c<n.length;c++)f=n[c],a=e[f],r(a)||(e[f]=t(a,u?f+i:i,o,f))}function s(t,r,i){if(!c||n){var o=c;c=!0;try{e.emit(t,r,i,n)}catch(a){l([a,t,r,i])}c=o}}function p(e,n){if(Object.defineProperty&&Object.keys)try{var t=Object.keys(e);return t.forEach(function(t){Object.defineProperty(n,t,{get:function(){return e[t]},set:function(n){return e[t]=n,n}})}),n}catch(r){l([r])}for(var i in e)f.call(e,i)&&(n[i]=e[i]);return n}function l(n){try{e.emit("internal-error",n)}catch(t){}}return e||(e=i),t.inPlace=u,t.flag=a,t}},{}]},{},["loader"]);</script>
+<meta name="keywords" content="moodle, Quiz 5: Flow Network Basics">
+<link rel="stylesheet" type="text/css" href="./Quiz 5_ Flow Network Basics_files/combo"><script charset="utf-8" id="yui_3_17_2_1_1582670602398_8" src="./Quiz 5_ Flow Network Basics_files/combo(1)" async=""></script><script charset="utf-8" id="yui_3_17_2_1_1582670602398_18" src="./Quiz 5_ Flow Network Basics_files/javascript.php" async=""></script><script charset="utf-8" id="yui_3_17_2_1_1582670602398_105" src="./Quiz 5_ Flow Network Basics_files/javascript(1).php" async=""></script><script charset="utf-8" id="yui_3_17_2_1_1582670602398_106" src="./Quiz 5_ Flow Network Basics_files/javascript(2).php" async=""></script><script charset="utf-8" id="yui_3_17_2_1_1582670602398_107" src="./Quiz 5_ Flow Network Basics_files/combo(2)" async=""></script><script id="firstthemesheet" type="text/css">/** Required in order to fix style inclusion problems in IE with YUI **/</script><link rel="stylesheet" type="text/css" href="./Quiz 5_ Flow Network Basics_files/styles.php">
+<script type="text/javascript">
+//<![CDATA[
+var M = {}; M.yui = {};
+M.pageloadstarttime = new Date();
+M.cfg = {"wwwroot":"https:\/\/polylearn.calpoly.edu\/AY_2019-2020","sesskey":"36136t6C7n","themerev":"1581265379","slasharguments":1,"theme":"cpboost","iconsystemmodule":"core\/icon_system_fontawesome","jsrev":"1581264938","admin":"admin","svgicons":true,"usertimezone":"America\/Los_Angeles","contextid":505942};var yui1ConfigFn = function(me) {if(/-skin|reset|fonts|grids|base/.test(me.name)){me.type='css';me.path=me.path.replace(/\.js/,'.css');me.path=me.path.replace(/\/yui2-skin/,'/assets/skins/sam/yui2-skin')}};
+var yui2ConfigFn = function(me) {var parts=me.name.replace(/^moodle-/,'').split('-'),component=parts.shift(),module=parts[0],min='-min';if(/-(skin|core)$/.test(me.name)){parts.pop();me.type='css';min=''}
+if(module){var filename=parts.join('-');me.path=component+'/'+module+'/'+filename+min+'.'+me.type}else{me.path=component+'/'+component+'.'+me.type}};
+YUI_config = {"debug":false,"base":"https:\/\/polylearn.calpoly.edu\/AY_2019-2020\/lib\/yuilib\/3.17.2\/","comboBase":"https:\/\/polylearn.calpoly.edu\/AY_2019-2020\/theme\/yui_combo.php?","combine":true,"filter":null,"insertBefore":"firstthemesheet","groups":{"yui2":{"base":"https:\/\/polylearn.calpoly.edu\/AY_2019-2020\/lib\/yuilib\/2in3\/2.9.0\/build\/","comboBase":"https:\/\/polylearn.calpoly.edu\/AY_2019-2020\/theme\/yui_combo.php?","combine":true,"ext":false,"root":"2in3\/2.9.0\/build\/","patterns":{"yui2-":{"group":"yui2","configFn":yui1ConfigFn}}},"moodle":{"name":"moodle","base":"https:\/\/polylearn.calpoly.edu\/AY_2019-2020\/theme\/yui_combo.php?m\/1581264938\/","combine":true,"comboBase":"https:\/\/polylearn.calpoly.edu\/AY_2019-2020\/theme\/yui_combo.php?","ext":false,"root":"m\/1581264938\/","patterns":{"moodle-":{"group":"moodle","configFn":yui2ConfigFn}},"filter":null,"modules":{"moodle-core-actionmenu":{"requires":["base","event","node-event-simulate"]},"moodle-core-blocks":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification"]},"moodle-core-checknet":{"requires":["base-base","moodle-core-notification-alert","io-base"]},"moodle-core-chooserdialogue":{"requires":["base","panel","moodle-core-notification"]},"moodle-core-dock":{"requires":["base","node","event-custom","event-mouseenter","event-resize","escape","moodle-core-dock-loader","moodle-core-event"]},"moodle-core-dock-loader":{"requires":["escape"]},"moodle-core-dragdrop":{"requires":["base","node","io","dom","dd","event-key","event-focus","moodle-core-notification"]},"moodle-core-event":{"requires":["event-custom"]},"moodle-core-formchangechecker":{"requires":["base","event-focus","moodle-core-event"]},"moodle-core-handlebars":{"condition":{"trigger":"handlebars","when":"after"}},"moodle-core-languninstallconfirm":{"requires":["base","node","moodle-core-notification-confirm","moodle-core-notification-alert"]},"moodle-core-lockscroll":{"requires":["plugin","base-build"]},"moodle-core-maintenancemodetimer":{"requires":["base","node"]},"moodle-core-notification":{"requires":["moodle-core-notification-dialogue","moodle-core-notification-alert","moodle-core-notification-confirm","moodle-core-notification-exception","moodle-core-notification-ajaxexception"]},"moodle-core-notification-dialogue":{"requires":["base","node","panel","escape","event-key","dd-plugin","moodle-core-widget-focusafterclose","moodle-core-lockscroll"]},"moodle-core-notification-alert":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-confirm":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-exception":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-ajaxexception":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-popuphelp":{"requires":["moodle-core-tooltip"]},"moodle-core-tooltip":{"requires":["base","node","io-base","moodle-core-notification-dialogue","json-parse","widget-position","widget-position-align","event-outside","cache-base"]},"moodle-core_availability-form":{"requires":["base","node","event","event-delegate","panel","moodle-core-notification-dialogue","json"]},"moodle-backup-backupselectall":{"requires":["node","event","node-event-simulate","anim"]},"moodle-backup-confirmcancel":{"requires":["node","node-event-simulate","moodle-core-notification-confirm"]},"moodle-course-categoryexpander":{"requires":["node","event-key"]},"moodle-course-dragdrop":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification","moodle-course-coursebase","moodle-course-util"]},"moodle-course-formatchooser":{"requires":["base","node","node-event-simulate"]},"moodle-course-management":{"requires":["base","node","io-base","moodle-core-notification-exception","json-parse","dd-constrain","dd-proxy","dd-drop","dd-delegate","node-event-delegate"]},"moodle-course-modchooser":{"requires":["moodle-core-chooserdialogue","moodle-course-coursebase"]},"moodle-course-util":{"requires":["node"],"use":["moodle-course-util-base"],"submodules":{"moodle-course-util-base":{},"moodle-course-util-section":{"requires":["node","moodle-course-util-base"]},"moodle-course-util-cm":{"requires":["node","moodle-course-util-base"]}}},"moodle-form-dateselector":{"requires":["base","node","overlay","calendar"]},"moodle-form-passwordunmask":{"requires":[]},"moodle-form-shortforms":{"requires":["node","base","selector-css3","moodle-core-event"]},"moodle-form-showadvanced":{"requires":["node","base","selector-css3"]},"moodle-question-chooser":{"requires":["moodle-core-chooserdialogue"]},"moodle-question-preview":{"requires":["base","dom","event-delegate","event-key","core_question_engine"]},"moodle-question-qbankmanager":{"requires":["node","selector-css3"]},"moodle-question-searchform":{"requires":["base","node"]},"moodle-availability_completion-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_date-form":{"requires":["base","node","event","io","moodle-core_availability-form"]},"moodle-availability_grade-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_group-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_grouping-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_profile-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-qtype_ddimageortext-dd":{"requires":["node","dd","dd-drop","dd-constrain"]},"moodle-qtype_ddimageortext-form":{"requires":["moodle-qtype_ddimageortext-dd","form_filepicker"]},"moodle-qtype_ddmarker-dd":{"requires":["node","event-resize","dd","dd-drop","dd-constrain","graphics"]},"moodle-qtype_ddmarker-form":{"requires":["moodle-qtype_ddmarker-dd","form_filepicker","graphics","escape"]},"moodle-qtype_ddwtos-dd":{"requires":["node","dd","dd-drop","dd-constrain"]},"moodle-mod_assign-history":{"requires":["node","transition"]},"moodle-mod_forum-subscriptiontoggle":{"requires":["base-base","io-base"]},"moodle-mod_hsuforum-article":{"requires":["base","node","event","router","core_rating","querystring","moodle-mod_hsuforum-io","moodle-mod_hsuforum-livelog","moodle-core-formchangechecker"]},"moodle-mod_hsuforum-io":{"requires":["base","io-base","io-form","io-upload-iframe","json-parse"]},"moodle-mod_hsuforum-livelog":{"requires":["widget"]},"moodle-mod_oublog-savecheck":{"requires":["base","node","io","panel","moodle-core-notification-alert"]},"moodle-mod_oublog-tagselector":{"requires":["base","node","autocomplete","autocomplete-filters","autocomplete-highlighters"]},"moodle-mod_quiz-autosave":{"requires":["base","node","event","event-valuechange","node-event-delegate","io-form"]},"moodle-mod_quiz-dragdrop":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification","moodle-mod_quiz-quizbase","moodle-mod_quiz-util-base","moodle-mod_quiz-util-page","moodle-mod_quiz-util-slot","moodle-course-util"]},"moodle-mod_quiz-modform":{"requires":["base","node","event"]},"moodle-mod_quiz-questionchooser":{"requires":["moodle-core-chooserdialogue","moodle-mod_quiz-util","querystring-parse"]},"moodle-mod_quiz-quizbase":{"requires":["base","node"]},"moodle-mod_quiz-repaginate":{"requires":["base","event","node","io","moodle-core-notification-dialogue"]},"moodle-mod_quiz-toolboxes":{"requires":["base","node","event","event-key","io","moodle-mod_quiz-quizbase","moodle-mod_quiz-util-slot","moodle-core-notification-ajaxexception"]},"moodle-mod_quiz-util":{"requires":["node","moodle-core-actionmenu"],"use":["moodle-mod_quiz-util-base"],"submodules":{"moodle-mod_quiz-util-base":{},"moodle-mod_quiz-util-slot":{"requires":["node","moodle-mod_quiz-util-base"]},"moodle-mod_quiz-util-page":{"requires":["node","moodle-mod_quiz-util-base"]}}},"moodle-mod_scheduler-delselected":{"requires":["base","node","event"]},"moodle-mod_scheduler-saveseen":{"requires":["base","node","event"]},"moodle-mod_scheduler-studentlist":{"requires":["base","node","event","io"]},"moodle-message_airnotifier-toolboxes":{"requires":["base","node","io"]},"moodle-filter_glossary-autolinker":{"requires":["base","node","io-base","json-parse","event-delegate","overlay","moodle-core-event","moodle-core-notification-alert","moodle-core-notification-exception","moodle-core-notification-ajaxexception"]},"moodle-filter_mathjaxloader-loader":{"requires":["moodle-core-event"]},"moodle-editor_atto-editor":{"requires":["node","transition","io","overlay","escape","event","event-simulate","event-custom","node-event-html5","node-event-simulate","yui-throttle","moodle-core-notification-dialogue","moodle-core-notification-confirm","moodle-editor_atto-rangy","handlebars","timers","querystring-stringify"]},"moodle-editor_atto-plugin":{"requires":["node","base","escape","event","event-outside","handlebars","event-custom","timers","moodle-editor_atto-menu"]},"moodle-editor_atto-menu":{"requires":["moodle-core-notification-dialogue","node","event","event-custom"]},"moodle-editor_atto-rangy":{"requires":[]},"moodle-report_eventlist-eventfilter":{"requires":["base","event","node","node-event-delegate","datatable","autocomplete","autocomplete-filters"]},"moodle-report_loglive-fetchlogs":{"requires":["base","event","node","io","node-event-delegate"]},"moodle-gradereport_grader-gradereporttable":{"requires":["base","node","event","handlebars","overlay","event-hover"]},"moodle-gradereport_history-userselector":{"requires":["escape","event-delegate","event-key","handlebars","io-base","json-parse","moodle-core-notification-dialogue"]},"moodle-tool_capability-search":{"requires":["base","node"]},"moodle-tool_lp-dragdrop-reorder":{"requires":["moodle-core-dragdrop"]},"moodle-tool_monitor-dropdown":{"requires":["base","event","node"]},"moodle-assignfeedback_editpdf-editor":{"requires":["base","event","node","io","graphics","json","event-move","event-resize","transition","querystring-stringify-simple","moodle-core-notification-dialog","moodle-core-notification-alert","moodle-core-notification-warning","moodle-core-notification-exception","moodle-core-notification-ajaxexception"]},"moodle-atto_accessibilitychecker-button":{"requires":["color-base","moodle-editor_atto-plugin"]},"moodle-atto_accessibilityhelper-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_align-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_bold-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_charmap-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_clear-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_collapse-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_cpaccessibilitychecker-button":{"requires":["color-base","moodle-editor_atto-plugin"]},"moodle-atto_cptitle-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_emoticon-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_equation-button":{"requires":["moodle-editor_atto-plugin","moodle-core-event","io","event-valuechange","tabview","array-extras"]},"moodle-atto_html-button":{"requires":["moodle-editor_atto-plugin","event-valuechange"]},"moodle-atto_image-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_indent-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_italic-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_link-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_managefiles-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_managefiles-usedfiles":{"requires":["node","escape"]},"moodle-atto_media-button":{"requires":["moodle-editor_atto-plugin","moodle-form-shortforms"]},"moodle-atto_noautolink-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_orderedlist-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_recordrtc-button":{"requires":["moodle-editor_atto-plugin","moodle-atto_recordrtc-recording"]},"moodle-atto_recordrtc-recording":{"requires":["moodle-atto_recordrtc-button"]},"moodle-atto_rtl-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_strike-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_subscript-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_superscript-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_table-button":{"requires":["moodle-editor_atto-plugin","moodle-editor_atto-menu","event","event-valuechange"]},"moodle-atto_title-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_underline-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_undo-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_unorderedlist-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-tinymce_mathslate-dialogue":{"requires":["escape","moodle-local_mathslate-editor","moodle-tinymce_mathslate-editor"]},"moodle-tinymce_mathslate-editor":{"requires":["dd-drag","dd-proxy","dd-drop","event","tabview","io-base","json","moodle-tinymce_mathslate-textool","moodle-tinymce_mathslate-mathjaxeditor"]},"moodle-tinymce_mathslate-mathjaxeditor":{"requires":["moodle-tinymce_mathslate-snippeteditor","dd-drop"]},"moodle-tinymce_mathslate-snippeteditor":{"requires":["json"]},"moodle-tinymce_mathslate-textool":{"requires":["dd-drag","dd-proxy","dd-drop","event","json"]}}},"gallery":{"name":"gallery","base":"https:\/\/polylearn.calpoly.edu\/AY_2019-2020\/lib\/yuilib\/gallery\/","combine":true,"comboBase":"https:\/\/polylearn.calpoly.edu\/AY_2019-2020\/theme\/yui_combo.php?","ext":false,"root":"gallery\/1581264938\/","patterns":{"gallery-":{"group":"gallery"}}}},"modules":{"core_filepicker":{"name":"core_filepicker","fullpath":"https:\/\/polylearn.calpoly.edu\/AY_2019-2020\/lib\/javascript.php\/1581264938\/repository\/filepicker.js","requires":["base","node","node-event-simulate","json","async-queue","io-base","io-upload-iframe","io-form","yui2-treeview","panel","cookie","datatable","datatable-sort","resize-plugin","dd-plugin","escape","moodle-core_filepicker","moodle-core-notification-dialogue"]},"core_comment":{"name":"core_comment","fullpath":"https:\/\/polylearn.calpoly.edu\/AY_2019-2020\/lib\/javascript.php\/1581264938\/comment\/comment.js","requires":["base","io-base","node","json","yui2-animation","overlay","escape"]},"mathjax":{"name":"mathjax","fullpath":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/mathjax\/2.7.2\/MathJax.js?delayStartupUntil=configured"},"core_question_flags":{"name":"core_question_flags","fullpath":"https:\/\/polylearn.calpoly.edu\/AY_2019-2020\/lib\/javascript.php\/1581264938\/question\/flags.js","requires":["base","dom","event-delegate","io-base"]},"core_question_engine":{"name":"core_question_engine","fullpath":"https:\/\/polylearn.calpoly.edu\/AY_2019-2020\/lib\/javascript.php\/1581264938\/question\/qengine.js","requires":["node","event"]},"mod_quiz":{"name":"mod_quiz","fullpath":"https:\/\/polylearn.calpoly.edu\/AY_2019-2020\/lib\/javascript.php\/1581264938\/mod\/quiz\/module.js","requires":["base","dom","event-delegate","event-key","core_question_engine","moodle-core-formchangechecker"]}}};
+M.yui.loader = {modules: {}};
+
+//]]>
+</script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="core/first" src="./Quiz 5_ Flow Network Basics_files/requirejs.php"></script><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    config: ["Accessible.js", "Safe.js"],
+    errorSettings: { message: ["!"] },
+    skipStartupTypeset: true,
+    messageStyle: "none"
+});
+</script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jquery" src="./Quiz 5_ Flow Network Basics_files/javascript(3).php"></script></head>
+<body id="page-mod-quiz-review" class="format-topics  path-mod path-mod-quiz safari dir-ltr lang-en_us yui-skin-sam yui3-skin-sam polylearn-calpoly-edu--AY_2019-2020 pagelayout-incourse course-10817 context-505942 cmid-209857 category-3  jsenabled">
+
+<div id="page-wrapper">
+
+    <div>
+    <a class="sr-only sr-only-focusable" href="https://polylearn.calpoly.edu/AY_2019-2020/mod/quiz/review.php?attempt=306804&amp;cmid=209857#maincontent">Skip to main content</a>
+</div><script type="text/javascript" src="./Quiz 5_ Flow Network Basics_files/combo(3)"></script><script type="text/javascript" src="./Quiz 5_ Flow Network Basics_files/javascript(4).php"></script>
+<script type="text/javascript">
+//<![CDATA[
+document.body.className += ' jsenabled';
+//]]>
+</script>
+
+
+
+    <nav class="fixed-top navbar navbar-light bg-white navbar-expand moodle-has-zindex" aria-label="Site navigation">
+    
+            <div data-region="drawer-toggle" class="d-inline-block mr-3">
+                <button aria-expanded="false" aria-controls="nav-drawer" type="button" class="btn nav-link float-sm-left mr-1 btn-light bg-gray" data-action="toggle-drawer" data-side="left" data-preference="drawer-open-nav"><i class="icon fa fa-bars fa-fw " aria-hidden="true"></i><span class="sr-only">Side panel</span></button>
+            </div>
+    
+            <a href="https://polylearn.calpoly.edu/AY_2019-2020" class="navbar-brand has-logo
+                    ">
+                    <span class="logo d-none d-sm-inline">
+                        <img src="./Quiz 5_ Flow Network Basics_files/cp_logo.svg" alt="Academic Year 2019-2020">
+                    </span>
+                <span class="site-name d-none d-md-inline">Academic Year 2019-2020</span>
+            </a>
+    
+            <ul class="navbar-nav d-none d-md-flex">
+                <!-- custom_menu -->
+                
+                <!-- page_heading_menu -->
+                
+            </ul>
+            <ul class="nav navbar-nav ml-auto">
+                <div class="d-none d-lg-block">
+                
+            </div>
+                <!-- navbar_plugin_output -->
+                <li class="nav-item">
+                <div class="popover-region collapsed popover-region-messages" id="nav-message-popover-container" data-userid="260299" data-region="popover-region">
+    <div class="popover-region-toggle nav-link" data-region="popover-region-toggle" role="button" aria-controls="popover-region-container-5e55a308ebe805e55a308d2cc84" aria-haspopup="true" aria-label="Show message window with no new messages" tabindex="0">
+                <i class="icon fa fa-comment fa-fw " title="Toggle messages menu" aria-label="Toggle messages menu"></i>
+        <div class="count-container hidden" data-region="count-container">0</div>
+
+    </div>
+    <div id="popover-region-container-5e55a308ebe805e55a308d2cc84" class="popover-region-container" data-region="popover-region-container" aria-expanded="false" aria-hidden="true" aria-label="Notification window" role="region">
+        <div class="popover-region-header-container">
+            <h3 class="popover-region-header-text" data-region="popover-region-header-text">Messages</h3>
+            <div class="popover-region-header-actions" data-region="popover-region-header-actions">        <div class="newmessage-link">
+            <a href="https://polylearn.calpoly.edu/AY_2019-2020/message/index.php?contactsfirst=1">New message
+            </a>
+        </div>
+        <a class="mark-all-read-button" href="https://polylearn.calpoly.edu/AY_2019-2020/mod/quiz/review.php?attempt=306804&amp;cmid=209857#" role="button" title="Mark all as read" data-action="mark-all-read">
+            <span class="normal-icon"><i class="icon fa fa-check fa-fw " title="Mark all as read" aria-label="Mark all as read"></i></span>
+            <span class="loading-icon"><i class="icon fa fa-circle-o-notch fa-spin fa-fw " title="Loading" aria-label="Loading"></i></span>
+        </a>
+        <a href="https://polylearn.calpoly.edu/AY_2019-2020/message/edit.php?id=260299" title="Message preferences">
+            <i class="icon fa fa-cog fa-fw " title="Message preferences" aria-label="Message preferences"></i>
+        </a>
+</div>
+        </div>
+        <div class="popover-region-content-container" data-region="popover-region-content-container">
+            <div class="popover-region-content" data-region="popover-region-content">
+                        <div class="messages" data-region="messages" role="log" aria-busy="false" aria-atomic="false" aria-relevant="additions"></div>
+        <div class="empty-message" data-region="empty-message" tabindex="0">No messages</div>
+
+            </div>
+            <span class="loading-icon"><i class="icon fa fa-circle-o-notch fa-spin fa-fw " title="Loading" aria-label="Loading"></i></span>
+        </div>
+                <a class="see-all-link" href="https://polylearn.calpoly.edu/AY_2019-2020/message/index.php">
+                    <div class="popover-region-footer-container">
+                        <div class="popover-region-seeall-text">See all</div>
+                    </div>
+                </a>
+    </div>
+</div><div class="popover-region collapsed popover-region-notifications" id="nav-notification-popover-container" data-userid="260299" data-region="popover-region">
+    <div class="popover-region-toggle nav-link" data-region="popover-region-toggle" role="button" aria-controls="popover-region-container-5e55a308edb5f5e55a308d2cc85" aria-haspopup="true" aria-label="Show notification window with no new notifications" tabindex="0">
+                <i class="icon fa fa-bell fa-fw " title="Toggle notifications menu" aria-label="Toggle notifications menu"></i>
+        <div class="count-container hidden" data-region="count-container">0</div>
+
+    </div>
+    <div id="popover-region-container-5e55a308edb5f5e55a308d2cc85" class="popover-region-container" data-region="popover-region-container" aria-expanded="false" aria-hidden="true" aria-label="Notification window" role="region">
+        <div class="popover-region-header-container">
+            <h3 class="popover-region-header-text" data-region="popover-region-header-text">Notifications</h3>
+            <div class="popover-region-header-actions" data-region="popover-region-header-actions">        <a class="mark-all-read-button" href="https://polylearn.calpoly.edu/AY_2019-2020/mod/quiz/review.php?attempt=306804&amp;cmid=209857#" title="Mark all as read" data-action="mark-all-read" role="button">
+            <span class="normal-icon"><i class="icon fa fa-check fa-fw " title="Mark all as read" aria-label="Mark all as read"></i></span>
+            <span class="loading-icon"><i class="icon fa fa-circle-o-notch fa-spin fa-fw " title="Loading" aria-label="Loading"></i></span>
+        </a>
+        <a href="https://polylearn.calpoly.edu/AY_2019-2020/message/notificationpreferences.php?userid=260299" title="Notification preferences">
+            <i class="icon fa fa-cog fa-fw " title="Notification preferences" aria-label="Notification preferences"></i>
+        </a>
+</div>
+        </div>
+        <div class="popover-region-content-container" data-region="popover-region-content-container">
+            <div class="popover-region-content" data-region="popover-region-content">
+                        <div class="all-notifications" data-region="all-notifications" role="log" aria-busy="false" aria-atomic="false" aria-relevant="additions"></div>
+        <div class="empty-message" tabindex="0" data-region="empty-message">You have no notifications</div>
+
+            </div>
+            <span class="loading-icon"><i class="icon fa fa-circle-o-notch fa-spin fa-fw " title="Loading" aria-label="Loading"></i></span>
+        </div>
+                <a class="see-all-link" href="https://polylearn.calpoly.edu/AY_2019-2020/message/output/popup/notifications.php">
+                    <div class="popover-region-footer-container">
+                        <div class="popover-region-seeall-text">See all</div>
+                    </div>
+                </a>
+    </div>
+</div><div class="localnavbarplus nav-link icon"><a alt="Support" title="Support" target="_blank" href="http://polylearnsupport.calpoly.edu/"><i class="icon fa fa-question-circle fa-fw"></i></a></div>
+                </li>
+                <!-- user_menu -->
+                <li class="nav-item d-flex align-items-center">
+                    <div class="usermenu"><div class="action-menu moodle-actionmenu nowrap-items d-inline" id="action-menu-1" data-enhance="moodle-core-actionmenu">
+
+        <div class="menubar d-flex " id="action-menu-1-menubar" role="menubar">
+
+            
+
+
+                <div class="action-menu-trigger">
+                    <div class="dropdown">
+                        <a href="https://polylearn.calpoly.edu/AY_2019-2020/mod/quiz/review.php?attempt=306804&amp;cmid=209857#" tabindex="0" class=" dropdown-toggle icon-no-margin" id="dropdown-1" aria-label="User menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" aria-controls="action-menu-1-menu">
+                            
+                            <span class="userbutton"><span class="usertext mr-1">Destin Estrela</span><span class="avatars"><span class="avatar current"><img src="./Quiz 5_ Flow Network Basics_files/f2.png" class="userpicture defaultuserpic" width="35" height="35" role="presentation" aria-hidden="true"></span></span></span>
+                                
+                            <b class="caret"></b>
+                        </a>
+                            <div class="dropdown-menu dropdown-menu-right menu  align-tr-br" id="action-menu-1-menu" data-rel="menu-content" aria-labelledby="action-menu-toggle-1" role="menu" data-align="tr-br">
+                                        <a href="https://polylearn.calpoly.edu/AY_2019-2020/my/" class="dropdown-item menu-action" role="menuitem" data-title="mymoodle,admin" aria-labelledby="actionmenuaction-1">
+                                                <i class="icon fa fa-tachometer fa-fw " aria-hidden="true"></i>
+                                            <span class="menu-action-text" id="actionmenuaction-1">
+                                                Dashboard
+                                            </span>
+                                        </a>
+                                        <div class="dropdown-divider" role="presentation"><span class="filler">&nbsp;</span></div>
+                                        <a href="https://polylearn.calpoly.edu/AY_2019-2020/user/profile.php?id=260299" class="dropdown-item menu-action" role="menuitem" data-title="profile,moodle" aria-labelledby="actionmenuaction-2">
+                                                <i class="icon fa fa-user fa-fw " aria-hidden="true"></i>
+                                            <span class="menu-action-text" id="actionmenuaction-2">
+                                                Profile
+                                            </span>
+                                        </a>
+                                        <a href="https://polylearn.calpoly.edu/AY_2019-2020/grade/report/overview/index.php" class="dropdown-item menu-action" role="menuitem" data-title="grades,grades" aria-labelledby="actionmenuaction-3">
+                                                <i class="icon fa fa-table fa-fw " aria-hidden="true"></i>
+                                            <span class="menu-action-text" id="actionmenuaction-3">
+                                                Grades
+                                            </span>
+                                        </a>
+                                        <a href="https://polylearn.calpoly.edu/AY_2019-2020/message/index.php" class="dropdown-item menu-action" role="menuitem" data-title="messages,message" aria-labelledby="actionmenuaction-4">
+                                                <i class="icon fa fa-comment fa-fw " aria-hidden="true"></i>
+                                            <span class="menu-action-text" id="actionmenuaction-4">
+                                                Messages
+                                            </span>
+                                        </a>
+                                        <a href="https://polylearn.calpoly.edu/AY_2019-2020/user/preferences.php" class="dropdown-item menu-action" role="menuitem" data-title="preferences,moodle" aria-labelledby="actionmenuaction-5">
+                                                <i class="icon fa fa-wrench fa-fw " aria-hidden="true"></i>
+                                            <span class="menu-action-text" id="actionmenuaction-5">
+                                                Preferences
+                                            </span>
+                                        </a>
+                                        <div class="dropdown-divider" role="presentation"><span class="filler">&nbsp;</span></div>
+                                        <a href="https://polylearn.calpoly.edu/AY_2019-2020/login/logout.php?sesskey=36136t6C7n" class="dropdown-item menu-action" role="menuitem" data-title="logout,moodle" aria-labelledby="actionmenuaction-6">
+                                                <i class="icon fa fa-sign-out fa-fw " aria-hidden="true"></i>
+                                            <span class="menu-action-text" id="actionmenuaction-6">
+                                                Log out
+                                            </span>
+                                        </a>
+                            </div>
+                    </div>
+                </div>
+
+        </div>
+
+</div></div>
+                </li>
+            </ul>
+            <!-- search_box -->
+    </nav>
+    
+
+    <div id="page" class="container-fluid">
+        <header id="page-header" class="row">
+    <div class="col-12 pt-3 pb-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex">
+                    <div class="mr-auto">
+                    <div class="page-context-header"><div class="page-header-headings"><h1>CSC-349-01-2202</h1></div></div>
+                    </div>
+
+                </div>
+                <div class="d-flex flex-wrap">
+                    <div id="page-navbar">
+                        <nav role="navigation" aria-label="Navigation bar">
+    <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="https://polylearn.calpoly.edu/AY_2019-2020/">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="https://polylearn.calpoly.edu/AY_2019-2020/course/index.php">Courses</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="https://polylearn.calpoly.edu/AY_2019-2020/course/view.php?id=10817" title="CSC-349-01-2202">CSC-349-01-2202</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="https://polylearn.calpoly.edu/AY_2019-2020/course/view.php?id=10817">Sections</a>
+                </li>
+                <li class="breadcrumb-item dimmed_text">
+                    <a href="https://polylearn.calpoly.edu/AY_2019-2020/course/view.php?id=10817#section-4">Quizzes</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="https://polylearn.calpoly.edu/AY_2019-2020/mod/quiz/view.php?id=209857" aria-current="page" title="Quiz">Quiz 5: Flow Network Basics</a>
+                </li>
+    </ol>
+</nav>
+                    </div>
+                    <div class="ml-auto d-flex">
+                        
+                    </div>
+                    <div id="course-header">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+        <div id="page-content" class="row">
+            <div id="region-main-box" class="col-12">
+                <section id="region-main" class="has-blocks mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <span class="notifications" id="user-notifications"></span>
+                            <div role="main"><span id="maincontent"></span><table class="generaltable generalbox quizreviewsummary"><tbody><tr><th class="cell" scope="row">Started on</th><td class="cell">Tuesday, February 25, 2020, 2:35 PM</td></tr><tr><th class="cell" scope="row">State</th><td class="cell">Finished</td></tr><tr><th class="cell" scope="row">Completed on</th><td class="cell">Tuesday, February 25, 2020, 2:43 PM</td></tr><tr><th class="cell" scope="row">Time taken</th><td class="cell">7 mins 48 secs</td></tr><tr><th class="cell" scope="row">Grade</th><td class="cell"><b>9.67</b> out of 15.00 (<b>64</b>%)</td></tr></tbody></table><form action="https://polylearn.calpoly.edu/AY_2019-2020/mod/quiz/review.php?attempt=306804&amp;cmid=209857" method="post" class="questionflagsaveform" autocomplete="off" id="yui_3_17_2_1_1582670602398_115"><div><div id="q1" class="que match deferredfeedback partiallycorrect"><div class="info"><h3 class="no">Question <span class="qno">1</span></h3><div class="state">Partially correct</div><div class="grade">5.00 points out of 7.00</div><div class="questionflag editable" aria-atomic="true" aria-relevant="text" aria-live="assertive" id="yui_3_17_2_1_1582670602398_24"><input type="hidden" name="q318246:1_:flagged" value="0"><input type="hidden" value="qaid=3566269&amp;qubaid=318246&amp;qid=362874&amp;slot=1&amp;checksum=bc00943b875b4920503c40d3730f67c3&amp;sesskey=36136t6C7n&amp;newstate=" class="questionflagpostdata">
+<input type="hidden" class="questionflagvalue" id="q318246:1_:flaggedcheckbox" name="q318246:1_:flagged" value="0"><input type="image" class="questionflagimage" src="./Quiz 5_ Flow Network Basics_files/unflagged.png" title="Flag this question for future reference" alt="Not flagged"><span class="questionflagtext" title="Flag this question for future reference">Flag question</span></div></div><div class="content"><div class="formulation clearfix"><h4 class="accesshide">Question text</h4><input type="hidden" name="q318246:1_:sequencecheck" value="3"><div class="qtext"><p>Match each of the following with the most suitable phrase. &nbsp;Phrases may be reused</p></div><div class="ablock"><table class="answer"><tbody><tr class="r0"><td class="text"><p>Σ x<sub>j,n</sub>&nbsp;for all j</p></td><td class="control incorrect"><label class="accesshide" for="menuq318246:1_sub0">Answer 1</label><select disabled="disabled" class="select custom-select custom-select m-l-1" id="menuq318246:1_sub0" name="q318246:1_sub0"><option value="0">Choose...</option><option value="1">flow conservation constraint</option><option selected="selected" value="2">denoted ui,j</option><option value="3">value of a flow</option><option value="4">capacity constraints</option><option value="5">The vertex in a flow network with no outgoing edges</option><option value="6">The vertex in a flow network with no incoming edges</option></select> <i class="icon fa fa-remove text-danger fa-fw " title="Incorrect" aria-label="Incorrect"></i></td></tr><tr class="r1"><td class="text">edge capacity</td><td class="control incorrect"><label class="accesshide" for="menuq318246:1_sub1">Answer 2</label><select disabled="disabled" class="select custom-select custom-select m-l-1" id="menuq318246:1_sub1" name="q318246:1_sub1"><option value="0">Choose...</option><option value="1">flow conservation constraint</option><option value="2">denoted ui,j</option><option value="3">value of a flow</option><option selected="selected" value="4">capacity constraints</option><option value="5">The vertex in a flow network with no outgoing edges</option><option value="6">The vertex in a flow network with no incoming edges</option></select> <i class="icon fa fa-remove text-danger fa-fw " title="Incorrect" aria-label="Incorrect"></i></td></tr><tr class="r0"><td class="text"><p>Σ x<sub>1,j</sub> for all j</p></td><td class="control correct"><label class="accesshide" for="menuq318246:1_sub2">Answer 3</label><select disabled="disabled" class="select custom-select custom-select m-l-1" id="menuq318246:1_sub2" name="q318246:1_sub2"><option value="0">Choose...</option><option value="1">flow conservation constraint</option><option value="2">denoted ui,j</option><option selected="selected" value="3">value of a flow</option><option value="4">capacity constraints</option><option value="5">The vertex in a flow network with no outgoing edges</option><option value="6">The vertex in a flow network with no incoming edges</option></select> <i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i></td></tr><tr class="r1"><td class="text"><p>source vertex</p></td><td class="control correct"><label class="accesshide" for="menuq318246:1_sub3">Answer 4</label><select disabled="disabled" class="select custom-select custom-select m-l-1" id="menuq318246:1_sub3" name="q318246:1_sub3"><option value="0">Choose...</option><option value="1">flow conservation constraint</option><option value="2">denoted ui,j</option><option value="3">value of a flow</option><option value="4">capacity constraints</option><option value="5">The vertex in a flow network with no outgoing edges</option><option selected="selected" value="6">The vertex in a flow network with no incoming edges</option></select> <i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i></td></tr><tr class="r0"><td class="text"><p>Σ x<sub>j,i&nbsp;</sub>&nbsp;= &nbsp;Σ x<sub>i,j</sub>&nbsp; where the sums are over j&nbsp;</p></td><td class="control correct"><label class="accesshide" for="menuq318246:1_sub4">Answer 5</label><select disabled="disabled" class="select custom-select custom-select m-l-1" id="menuq318246:1_sub4" name="q318246:1_sub4"><option value="0">Choose...</option><option selected="selected" value="1">flow conservation constraint</option><option value="2">denoted ui,j</option><option value="3">value of a flow</option><option value="4">capacity constraints</option><option value="5">The vertex in a flow network with no outgoing edges</option><option value="6">The vertex in a flow network with no incoming edges</option></select> <i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i></td></tr><tr class="r1"><td class="text"><p>sink vertex</p></td><td class="control correct"><label class="accesshide" for="menuq318246:1_sub5">Answer 6</label><select disabled="disabled" class="select custom-select custom-select m-l-1" id="menuq318246:1_sub5" name="q318246:1_sub5"><option value="0">Choose...</option><option value="1">flow conservation constraint</option><option value="2">denoted ui,j</option><option value="3">value of a flow</option><option value="4">capacity constraints</option><option selected="selected" value="5">The vertex in a flow network with no outgoing edges</option><option value="6">The vertex in a flow network with no incoming edges</option></select> <i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i></td></tr><tr class="r0"><td class="text"><p>0&nbsp;≤ x<sub>i,j&nbsp;</sub>≤ u<sub>i,j &nbsp;</sub>for all i and j</p></td><td class="control correct"><label class="accesshide" for="menuq318246:1_sub6">Answer 7</label><select disabled="disabled" class="select custom-select custom-select m-l-1" id="menuq318246:1_sub6" name="q318246:1_sub6"><option value="0">Choose...</option><option value="1">flow conservation constraint</option><option value="2">denoted ui,j</option><option value="3">value of a flow</option><option selected="selected" value="4">capacity constraints</option><option value="5">The vertex in a flow network with no outgoing edges</option><option value="6">The vertex in a flow network with no incoming edges</option></select> <i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i></td></tr></tbody></table></div></div><div class="outcome clearfix"><h4 class="accesshide">Feedback</h4><div class="feedback"><div class="rightanswer">The correct answer is: Σ x<sub>j,n</sub>&nbsp;for all j → value of a flow, edge capacity → denoted ui,j, Σ x<sub>1,j</sub> for all j → value of a flow, source vertex → The vertex in a flow network with no incoming edges, Σ x<sub>j,i&nbsp;</sub>&nbsp;= &nbsp;Σ x<sub>i,j</sub>&nbsp; where the sums are over j&nbsp; → flow conservation constraint, sink vertex → The vertex in a flow network with no outgoing edges, 0&nbsp;≤ x<sub>i,j&nbsp;</sub>≤ u<sub>i,j &nbsp;</sub>for all i and j → capacity constraints</div></div></div></div></div><div id="q2" class="que truefalse deferredfeedback correct"><div class="info"><h3 class="no">Question <span class="qno">2</span></h3><div class="state">Correct</div><div class="grade">1.00 points out of 1.00</div><div class="questionflag editable" aria-atomic="true" aria-relevant="text" aria-live="assertive" id="yui_3_17_2_1_1582670602398_33"><input type="hidden" name="q318246:2_:flagged" value="0"><input type="hidden" value="qaid=3566270&amp;qubaid=318246&amp;qid=362887&amp;slot=2&amp;checksum=859cc7eee33779afcee3ca11bfe4df6f&amp;sesskey=36136t6C7n&amp;newstate=" class="questionflagpostdata">
+<input type="hidden" class="questionflagvalue" id="q318246:2_:flaggedcheckbox" name="q318246:2_:flagged" value="0"><input type="image" class="questionflagimage" src="./Quiz 5_ Flow Network Basics_files/unflagged.png" title="Flag this question for future reference" alt="Not flagged"><span class="questionflagtext" title="Flag this question for future reference">Flag question</span></div></div><div class="content"><div class="formulation clearfix"><h4 class="accesshide">Question text</h4><input type="hidden" name="q318246:2_:sequencecheck" value="3"><div class="qtext"><p>A flow network (graph) may have cycles.</p></div><div class="ablock"><div class="prompt">Select one:</div><div class="answer"><div class="r0 correct"><input type="radio" name="q318246:2_answer" value="1" id="q318246:2_answertrue" disabled="disabled" checked="checked"><label for="q318246:2_answertrue" class="m-l-1">True</label> <i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i></div><div class="r1"><input type="radio" name="q318246:2_answer" value="0" id="q318246:2_answerfalse" disabled="disabled"><label for="q318246:2_answerfalse" class="m-l-1">False</label> </div></div></div></div><div class="outcome clearfix"><h4 class="accesshide">Feedback</h4><div class="feedback"><div class="rightanswer">The correct answer is 'True'.</div></div></div></div></div><div id="q3" class="que multichoice deferredfeedback correct"><div class="info"><h3 class="no">Question <span class="qno">3</span></h3><div class="state">Correct</div><div class="grade">1.00 points out of 1.00</div><div class="questionflag editable" aria-atomic="true" aria-relevant="text" aria-live="assertive" id="yui_3_17_2_1_1582670602398_42"><input type="hidden" name="q318246:3_:flagged" value="0"><input type="hidden" value="qaid=3566271&amp;qubaid=318246&amp;qid=362889&amp;slot=3&amp;checksum=1c15611f7ec9c84982683b7efed70e0d&amp;sesskey=36136t6C7n&amp;newstate=" class="questionflagpostdata">
+<input type="hidden" class="questionflagvalue" id="q318246:3_:flaggedcheckbox" name="q318246:3_:flagged" value="0"><input type="image" class="questionflagimage" src="./Quiz 5_ Flow Network Basics_files/unflagged.png" title="Flag this question for future reference" alt="Not flagged"><span class="questionflagtext" title="Flag this question for future reference">Flag question</span></div></div><div class="content"><div class="formulation clearfix"><h4 class="accesshide">Question text</h4><input type="hidden" name="q318246:3_:sequencecheck" value="3"><div class="qtext"><p>Is the following flow network along with its flow valid?</p><p><img src="./Quiz 5_ Flow Network Basics_files/Flow Net Quiz 1.JPG" alt="" role="presentation"><br></p></div><div class="ablock"><div class="prompt">Select one:</div><div class="answer"><div class="r0"><input type="radio" name="q318246:3_answer" disabled="disabled" value="0" id="q318246:3_answer0"><label for="q318246:3_answer0" class="m-l-1"><span class="answernumber">a. </span>Yes</label> </div>
+<div class="r1"><input type="radio" name="q318246:3_answer" disabled="disabled" value="1" id="q318246:3_answer1"><label for="q318246:3_answer1" class="m-l-1"><span class="answernumber">b. </span>No, there is no source</label> </div>
+<div class="r0"><input type="radio" name="q318246:3_answer" disabled="disabled" value="2" id="q318246:3_answer2"><label for="q318246:3_answer2" class="m-l-1"><span class="answernumber">c. </span>No, the capacity constraints are not satisfied</label> </div>
+<div class="r1 correct"><input type="radio" name="q318246:3_answer" disabled="disabled" value="3" id="q318246:3_answer3" checked="checked"><label for="q318246:3_answer3" class="m-l-1"><span class="answernumber">d. </span>No, the conservation constraints are not satisfied</label> <i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i></div>
+<div class="r0"><input type="radio" name="q318246:3_answer" disabled="disabled" value="4" id="q318246:3_answer4"><label for="q318246:3_answer4" class="m-l-1"><span class="answernumber">e. </span>No, there is a cycle in the graph</label> </div>
+</div></div></div><div class="outcome clearfix"><h4 class="accesshide">Feedback</h4><div class="feedback"><div class="specificfeedback">Your answer is correct.</div><div class="rightanswer">The correct answer is: No, the conservation constraints are not satisfied</div></div></div></div></div><div id="q4" class="que multichoice deferredfeedback incorrect"><div class="info"><h3 class="no">Question <span class="qno">4</span></h3><div class="state">Incorrect</div><div class="grade">0.00 points out of 1.00</div><div class="questionflag editable" aria-atomic="true" aria-relevant="text" aria-live="assertive" id="yui_3_17_2_1_1582670602398_51"><input type="hidden" name="q318246:4_:flagged" value="0"><input type="hidden" value="qaid=3566272&amp;qubaid=318246&amp;qid=362890&amp;slot=4&amp;checksum=723a614ee4f5c41069b6493ce5544b1c&amp;sesskey=36136t6C7n&amp;newstate=" class="questionflagpostdata">
+<input type="hidden" class="questionflagvalue" id="q318246:4_:flaggedcheckbox" name="q318246:4_:flagged" value="0"><input type="image" class="questionflagimage" src="./Quiz 5_ Flow Network Basics_files/unflagged.png" title="Flag this question for future reference" alt="Not flagged"><span class="questionflagtext" title="Flag this question for future reference">Flag question</span></div></div><div class="content"><div class="formulation clearfix"><h4 class="accesshide">Question text</h4><input type="hidden" name="q318246:4_:sequencecheck" value="3"><div class="qtext"><p>Is the following flow network along with its flow valid?</p><p><img src="./Quiz 5_ Flow Network Basics_files/Flow Net Quiz 2.JPG" alt="" role="presentation"><br></p></div><div class="ablock"><div class="prompt">Select one:</div><div class="answer"><div class="r0"><input type="radio" name="q318246:4_answer" disabled="disabled" value="0" id="q318246:4_answer0"><label for="q318246:4_answer0" class="m-l-1"><span class="answernumber">a. </span>No, there is a cycle in the graph</label> </div>
+<div class="r1"><input type="radio" name="q318246:4_answer" disabled="disabled" value="1" id="q318246:4_answer1"><label for="q318246:4_answer1" class="m-l-1"><span class="answernumber">b. </span>No, the conservation constraints are not satisfied</label> </div>
+<div class="r0"><input type="radio" name="q318246:4_answer" disabled="disabled" value="2" id="q318246:4_answer2"><label for="q318246:4_answer2" class="m-l-1"><span class="answernumber">c. </span>No, there is no source</label> </div>
+<div class="r1"><input type="radio" name="q318246:4_answer" disabled="disabled" value="3" id="q318246:4_answer3"><label for="q318246:4_answer3" class="m-l-1"><span class="answernumber">d. </span>Yes</label> </div>
+<div class="r0 incorrect"><input type="radio" name="q318246:4_answer" disabled="disabled" value="4" id="q318246:4_answer4" checked="checked"><label for="q318246:4_answer4" class="m-l-1"><span class="answernumber">e. </span>No, the capacity constraints are not satisfied</label> <i class="icon fa fa-remove text-danger fa-fw " title="Incorrect" aria-label="Incorrect"></i></div>
+</div></div></div><div class="outcome clearfix"><h4 class="accesshide">Feedback</h4><div class="feedback"><div class="specificfeedback">Your answer is incorrect.</div><div class="rightanswer">The correct answer is: No, the conservation constraints are not satisfied</div></div></div></div></div><div id="q5" class="que match deferredfeedback partiallycorrect"><div class="info"><h3 class="no">Question <span class="qno">5</span></h3><div class="state">Partially correct</div><div class="grade">0.67 points out of 1.00</div><div class="questionflag editable" aria-atomic="true" aria-relevant="text" aria-live="assertive" id="yui_3_17_2_1_1582670602398_60"><input type="hidden" name="q318246:5_:flagged" value="0"><input type="hidden" value="qaid=3566273&amp;qubaid=318246&amp;qid=362885&amp;slot=5&amp;checksum=dfe6d23332eede22a487d7d725a5c15b&amp;sesskey=36136t6C7n&amp;newstate=" class="questionflagpostdata">
+<input type="hidden" class="questionflagvalue" id="q318246:5_:flaggedcheckbox" name="q318246:5_:flagged" value="0"><input type="image" class="questionflagimage" src="./Quiz 5_ Flow Network Basics_files/unflagged.png" title="Flag this question for future reference" alt="Not flagged"><span class="questionflagtext" title="Flag this question for future reference">Flag question</span></div></div><div class="content"><div class="formulation clearfix"><h4 class="accesshide">Question text</h4><input type="hidden" name="q318246:5_:sequencecheck" value="3"><div class="qtext"><p>Match each of the following with the most suitable phrase. &nbsp;Phrases may be reused.</p><p>Assume the following notation:</p><p>G is a flow network with vertices V and edges E, and integer capacities (weights) u<sub>i,j</sub>&nbsp;&gt; 0 for each edge (i,j) in E.</p><p>If there is a flow on G then x<sub>i,j </sub>represents the flow on the edge (i,j) in E.</p></div><div class="ablock"><table class="answer"><tbody><tr class="r0"><td class="text"><p>An augmenting path is found using ____________ on the residual graph</p></td><td class="control correct"><label class="accesshide" for="menuq318246:5_sub0">Answer 1</label><select disabled="disabled" class="select custom-select custom-select m-l-1" id="menuq318246:5_sub0" name="q318246:5_sub0"><option value="0">Choose...</option><option value="1">An edge in the the residual graph that is not in the original graph</option><option value="2">depth first seach</option><option value="3">A flow graph derived from a preexisting flow graph and a flow on that graph</option><option selected="selected" value="4">breadth first seach</option><option value="5">capacity of backward edge</option><option value="6">An edge in the residual graph that is also in the original graph</option><option value="7">capacity of forward edge</option></select> <i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i></td></tr><tr class="r1"><td class="text"><p>forward edge</p></td><td class="control correct"><label class="accesshide" for="menuq318246:5_sub1">Answer 2</label><select disabled="disabled" class="select custom-select custom-select m-l-1" id="menuq318246:5_sub1" name="q318246:5_sub1"><option value="0">Choose...</option><option value="1">An edge in the the residual graph that is not in the original graph</option><option value="2">depth first seach</option><option value="3">A flow graph derived from a preexisting flow graph and a flow on that graph</option><option value="4">breadth first seach</option><option value="5">capacity of backward edge</option><option selected="selected" value="6">An edge in the residual graph that is also in the original graph</option><option value="7">capacity of forward edge</option></select> <i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i></td></tr><tr class="r0"><td class="text"><p>&nbsp;u<sub>i,j</sub> - x<sub>i,j</sub> &nbsp;</p></td><td class="control incorrect"><label class="accesshide" for="menuq318246:5_sub2">Answer 3</label><select disabled="disabled" class="select custom-select custom-select m-l-1" id="menuq318246:5_sub2" name="q318246:5_sub2"><option value="0">Choose...</option><option value="1">An edge in the the residual graph that is not in the original graph</option><option value="2">depth first seach</option><option value="3">A flow graph derived from a preexisting flow graph and a flow on that graph</option><option value="4">breadth first seach</option><option selected="selected" value="5">capacity of backward edge</option><option value="6">An edge in the residual graph that is also in the original graph</option><option value="7">capacity of forward edge</option></select> <i class="icon fa fa-remove text-danger fa-fw " title="Incorrect" aria-label="Incorrect"></i></td></tr><tr class="r1"><td class="text"><p>x<sub>j,i</sub></p></td><td class="control incorrect"><label class="accesshide" for="menuq318246:5_sub3">Answer 4</label><select disabled="disabled" class="select custom-select custom-select m-l-1" id="menuq318246:5_sub3" name="q318246:5_sub3"><option value="0">Choose...</option><option value="1">An edge in the the residual graph that is not in the original graph</option><option value="2">depth first seach</option><option value="3">A flow graph derived from a preexisting flow graph and a flow on that graph</option><option value="4">breadth first seach</option><option value="5">capacity of backward edge</option><option value="6">An edge in the residual graph that is also in the original graph</option><option selected="selected" value="7">capacity of forward edge</option></select> <i class="icon fa fa-remove text-danger fa-fw " title="Incorrect" aria-label="Incorrect"></i></td></tr><tr class="r0"><td class="text">backward edge</td><td class="control correct"><label class="accesshide" for="menuq318246:5_sub4">Answer 5</label><select disabled="disabled" class="select custom-select custom-select m-l-1" id="menuq318246:5_sub4" name="q318246:5_sub4"><option value="0">Choose...</option><option selected="selected" value="1">An edge in the the residual graph that is not in the original graph</option><option value="2">depth first seach</option><option value="3">A flow graph derived from a preexisting flow graph and a flow on that graph</option><option value="4">breadth first seach</option><option value="5">capacity of backward edge</option><option value="6">An edge in the residual graph that is also in the original graph</option><option value="7">capacity of forward edge</option></select> <i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i></td></tr><tr class="r1"><td class="text"><p>residual graph</p></td><td class="control correct"><label class="accesshide" for="menuq318246:5_sub5">Answer 6</label><select disabled="disabled" class="select custom-select custom-select m-l-1" id="menuq318246:5_sub5" name="q318246:5_sub5"><option value="0">Choose...</option><option value="1">An edge in the the residual graph that is not in the original graph</option><option value="2">depth first seach</option><option selected="selected" value="3">A flow graph derived from a preexisting flow graph and a flow on that graph</option><option value="4">breadth first seach</option><option value="5">capacity of backward edge</option><option value="6">An edge in the residual graph that is also in the original graph</option><option value="7">capacity of forward edge</option></select> <i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i></td></tr></tbody></table></div></div><div class="outcome clearfix"><h4 class="accesshide">Feedback</h4><div class="feedback"><div class="rightanswer">The correct answer is: An augmenting path is found using ____________ on the residual graph → breadth first seach, forward edge → An edge in the residual graph that is also in the original graph, &nbsp;u<sub>i,j</sub> - x<sub>i,j</sub> &nbsp; → capacity of forward edge, x<sub>j,i</sub> → capacity of backward edge, backward edge → An edge in the the residual graph that is not in the original graph, residual graph → A flow graph derived from a preexisting flow graph and a flow on that graph</div></div></div></div></div><div id="q6" class="que truefalse deferredfeedback correct"><div class="info"><h3 class="no">Question <span class="qno">6</span></h3><div class="state">Correct</div><div class="grade">1.00 points out of 1.00</div><div class="questionflag editable" aria-atomic="true" aria-relevant="text" aria-live="assertive" id="yui_3_17_2_1_1582670602398_69"><input type="hidden" name="q318246:6_:flagged" value="0"><input type="hidden" value="qaid=3566274&amp;qubaid=318246&amp;qid=362880&amp;slot=6&amp;checksum=2b3c26286d2432f52edfd5a8abd41cea&amp;sesskey=36136t6C7n&amp;newstate=" class="questionflagpostdata">
+<input type="hidden" class="questionflagvalue" id="q318246:6_:flaggedcheckbox" name="q318246:6_:flagged" value="0"><input type="image" class="questionflagimage" src="./Quiz 5_ Flow Network Basics_files/unflagged.png" title="Flag this question for future reference" alt="Not flagged"><span class="questionflagtext" title="Flag this question for future reference">Flag question</span></div></div><div class="content"><div class="formulation clearfix"><h4 class="accesshide">Question text</h4><input type="hidden" name="q318246:6_:sequencecheck" value="3"><div class="qtext"><p>True or False - A flow network which has different capacity for each of its edges must have a unique maximum flow. &nbsp;That is it cannot have two different flows that both have the same total flow from the source to the sink.</p></div><div class="ablock"><div class="prompt">Select one:</div><div class="answer"><div class="r0"><input type="radio" name="q318246:6_answer" value="1" id="q318246:6_answertrue" disabled="disabled"><label for="q318246:6_answertrue" class="m-l-1">True</label> </div><div class="r1 correct"><input type="radio" name="q318246:6_answer" value="0" id="q318246:6_answerfalse" disabled="disabled" checked="checked"><label for="q318246:6_answerfalse" class="m-l-1">False</label> <i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i></div></div></div></div><div class="outcome clearfix"><h4 class="accesshide">Feedback</h4><div class="feedback"><div class="rightanswer">The correct answer is 'False'.</div></div></div></div></div><div id="q7" class="que truefalse deferredfeedback incorrect"><div class="info"><h3 class="no">Question <span class="qno">7</span></h3><div class="state">Incorrect</div><div class="grade">0.00 points out of 1.00</div><div class="questionflag editable" aria-atomic="true" aria-relevant="text" aria-live="assertive" id="yui_3_17_2_1_1582670602398_78"><input type="hidden" name="q318246:7_:flagged" value="0"><input type="hidden" value="qaid=3566275&amp;qubaid=318246&amp;qid=362884&amp;slot=7&amp;checksum=e013bb23e605187595aacddf67ace8b3&amp;sesskey=36136t6C7n&amp;newstate=" class="questionflagpostdata">
+<input type="hidden" class="questionflagvalue" id="q318246:7_:flaggedcheckbox" name="q318246:7_:flagged" value="0"><input type="image" class="questionflagimage" src="./Quiz 5_ Flow Network Basics_files/unflagged.png" title="Flag this question for future reference" alt="Not flagged"><span class="questionflagtext" title="Flag this question for future reference">Flag question</span></div></div><div class="content"><div class="formulation clearfix"><h4 class="accesshide">Question text</h4><input type="hidden" name="q318246:7_:sequencecheck" value="3"><div class="qtext"><p>True or False - A flow network has a unique maximum flow. &nbsp;That is it does not have two different flows that both have the same maximum total flow from the source to the sink.</p></div><div class="ablock"><div class="prompt">Select one:</div><div class="answer"><div class="r0 incorrect"><input type="radio" name="q318246:7_answer" value="1" id="q318246:7_answertrue" disabled="disabled" checked="checked"><label for="q318246:7_answertrue" class="m-l-1">True</label> <i class="icon fa fa-remove text-danger fa-fw " title="Incorrect" aria-label="Incorrect"></i></div><div class="r1"><input type="radio" name="q318246:7_answer" value="0" id="q318246:7_answerfalse" disabled="disabled"><label for="q318246:7_answerfalse" class="m-l-1">False</label> </div></div></div></div><div class="outcome clearfix"><h4 class="accesshide">Feedback</h4><div class="feedback"><div class="rightanswer">The correct answer is 'False'.</div></div></div></div></div><div id="q8" class="que truefalse deferredfeedback correct"><div class="info"><h3 class="no">Question <span class="qno">8</span></h3><div class="state">Correct</div><div class="grade">1.00 points out of 1.00</div><div class="questionflag editable" aria-atomic="true" aria-relevant="text" aria-live="assertive" id="yui_3_17_2_1_1582670602398_87"><input type="hidden" name="q318246:8_:flagged" value="0"><input type="hidden" value="qaid=3566276&amp;qubaid=318246&amp;qid=362882&amp;slot=8&amp;checksum=9512d7e69430ec7b19a329ad98ca4a53&amp;sesskey=36136t6C7n&amp;newstate=" class="questionflagpostdata">
+<input type="hidden" class="questionflagvalue" id="q318246:8_:flaggedcheckbox" name="q318246:8_:flagged" value="0"><input type="image" class="questionflagimage" src="./Quiz 5_ Flow Network Basics_files/unflagged.png" title="Flag this question for future reference" alt="Not flagged"><span class="questionflagtext" title="Flag this question for future reference">Flag question</span></div></div><div class="content"><div class="formulation clearfix"><h4 class="accesshide">Question text</h4><input type="hidden" name="q318246:8_:sequencecheck" value="3"><div class="qtext"><p>True or false? &nbsp; There is an augmenting path for the following flow network.</p>
+<p><img src="./Quiz 5_ Flow Network Basics_files/10 2 2b with flow from text.JPG" alt="" width="521" height="176">k?</p></div><div class="ablock"><div class="prompt">Select one:</div><div class="answer"><div class="r0 correct"><input type="radio" name="q318246:8_answer" value="1" id="q318246:8_answertrue" disabled="disabled" checked="checked"><label for="q318246:8_answertrue" class="m-l-1">True</label> <i class="icon fa fa-check text-success fa-fw " title="Correct" aria-label="Correct"></i></div><div class="r1"><input type="radio" name="q318246:8_answer" value="0" id="q318246:8_answerfalse" disabled="disabled"><label for="q318246:8_answerfalse" class="m-l-1">False</label> </div></div></div></div><div class="outcome clearfix"><h4 class="accesshide">Feedback</h4><div class="feedback"><div class="rightanswer">The correct answer is 'True'.</div></div></div></div></div><div id="q9" class="que multichoice deferredfeedback incorrect"><div class="info"><h3 class="no">Question <span class="qno">9</span></h3><div class="state">Incorrect</div><div class="grade">0.00 points out of 1.00</div><div class="questionflag editable" aria-atomic="true" aria-relevant="text" aria-live="assertive" id="yui_3_17_2_1_1582670602398_96"><input type="hidden" name="q318246:9_:flagged" value="0"><input type="hidden" value="qaid=3566277&amp;qubaid=318246&amp;qid=362886&amp;slot=9&amp;checksum=b8807d4b4edfc95f7b7b3a647e9a4de7&amp;sesskey=36136t6C7n&amp;newstate=" class="questionflagpostdata">
+<input type="hidden" class="questionflagvalue" id="q318246:9_:flaggedcheckbox" name="q318246:9_:flagged" value="0"><input type="image" class="questionflagimage" src="./Quiz 5_ Flow Network Basics_files/unflagged.png" title="Flag this question for future reference" alt="Not flagged"><span class="questionflagtext" title="Flag this question for future reference">Flag question</span></div></div><div class="content"><div class="formulation clearfix"><h4 class="accesshide">Question text</h4><input type="hidden" name="q318246:9_:sequencecheck" value="3"><div class="qtext"><p>To find an augmenting path in the residual graph, the algorithm discussed in class labeled the vertices in a specific way. &nbsp;If vertex 5 is labeled with 7, 2<sup>+ &nbsp;</sup>, which of the following best describes what this label means.</p></div><div class="ablock"><div class="prompt">Select one:</div><div class="answer"><div class="r0 incorrect"><input type="radio" name="q318246:9_answer" disabled="disabled" value="0" id="q318246:9_answer0" checked="checked"><label for="q318246:9_answer0" class="m-l-1"><span class="answernumber">a. </span>A flow of 2 can be sent from the source to&nbsp;vertex 5 using using a forward edge from vertex 7</label> <i class="icon fa fa-remove text-danger fa-fw " title="Incorrect" aria-label="Incorrect"></i></div>
+<div class="r1"><input type="radio" name="q318246:9_answer" disabled="disabled" value="1" id="q318246:9_answer1"><label for="q318246:9_answer1" class="m-l-1"><span class="answernumber">b. </span>A flow of 2 can be sent from the source to&nbsp;vertex 7 using using a forward edge from vertex 5</label> </div>
+<div class="r0"><input type="radio" name="q318246:9_answer" disabled="disabled" value="2" id="q318246:9_answer2"><label for="q318246:9_answer2" class="m-l-1"><span class="answernumber">c. </span>A flow of 7 can be sent from the source to vertex 5 using using a forward edge from vertex 2</label> </div>
+<div class="r1"><input type="radio" name="q318246:9_answer" disabled="disabled" value="3" id="q318246:9_answer3"><label for="q318246:9_answer3" class="m-l-1"><span class="answernumber">d. </span>none of these</label> </div>
+</div></div></div><div class="outcome clearfix"><h4 class="accesshide">Feedback</h4><div class="feedback"><div class="specificfeedback">Your answer is incorrect.</div><div class="rightanswer">The correct answer is: A flow of 7 can be sent from the source to vertex 5 using using a forward edge from vertex 2</div></div></div></div></div><input type="hidden" name="sesskey" value="36136t6C7n"><div class="submitbtns"></div></div></form><div class="submitbtns"><a class="mod_quiz-next-nav" href="https://polylearn.calpoly.edu/AY_2019-2020/mod/quiz/view.php?id=209857">Finish review</a></div></div>
+                            <div class="m-t-2 m-b-1">
+<div class="row">
+    <div class="col-md-4">        <div class="pull-left">
+                <a href="https://polylearn.calpoly.edu/AY_2019-2020/mod/assign/view.php?id=209853&amp;forceview=1" id="prev-activity-link" class="btn btn-link" title="1 Connected Components and Bipartite Graphs: Due Weds.  Jan. 15  9:00 p.m.">◄ 1 Connected Components and Bipartite Graphs: Due Weds.  Jan. 15  9:00 p.m.</a>
+
+        </div>
+</div>
+    <div class="col-md-4">        <div class="mdl-align">
+            <div class="urlselect">
+    <form method="post" action="https://polylearn.calpoly.edu/AY_2019-2020/course/jumpto.php" class="form-inline" id="url_select_f5e55a308d2cc814">
+        <input type="hidden" name="sesskey" value="36136t6C7n">
+            <label for="jump-to-activity" class="sr-only">
+                Jump to...
+            </label>
+        <select id="jump-to-activity" class="custom-select urlselect" name="jump">
+                    <option value="" selected="">Jump to...</option>
+                    <option value="/mod/forum/view.php?id=42978&amp;forceview=1">Announcements</option>
+                    <option value="/mod/forum/view.php?id=209814&amp;forceview=1">General Question and Answer Forum</option>
+                    <option value="/mod/forum/view.php?id=209815&amp;forceview=1">Assignment Forum</option>
+                    <option value="/mod/forum/view.php?id=209816&amp;forceview=1">Lab Forum</option>
+                    <option value="/mod/folder/view.php?id=209817&amp;forceview=1">Syllabus, Plan, Prerequisites:  Read all five documents carefully</option>
+                    <option value="/mod/folder/view.php?id=209818&amp;forceview=1">Resources for Effective Learning</option>
+                    <option value="/mod/questionnaire/view.php?id=209819&amp;forceview=1">Expectations and Current Knowledge- Due Tuesday 11:00 p.m.</option>
+                    <option value="/mod/url/view.php?id=209820&amp;forceview=1">Course Screencasts</option>
+                    <option value="/mod/folder/view.php?id=209821&amp;forceview=1">Lecture slides</option>
+                    <option value="/mod/folder/view.php?id=209822&amp;forceview=1">Class Notes and Exercises</option>
+                    <option value="/mod/resource/view.php?id=209823&amp;forceview=1">TBD Links to other Screencasts, Simulations, etc.</option>
+                    <option value="/mod/folder/view.php?id=272844&amp;forceview=1">Some Lab Solutions</option>
+                    <option value="/mod/assign/view.php?id=314734&amp;forceview=1">Labs Week 7 Dynamic Programming</option>
+                    <option value="/mod/assign/view.php?id=209829&amp;forceview=1">Lab 6-1 Dynamic Programming 1  Due: Sunday Feb 16,  9:00 p.m.</option>
+                    <option value="/mod/assign/view.php?id=209832&amp;forceview=1">Lab 4-1 Greedy Proofs: Stay Ahead, Exchange Argument</option>
+                    <option value="/mod/assign/view.php?id=209834&amp;forceview=1">Lab 3-2 Master Theorem</option>
+                    <option value="/mod/assign/view.php?id=294828&amp;forceview=1">Week 2 Lab Problems to be submitted  Tues. Jan 21</option>
+                    <option value="/mod/assign/view.php?id=209836&amp;forceview=1">Labs Week 2 Heaps, Implementation, Partitioning and Sorting</option>
+                    <option value="/mod/assign/view.php?id=209838&amp;forceview=1">Lab 1-2b: Combinatorial Objects Due Tues Jan 14 9:00 p.m.</option>
+                    <option value="/mod/assign/view.php?id=209839&amp;forceview=1">Labs 1-1 and 1-2:  Maximum Sum Contiguous Subsequence etc.</option>
+                    <option value="/mod/folder/view.php?id=209854&amp;forceview=1">Solutions to Some Assignments</option>
+                    <option value="/mod/assign/view.php?id=209846&amp;forceview=1">7 Sequence Alignment - Weds. Feb. 26 at 9:00 p.m.</option>
+                    <option value="/mod/assign/view.php?id=209848&amp;forceview=1">6 Weighted Interval Scheduling - Weds. Feb. 19 at 9:00 p.m.</option>
+                    <option value="/mod/assign/view.php?id=209850&amp;forceview=1">4 Greedy Algorithm proofs - Weds Feb 5 by 9:00 p.m.</option>
+                    <option value="/mod/assign/view.php?id=209851&amp;forceview=1">3 Count Inversions - Weds. Jan. 29 by 9:00 p.m.</option>
+                    <option value="/mod/assign/view.php?id=209852&amp;forceview=1">2 Topological Sorting - Weds.  Jan. 22 by 9:00 p.m.</option>
+                    <option value="/mod/assign/view.php?id=209853&amp;forceview=1">1 Connected Components and Bipartite Graphs: Due Weds.  Jan. 15  9:00 p.m.</option>
+                    <option value="/mod/quiz/view.php?id=310544&amp;forceview=1">Quiz 4: Dynamic Programming</option>
+                    <option value="/mod/quiz/view.php?id=304911&amp;forceview=1">Quiz 3:  Greedy Algorithms:  Minimum Spanning Tree</option>
+                    <option value="/mod/quiz/view.php?id=299865&amp;forceview=1">Quiz 2: Greedy Algorithms: Screencasts 1 and 2</option>
+                    <option value="/mod/quiz/view.php?id=209910&amp;forceview=1">Quiz 1: Graphs and Heaps</option>
+                    <option value="/mod/quiz/view.php?id=209858&amp;forceview=1">Quiz 0: Readiness  due Weds Jan 15  9:00 p.m.</option>
+                    <option value="/mod/resource/view.php?id=209865&amp;forceview=1">Midterm solutions Winter 2020</option>
+        </select>
+            <noscript>
+                <input type="submit" class="btn btn-secondary" value="Go">
+            </noscript>
+    </form>
+</div>
+
+        </div>
+</div>
+    <div class="col-md-4">        <div class="pull-right">
+                <a href="https://polylearn.calpoly.edu/AY_2019-2020/mod/quiz/view.php?id=310544&amp;forceview=1" id="next-activity-link" class="btn btn-link" title="Quiz 4: Dynamic Programming">Quiz 4: Dynamic Programming ►</a>
+
+        </div>
+</div>
+</div>
+</div>
+                            
+                        </div>
+                    </div>
+                </section>
+                <section data-region="blocks-column" class="d-print-none">
+                    <aside id="block-region-side-pre" class="block-region" data-blockregion="side-pre" data-droptarget="1"><a href="https://polylearn.calpoly.edu/AY_2019-2020/mod/quiz/review.php?attempt=306804&amp;cmid=209857#sb-1" class="sr-only sr-only-focusable">Skip &lt;span id="mod_quiz_navblock_title"&gt;Quiz navigation&lt;/span&gt;</a>
+
+<section id="mod_quiz_navblock" class=" block block_fake  card mb-3" role="navigation" data-block="_fake" aria-labelledby="instance-0-header">
+
+    <div class="card-body">
+
+            <h5 id="instance-0-header" class="card-title d-inline"><span id="mod_quiz_navblock_title">Quiz navigation</span></h5>
+
+
+        <div class="card-text content mt-3">
+            <div class="qn_buttons clearfix allquestionsononepage"><a class="qnbutton partiallycorrect free btn btn-secondary thispage" id="quiznavbutton1" title="Partially correct" data-quiz-page="0" href="https://polylearn.calpoly.edu/AY_2019-2020/mod/quiz/review.php?attempt=306804&amp;cmid=209857#"><span class="thispageholder"></span><span class="trafficlight"></span><span class="accesshide">Question </span>1<span class="accesshide"> This page <span class="flagstate"></span></span></a><a class="qnbutton correct free btn btn-secondary thispage" id="quiznavbutton2" title="Correct" data-quiz-page="1" href="https://polylearn.calpoly.edu/AY_2019-2020/mod/quiz/review.php?attempt=306804&amp;cmid=209857#q2"><span class="thispageholder"></span><span class="trafficlight"></span><span class="accesshide">Question </span>2<span class="accesshide"> This page <span class="flagstate"></span></span></a><a class="qnbutton correct free btn btn-secondary thispage" id="quiznavbutton3" title="Correct" data-quiz-page="2" href="https://polylearn.calpoly.edu/AY_2019-2020/mod/quiz/review.php?attempt=306804&amp;cmid=209857#q3"><span class="thispageholder"></span><span class="trafficlight"></span><span class="accesshide">Question </span>3<span class="accesshide"> This page <span class="flagstate"></span></span></a><a class="qnbutton incorrect free btn btn-secondary thispage" id="quiznavbutton4" title="Incorrect" data-quiz-page="3" href="https://polylearn.calpoly.edu/AY_2019-2020/mod/quiz/review.php?attempt=306804&amp;cmid=209857#q4"><span class="thispageholder"></span><span class="trafficlight"></span><span class="accesshide">Question </span>4<span class="accesshide"> This page <span class="flagstate"></span></span></a><a class="qnbutton partiallycorrect free btn btn-secondary thispage" id="quiznavbutton5" title="Partially correct" data-quiz-page="4" href="https://polylearn.calpoly.edu/AY_2019-2020/mod/quiz/review.php?attempt=306804&amp;cmid=209857#q5"><span class="thispageholder"></span><span class="trafficlight"></span><span class="accesshide">Question </span>5<span class="accesshide"> This page <span class="flagstate"></span></span></a><a class="qnbutton correct free btn btn-secondary thispage" id="quiznavbutton6" title="Correct" data-quiz-page="5" href="https://polylearn.calpoly.edu/AY_2019-2020/mod/quiz/review.php?attempt=306804&amp;cmid=209857#q6"><span class="thispageholder"></span><span class="trafficlight"></span><span class="accesshide">Question </span>6<span class="accesshide"> This page <span class="flagstate"></span></span></a><a class="qnbutton incorrect free btn btn-secondary thispage" id="quiznavbutton7" title="Incorrect" data-quiz-page="6" href="https://polylearn.calpoly.edu/AY_2019-2020/mod/quiz/review.php?attempt=306804&amp;cmid=209857#q7"><span class="thispageholder"></span><span class="trafficlight"></span><span class="accesshide">Question </span>7<span class="accesshide"> This page <span class="flagstate"></span></span></a><a class="qnbutton correct free btn btn-secondary thispage" id="quiznavbutton8" title="Correct" data-quiz-page="7" href="https://polylearn.calpoly.edu/AY_2019-2020/mod/quiz/review.php?attempt=306804&amp;cmid=209857#q8"><span class="thispageholder"></span><span class="trafficlight"></span><span class="accesshide">Question </span>8<span class="accesshide"> This page <span class="flagstate"></span></span></a><a class="qnbutton incorrect free btn btn-secondary thispage" id="quiznavbutton9" title="Incorrect" data-quiz-page="8" href="https://polylearn.calpoly.edu/AY_2019-2020/mod/quiz/review.php?attempt=306804&amp;cmid=209857#q9"><span class="thispageholder"></span><span class="trafficlight"></span><span class="accesshide">Question </span>9<span class="accesshide"> This page <span class="flagstate"></span></span></a></div><div class="othernav"><a href="https://polylearn.calpoly.edu/AY_2019-2020/mod/quiz/review.php?attempt=306804&amp;cmid=209857&amp;showall=0">Show one page at a time</a><a class="mod_quiz-next-nav" href="https://polylearn.calpoly.edu/AY_2019-2020/mod/quiz/view.php?id=209857">Finish review</a></div>
+            <div class="footer"></div>
+            
+        </div>
+
+    </div>
+
+</section>
+
+  <span id="sb-1"></span></aside>
+                </section>
+            </div>
+        </div>
+    </div>
+    <div id="nav-drawer" data-region="drawer" class="d-print-none moodle-has-zindex closed" aria-hidden="true" tabindex="-1">
+        <nav class="list-group">
+            <a class="list-group-item list-group-item-action " href="https://polylearn.calpoly.edu/AY_2019-2020/course/view.php?id=10817" data-key="coursehome" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="60" data-nodetype="0" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="0" data-preceedwithhr="0">
+                <div class="m-l-0">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-graduation-cap fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body ">CSC-349-01-2202</span>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item list-group-item-action " href="https://polylearn.calpoly.edu/AY_2019-2020/user/index.php?id=10817" data-key="participants" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="90" data-nodetype="1" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="0" data-preceedwithhr="0" data-parent-key="10817">
+                <div class="m-l-0">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-users fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body ">Participants</span>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item list-group-item-action " href="https://polylearn.calpoly.edu/AY_2019-2020/grade/report/index.php?id=10817" data-key="grades" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="70" data-nodetype="0" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="0" data-preceedwithhr="0" data-parent-key="10817">
+                <div class="m-l-0">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-table fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body ">Grades</span>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item list-group-item-action " href="https://polylearn.calpoly.edu/AY_2019-2020/course/view.php?id=10817" data-key="localboostnavigationcoursesections" data-isexpandable="1" data-indent="0" data-showdivider="0" data-type="60" data-nodetype="0" data-collapse="1" data-forceopen="0" data-isactive="0" data-hidden="0" data-preceedwithhr="0" data-parent-key="10817" aria-controls="localboostnavigation36513 localboostnavigation36514 localboostnavigation36515 localboostnavigation69702 localboostnavigation69703 localboostnavigation69704" aria-expanded="0">
+                <div class="m-l-0">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-fw fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body ">Sections</span>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item list-group-item-action " href="https://polylearn.calpoly.edu/AY_2019-2020/course/view.php?id=10817#section-0" data-key="36513" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="30" data-nodetype="1" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="1" data-preceedwithhr="0" data-parent-key="localboostnavigationcoursesections" id="localboostnavigation36513">
+                <div class="m-l-0">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-folder-o fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body ">General</span>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item list-group-item-action " href="https://polylearn.calpoly.edu/AY_2019-2020/course/view.php?id=10817#section-1" data-key="36514" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="30" data-nodetype="1" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="1" data-preceedwithhr="0" data-parent-key="localboostnavigationcoursesections" id="localboostnavigation36514">
+                <div class="m-l-0">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-folder-o fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body ">Lecture notes and Supplements</span>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item list-group-item-action " href="https://polylearn.calpoly.edu/AY_2019-2020/course/view.php?id=10817#section-2" data-key="36515" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="30" data-nodetype="1" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="1" data-preceedwithhr="0" data-parent-key="localboostnavigationcoursesections" id="localboostnavigation36515">
+                <div class="m-l-0">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-folder-o fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body ">Labs</span>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item list-group-item-action " href="https://polylearn.calpoly.edu/AY_2019-2020/course/view.php?id=10817#section-3" data-key="69702" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="30" data-nodetype="1" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="1" data-preceedwithhr="0" data-parent-key="localboostnavigationcoursesections" id="localboostnavigation69702">
+                <div class="m-l-0">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-folder-o fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body ">Assignments</span>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item list-group-item-action active" href="https://polylearn.calpoly.edu/AY_2019-2020/course/view.php?id=10817#section-4" data-key="69703" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="30" data-nodetype="1" data-collapse="0" data-forceopen="1" data-isactive="1" data-hidden="1" data-preceedwithhr="0" data-parent-key="localboostnavigationcoursesections" id="localboostnavigation69703">
+                <div class="m-l-0">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-folder-o fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body font-weight-bold">Quizzes</span>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item list-group-item-action " href="https://polylearn.calpoly.edu/AY_2019-2020/course/view.php?id=10817#section-5" data-key="69704" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="30" data-nodetype="1" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="1" data-preceedwithhr="0" data-parent-key="localboostnavigationcoursesections" id="localboostnavigation69704">
+                <div class="m-l-0">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-folder-o fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body ">Midterm and Final information</span>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item list-group-item-action " href="https://polylearn.calpoly.edu/AY_2019-2020/course/view.php?id=10817" data-key="localboostnavigationactivities" data-isexpandable="1" data-indent="0" data-showdivider="0" data-type="60" data-nodetype="0" data-collapse="1" data-forceopen="0" data-isactive="0" data-hidden="0" data-preceedwithhr="0" data-parent-key="10817" aria-controls="localboostnavigationactivityassign localboostnavigationactivityforum localboostnavigationactivityquestionnaire localboostnavigationactivityquiz localboostnavigationactivityresources" aria-expanded="0">
+                <div class="m-l-0">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-fw fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body ">Activities</span>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item list-group-item-action " href="https://polylearn.calpoly.edu/AY_2019-2020/mod/assign/index.php?id=10817" data-key="localboostnavigationactivityassign" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="40" data-nodetype="0" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="1" data-preceedwithhr="0" data-parent-key="localboostnavigationactivities" id="localboostnavigationactivityassign">
+                <div class="m-l-0">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-share-alt fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body ">Assignments</span>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item list-group-item-action " href="https://polylearn.calpoly.edu/AY_2019-2020/mod/forum/index.php?id=10817" data-key="localboostnavigationactivityforum" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="40" data-nodetype="0" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="1" data-preceedwithhr="0" data-parent-key="localboostnavigationactivities" id="localboostnavigationactivityforum">
+                <div class="m-l-0">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-share-alt fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body ">Forums</span>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item list-group-item-action " href="https://polylearn.calpoly.edu/AY_2019-2020/mod/questionnaire/index.php?id=10817" data-key="localboostnavigationactivityquestionnaire" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="40" data-nodetype="0" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="1" data-preceedwithhr="0" data-parent-key="localboostnavigationactivities" id="localboostnavigationactivityquestionnaire">
+                <div class="m-l-0">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-share-alt fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body ">Questionnaires</span>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item list-group-item-action " href="https://polylearn.calpoly.edu/AY_2019-2020/mod/quiz/index.php?id=10817" data-key="localboostnavigationactivityquiz" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="40" data-nodetype="0" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="1" data-preceedwithhr="0" data-parent-key="localboostnavigationactivities" id="localboostnavigationactivityquiz">
+                <div class="m-l-0">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-share-alt fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body ">Quizzes</span>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item list-group-item-action " href="https://polylearn.calpoly.edu/AY_2019-2020/course/resources.php?id=10817" data-key="localboostnavigationactivityresources" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="40" data-nodetype="0" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="1" data-preceedwithhr="0" data-parent-key="localboostnavigationactivities" id="localboostnavigationactivityresources">
+                <div class="m-l-0">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-archive fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body ">Resources</span>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item list-group-item-action " href="https://polylearn.calpoly.edu/AY_2019-2020/blocks/quickmail/emaillog.php?courseid=10817" data-key="localboostnavigationcustomcourseusers1" data-isexpandable="1" data-indent="0" data-showdivider="0" data-type="60" data-nodetype="0" data-collapse="1" data-forceopen="0" data-isactive="0" data-hidden="0" data-preceedwithhr="0" data-parent-key="10817" aria-controls="localboostnavigationcustomcourseusers2 localboostnavigationcustomcourseusers3 localboostnavigationcustomcourseusers4 localboostnavigationcustomcourseusers5" aria-expanded="0">
+                <div class="m-l-0">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-square local-boostnavigation-fa-sm fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body ">Quickmail</span>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item list-group-item-action " href="https://polylearn.calpoly.edu/AY_2019-2020/blocks/quickmail/compose.php?courseid=10817" data-key="localboostnavigationcustomcourseusers2" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="60" data-nodetype="0" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="1" data-preceedwithhr="0" data-parent-key="localboostnavigationcustomcourseusers1" id="localboostnavigationcustomcourseusers2">
+                <div class="m-l-0">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-square local-boostnavigation-fa-sm fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body ">Compose New Email</span>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item list-group-item-action " href="https://polylearn.calpoly.edu/AY_2019-2020/blocks/quickmail/signatures.php?courseid=10817" data-key="localboostnavigationcustomcourseusers3" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="60" data-nodetype="0" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="1" data-preceedwithhr="0" data-parent-key="localboostnavigationcustomcourseusers1" id="localboostnavigationcustomcourseusers3">
+                <div class="m-l-0">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-square local-boostnavigation-fa-sm fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body ">Signatures</span>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item list-group-item-action " href="https://polylearn.calpoly.edu/AY_2019-2020/blocks/quickmail/drafts.php?courseid=10817" data-key="localboostnavigationcustomcourseusers4" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="60" data-nodetype="0" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="1" data-preceedwithhr="0" data-parent-key="localboostnavigationcustomcourseusers1" id="localboostnavigationcustomcourseusers4">
+                <div class="m-l-0">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-square local-boostnavigation-fa-sm fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body ">View Drafts</span>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item list-group-item-action " href="https://polylearn.calpoly.edu/AY_2019-2020/blocks/quickmail/sent.php?courseid=10817" data-key="localboostnavigationcustomcourseusers5" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="60" data-nodetype="0" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="1" data-preceedwithhr="0" data-parent-key="localboostnavigationcustomcourseusers1" id="localboostnavigationcustomcourseusers5">
+                <div class="m-l-0">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-square local-boostnavigation-fa-sm fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body ">View History</span>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item list-group-item-action " href="http://lib.calpoly.edu/study-spaces-and-tech/convert" data-key="localboostnavigationcustomcourseusers6" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="60" data-nodetype="0" data-collapse="1" data-forceopen="0" data-isactive="0" data-hidden="0" data-preceedwithhr="0" data-parent-key="10817">
+                <div class="m-l-0">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-square local-boostnavigation-fa-sm fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body ">SensusAccess</span>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item list-group-item-action " href="https://polylearn.calpoly.edu/AY_2019-2020/my/?myoverviewtab=courses" data-key="courseindexpage" data-isexpandable="0" data-indent="1" data-showdivider="0" data-type="60" data-nodetype="0" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="1" data-preceedwithhr="0" data-parent-key="mycourses" id="localboostnavigationcourseindexpage">
+                <div class="m-l-1">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-fw fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body ">More...</span>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item list-group-item-action " href="https://polylearn.calpoly.edu/AY_2019-2020/my/" data-key="localboostnavigationcustombottomusers1" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="60" data-nodetype="0" data-collapse="1" data-forceopen="0" data-isactive="0" data-hidden="0" data-preceedwithhr="0" data-parent-key="home">
+                <div class="m-l-0">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-square local-boostnavigation-fa-sm fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body ">My Courses</span>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item list-group-item-action " href="http://polylearnsupport.calpoly.edu/" data-key="localboostnavigationcustombottomusers2" data-isexpandable="1" data-indent="0" data-showdivider="0" data-type="60" data-nodetype="0" data-collapse="1" data-forceopen="0" data-isactive="0" data-hidden="0" data-preceedwithhr="0" data-parent-key="home" aria-controls="localboostnavigationcustombottomusers3 localboostnavigationcustombottomusers4 localboostnavigationcustombottomusers5" aria-expanded="0">
+                <div class="m-l-0">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-square local-boostnavigation-fa-sm fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body ">Support</span>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item list-group-item-action " href="http://polylearnsupport.calpoly.edu/" data-key="localboostnavigationcustombottomusers3" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="60" data-nodetype="0" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="1" data-preceedwithhr="0" data-parent-key="localboostnavigationcustombottomusers2" id="localboostnavigationcustombottomusers3">
+                <div class="m-l-0">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-square local-boostnavigation-fa-sm fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body ">PolyLearn Support</span>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item list-group-item-action " href="http://lib.calpoly.edu/" data-key="localboostnavigationcustombottomusers4" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="60" data-nodetype="0" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="1" data-preceedwithhr="0" data-parent-key="localboostnavigationcustombottomusers2" id="localboostnavigationcustombottomusers4">
+                <div class="m-l-0">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-square local-boostnavigation-fa-sm fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body ">Library Services</span>
+                    </div>
+                </div>
+            </a>
+            <a class="list-group-item list-group-item-action " href="http://polylearnsupport.calpoly.edu/Support/ScheduledMaintenance.html" data-key="localboostnavigationcustombottomusers5" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="60" data-nodetype="0" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="1" data-preceedwithhr="0" data-parent-key="localboostnavigationcustombottomusers2" id="localboostnavigationcustombottomusers5">
+                <div class="m-l-0">
+                    <div class="media">
+                        <span class="media-left">
+                            <i class="icon fa fa-square local-boostnavigation-fa-sm fa-fw " aria-hidden="true"></i>
+                        </span>
+                        <span class="media-body ">PolyLearn Updates</span>
+                    </div>
+                </div>
+            </a>
+        </nav>
+    </div>
+</div><div id="yui3-css-stamp" style="position: absolute !important; visibility: hidden !important" class=""></div>
+
+<footer id="page-footer" class="py-3 bg-dark text-light">
+    <div class="container">
+        <div id="course-footer"></div>
+
+
+        <div class="logininfo">You are logged in as <a href="https://polylearn.calpoly.edu/AY_2019-2020/user/profile.php?id=260299" title="View profile">Destin Estrela</a> (<a href="https://polylearn.calpoly.edu/AY_2019-2020/login/logout.php?sesskey=36136t6C7n">Log out</a>)</div>
+        <div class="tool_usertours-resettourcontainer"></div>
+        <div class="homelink"><a href="https://polylearn.calpoly.edu/AY_2019-2020/course/view.php?id=10817">CSC-349-01-2202</a></div>
+        <nav class="nav navbar-nav d-md-none">
+                <ul class="list-unstyled pt-3">
+                </ul>
+        </nav>
+        <div class="tool_dataprivacy"><a href="https://polylearn.calpoly.edu/AY_2019-2020/admin/tool/dataprivacy/summary.php">Data retention summary</a></div><a href="https://download.moodle.org/mobile?version=2018051710.01&amp;lang=en_us&amp;iosappid=633359593&amp;androidappid=com.moodle.moodlemobile">Get the mobile app</a>
+        <script type="text/javascript">
+//<![CDATA[
+var require = {
+    baseUrl : 'https://polylearn.calpoly.edu/AY_2019-2020/lib/requirejs.php/1581264938/',
+    // We only support AMD modules with an explicit define() statement.
+    enforceDefine: true,
+    skipDataMain: true,
+    waitSeconds : 0,
+
+    paths: {
+        jquery: 'https://polylearn.calpoly.edu/AY_2019-2020/lib/javascript.php/1581264938/lib/jquery/jquery-3.2.1.min',
+        jqueryui: 'https://polylearn.calpoly.edu/AY_2019-2020/lib/javascript.php/1581264938/lib/jquery/ui-1.12.1/jquery-ui.min',
+        jqueryprivate: 'https://polylearn.calpoly.edu/AY_2019-2020/lib/javascript.php/1581264938/lib/requirejs/jquery-private'
+    },
+
+    // Custom jquery config map.
+    map: {
+      // '*' means all modules will get 'jqueryprivate'
+      // for their 'jquery' dependency.
+      '*': { jquery: 'jqueryprivate' },
+      // Stub module for 'process'. This is a workaround for a bug in MathJax (see MDL-60458).
+      '*': { process: 'core/first' },
+
+      // 'jquery-private' wants the real jQuery module
+      // though. If this line was not here, there would
+      // be an unresolvable cyclic dependency.
+      jqueryprivate: { jquery: 'jquery' }
+    }
+};
+
+//]]>
+</script>
+<script type="text/javascript" src="./Quiz 5_ Flow Network Basics_files/javascript(5).php"></script>
+<script type="text/javascript">
+//<![CDATA[
+M.util.js_pending("core/first");require(['core/first'], function() {
+;
+require(["media_videojs/loader"], function(loader) {
+    loader.setUp(function(videojs) {
+        videojs.options.flash.swf = "https://polylearn.calpoly.edu/AY_2019-2020/media/player/videojs/videojs/video-js.swf";
+videojs.addLanguage("en",{
+ "Audio Player": "Audio Player",
+ "Video Player": "Video Player",
+ "Play": "Play",
+ "Pause": "Pause",
+ "Replay": "Replay",
+ "Current Time": "Current Time",
+ "Duration Time": "Duration Time",
+ "Remaining Time": "Remaining Time",
+ "Stream Type": "Stream Type",
+ "LIVE": "LIVE",
+ "Loaded": "Loaded",
+ "Progress": "Progress",
+ "Progress Bar": "Progress Bar",
+ "progress bar timing: currentTime={1} duration={2}": "{1} of {2}",
+ "Fullscreen": "Fullscreen",
+ "Non-Fullscreen": "Non-Fullscreen",
+ "Mute": "Mute",
+ "Unmute": "Unmute",
+ "Playback Rate": "Playback Rate",
+ "Subtitles": "Subtitles",
+ "subtitles off": "subtitles off",
+ "Captions": "Captions",
+ "captions off": "captions off",
+ "Chapters": "Chapters",
+ "Descriptions": "Descriptions",
+ "descriptions off": "descriptions off",
+ "Audio Track": "Audio Track",
+ "Volume Level": "Volume Level",
+ "You aborted the media playback": "You aborted the media playback",
+ "A network error caused the media download to fail part-way.": "A network error caused the media download to fail part-way.",
+ "The media could not be loaded, either because the server or network failed or because the format is not supported.": "The media could not be loaded, either because the server or network failed or because the format is not supported.",
+ "The media playback was aborted due to a corruption problem or because the media used features your browser did not support.": "The media playback was aborted due to a corruption problem or because the media used features your browser did not support.",
+ "No compatible source was found for this media.": "No compatible source was found for this media.",
+ "The media is encrypted and we do not have the keys to decrypt it.": "The media is encrypted and we do not have the keys to decrypt it.",
+ "Play Video": "Play Video",
+ "Close": "Close",
+ "Close Modal Dialog": "Close Modal Dialog",
+ "Modal Window": "Modal Window",
+ "This is a modal window": "This is a modal window",
+ "This modal can be closed by pressing the Escape key or activating the close button.": "This modal can be closed by pressing the Escape key or activating the close button.",
+ ", opens captions settings dialog": ", opens captions settings dialog",
+ ", opens subtitles settings dialog": ", opens subtitles settings dialog",
+ ", opens descriptions settings dialog": ", opens descriptions settings dialog",
+ ", selected": ", selected",
+ "captions settings": "captions settings",
+ "subtitles settings": "subititles settings",
+ "descriptions settings": "descriptions settings",
+ "Text": "Text",
+ "White": "White",
+ "Black": "Black",
+ "Red": "Red",
+ "Green": "Green",
+ "Blue": "Blue",
+ "Yellow": "Yellow",
+ "Magenta": "Magenta",
+ "Cyan": "Cyan",
+ "Background": "Background",
+ "Window": "Window",
+ "Transparent": "Transparent",
+ "Semi-Transparent": "Semi-Transparent",
+ "Opaque": "Opaque",
+ "Font Size": "Font Size",
+ "Text Edge Style": "Text Edge Style",
+ "None": "None",
+ "Raised": "Raised",
+ "Depressed": "Depressed",
+ "Uniform": "Uniform",
+ "Dropshadow": "Dropshadow",
+ "Font Family": "Font Family",
+ "Proportional Sans-Serif": "Proportional Sans-Serif",
+ "Monospace Sans-Serif": "Monospace Sans-Serif",
+ "Proportional Serif": "Proportional Serif",
+ "Monospace Serif": "Monospace Serif",
+ "Casual": "Casual",
+ "Script": "Script",
+ "Small Caps": "Small Caps",
+ "Reset": "Reset",
+ "restore all settings to the default values": "restore all settings to the default values",
+ "Done": "Done",
+ "Caption Settings Dialog": "Caption Settings Dialog",
+ "Beginning of dialog window. Escape will cancel and close the window.": "Beginning of dialog window. Escape will cancel and close the window.",
+ "End of dialog window.": "End of dialog window."
+});
+
+    });
+});;
+M.util.js_pending('local_boostnavigation/collapsenavdrawernodes');
+require(['local_boostnavigation/collapsenavdrawernodes'], function(amd) {
+    amd.init(["mycourses","localboostnavigationcoursesections","localboostnavigationactivities","localboostnavigationcustomcourseusers1","localboostnavigationcustombottomusers2"]);
+    M.util.js_complete('local_boostnavigation/collapsenavdrawernodes');
+});;
+M.util.js_pending('local_notices/dismiss');
+require(['local_notices/dismiss'], function(amd) {
+    amd.init();
+    M.util.js_complete('local_notices/dismiss');
+});;
+
+require(['jquery', 'message_popup/message_popover_controller'], function($, controller) {
+    var container = $('#nav-message-popover-container');
+    var controller = new controller(container);
+    controller.registerEventListeners();
+    controller.registerListNavigationEventListeners();
+});
+;
+
+require(['jquery', 'message_popup/notification_popover_controller'], function($, controller) {
+    var container = $('#nav-notification-popover-container');
+    var controller = new controller(container);
+    controller.registerEventListeners();
+    controller.registerListNavigationEventListeners();
+});
+;
+
+        require(['jquery'], function($) {
+            $('#jump-to-activity').change(function() {
+                if (!$(this).val()) {
+                    return false;
+                }
+                $('#url_select_f5e55a308d2cc814').submit();
+            });
+        });
+    ;
+
+M.util.js_pending('theme_boost/loader');
+require(['theme_boost/loader'], function() {
+  M.util.js_complete('theme_boost/loader');
+});
+M.util.js_pending('theme_boost/drawer');
+require(['theme_boost/drawer'], function(mod) {
+    mod.init();
+  M.util.js_complete('theme_boost/drawer');
+});
+;
+M.util.js_pending('core/notification');
+require(['core/notification'], function(amd) {
+    amd.init(505942, []);
+    M.util.js_complete('core/notification');
+});;
+M.util.js_pending('core/log');
+require(['core/log'], function(amd) {
+    amd.setConfig({"level":"warn"});
+    M.util.js_complete('core/log');
+});M.util.js_complete("core/first");
+});
+//]]>
+</script>
+<script type="text/javascript">
+//<![CDATA[
+M.yui.add_module({"core_question_engine":{"name":"core_question_engine","fullpath":"https:\/\/polylearn.calpoly.edu\/AY_2019-2020\/lib\/javascript.php\/1581264938\/question\/qengine.js","requires":["node","event"]},"mod_quiz":{"name":"mod_quiz","fullpath":"https:\/\/polylearn.calpoly.edu\/AY_2019-2020\/lib\/javascript.php\/1581264938\/mod\/quiz\/module.js","requires":["base","dom","event-delegate","event-key","core_question_engine","moodle-core-formchangechecker"]}});
+
+//]]>
+</script>
+<script type="text/javascript">
+//<![CDATA[
+M.str = {"moodle":{"lastmodified":"Last modified","name":"Name","error":"Error","info":"Information","yes":"Yes","no":"No","cancel":"Cancel","changesmadereallygoaway":"You have made changes. Are you sure you want to navigate away and lose your changes?","confirm":"Confirm","areyousure":"Are you sure?","closebuttontitle":"Close","unknownerror":"Unknown error"},"repository":{"type":"Type","size":"Size","invalidjson":"Invalid JSON string","nofilesattached":"No files attached","filepicker":"File picker","logout":"Logout","nofilesavailable":"No files available","norepositoriesavailable":"Sorry, none of your current repositories can return files in the required format.","fileexistsdialogheader":"File exists","fileexistsdialog_editor":"A file with that name has already been attached to the text you are editing.","fileexistsdialog_filemanager":"A file with that name has already been attached","renameto":"Rename to \"{$a}\"","referencesexist":"There are {$a} alias\/shortcut files that use this file as their source","select":"Select"},"admin":{"confirmdeletecomments":"You are about to delete comments, are you sure?","confirmation":"Confirmation"},"question":{"flagged":"Flagged"},"quiz":{"functiondisabledbysecuremode":"That functionality is currently disabled","startattempt":"Start attempt","timesup":"Time is up!"}};
+//]]>
+</script>
+<script type="text/javascript">
+//<![CDATA[
+(function() {Y.use("moodle-filter_mathjaxloader-loader",function() {M.filter_mathjaxloader.configure({"mathjaxconfig":"\nMathJax.Hub.Config({\n    config: [\"Accessible.js\", \"Safe.js\"],\n    errorSettings: { message: [\"!\"] },\n    skipStartupTypeset: true,\n    messageStyle: \"none\"\n});\n","lang":"en"});
+});
+ M.util.js_pending('random5e55a308d2cc81'); Y.use('core_question_flags', function(Y) { M.core_question_flags.init(Y, "https:\/\/polylearn.calpoly.edu\/AY_2019-2020\/question\/toggleflag.php", [{"src":"https:\/\/polylearn.calpoly.edu\/AY_2019-2020\/theme\/image.php\/cpboost\/core\/1581265379\/i\/unflagged","title":"Flag this question for future reference","alt":"Not flagged"},{"src":"https:\/\/polylearn.calpoly.edu\/AY_2019-2020\/theme\/image.php\/cpboost\/core\/1581265379\/i\/flagged","title":"Remove flag","alt":"Flagged"}], ["Flag question","Remove flag"]);  M.util.js_complete('random5e55a308d2cc81'); });
+ M.util.js_pending('random5e55a308d2cc82'); Y.use('mod_quiz', function(Y) { M.mod_quiz.nav.init(Y);  M.util.js_complete('random5e55a308d2cc82'); });
+M.util.help_popups.setup(Y);
+ M.util.js_pending('random5e55a308d2cc815'); Y.use('mod_quiz', function(Y) { M.mod_quiz.init_review_form(Y);  M.util.js_complete('random5e55a308d2cc815'); });
+ M.util.js_pending('random5e55a308d2cc816'); Y.on('domready', function() { M.util.js_complete("init");  M.util.js_complete('random5e55a308d2cc816'); });
+})();
+//]]>
+</script>
+
+    </div>
+</footer>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"4e34bbaf17","applicationID":"1977984","transactionName":"YldTYBRYXUVVURdZXFsdZEYPFlJGREFMXVxaVl1RSU5EQRtzOm8BBQMIGVQJAQYbXwxUHERHWE5JS1ZAXVcUHkNdQg==","queueTime":0,"applicationTime":289,"atts":"ThBQFlxCTks=","errorBeacon":"bam.nr-data.net","agent":""}</script>
+</body></html>
