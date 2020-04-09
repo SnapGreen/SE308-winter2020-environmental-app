@@ -1,25 +1,6 @@
 #!/bin/bash
 INFILE="branded_food.csv"
 TMPFILE="branded_food.tmp"
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-SPLIT_PREFIX="branded_food_"
-OUT_TMP_SUFFIX=".tmp"
-OUT_SUFFIX=".json"
-SPLIT_FILE_LINES="15000"
-AWKCMDFILE="command.awk"
-
-# clears the output file of any data
-#> $OUTFILE
-=======
-OUTFILE="branded_food.json"
-AWKCMDFILE="command.awk"
-
-# clears the output file of any data
-> $OUTFILE
->>>>>>> ebfb21a0737a49cfa88dc05c6051a8eb35846c9c
-
-=======
 SPLIT_PREFIX="branded_food_"
 OUT_TMP_SUFFIX=".tmp"
 OUT_SUFFIX=".json"
@@ -31,7 +12,7 @@ AWKCMDFILE="command.awk"
 tail -n +2 "$INFILE" > "$TMPFILE" 
 
 # splits the temp file
-# -l flag denotes we want to split by number of lines
+# -l flag denotes we want to split files by $SPLIT_FILE_LINES number of lines
 # -d means we want digit suffixes
 # -a 4 means we want 4 digits in each suffix
 # -e means don't output zero size files
@@ -45,17 +26,22 @@ rm $TMPFILE
 
 for file in *.tmp
 do
+   # extracting the suffix number from each temp file
    outnum=$(echo $file | egrep -o [0-9]+)
+   # putting together an output file name
    outname="${SPLIT_PREFIX}${outnum}${OUT_SUFFIX}"
    # make sure the outfile is clear, if it exists
    > $outname
+   # place the first line into the outfile
    echo "\"products\": [" >> $outname
+   # run awk to process the rest
    awk -f $AWKCMDFILE $file >> $outname
    # removes comma from last line of last entry
    sed -i '$s/,$//' $outname
-   #adds closing bracket
+   #adds closing bracket to outfile
    echo "]" >> $outname
 done
 
+# removes all of the temporary files
 rm *.tmp
 
