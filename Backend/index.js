@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
 const port = 8080;
 
-const firebase = require("../../firebase");
+const firebase = require("./firebase");
 let FIREBASE;
 
 /* these will be integrated later, when we need socket.io comms
@@ -50,8 +50,6 @@ const app = express();
 // it allows for around two 32-character (UTF8) fields, with their
 // corresponding json characters.
 // The limit is meant prevent an injection
-
-// Originally 320b, but needed to change to handle JSON object for batch writes
 app.use(
   bodyParser.json({
     limit: "320b",
