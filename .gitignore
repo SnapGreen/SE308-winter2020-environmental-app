@@ -4,12 +4,8 @@
 key
 key.pub
 *.log
-**/Backend/server/rawdata/EPA/*.json
-**/Backend/server/rawdata/EPA/*.csv
-**/Backend/server/rawdata/EPA/*.pdf
-**/Backend/server/rawdata/EPA/*.tmp
-**/Backend/server/rawdata/FDA/*.json
-**/Backend/server/rawdata/FDA/*.csv
-**/Backend/server/rawdata/FDA/*.pdf
-**/Backend/server/rawdata/FDA/*.tmp
+**/Backend/server/rawdata/**.json
+**/Backend/server/rawdata/**.csv
+**/Backend/server/rawdata/**.pdf
+**/Backend/server/rawdata/**.tmp
 
