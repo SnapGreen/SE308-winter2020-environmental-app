@@ -1,40 +1,27 @@
-#Script usage:
+#Data
 
-1. copy the "branded_food.csv" file to this directory
-2. in a linux shell, enter:
-   ./convertBranded_FoodsToJson.sh
+This folder contains the latest data from the FDA "branded_food.csv", as well as
+a fluctuating amount of "branded_food_xxxx.json"s to be uploaded to the
+database.  It is populated and de-populated by scripts in the "scripts" folder,
+which are to be run periodically (and eventually, automatically via a daemon
+script).
 
-This will output several new files, "branded_food_xxxx.json", each of which contain 500 products in the following format: 
-products: [
-   {
-      "id": "<14 digit gtin>", 
-      "info": {
-         "ingredients": [
-            "ingred1",
-            "ingred2",
-            ...,
-            "ingredn"
-         ],
-         "score": "-999999999",
-         "scoreModified": "0000-00-00",      //year.month.day
-         "productModified": "<date from FDA>"
-      }
-   },
-   etc....
-]
+The relevance of the data is as follows:
 
-Another script will upload these files to the database, in order of lowest
-suffix to highest--deleting as it goes.  We will likely run once per day in
-batches sufficient to keep us below the limit, yet still leave room for other
-queries.
+##Branded_Food.csv
+This is the latest file from the FDA containing product information.  It may be
+obtained by running a script in the folder.
 
-This script isn't blazingly fast--it takes almost two minutes to run on my
-relatively new computer.  You should expect hundreds of new files to pop up in
-your directory--over 600 at least.  It's doing a lot, and it doesn't need to be
-run very often.
+##fdcid-gtin.txt
+This file contains pairs mapping 6-digit fdcid's to 14 digit gtin-upc codes.
+When the FDA updates their database, the information is provided in a .csv that
+doesn't contain the gtin information--so this file will allow us to map that
+information to the relevant products in the database and make our updates as
+needed.  This is also produced by a script.
 
-Note:  if you receive errors upon running the script re: "\r" in line xx:
-   - install dos2unix:  sudo apt install dos2unix
-   - "dos2unix convertBranded_FoodsToJson.sh"
-   - then "./convertBranded_FoodsToJson.sh"
-
+##Branded_Food_xxxx.json
+These are produced by a script as well--they represent 500 products in json
+format each from Branded_Food.csv.  Another script will periodically take the
+lowest-numbered (that's the xxxx part), upload it to the database, then delete
+them as it goes.  Upon first run, expect more than 700 of them to show up (as of
+April 2020).
