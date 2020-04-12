@@ -4,8 +4,8 @@
 key
 key.pub
 *.log
-**/Backend/server/rawdata/**.json
-**/Backend/server/rawdata/**.csv
-**/Backend/server/rawdata/**.pdf
-**/Backend/server/rawdata/**.tmp
+**/rawdata/*.json
+**/rawdata/*.csv
+**/rawdata/*.pdf
+**/rawdata/*.tmp
 

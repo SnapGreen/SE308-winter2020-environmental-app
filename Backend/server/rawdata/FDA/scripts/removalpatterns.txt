@@ -1,0 +1,43 @@
+s/ \+/ /g
+s/ \+;/;/g
+s/; \+/;/g
+s/(iron)//g
+s/(mold inhibitor)//g
+s/\(\w\{2,\}\)\./\1;/g
+s/(emulsifier)//g
+s/(\(not \)\?from [^)]\+//g
+s/(prevents [^])}]\+//g
+s/(natural vitamin e)//g
+s/;coated with /;/g
+s/([^[:punct:]]\+ agent)//g
+s/(an [^[:punct:]]//g
+s/100% //g
+s/^contains //g
+s/[[:punct:]]\(if \)\?color\(ed\)\?[])}]//g
+s/[([{]anti-\?caking agent[])}]//g
+s/processed with //g
+s/[([{]\(as \)\?preservatives\?[])}]//g
+s/([0-9]\+%)//g
+s/ cured with /;/g
+s/natural and artificial flavors/natural flavors;artificial flavors/g
+s/from [^;]\+of\( the following\)\? //g
+s/(\?added as a preservative)\?//g
+s/[;.]\scontains[^[:punct:]]*the following/;/g
+s/[({]for [^)}]\+//g
+s/(to [^)]\+)//g
+s/dusted with //g
+s/(\?vitamin \?\w[0-9]\?[0-9]\?)\?//g
+s/[;.]contains .* of /;/g
+s/[;.]contains [^[:punct:]]* [1234]% /;/g
+s/[[({]contains [^])}]\+//g
+s/less than [0-9]% of //g
+s/mono-\? \(and\|&\) /monoglycerides;/g
+s/di-glycerides/diglycerides/g
+s/;\(\w\+ \)\+ingredients /;/g
+s/;.*(/;/g
+s/(//g
+s/;.*\[/;/g
+s/[a-z]\./\U&/g
+s/\]//g
+s/)//g
+s/^;//g
