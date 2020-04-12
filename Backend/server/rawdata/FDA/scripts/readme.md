@@ -77,7 +77,20 @@ directory.  Once that's complete, the file will be passed to:
 ##3. distributeFiles.sh <filename>
 
 This script unzips the archive into this directory, then distributes them to
-where they need to go.  It then deletes the files we don't need.
+where they need to go.  It then deletes the files we don't need, and keeps:
+
+###branded_food.csv
+
+This is our main source of data--it contains a plethora of information.  We only
+take four columns--the gtin-upc codes, the fdc_ids, the ingredients, and the
+date modified.  It stays in the folder for testing purposes--unit tests will be
+developed to refine the filtering process.
+
+###food_update_log_entry.csv
+
+This lists all of the changes that have been made since the last update.  Once
+our initial upload is finished, we will instead only upload/update the products
+listed in this file.  It will stay for testing purposes as well.
 
 ##4. in a linux shell, enter:
    ./convertBranded_FoodToJson.sh

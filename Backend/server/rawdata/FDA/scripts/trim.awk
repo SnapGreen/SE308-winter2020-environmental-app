@@ -20,6 +20,7 @@ BEGIN { FS = "\",\""}
    }
    sub(/\./, "", ingreds[num_ingreds])
    printf(";%s|%s\n", tolower(ingreds[num_ingreds]), $10)
-   # clear both arrays
+   # clear array
    split("", ingreds)
+   num_ingreds=0
 }
