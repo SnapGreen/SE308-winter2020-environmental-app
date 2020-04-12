@@ -4,8 +4,8 @@
 key
 key.pub
 *.log
-**/rawdata/**/*.json
-**/rawdata/**/*.csv
-**/rawdata/**/*.pdf
-**/rawdata/**/*.tmp
+*.json
+*.csv
+*.pdf
+*.tmp
 

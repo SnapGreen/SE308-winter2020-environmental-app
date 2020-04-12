@@ -141,7 +141,7 @@ This is a slew of regular expression patterns to help clean the "ingredients"
 provided by manufacturers.  This is by far the slowest part to run, and will be
 adjusted/optimized as time allows.
 
-###currentlatest.csv and lastlatest.csv
+###currentlatest.txt and lastlatest.txt
 
 These files store the date that the most recent FDA data was uploaded, as well
 as the last one that was updated.  Whenever 
@@ -151,6 +151,13 @@ as the last one that was updated.  Whenever
 These files pop up from time to time--they are usually deleted by the scripts,
 so you'll see them coming and going as you run them.  They serve as temporary
 files for intermediate steps in the data processing stages.
+
+###sedxxxxx
+
+These files pop up while sed is running through the 'ingredients.tmp' file.
+They'll disappear when it's done, unless the program is interrupted.  If you
+happen to see them lying around while the program isn't running, it's safe to
+remove them.
 
 #Troubleshooting
 
