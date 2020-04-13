@@ -3,8 +3,8 @@
 This folder contains the latest data from the FDA "branded_food.csv", as well as
 a fluctuating amount of "branded_food_xxxx.json"s to be uploaded to the
 database.  It is populated and de-populated by scripts in the "scripts" folder,
-which are to be run periodically (and eventually, automatically via a daemon
-script).
+which will be scheduled to run periodically.  More info can be found in the
+readme.md found there.
 
 The relevance of the data is as follows:
 

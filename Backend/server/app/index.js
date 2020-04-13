@@ -2,7 +2,7 @@
 const _ = require("lodash");
 const express = require("express");
 const bodyParser = require("body-parser");
-const jwt = require("jsonwebtoken");
+//const jwt = require("jsonwebtoken");
 const port = 8080;
 
 const firebase = require("../../firebase");
@@ -13,11 +13,11 @@ const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 */
 
-const passport = require("passport");
-const passportJWT = require("passport-jwt");
+//const passport = require("passport");
+//const passportJWT = require("passport-jwt");
 
-var ExtractJwt = passportJWT.ExtractJwt;
-var JwtStrategy = passportJWT.Strategy;
+//var ExtractJwt = passportJWT.ExtractJwt;
+//var JwtStrategy = passportJWT.Strategy;
 
 // var jwtOptions = {};
 // jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
@@ -210,12 +210,6 @@ app.put("/products/:id", async function (req, res) {
     console.log(err);
   }
 });
-
-/* These are for later, when we integrate real-time game comms
-io.on('connection', function(socket){
-   console.log('Express is up!');
-});
-*/
 
 app.listen(port, function () {
   console.log("Express running");
