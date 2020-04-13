@@ -1,0 +1,12 @@
+INFILE:../branded_food.csv
+MAPFILE:../fdcid-gtin.txt
+PATTERNFILE:removalpatterns.txt
+SPLIT_PREFIX:branded_food_
+SUFFIX_LEN:4
+OUT_SUFFIX:.json
+PRODS_PER_JSON:500
+CURRENTFILE:currentlatest.csv
+LASTFILE:lastlatest.csv
+FDC_DIR_ADDRESS:https://fdc.nal.usda.gov/fdc-datasets
+FB_WRITES_PER_DAY:17000
+

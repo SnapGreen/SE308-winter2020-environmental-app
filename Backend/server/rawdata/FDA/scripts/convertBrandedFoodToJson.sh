@@ -14,7 +14,7 @@ SPLIT_PREFIX="branded_food_"
 OUT_TMP_SUFFIX=".tmp"
 SUFFIX_LEN="4"
 OUT_SUFFIX=".json"
-SPLIT_FILE_LINES="500"
+PRODS_PER_JSON="500"
 AWK_FORMAT="csvtojson.awk"
 AWK_SHRINK="consolidateIngreds.awk"
 AWK_TRIM="trim.awk"
@@ -103,15 +103,15 @@ function removeBad(){
 }
 
 function splitChunks(){
-   printf "splitting int %d line chunks...\n" $SPLIT_FILE_LINES
+   printf "splitting int %d line chunks...\n" $PRODS_PER_JSON
    # splits the trimmed file
-   # -l flag denotes we want to split files by $SPLIT_FILE_LINES number of lines
+   # -l flag denotes we want to split files by $PRODS_PER_JSON number of lines
    # -d means we want digit suffixes
    # -a $SUFFIX_LEN means we want $SUFFIX_LEN digits in each suffix
    # -e means don't output zero size files
    # $SPLIT_PREFIX is the first part of what each file will be named
    # --additional-suffix will be added to the end
-   split -l $SPLIT_FILE_LINES -d  -e $1 $SPLIT_PREFIX \
+   split -l $PRODS_PER_JSON -d  -e $1 $SPLIT_PREFIX \
       --additional-suffix=$OUT_TMP_SUFFIX -a $SUFFIX_LEN
 }
 
@@ -160,8 +160,10 @@ splitChunks $SORTEDFILE
 
 createJsons
 
-printf "...all done!\n"
 # removes all of the temporary files
 # comment this out for testing & debugging
-#rm *$OUT_TMP_SUFFIX
+rm *$OUT_TMP_SUFFIX
+
+printf "...all done!\n"
+
 
