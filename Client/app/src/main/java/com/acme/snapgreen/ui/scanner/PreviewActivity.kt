@@ -386,14 +386,13 @@ class PreviewActivity : AppCompatActivity(), CoroutineScope {
         launch {
             //Working on UI thread
 
-            //Use dispatcher to switch between context
             async(Dispatchers.Default) {
                 //Working on background thread
                 val frame = Frame.Builder().setBitmap(bitmap).build()
                 val result = detector.detect(frame)
-                // make network call
-                if (result.size > 0) {
 
+                // exit to result activity if scan is successful
+                if (result.size > 0) {
                     intent.putExtra(EXTRA_MESSAGE, result.valueAt(0).displayValue)
                     startActivity(intent)
                     closeCamera()

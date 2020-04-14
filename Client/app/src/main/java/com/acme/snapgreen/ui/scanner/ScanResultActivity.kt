@@ -46,12 +46,11 @@ class ScanResultActivity : AppCompatActivity() {
                     // Set the ingredients and the score in the ui
                     ingredientsArray = response.getJSONArray("ingredients")
                     score.text = "+" + response.getString("score")
-                    for (i in 0 until ingredientsArray.length()) {
+                    for (i in 0 until ingredientsArray.length().coerceAtMost(5)) {
                         ingredients.append("\n" + ingredientsArray[i])
                     }
                 },
                 Response.ErrorListener {
-                    // Do something when get error
                     ingredients.text = "Server error"
                     score.text = "No score sorry"
                 }

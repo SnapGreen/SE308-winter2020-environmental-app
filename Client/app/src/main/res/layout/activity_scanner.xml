@@ -17,6 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:paddingVertical="15dp"
         android:text="Center Barcode to Scan"
         android:textAlignment="center"
         android:textSize="30sp" />
