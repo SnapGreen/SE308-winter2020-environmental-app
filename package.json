@@ -4,7 +4,8 @@
   "description": "Environmental App for Cal Poly CSC308, winter 202, Professor Bruno da Silva",
   "main": "index.js",
   "scripts": {
-    "serve": "nodemon backend/server/app/index.js"
+    "serve": "nodemon backend/index.js",
+    "test": "jest"
   },
   "author": "308Squad",
   "license": "ISC",
@@ -17,6 +18,7 @@
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
+    "jest": "^25.3.0",
     "nodemon": "^2.0.2"
   }
 }

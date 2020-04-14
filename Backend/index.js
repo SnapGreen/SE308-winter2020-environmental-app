@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
 const port = 8080;
 
-const firebase = require("../../firebase");
+const firebase = require("./firebase");
 let FIREBASE;
 
 /* these will be integrated later, when we need socket.io comms
@@ -52,38 +52,38 @@ const app = express();
 // The limit is meant prevent an injection
 app.use(
   bodyParser.json({
-    limit: "320b"
+    limit: "320b",
   })
 );
 
-app.get("/", function(req, res) {
+app.get("/", function (req, res) {
   res.json({
-    message: "Express is up!"
+    message: "Express is up!",
   });
 });
 
 // Used to create a new user
-app.post("/users", async function(req, res) {
+app.post("/users", async function (req, res) {
   if (!req.body) {
     res.status(401).json({
-      message: "No req.body present"
+      message: "No req.body present",
     });
   }
 
   let user = await FIREBASE.getUser(req.body.username);
   if (user) {
     res.json({
-      message: "User already exists. Please try a different username."
+      message: "User already exists. Please try a different username.",
     });
   } else {
     try {
       let newId = await FIREBASE.createUser(req.body);
       res.json({
-        message: `New user added. Id is ${newId}`
+        message: `New user added. Id is ${newId}`,
       });
     } catch (err) {
       res.status(401).json({
-        message: "Add User Error"
+        message: "Add User Error",
       });
       console.log("Add User Error");
     }
@@ -91,10 +91,10 @@ app.post("/users", async function(req, res) {
 });
 
 // Used to verify login info is correct
-app.post("/login", async function(req, res) {
+app.post("/login", async function (req, res) {
   if (!req.body) {
     res.status(401).json({
-      message: "No req.body present"
+      message: "No req.body present",
     });
   } else if (req.body.name && req.body.password) {
     try {
@@ -104,32 +104,32 @@ app.post("/login", async function(req, res) {
 
       if (!user) {
         res.status(401).json({
-          message: "username not found"
+          message: "username not found",
         });
         console.log("username not found");
       }
 
       if (user.password === req.body.password) {
         res.json({
-          message: "ok"
+          message: "ok",
         });
         console.log("ok");
       } else {
         res.status(401).json({
-          message: "passwords do not match"
+          message: "passwords do not match",
         });
         console.log("passwords do not match");
       }
     } catch (err) {
       res.status(401).json({
-        message: "Login Error"
+        message: "Login Error",
       });
       console.log("Login Error");
     }
   }
 });
 
-app.get("/products/:id", async function(req, res) {
+app.get("/products/:id", async function (req, res) {
   console.log("barcode scan request received");
   if (!req.params || !req.params.id) {
     res.send("No Barcode provided");
@@ -142,7 +142,7 @@ app.get("/products/:id", async function(req, res) {
 
       if (!product) {
         res.status(401).json({
-          message: "Product Not Found"
+          message: "Product Not Found",
         });
         console.log("product not found");
       }
@@ -153,29 +153,57 @@ app.get("/products/:id", async function(req, res) {
       console.log("ok");
     } catch (err) {
       res.status(401).json({
-        message: "Product Lookup Error"
+        message: "Product Lookup Error",
       });
       console.log(err);
     }
   }
 });
 
+// Batch write products to the server (max 500 products)
+app.post("/products", async function (req, res) {
+  if (!req.body || !req.body.products) {
+    res.status(401).json({
+      message: "No req.body or req.body.products present",
+    });
+  }
+
+  try {
+    // Need a bigger limit since we are handling a batch write containing 500 products
+    app.use(
+      bodyParser.json({
+        limit: "1mb",
+      })
+    );
+
+    await FIREBASE.productBatchWrite(req.body.products);
+    res.json({
+      message: `Product batch write successful`,
+    });
+  } catch (err) {
+    res.status(401).json({
+      message: "Product Batch Write Error",
+    });
+    console.log(err);
+  }
+});
+
 // Used to add/update a product
-app.put("/products/:id", async function(req, res) {
+app.put("/products/:id", async function (req, res) {
   if (!req.params || !req.params.id || !req.body) {
     res.status(401).json({
-      message: "No req.params.id or req.body present"
+      message: "No req.params.id or req.body present",
     });
   }
 
   try {
     let newId = await FIREBASE.updateProduct(req.params.id, req.body);
     res.json({
-      message: `Product ${newId} is added/updated`
+      message: `Product ${newId} is added/updated`,
     });
   } catch (err) {
     res.status(401).json({
-      message: "Update Product Error"
+      message: "Update Product Error",
     });
     console.log(err);
   }
@@ -187,7 +215,7 @@ io.on('connection', function(socket){
 });
 */
 
-app.listen(port, function() {
+app.listen(port, function () {
   console.log("Express running");
 
   // Initializes the firebase object, which makes the connection to firebase

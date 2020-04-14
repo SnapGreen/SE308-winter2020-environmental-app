@@ -9,7 +9,7 @@ class Firebase {
     // Makes the connection to Firebase
     admin.initializeApp({
       credential: admin.credential.cert(serviceAccount),
-      databaseURL: "https://se-environmental-app.firebaseio.com"
+      databaseURL: "https://se-environmental-app.firebaseio.com",
     });
 
     // Connects to the cloud firestore
@@ -41,7 +41,7 @@ class Firebase {
         username: user.username,
         password: user.password,
         firstName: user.firstName,
-        lastName: user.lastName
+        lastName: user.lastName,
       },
       { merge: true }
     );
@@ -53,22 +53,19 @@ class Firebase {
     this.db
       .collection("users")
       .get()
-      .then(snapshot => {
-        snapshot.forEach(doc => {
+      .then((snapshot) => {
+        snapshot.forEach((doc) => {
           console.log(doc.id, "=>", doc.data());
         });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log("Error getting documents", err);
       });
   }
 
   // Queries and returns a product document
   async getProduct(id) {
-    let productQuery = await this.db
-      .collection("products")
-      .doc(`${id}`)
-      .get();
+    let productQuery = await this.db.collection("products").doc(`${id}`).get();
 
     console.log(productQuery);
     if (productQuery.empty) {
@@ -81,11 +78,29 @@ class Firebase {
 
   // Updates a product in the database
   async updateProduct(id, product) {
-    await this.db
-      .collection("products")
-      .doc(id)
-      .set(product, { merge: true });
+    await this.db.collection("products").doc(id).set(product, { merge: true });
     return id;
+  }
+
+  // Batch writes products to firebase (max 500 operations)
+  async productBatchWrite(products) {
+    // Timestamps when the server recieves the write request
+    let FieldValue = require("firebase-admin").firestore.FieldValue;
+    let batch = this.db.batch();
+
+    // Takes all the products, formats each product for the batch write
+    products.map((product) => {
+      let ref = this.db.collection("products").doc(product.id);
+      batch.set(ref, {
+        ...product.info,
+        scoreModified: admin.firestore.Timestamp.fromDate(
+          new Date("December 1, 1000")
+        ),
+        productModified: FieldValue.serverTimestamp(),
+      });
+    });
+
+    return await batch.commit();
   }
 }
 
