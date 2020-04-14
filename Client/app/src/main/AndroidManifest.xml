@@ -66,8 +66,12 @@
             android:name=".ui.dashboard.StatsActivity"
             android:label="Stats">
         </activity>
-        <activity android:name=".ui.scanner.ScanResultActivity" />
+        <activity
+            android:name=".ui.scanner.ScanResultActivity"
+            android:launchMode="singleInstance">
+    </activity>
 
-    </application>
+
+</application>
 
 </manifest>
