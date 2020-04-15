@@ -19,7 +19,7 @@ s/processed with //g
 s/[([{]\(as \)\?preservatives\?[])}]//g
 s/ cured with /;/g
 s/natural and artificial flavors/natural flavors;artificial flavors/g
-s/\(\w\+ \) and \(\w\+ \) oils?/\1oil;\2oil/g
+s/\(\w\+ \)and \(\w\+ \)oils?/\1oil;\2oil/g
 s/from [^;]\+of\( the following\)\? //g
 s/(\?added as an\? [a-z]\+ )\?//g
 s/[;.]\scontains[^[:punct:]]*the following/;/g

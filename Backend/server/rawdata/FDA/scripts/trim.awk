@@ -10,7 +10,7 @@ BEGIN { FS = "\",\""}
 # removes asterisks from ingredients column
 {gsub(/\*/, "", $4)}
 # removes any blank ingredient entries
-{gsub(/,\s*,/, ",", $4)}
+{gsub(/,[, ]*,/, ",", $4)}
 
 # trims to "fdcid|gtin|;ingred1;ingred2...|datemodified"
 # first ; in ingreds helps for parsing in next step
