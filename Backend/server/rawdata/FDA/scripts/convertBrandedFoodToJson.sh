@@ -9,6 +9,7 @@ OUTFILE_END=$(grep -oP '(?<=OUTFILE_END:).*' settings.txt)
 TMPFILE_END=$(grep -oP '(?<=TMPFILE_END:).*' settings.txt)
 PREPPED_TMP="prepped.tmp"
 INGREDIENTS_TMP="ingredients.tmp"
+INGREDIENTSB4_TMP="ingredtientsb4.tmp"
 NON_INGREDIENTS_TMP="non_ingredients.tmp"
 SET_INGREDIENTS_TMP="set_ingredients.tmp"
 RELEVANTDATA_TMP="relevantdata.tmp"
@@ -47,57 +48,73 @@ function extractRelevantCols(){
 function createMap(){
    printf "creating fdcid-gtin map...\n"
    # clear the map file
-   > $1
+   > $3
    # creates a map of fdc-id : gtin14 pairs
    # we need this to track FDA updates and modify them in the db
    # alternately, we could store it in the db
-   awk -f $2 $3 >> $1
+   awk -f $1 $2 >> $3
 }
 
 function isolateIngredients(){
    printf "splitting ingredients/non-ingredients...\n"
    # clear the temp ingreds file if it exists
    # create a separate file with ingredients only for sed to work on quickly
-   > $1
-   > $2
-   cut -d "|" -f  3 $4 >> $1
-   awk -f $3 $4 >> $2 
+   > $3
+   > $4
+   awk -f $1 $2 >> $3 
+   cut -d "|" -f  3 $2 >> $4
 }
 
 function cleanIngredients(){
+   # make a copy for comparison
+   cat $2 > $INGREDIENTSB4_TMP
+
    printf "cleaning ingredients (this takes a bit)...\n"
    # apply removal patterns to ingredients
    while read -r pattern;
    do
-      sed -i "$pattern" $1
-   done < $2
+      sed -i "$pattern" $2
+   done < $1
 }
 
 function consolidateIngredients(){
    printf "consolidating ingredients/non-ingredients...\n"
    # remove ingredients mentioned more than once
-   > $1
-   awk -f $2 $3 >> $1
+   > $3
+   awk -f $1 $2 >> $3
 }
 
 function rejoinFiles(){
    printf "rejoining files...\n"
    # add ingredients back to other data
    # final format should be gtin|modifiedDate|ingreds
-   > $1
-   paste -d "|" $2 $3 >> $1
+   > $3
+   paste -d "|" $1 $2 >> $3
 } 
 
 function sortProducts(){
    printf "sorting products...\n"
    # sorts the file from lowest gtin to highest
    # this will help to keep things orderly in case something goes wrong
-   >$1
-   sort -t ',' -nk1 $2 >> $1
+   >$2
+   sort -t ',' -nk1 $1 >> $2
 }
 
 function removeBad(){
-   printf "removing bad entries...\n"
+   # The FDA has two bad entries that have this number as their gtin
+   # Any others are created by the script
+   # This notifies us if any beyond the two are found
+   # In any case, all are removed
+
+   numbad=$(grep -o '^00000000000000' $1 | wc -l)
+
+   if [[ $numbad -gt 2 ]] ; then 
+      removenum=$((numbad-2))
+      printf "removing $removenum entries...\n"
+   else
+      printf "no bad entries found...\n"
+   fi
+
    sed -i '/^00000000000000/d' $1
 }
 
@@ -125,13 +142,15 @@ function createJsons(){
       # make sure the outfile is clear, if it exists
       > $outname
       # place the first line into the outfile
-      echo "\"products\": [" >> $outname
+      echo "{" >> $outname
+      printf "\"products\": [\n" >> $outname
       # run awk to process the rest
-      awk -f $AWK_FORMAT $file >> $outname
+      awk -f $1 $file >> $outname
       # removes comma from last line of last entry
       sed -i '$s/,$//' $outname
       #adds closing bracket to outfile
-      echo "]" >> $outname
+      printf "\t]\n" >> $outname
+      echo "}" >> $outname
    done
 }
 
@@ -140,23 +159,23 @@ prepData $INFILE $PREPPED_TMP
 
 extractRelevantCols $AWK_TRIM $PREPPED_TMP $RELEVANTDATA_TMP
 
-createMap $MAPFILE $AWK_MAP $RELEVANTDATA_TMP
+createMap $AWK_MAP $RELEVANTDATA_TMP $MAPFILE 
 
-isolateIngredients $INGREDIENTS_TMP $NON_INGREDIENTS_TMP $AWK_RM_INGRDS $RELEVANTDATA_TMP
+isolateIngredients $AWK_RM_INGRDS $RELEVANTDATA_TMP $NON_INGREDIENTS_TMP $INGREDIENTS_TMP 
 
-cleanIngredients $INGREDIENTS_TMP $PATTERNFILE
+cleanIngredients $PATTERNFILE $INGREDIENTS_TMP 
 
-consolidateIngredients $SET_INGREDIENTS_TMP $AWK_SHRINK $INGREDIENTS_TMP
+consolidateIngredients $AWK_SHRINK $INGREDIENTS_TMP $SET_INGREDIENTS_TMP 
 
-rejoinFiles $JOINED_TMP $NON_INGREDIENTS_TMP $SET_INGREDIENTS_TMP
+rejoinFiles $NON_INGREDIENTS_TMP $SET_INGREDIENTS_TMP $JOINED_TMP
 
-sortProducts $SORTED_TMP $JOINED_TMP
+sortProducts $JOINED_TMP $SORTED_TMP
 
 removeBad $SORTED_TMP
 
 splitChunks $SORTED_TMP
 
-createJsons
+createJsons $AWK_FORMAT
 
 # removes all of the temporary files
 # comment this out for testing & debugging
