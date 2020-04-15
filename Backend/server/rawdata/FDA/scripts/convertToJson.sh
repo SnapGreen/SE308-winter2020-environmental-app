@@ -7,7 +7,7 @@ SPLIT_PREFIX=$(grep -oP '(?<=SPLIT_PREFIX:).*' settings.txt)
 SUFFIX_LEN=$(grep -oP '(?<=SUFFIX_LEN:).*' settings.txt)
 OUTFILE_END=$(grep -oP '(?<=OUTFILE_END:).*' settings.txt)
 TMPFILE_END=$(grep -oP '(?<=TMPFILE_END:).*' settings.txt)
-CROPPED_TMP="nocats.tmp"
+NOCATS_TMP="nocats.tmp"
 PREPPED_TMP="prepped.tmp"
 INGREDIENTS_TMP="ingredients.tmp"
 INGREDIENTSB4_TMP="ingredientsb4.tmp"
@@ -29,16 +29,22 @@ if [ $# != 0 ] && [ $1 == "-d" ] ; then
    debug="on"
 fi
 
+#https://stackoverflow.com/questions/17066250/create-timestamp-variable-in-bash-script
+function timestamp(){
+   date +"%T"
+}
+
 function checkSettings(){
    # function to verify settings are what we expect (for debugging)
-   printf "INFILE: %s\n" $INFILE
-   printf "MAPFILE: %s\n" $MAPFILE
-   printf "PRODS_PER_JSON: %s\n" $PRODS_PER_JSON
-   printf "PATTERNFILE: %s\n" $PATTERNFILE
-   printf "SPLIT_PREFIX: %s\n" $SPLIT_PREFIX
-   printf "SUFFIX_LEN: %s\n" $SUFFIX_LEN
-   printf "OUTFILE_END: %s\n" $OUTFILE_END
-   printf "TMPFILE_END: %s\n" $TMPFILE_END
+   printf "settings check...\n"
+   printf "\tINFILE: %s\n" $INFILE
+   printf "\tMAPFILE: %s\n" $MAPFILE
+   printf "\tPRODS_PER_JSON: %s\n" $PRODS_PER_JSON
+   printf "\tPATTERNFILE: %s\n" $PATTERNFILE
+   printf "\tSPLIT_PREFIX: %s\n" $SPLIT_PREFIX
+   printf "\tSUFFIX_LEN: %s\n" $SUFFIX_LEN
+   printf "\tOUTFILE_END: %s\n" $OUTFILE_END
+   printf "\tTMPFILE_END: %s\n" $TMPFILE_END
 }
 
 function prepData(){
@@ -46,8 +52,11 @@ function prepData(){
    # makes sure any Windows <CR> are converted to linux \r
    dos2unix $1
 
+   # commands like these will create the args as files, or clear them if they
+   # already exist.  
    > $2
    > $3
+
    printf "removing category line...\n"
    # removes the first line of the input file and saves to a temp file
    # https://stackoverflow.com/questions/339483/how-can-i-remove-the-first-line-of-a-text-file-using-bash-sed-script
@@ -58,7 +67,7 @@ function prepData(){
    # https://stackoverflow.com/questions/57167920/sed-awk-remove-newline-with-condition
    perl -np0 -e 's/\n(?!")//g' $2 > $3
 
-   if [ $debug == "off"] ; then
+   if [ $debug == "off" ] ; then
       rm $2
    fi
 }
@@ -69,7 +78,7 @@ function extractRelevantCols(){
    # created a reduced file consisting only of the parts we need
    awk -f $1 $2 >> $3
 
-   if [ $debug == "off"] ; then
+   if [ $debug == "off" ] ; then
       rm $2
    fi
 }
@@ -93,41 +102,68 @@ function isolateIngredients(){
    awk -f $1 $2 >> $3 
    cut -d "|" -f  3 $2 >> $4
 
-   if [ $debug == "off"] ; then
+   if [ $debug == "off" ] ; then
       rm $2
+   else
+      # makes a copy for comparison & resetting
+      cat $4 > $INGREDIENTSB4_TMP
    fi
 }
 
 function cleanIngredients(){
+   printf "cleaning ingredients (this takes a bit)...\n"
+
    if [[ $debug == "on" ]] ; then
-      > $INGREDIENTSB4_TMP
-      # make a copy for comparison
-      cat $2 > $INGREDIENTSB4_TMP
+      # resets the ingredients file before starting
+      # if debug mode is off, the copy likely isn't in the directory 
+      cat $INGREDIENTSB4_TMP > $2
+      # write the timestamp in the log
+      timestamp >> logs/removed.log
+      # apply removal patterns to ingredients
+      after=$(wc -c < $2)
+      while read -r pattern;
+      do
+         # this allows us to comment out patterns in removalpatterns.txt
+         if [[ ${pattern:0:1} != "#" ]] ; then
+            before=$after
+            sed -i "$pattern" $2 
+            after=$(wc -c < $2)
+            removed=$((before - after))
+            printf "\tpattern %s removed %s characters\n" "$pattern" "$removed"\
+            | tee -a logs/removed.log
+         else
+            printf "\tskipping %s\n" "${pattern:1}" | tee -a logs/removed.log
+         fi
+      done < $1
+   else
+      # apply removal patterns to ingredients
+      while read -r pattern;
+      do
+         if [[ ${pattern:0:1} != "#" ]] ; then
+            sed -i "$pattern" $2
+         else
+            printf "skipping %s\n" "${pattern:1}"
+         fi
+      done < $1
    fi
 
-   printf "cleaning ingredients (this takes a bit)...\n"
-   # apply removal patterns to ingredients
-   while read -r pattern;
-   do
-      sed -i "$pattern" $2
-   done < $1
 }
 
 function consolidateIngredients(){
-   printf "consolidating ingredients/non-ingredients...\n"
+   printf "consolidating ingredients into set...\n"
    # remove ingredients mentioned more than once
    > $3
    awk -f $1 $2 >> $3
 }
 
 function rejoinFiles(){
-   printf "rejoining files...\n"
+   printf "combining non-ingredient data with ingredient set...\n"
    # add ingredients back to other data
    # final format should be gtin|modifiedDate|ingreds
    > $3
    paste -d "|" $1 $2 >> $3
 
-   if [ $debug == "off"] ; then
+   if [ $debug == "off" ] ; then
       rm $1 $2
    fi
 } 
@@ -139,7 +175,7 @@ function sortProducts(){
    >$2
    sort -t ',' -nk1 $1 >> $2
 
-   if [ $debug == "off"] ; then
+   if [ $debug == "off" ] ; then
       rm $1
    fi
 }
@@ -174,7 +210,7 @@ function splitChunks(){
    split -l $PRODS_PER_JSON -d  -e $1 $SPLIT_PREFIX \
       --additional-suffix=$TMPFILE_END -a $SUFFIX_LEN
 
-   if [ $debug == "off"] ; then
+   if [ $debug == "off" ] ; then
       rm $1
    fi
 }
@@ -208,15 +244,15 @@ fi
 
 #prepData $INFILE $NOCATS_TMP $PREPPED_TMP
 
-#extractRelevantCols $AWK_TRIM $PREPPED_TMP $RELEVANTDATA_TMP
+extractRelevantCols $AWK_TRIM $PREPPED_TMP $RELEVANTDATA_TMP
 
 #createMap $AWK_MAP $RELEVANTDATA_TMP $MAPFILE 
 
-#isolateIngredients $AWK_RM_INGRDS $RELEVANTDATA_TMP $NON_INGREDIENTS_TMP $INGREDIENTS_TMP 
+isolateIngredients $AWK_RM_INGRDS $RELEVANTDATA_TMP $NON_INGREDIENTS_TMP $INGREDIENTS_TMP 
 
-#cleanIngredients $PATTERNFILE $INGREDIENTS_TMP 
+cleanIngredients $PATTERNFILE $INGREDIENTS_TMP 
 
-#consolidateIngredients $AWK_SHRINK $INGREDIENTS_TMP $SET_INGREDIENTS_TMP 
+consolidateIngredients $AWK_SHRINK $INGREDIENTS_TMP $SET_INGREDIENTS_TMP 
 
 #rejoinFiles $NON_INGREDIENTS_TMP $SET_INGREDIENTS_TMP $JOINED_TMP
 
@@ -228,7 +264,7 @@ fi
 
 #createJsons $AWK_FORMAT
 
-if [ $debug == "off"] ; then
+if [ $debug == "off" ] ; then
    # removes all of the temporary files
    # comment this out for testing & debugging
    rm *$TMPFILE_END

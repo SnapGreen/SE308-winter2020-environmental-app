@@ -122,7 +122,7 @@ products: [
 ]
 
 The number of products per .json is set to 500, but can be changed by modifying
-the "SPLIT_FILE_LINES" constant at the top of "convertBrandedFoodToJson.sh"
+the "SPLIT_FILE_LINES" constant at the top of "convertToJson.sh"
 
 ###map_fdcid_gtin.txt
 
@@ -183,8 +183,8 @@ optimize as time goes on, time permitting.
 
 If you receive errors upon running the script re: "\r" in line xx:
    - install 'dos2unix' using the same process outlined at the top
-   - "dos2unix convertBranded_FoodsToJson.sh"
-   - then "./convertBranded_FoodsToJson.sh"
+   - "dos2unix convertToJson.sh"
+   - then "./convertToJson.sh"
 
 If you receive errors in the vein of "command on line xx not found", open the
 script that was running and look at that line--that will tell you which program
