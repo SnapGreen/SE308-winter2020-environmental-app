@@ -1,15 +1,18 @@
 #!/bin/bash
-SOURCEFILE=$1
+ZIPFILE=$1
+DATASOURCE=$(grep -oP '(?<=DATASOURCE:).*' settings.txt)
+UPDATESOURCE=$(grep -oP '(?<=UPDATESOURCE:).*' settings.txt)
 
-printf "unzipping %s\n" $SOURCEFILE
-unzip $SOURCEFILE
+printf "unzipping %s\n" $ZIPFILE
+unzip $ZIPFILE
 
 rm food.csv
 rm food_attribute.csv
 rm food_nutrient.csv
 rm all_downloaded_table_record_counts.csv
 rm Download*.pdf
-rm $SOURCEFILE
+rm $ZIPFILE
 
-./convertBrandedFoodToJson.sh
+mv $DATASOURCE ..
+mv $UPDATESOURCE ..
 

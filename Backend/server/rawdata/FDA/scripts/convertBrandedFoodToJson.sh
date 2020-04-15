@@ -1,20 +1,19 @@
 #!/bin/bash
-INFILE="../branded_food.csv"
-MAPFILE="../fdcid-gtin.txt"
-TMPFILE="branded_food.tmp"
-ASCIIFILE="branded_food_ascii.tmp"
-TMPINGRDSFILE="ingredients.tmp"
-TMPOTHERFILE="non-ingreds.tmp"
-SINGLEINGRDSFILE="shrunkingreds.tmp"
-PATTERNFILE="removalpatterns.txt"
-TRIMFILE="branded_food_trimmed.tmp"
-PREPFILE="branded_food_joined.tmp"
-SORTEDFILE="branded_food_sorted.tmp"
-SPLIT_PREFIX="branded_food_"
-OUT_TMP_SUFFIX=".tmp"
-SUFFIX_LEN="4"
-OUT_SUFFIX=".json"
-PRODS_PER_JSON="500"
+INFILE=$(grep -oP '(?<=INFILE:).*' settings.txt)
+MAPFILE=$(grep -oP '(?<=MAPFILE:).*' settings.txt)
+PRODS_PER_JSON=$(grep -oP '(?<=PRODS_PER_JSON:).*' settings.txt)
+PATTERNFILE=$(grep -oP '(?<=PATTERNFILE:).*' settings.txt)
+SPLIT_PREFIX=$(grep -oP '(?<=SPLIT_PREFIX:).*' settings.txt)
+SUFFIX_LEN=$(grep -oP '(?<=SUFFIX_LEN:).*' settings.txt)
+OUTFILE_END=$(grep -oP '(?<=OUTFILE_END:).*' settings.txt)
+TMPFILE_END=$(grep -oP '(?<=TMPFILE_END:).*' settings.txt)
+PREPPED_TMP="prepped.tmp"
+INGREDIENTS_TMP="ingredients.tmp"
+NON_INGREDIENTS_TMP="non_ingredients.tmp"
+SET_INGREDIENTS_TMP="set_ingredients.tmp"
+RELEVANTDATA_TMP="relevantdata.tmp"
+JOINED_TMP="joined.tmp"
+SORTED_TMP="sorted.tmp"
 AWK_FORMAT="csvtojson.awk"
 AWK_SHRINK="consolidateIngreds.awk"
 AWK_TRIM="trim.awk"
@@ -27,15 +26,15 @@ function prepData(){
    # makes sure any Windows <CR> are converted to linux \r
    dos2unix $1
 
-   # converts to ascii char set
-   # this seems to create more problems than it fixes
-   #printf "converting to ascii...\n"
-   #iconv -c -f utf-8 -t ascii $1 > $2
+   printf "removing malformed lines...\n"
+   # adapted from Socowi's answer:
+   # https://stackoverflow.com/questions/57167920/sed-awk-remove-newline-with-condition
+   perl -np0 -e 's/\n(?!")//g' $1
 
+   printf "removing category line...\n"
    # removes the first line of the input file and saves to a temp file
    # https://stackoverflow.com/questions/339483/how-can-i-remove-the-first-line-of-a-text-file-using-bash-sed-script
-   printf "removing category line...\n"
-   tail -n +2 $2 > $3
+   tail -n +2 $1 > $2
 }
 
 function extractRelevantCols(){
@@ -112,7 +111,7 @@ function splitChunks(){
    # $SPLIT_PREFIX is the first part of what each file will be named
    # --additional-suffix will be added to the end
    split -l $PRODS_PER_JSON -d  -e $1 $SPLIT_PREFIX \
-      --additional-suffix=$OUT_TMP_SUFFIX -a $SUFFIX_LEN
+      --additional-suffix=$TMPFILE_END -a $SUFFIX_LEN
 }
 
 function createJsons(){
@@ -122,7 +121,7 @@ function createJsons(){
       # extracting the suffix number from each temp file
       outnum=$(echo $file | egrep -o [0-9]+)
       # putting together an output file name
-      outname="../${SPLIT_PREFIX}${outnum}${OUT_SUFFIX}"
+      outname="../${SPLIT_PREFIX}${outnum}${OUTFILE_END}"
       # make sure the outfile is clear, if it exists
       > $outname
       # place the first line into the outfile
@@ -137,32 +136,31 @@ function createJsons(){
 }
 
 
+prepData $INFILE $PREPPED_TMP
 
-prepData $INFILE $ASCIIFILE $TMPFILE
+extractRelevantCols $AWK_TRIM $PREPPED_TMP $RELEVANTDATA_TMP
 
-extractRelevantCols $AWK_TRIM $TMPFILE $TRIMFILE
+createMap $MAPFILE $AWK_MAP $RELEVANTDATA_TMP
 
-createMap $MAPFILE $AWK_MAP $TRIMFILE
+isolateIngredients $INGREDIENTS_TMP $NON_INGREDIENTS_TMP $AWK_RM_INGRDS $RELEVANTDATA_TMP
 
-isolateIngredients $TMPINGRDSFILE $TMPOTHERFILE $AWK_RM_INGRDS $TRIMFILE
+cleanIngredients $INGREDIENTS_TMP $PATTERNFILE
 
-cleanIngredients $TMPINGRDSFILE $PATTERNFILE
+consolidateIngredients $SET_INGREDIENTS_TMP $AWK_SHRINK $INGREDIENTS_TMP
 
-consolidateIngredients $SINGLEINGRDSFILE $AWK_SHRINK $TMPINGRDSFILE
+rejoinFiles $JOINED_TMP $NON_INGREDIENTS_TMP $SET_INGREDIENTS_TMP
 
-rejoinFiles $PREPFILE $TMPOTHERFILE $SINGLEINGRDSFILE
+sortProducts $SORTED_TMP $JOINED_TMP
 
-sortProducts $SORTEDFILE $PREPFILE
+removeBad $SORTED_TMP
 
-removeBad $SORTEDFILE
-
-splitChunks $SORTEDFILE
+splitChunks $SORTED_TMP
 
 createJsons
 
 # removes all of the temporary files
 # comment this out for testing & debugging
-rm *$OUT_TMP_SUFFIX
+#rm *$TMPFILE_END
 
 printf "...all done!\n"
 

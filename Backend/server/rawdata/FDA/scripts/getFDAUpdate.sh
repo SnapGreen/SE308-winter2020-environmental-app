@@ -1,9 +1,9 @@
 #!/bin/bash
+CURRENTFILE=$(grep -oP '(?<=CURRENTFILE:).*' settings.txt)
+LASTFILE=$(grep -oP '(?<=LASTFILE:).*' settings.txt)
+FDC_DIR_ADDRESS=$(grep -oP '(?<=FDC_DIR_ADDRESS:).*' settings.txt)
 TMPFILE="links.tmp"
 FILELIST="available_data.csv"
-CURRENTFILE="currentlatest.csv"
-LASTFILE="lastlatest.csv"
-FDC_DIR_ADDRESS="https://fdc.nal.usda.gov/fdc-datasets"
 USAGE="./getFDAUpdate.sh [-flag]"
 HELP="${USAGE}\n\t-f: force download\n\t-d: download if update available, no prompt\n"
 

@@ -1,12 +1,15 @@
 INFILE:../branded_food.csv
-MAPFILE:../fdcid-gtin.txt
+MAPFILE:../map_fdcid_gtin.txt
 PATTERNFILE:removalpatterns.txt
 SPLIT_PREFIX:branded_food_
 SUFFIX_LEN:4
-OUT_SUFFIX:.json
+OUTFILE_END:.json
+TMPFILE_END:.tmp
 PRODS_PER_JSON:500
-CURRENTFILE:currentlatest.csv
-LASTFILE:lastlatest.csv
+CURRENTFILE:currentlatest.txt
+LASTFILE:lastlatest.txt
 FDC_DIR_ADDRESS:https://fdc.nal.usda.gov/fdc-datasets
 FB_WRITES_PER_DAY:17000
+DATASOURCE:branded_food.csv
+UPDATESOURCE:food_update_log_entry.csv
 
