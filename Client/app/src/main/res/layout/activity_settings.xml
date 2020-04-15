@@ -121,6 +121,12 @@
                 android:background="@drawable/cast_ic_mini_controller_play" />
         </LinearLayout>
 
+        <View
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="3dp"
+            android:background="@android:color/black" />
+
     </LinearLayout>
 
 
