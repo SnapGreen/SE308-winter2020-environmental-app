@@ -31,7 +31,7 @@ fi
 
 #https://stackoverflow.com/questions/17066250/create-timestamp-variable-in-bash-script
 function timestamp(){
-   date +"%T"
+   date +%s
 }
 
 function checkSettings(){
@@ -111,14 +111,15 @@ function isolateIngredients(){
 }
 
 function cleanIngredients(){
-   printf "cleaning ingredients (this takes a bit)...\n"
+   printf "transforming ingredients...\n"
 
    if [[ $debug == "on" ]] ; then
       # resets the ingredients file before starting
       # if debug mode is off, the copy likely isn't in the directory 
       cat $INGREDIENTSB4_TMP > $2
       # write the timestamp in the log
-      timestamp >> logs/removed.log
+      starttime=$(timestamp)
+      printf "start time: %s\n" $starttime >> logs/removed.log
       # apply removal patterns to ingredients
       after=$(wc -c < $2)
       while read -r pattern;
@@ -135,6 +136,9 @@ function cleanIngredients(){
             printf "\tskipping %s\n" "${pattern:1}" | tee -a logs/removed.log
          fi
       done < $1
+      endtime=$(timestamp)
+      elapsed=$((endtime - starttime))
+      printf "elapsed: %d\n" $elapsed >> logs/removed.log
    else
       # apply removal patterns to ingredients
       while read -r pattern;
@@ -268,6 +272,14 @@ if [ $debug == "off" ] ; then
    # removes all of the temporary files
    # comment this out for testing & debugging
    rm *$TMPFILE_END
+fi
+
+# removes files that sed produces, if any
+if [[ -f sed[a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z] ]] ; then
+   rm sed[a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z]
+fi
+if [[ -f ../sed[a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z] ]] ; then
+   rm ../sed[a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z]
 fi
 
 printf "...all done!\n"
