@@ -22,6 +22,24 @@ AWK_TRIM="trim.awk"
 AWK_RM_INGRDS="removeIngreds.awk"
 AWK_MAP="map_fdcid_gtin.awk"
 
+debug="off"
+
+if [ $# != 0 ] && [ $1 == "-d" ] ; then
+   echo "debug mode on"
+   debug="on"
+fi
+
+function checkSettings(){
+   # function to verify settings are what we expect (for debugging)
+   printf "INFILE: %s\n" $INFILE
+   printf "MAPFILE: %s\n" $MAPFILE
+   printf "PRODS_PER_JSON: %s\n" $PRODS_PER_JSON
+   printf "PATTERNFILE: %s\n" $PATTERNFILE
+   printf "SPLIT_PREFIX: %s\n" $SPLIT_PREFIX
+   printf "SUFFIX_LEN: %s\n" $SUFFIX_LEN
+   printf "OUTFILE_END: %s\n" $OUTFILE_END
+   printf "TMPFILE_END: %s\n" $TMPFILE_END
+}
 
 function prepData(){
    printf "prepping data...\n"
@@ -40,7 +58,9 @@ function prepData(){
    # https://stackoverflow.com/questions/57167920/sed-awk-remove-newline-with-condition
    perl -np0 -e 's/\n(?!")//g' $2 > $3
 
-   rm $2
+   if [ $debug == "off"] ; then
+      rm $2
+   fi
 }
 
 function extractRelevantCols(){
@@ -48,6 +68,10 @@ function extractRelevantCols(){
    > $3
    # created a reduced file consisting only of the parts we need
    awk -f $1 $2 >> $3
+
+   if [ $debug == "off"] ; then
+      rm $2
+   fi
 }
 
 function createMap(){
@@ -68,11 +92,18 @@ function isolateIngredients(){
    > $4
    awk -f $1 $2 >> $3 
    cut -d "|" -f  3 $2 >> $4
+
+   if [ $debug == "off"] ; then
+      rm $2
+   fi
 }
 
 function cleanIngredients(){
-   # make a copy for comparison
-   cat $2 > $INGREDIENTSB4_TMP
+   if [[ $debug == "on" ]] ; then
+      > $INGREDIENTSB4_TMP
+      # make a copy for comparison
+      cat $2 > $INGREDIENTSB4_TMP
+   fi
 
    printf "cleaning ingredients (this takes a bit)...\n"
    # apply removal patterns to ingredients
@@ -95,6 +126,10 @@ function rejoinFiles(){
    # final format should be gtin|modifiedDate|ingreds
    > $3
    paste -d "|" $1 $2 >> $3
+
+   if [ $debug == "off"] ; then
+      rm $1 $2
+   fi
 } 
 
 function sortProducts(){
@@ -103,6 +138,10 @@ function sortProducts(){
    # this will help to keep things orderly in case something goes wrong
    >$2
    sort -t ',' -nk1 $1 >> $2
+
+   if [ $debug == "off"] ; then
+      rm $1
+   fi
 }
 
 function removeBad(){
@@ -134,6 +173,10 @@ function splitChunks(){
    # --additional-suffix will be added to the end
    split -l $PRODS_PER_JSON -d  -e $1 $SPLIT_PREFIX \
       --additional-suffix=$TMPFILE_END -a $SUFFIX_LEN
+
+   if [ $debug == "off"] ; then
+      rm $1
+   fi
 }
 
 function createJsons(){
@@ -159,32 +202,37 @@ function createJsons(){
    done
 }
 
+if [[ $debug == "on" ]] ; then
+   checkSettings
+fi
 
-prepData $INFILE $NOCATS_TMP $PREPPED_TMP
+#prepData $INFILE $NOCATS_TMP $PREPPED_TMP
 
-extractRelevantCols $AWK_TRIM $PREPPED_TMP $RELEVANTDATA_TMP
+#extractRelevantCols $AWK_TRIM $PREPPED_TMP $RELEVANTDATA_TMP
 
-createMap $AWK_MAP $RELEVANTDATA_TMP $MAPFILE 
+#createMap $AWK_MAP $RELEVANTDATA_TMP $MAPFILE 
 
-isolateIngredients $AWK_RM_INGRDS $RELEVANTDATA_TMP $NON_INGREDIENTS_TMP $INGREDIENTS_TMP 
+#isolateIngredients $AWK_RM_INGRDS $RELEVANTDATA_TMP $NON_INGREDIENTS_TMP $INGREDIENTS_TMP 
 
-cleanIngredients $PATTERNFILE $INGREDIENTS_TMP 
+#cleanIngredients $PATTERNFILE $INGREDIENTS_TMP 
 
-consolidateIngredients $AWK_SHRINK $INGREDIENTS_TMP $SET_INGREDIENTS_TMP 
+#consolidateIngredients $AWK_SHRINK $INGREDIENTS_TMP $SET_INGREDIENTS_TMP 
 
-rejoinFiles $NON_INGREDIENTS_TMP $SET_INGREDIENTS_TMP $JOINED_TMP
+#rejoinFiles $NON_INGREDIENTS_TMP $SET_INGREDIENTS_TMP $JOINED_TMP
 
-sortProducts $JOINED_TMP $SORTED_TMP
+#sortProducts $JOINED_TMP $SORTED_TMP
 
-removeBad $SORTED_TMP
+#removeBad $SORTED_TMP
 
-splitChunks $SORTED_TMP
+#splitChunks $SORTED_TMP
 
-createJsons $AWK_FORMAT
+#createJsons $AWK_FORMAT
 
-# removes all of the temporary files
-# comment this out for testing & debugging
-#rm *$TMPFILE_END
+if [ $debug == "off"] ; then
+   # removes all of the temporary files
+   # comment this out for testing & debugging
+   rm *$TMPFILE_END
+fi
 
 printf "...all done!\n"
 
