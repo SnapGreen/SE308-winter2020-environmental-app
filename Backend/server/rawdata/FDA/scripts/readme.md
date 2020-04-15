@@ -124,7 +124,7 @@ products: [
 The number of products per .json is set to 500, but can be changed by modifying
 the "SPLIT_FILE_LINES" constant at the top of "convertBrandedFoodToJson.sh"
 
-###fdcid-gtin.txt
+###map_fdcid_gtin.txt
 
 This file contains hundreds of thousands of pairs, mapping 6-digit fdc id
 numbers to 14 digit gtin upc codes.  When the FDA makes changes, they list them

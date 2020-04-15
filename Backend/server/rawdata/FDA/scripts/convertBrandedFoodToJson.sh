@@ -7,9 +7,10 @@ SPLIT_PREFIX=$(grep -oP '(?<=SPLIT_PREFIX:).*' settings.txt)
 SUFFIX_LEN=$(grep -oP '(?<=SUFFIX_LEN:).*' settings.txt)
 OUTFILE_END=$(grep -oP '(?<=OUTFILE_END:).*' settings.txt)
 TMPFILE_END=$(grep -oP '(?<=TMPFILE_END:).*' settings.txt)
+CROPPED_TMP="nocats.tmp"
 PREPPED_TMP="prepped.tmp"
 INGREDIENTS_TMP="ingredients.tmp"
-INGREDIENTSB4_TMP="ingredtientsb4.tmp"
+INGREDIENTSB4_TMP="ingredientsb4.tmp"
 NON_INGREDIENTS_TMP="non_ingredients.tmp"
 SET_INGREDIENTS_TMP="set_ingredients.tmp"
 RELEVANTDATA_TMP="relevantdata.tmp"
@@ -19,7 +20,7 @@ AWK_FORMAT="csvtojson.awk"
 AWK_SHRINK="consolidateIngreds.awk"
 AWK_TRIM="trim.awk"
 AWK_RM_INGRDS="removeIngreds.awk"
-AWK_MAP="map_fdcid-gtin.awk"
+AWK_MAP="map_fdcid_gtin.awk"
 
 
 function prepData(){
@@ -27,15 +28,19 @@ function prepData(){
    # makes sure any Windows <CR> are converted to linux \r
    dos2unix $1
 
-   printf "removing malformed lines...\n"
-   # adapted from Socowi's answer:
-   # https://stackoverflow.com/questions/57167920/sed-awk-remove-newline-with-condition
-   perl -np0 -e 's/\n(?!")//g' $1
-
+   > $2
+   > $3
    printf "removing category line...\n"
    # removes the first line of the input file and saves to a temp file
    # https://stackoverflow.com/questions/339483/how-can-i-remove-the-first-line-of-a-text-file-using-bash-sed-script
    tail -n +2 $1 > $2
+
+   printf "removing malformed lines...\n"
+   # adapted from Socowi's answer:
+   # https://stackoverflow.com/questions/57167920/sed-awk-remove-newline-with-condition
+   perl -np0 -e 's/\n(?!")//g' $2 > $3
+
+   rm $2
 }
 
 function extractRelevantCols(){
@@ -155,7 +160,7 @@ function createJsons(){
 }
 
 
-prepData $INFILE $PREPPED_TMP
+prepData $INFILE $NOCATS_TMP $PREPPED_TMP
 
 extractRelevantCols $AWK_TRIM $PREPPED_TMP $RELEVANTDATA_TMP
 
