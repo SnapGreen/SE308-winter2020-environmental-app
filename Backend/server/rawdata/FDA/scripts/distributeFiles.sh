@@ -14,5 +14,4 @@ rm Download*.pdf
 rm $ZIPFILE
 
 mv $DATASOURCE ..
-mv $UPDATESOURCE ..
 
