@@ -8,10 +8,8 @@ import com.acme.snapgreen.data.NetworkManager
 import com.acme.snapgreen.ui.dashboard.EXTRA_MESSAGE
 import com.android.volley.Request
 import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
-import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_scan_result.view.*
-import org.w3c.dom.Text
+import com.android.volley.toolbox.JsonObjectRequest
+import org.json.JSONArray
 
 
 /**
@@ -29,24 +27,35 @@ class ScanResultActivity : AppCompatActivity() {
         val barcodeTextView = findViewById<TextView>(R.id.barcodeResult).apply {
             text = barCodeString
         }
-        val barcodeResponseView = findViewById<TextView>(R.id.barcode_response)
 
-        val url = "http://10.0.2.2:8080/products/$barCodeString"
+        var ingredientsArray : JSONArray
+        val ingredients = findViewById<TextView>(R.id.barcode_response)
+        val score = findViewById<TextView>(R.id.barcode_score)
+        score.text = ""
+        ingredients.text = ""
+
+        //val url = "http://10.0.2.2:8080/products/$barCodeString"
+        val url = "http://10.0.2.2:8080/products/12345" // for test purposes
+
         try {
 
-            val stringRequest = StringRequest(
+            val jsonRequest = JsonObjectRequest(
                 Request.Method.GET,
-                url,
+                url, null,
                 Response.Listener { response ->
-                    // Do something with response string
-                    barcodeResponseView.text = response
+                    // Set the ingredients and the score in the ui
+                    ingredientsArray = response.getJSONArray("ingredients")
+                    score.text = "+" + response.getString("score")
+                    for (i in 0 until ingredientsArray.length().coerceAtMost(5)) {
+                        ingredients.append("\n" + ingredientsArray[i])
+                    }
                 },
                 Response.ErrorListener {
-                    // Do something when get error
-                    barcodeResponseView.text = "Server error"
+                    ingredients.text = "Server error"
+                    score.text = "No score sorry"
                 }
             )
-            NetworkManager.getInstance()?.addToRequestQueue(stringRequest)
+            NetworkManager.getInstance()?.addToRequestQueue(jsonRequest)
 
         } catch (e: Throwable) {
             //TODO: Handle failed connection

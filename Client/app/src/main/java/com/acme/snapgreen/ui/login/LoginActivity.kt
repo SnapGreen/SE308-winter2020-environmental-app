@@ -33,10 +33,16 @@ class LoginActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_login)
 
-        val username = findViewById<EditText>(R.id.username)
+        val username = findViewById<EditText>(R.id.login_email)
         val password = findViewById<EditText>(R.id.password)
         val login = findViewById<Button>(R.id.login)
         val loading = findViewById<ProgressBar>(R.id.loading)
+        val create_user_btn = findViewById<Button>(R.id.create_user_btn)
+
+        // moves to the create user page
+        create_user_btn.setOnClickListener({
+            val intent = Intent(this, CreateUserActivity::class.java)
+            startActivity(intent)})
 
         loginViewModel = ViewModelProviders.of(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
