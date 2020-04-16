@@ -275,12 +275,7 @@ if [ $debug == "off" ] ; then
 fi
 
 # removes files that sed produces, if any
-if [[ -f sed[a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z] ]] ; then
-   rm sed[a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z]
-fi
-if [[ -f ../sed[a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z] ]] ; then
-   rm ../sed[a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z]
-fi
+find .. -maxdepth 2 -regextype sed -regex ".*/sed[a-zA-Z0-9]\{6\}" -delete
 
 printf "...all done!\n"
 
