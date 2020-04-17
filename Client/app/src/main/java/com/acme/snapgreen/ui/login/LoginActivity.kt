@@ -19,7 +19,7 @@ import com.acme.snapgreen.R
 import com.acme.snapgreen.data.NetworkManager
 import com.acme.snapgreen.ui.dashboard.DashboardActivity
 import com.acme.snapgreen.ui.dashboard.EXTRA_MESSAGE
-import io.realm.gradle.Realm
+import io.realm.Realm
 
 class LoginActivity : AppCompatActivity() {
 
@@ -28,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         // set context for Valley calls for the remainder of the app
         NetworkManager.getInstance(applicationContext)
-
+        Realm.init(applicationContext)
 
         super.onCreate(savedInstanceState)
 
