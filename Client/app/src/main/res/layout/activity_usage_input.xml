@@ -7,30 +7,58 @@
     android:paddingTop="0dp">
 
     <LinearLayout
-
         android:layout_width="match_parent"
         android:layout_height="143dp"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <Button
+        <LinearLayout
+            android:layout_width="280dp"
+            android:layout_height="110dp"
             android:layout_marginTop="30dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:backgroundTint="#C4C4C4"
-            android:text="Edit"
-            android:textAllCaps="true" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/usage_header"
+            <TextView
+                android:id="@+id/usageHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text=" Your Usage"
+                android:textAlignment="viewStart"
+                android:textColor="#000000"
+                android:textSize="50dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/currentDate"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="#000000"
+                android:textSize="30dp"
+                android:text="TextView"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:text=" Your Usage"
-            android:textAlignment="viewStart"
-            android:textColor="#000000"
-            android:textSize="50sp"
-            android:textStyle="bold" />
+            android:layout_marginLeft="34dp"
+            android:layout_marginTop="100dp"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/editButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="5dp"
+                android:backgroundTint="#C4C4C4"
+                android:text="Edit"
+                android:textAllCaps="true" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
@@ -46,6 +74,7 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/waterArrow"
                 android:layout_width="30dp"
                 android:layout_height="25dp"
                 android:layout_gravity="right"
@@ -62,6 +91,7 @@
             android:layout_marginRight="20dp">
 
             <TextView
+                android:id="@+id/waterHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -118,7 +148,8 @@
                 android:autofillHints="Number"
                 android:hint="0"
                 android:inputType="number"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:enabled="false"/>
 
             <EditText
                 android:id="@+id/timesFlushed"
@@ -129,7 +160,8 @@
                 android:autofillHints="Number"
                 android:hint="0"
                 android:inputType="number"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:enabled="false"/>
 
             <EditText
                 android:id="@+id/timesDishwasherRun"
@@ -140,7 +172,8 @@
                 android:autofillHints="Number"
                 android:hint="0"
                 android:inputType="number"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:enabled="false"/>
 
             <EditText
                 android:id="@+id/minutesWashingMachine"
@@ -151,7 +184,8 @@
                 android:autofillHints="Number"
                 android:hint="0"
                 android:inputType="number"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:enabled="false"/>
 
         </LinearLayout>
 
@@ -170,6 +204,7 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/wasteArrow"
                 android:layout_width="30dp"
                 android:layout_height="25dp"
                 android:layout_gravity="right"
@@ -186,6 +221,7 @@
             android:layout_marginRight="20dp">
 
             <TextView
+                android:id="@+id/wasterHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -250,7 +286,8 @@
                 android:autofillHints="Number"
                 android:hint="0"
                 android:inputType="number"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:enabled="false"/>
 
             <EditText
                 android:id="@+id/numAlumCansUsed"
@@ -261,7 +298,8 @@
                 android:autofillHints="Number"
                 android:hint="0"
                 android:inputType="number"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:enabled="false"/>
 
             <EditText
                 android:id="@+id/numStyroContainersUsed"
@@ -272,7 +310,8 @@
                 android:autofillHints="Number"
                 android:hint="0"
                 android:inputType="number"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:enabled="false"/>
 
             <EditText
                 android:id="@+id/numPlasticStrawsUsed"
@@ -283,7 +322,8 @@
                 android:autofillHints="Number"
                 android:hint="0"
                 android:inputType="number"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:enabled="false"/>
 
             <EditText
                 android:id="@+id/numPlasticUtensilsUsed"
@@ -294,7 +334,8 @@
                 android:autofillHints="Number"
                 android:hint="0"
                 android:inputType="number"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:enabled="false"/>
 
         </LinearLayout>
 
