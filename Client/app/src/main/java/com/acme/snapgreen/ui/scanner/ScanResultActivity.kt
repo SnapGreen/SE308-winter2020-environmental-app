@@ -1,22 +1,19 @@
 package com.acme.snapgreen.ui.scanner
 
-import com.acme.snapgreen.data.DailyStatistic
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.acme.snapgreen.R
 import com.acme.snapgreen.data.NetworkManager
+import com.acme.snapgreen.data.StatUtil
 import com.acme.snapgreen.ui.dashboard.EXTRA_MESSAGE
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
-import io.realm.Realm
 import org.json.JSONArray
-import java.text.DateFormat
-import java.util.*
-import io.realm.kotlin.where
 
 /**
  * UI class for displaying the results of a bar code scan. We should show environmental impact
@@ -24,41 +21,19 @@ import io.realm.kotlin.where
  */
 class ScanResultActivity : AppCompatActivity() {
 
+    /**
+     * Saves the score associated with the barcode to the database
+     */
     private fun saveScore(score: Int)
     {
-        // get date and filter out time, only want month, day, year
-        val dateStringList =
-            DateFormat.getDateTimeInstance().format(Date()).split(",", " ")
-        val dateString = dateStringList[0] + " " + dateStringList[1] + " " + dateStringList[3]
-        val realm = Realm.getDefaultInstance()
-
-        var stat = realm.where<DailyStatistic>().
-        contains("today",  dateString).findFirst()
-        realm.beginTransaction()
-
-        if(stat == null) {
-            // create entry for today's date if it does not exist
-            stat = DailyStatistic().apply {
-                this.score = score
-                this.today = dateString
-            }
-            realm.copyToRealm(stat)
-            Log.i("Realm Database",
-                "Created " + dateString + " with a starting score of " + stat.score)
-        }
-        else {
-            // update the score and update the database if it does
-            stat.score += score
-            realm.copyToRealmOrUpdate(stat)
-
-            Log.i("Realm Database",
-                "Updated " + dateString + "'s score to " + stat.score)
-
-        }
-        realm.commitTransaction()
-
+        val stats = StatUtil.getTodaysStats()
+        stats.score += score
+        StatUtil.setTodaysStats(stats)
+        Toast.makeText(applicationContext,"Added $score to your daily score", Toast.LENGTH_SHORT)
+            .show()
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scan_result)
@@ -73,14 +48,18 @@ class ScanResultActivity : AppCompatActivity() {
         val ingredients = findViewById<TextView>(R.id.barcode_response)
         val score = findViewById<TextView>(R.id.barcode_score)
         val saveButton = findViewById<Button>(R.id.result_save_button)
+        val cancelButton = findViewById<Button>(R.id.result_cancel_button)
         score.text = "3"
         ingredients.text = ""
 
 
         saveButton.setOnClickListener {
             saveScore(score.text.toString().toInt())
+            finish()
         }
-
+        cancelButton.setOnClickListener {
+            finish()
+        }
 
         //val url = "http://10.0.2.2:8080/products/$barCodeString"
         val url = "http://10.0.2.2:8080/products/12345" // for test purposes
