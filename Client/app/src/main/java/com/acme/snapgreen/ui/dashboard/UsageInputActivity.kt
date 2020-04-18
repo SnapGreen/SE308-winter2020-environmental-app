@@ -9,12 +9,32 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.acme.snapgreen.R
+import com.acme.snapgreen.data.StatUtil
 import kotlinx.android.synthetic.main.activity_dashboard.*
+import kotlinx.android.synthetic.main.activity_usage_input.*
 import java.text.DateFormat
 import java.util.*
 
 
 class UsageInputActivity : AppCompatActivity() {
+
+    private fun saveScore(minutesShowered: Double, timesFlushed: Int, timesDishwasherRun: Int, minutesWashingMachine: Double, hoursLightOn: Double, numAlumCansUsed: Int, numStyroContainersUsed: Int, numPlasticStrawsUsed: Int, numPlasticUtensilsUsed: Int)
+    {
+        val stats = StatUtil.getTodaysStats()
+        stats.minutesShowered = minutesShowered
+        stats.timesFlushed = timesFlushed
+        stats.timesDishwasherRun = timesDishwasherRun
+        stats.minutesWashingMachine = minutesWashingMachine
+        stats.hoursLightOn = hoursLightOn
+        stats.numAlumCansUsed = numAlumCansUsed
+        stats.numStyroContainersUsed = numStyroContainersUsed
+        stats.numPlasticStrawsUsed = numPlasticStrawsUsed
+        stats.numPlasticUtensilsUsed = numPlasticUtensilsUsed
+        StatUtil.setTodaysStats(stats)
+        Toast.makeText(applicationContext,"Saved daily usage input", Toast.LENGTH_SHORT)
+            .show()
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,8 +51,8 @@ class UsageInputActivity : AppCompatActivity() {
         minutesShoweredField.setFilters(arrayOf<InputFilter>(LengthFilter(maxLength)))
         var timesFlushedField = findViewById<EditText>(R.id.timesFlushed)
         timesFlushedField.setFilters(arrayOf<InputFilter>(LengthFilter(maxLength)))
-        var timesDishwaterRunField = findViewById<EditText>(R.id.timesDishwasherRun)
-        timesDishwaterRunField.setFilters(arrayOf<InputFilter>(LengthFilter(maxLength)))
+        var timesDishwasherRunField = findViewById<EditText>(R.id.timesDishwasherRun)
+        timesDishwasherRunField.setFilters(arrayOf<InputFilter>(LengthFilter(maxLength)))
         var minutesWashingMachineField = findViewById<EditText>(R.id.minutesWashingMachine)
         minutesWashingMachineField.setFilters(arrayOf<InputFilter>(LengthFilter(maxLength)))
 
@@ -52,7 +72,7 @@ class UsageInputActivity : AppCompatActivity() {
             if (saysEdit) {
                 minutesShoweredField.setEnabled(true)
                 timesFlushedField.setEnabled(true)
-                timesDishwaterRunField.setEnabled(true)
+                timesDishwasherRunField.setEnabled(true)
                 minutesWashingMachineField.setEnabled(true)
 
                 hoursLightOnField.setEnabled(true)
@@ -67,7 +87,7 @@ class UsageInputActivity : AppCompatActivity() {
             else {
                 minutesShoweredField.setEnabled(false)
                 timesFlushedField.setEnabled(false)
-                timesDishwaterRunField.setEnabled(false)
+                timesDishwasherRunField.setEnabled(false)
                 minutesWashingMachineField.setEnabled(false)
 
                 hoursLightOnField.setEnabled(false)
@@ -75,6 +95,9 @@ class UsageInputActivity : AppCompatActivity() {
                 numStyroContainersUsedField.setEnabled(false)
                 numPlasticStrawsUsedField.setEnabled(false)
                 numPlasticUtensilsUsedField.setEnabled(false)
+
+                saveScore(minutesShoweredField.text.toString().toDouble(), timesFlushedField.text.toString().toInt(), timesDishwasherRunField.text.toString().toInt(), minutesWashingMachineField.text.toString().toDouble(), hoursLightOnField.text.toString().toDouble(), numAlumCansUsedField.text.toString().toInt(), numStyroContainersUsedField.text.toString().toInt(), numPlasticStrawsUsedField.text.toString().toInt(), numPlasticUtensilsUsedField.text.toString().toInt())
+                finish()
 
                 editButton.setText("EDIT")
                 saysEdit = true
