@@ -19,6 +19,7 @@ import com.acme.snapgreen.R
 import com.acme.snapgreen.data.NetworkManager
 import com.acme.snapgreen.ui.dashboard.DashboardActivity
 import com.acme.snapgreen.ui.dashboard.EXTRA_MESSAGE
+import io.realm.Realm
 
 class LoginActivity : AppCompatActivity() {
 
@@ -27,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         // set context for Valley calls for the remainder of the app
         NetworkManager.getInstance(applicationContext)
-
+        Realm.init(applicationContext)
 
         super.onCreate(savedInstanceState)
 
@@ -40,9 +41,9 @@ class LoginActivity : AppCompatActivity() {
         val create_user_btn = findViewById<Button>(R.id.create_user_btn)
 
         // moves to the create user page
-        create_user_btn.setOnClickListener({
+        create_user_btn.setOnClickListener {
             val intent = Intent(this, CreateUserActivity::class.java)
-            startActivity(intent)})
+            startActivity(intent)}
 
         loginViewModel = ViewModelProviders.of(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
