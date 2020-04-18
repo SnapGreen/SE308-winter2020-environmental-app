@@ -87,14 +87,28 @@ function extractRelevantCols(){
 }
 
 function createCleanTests(){
+   printf "creating clean tests...\n"
    # selects the products with the longest lists of ingredients
    # number of products selected = NUM_CLEAN_TESTS
    # places them separately in tests/clean/
    # expected versions need to be manually written out
    testOutPrefix="tests/clean/"
-   testOutPrefix=".test"
-   cat $1 | awk '{print length, $0}' | sort -nr | head -$NUM_CLEAN_TESTS\
-      >> "${testOutPrefix}${CLEANTEST_TMP}"
+   testOutEnd=".test"
+   tmpCleanFile="${testOutPrefix}${CLEANTEST_TMP}"
+   > $tmpCleanFile
+
+   awk '{printf("%d\t%s\n",length, $0)}' $1 | sort -nr | head -$NUM_CLEAN_TESTS\
+      >> $tmpCleanFile
+
+   num=1
+   while [[ $num -le $NUM_CLEAN_TESTS ]] ;
+   do
+      outTestFile="${testOutPrefix}in${num}${testOutEnd}"
+      echo $outTestFile
+      > $outTestFile
+      tail -n $num $tmpCleanFile | head -n 1 | cut -f 2 >> $outTestFile
+      num=$((num+1))
+   done
 }
 
 
@@ -269,11 +283,13 @@ fi
 
 #isolateIngredients $AWK_RM_INGRDS $RELEVANTDATA_TMP $NON_INGREDIENTS_TMP $INGREDIENTS_TMP 
 
-createCleanTests $INGREDIENTS_TMP
+if [[ $debug == "on" ]] ; then
+   createCleanTests $INGREDIENTSB4_TMP
+fi
 
-cleanIngredients $PATTERNFILE $INGREDIENTS_TMP 
+#cleanIngredients $PATTERNFILE $INGREDIENTS_TMP 
 
-consolidateIngredients $AWK_SHRINK $INGREDIENTS_TMP $SET_INGREDIENTS_TMP 
+#consolidateIngredients $AWK_SHRINK $INGREDIENTS_TMP $SET_INGREDIENTS_TMP 
 
 #rejoinFiles $NON_INGREDIENTS_TMP $SET_INGREDIENTS_TMP $JOINED_TMP
 
