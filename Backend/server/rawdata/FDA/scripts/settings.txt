@@ -12,4 +12,5 @@ FDC_DIR_ADDRESS:https://fdc.nal.usda.gov/fdc-datasets
 FB_WRITES_PER_DAY:17000
 DATASOURCE:branded_food.csv
 UPDATESOURCE:food_update_log_entry.csv
+NUM_CLEAN_TESTS:10
 

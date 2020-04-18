@@ -93,7 +93,12 @@ our initial upload is finished, we will instead only upload/update the products
 listed in this file.  It will stay for testing purposes as well.
 
 ##4. in a linux shell, enter:
-   ./convertBranded_FoodToJson.sh
+   ./convertToJson.sh
+   ./convertToJson.sh -f
+
+The default method will do everything and leave the temporary files behind for
+inspection (debugging) purposes.  The second one will remove temporary files as
+it goes.
 
 This script does the heavy work, and can take quite awhile to complete.
 Complete details can be found in the comments of the script itself, but

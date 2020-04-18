@@ -7,6 +7,7 @@ SPLIT_PREFIX=$(grep -oP '(?<=SPLIT_PREFIX:).*' settings.txt)
 SUFFIX_LEN=$(grep -oP '(?<=SUFFIX_LEN:).*' settings.txt)
 OUTFILE_END=$(grep -oP '(?<=OUTFILE_END:).*' settings.txt)
 TMPFILE_END=$(grep -oP '(?<=TMPFILE_END:).*' settings.txt)
+NUM_CLEAN_TESTS=$(grep -oP '(?<=NUM_CLEAN_TESTS:).*' settings.txt)
 NOCATS_TMP="nocats.tmp"
 PREPPED_TMP="prepped.tmp"
 INGREDIENTS_TMP="ingredients.tmp"
@@ -14,6 +15,7 @@ INGREDIENTSB4_TMP="ingredientsb4.tmp"
 NON_INGREDIENTS_TMP="non_ingredients.tmp"
 SET_INGREDIENTS_TMP="set_ingredients.tmp"
 RELEVANTDATA_TMP="relevantdata.tmp"
+CLEANTEST_TMP="longestlines.tmp"
 JOINED_TMP="joined.tmp"
 SORTED_TMP="sorted.tmp"
 AWK_FORMAT="csvtojson.awk"
@@ -22,11 +24,11 @@ AWK_TRIM="trim.awk"
 AWK_RM_INGRDS="removeIngreds.awk"
 AWK_MAP="map_fdcid_gtin.awk"
 
-debug="off"
+debug="on"
 
-if [ $# != 0 ] && [ $1 == "-d" ] ; then
-   echo "debug mode on"
-   debug="on"
+if [ $# != 0 ] && [ $1 == "-f" ] ; then
+   echo "debug mode off"
+   debug="off"
 fi
 
 #https://stackoverflow.com/questions/17066250/create-timestamp-variable-in-bash-script
@@ -45,6 +47,7 @@ function checkSettings(){
    printf "\tSUFFIX_LEN: %s\n" $SUFFIX_LEN
    printf "\tOUTFILE_END: %s\n" $OUTFILE_END
    printf "\tTMPFILE_END: %s\n" $TMPFILE_END
+   printf "\tNUM_CLEAN_TESTS: %s\n" $NUM_CLEAN_TESTS
 }
 
 function prepData(){
@@ -83,6 +86,18 @@ function extractRelevantCols(){
    fi
 }
 
+function createCleanTests(){
+   # selects the products with the longest lists of ingredients
+   # number of products selected = NUM_CLEAN_TESTS
+   # places them separately in tests/clean/
+   # expected versions need to be manually written out
+   testOutPrefix="tests/clean/"
+   testOutPrefix=".test"
+   cat $1 | awk '{print length, $0}' | sort -nr | head -$NUM_CLEAN_TESTS\
+      >> "${testOutPrefix}${CLEANTEST_TMP}"
+}
+
+
 function createMap(){
    printf "creating fdcid-gtin map...\n"
    # clear the map file
@@ -119,7 +134,7 @@ function cleanIngredients(){
       cat $INGREDIENTSB4_TMP > $2
       # write the timestamp in the log
       starttime=$(timestamp)
-      printf "start time: %s\n" $starttime >> logs/removed.log
+      logfile="logs/cleaned${starttime}.log"
       # apply removal patterns to ingredients
       after=$(wc -c < $2)
       while read -r pattern;
@@ -131,14 +146,14 @@ function cleanIngredients(){
             after=$(wc -c < $2)
             removed=$((before - after))
             printf "\tpattern %s removed %s characters\n" "$pattern" "$removed"\
-            | tee -a logs/removed.log
+               | tee -a $logfile
          else
-            printf "\tskipping %s\n" "${pattern:1}" | tee -a logs/removed.log
+            printf "\tskipping %s\n" "${pattern:1}" | tee -a $logfile
          fi
       done < $1
       endtime=$(timestamp)
       elapsed=$((endtime - starttime))
-      printf "elapsed: %d\n" $elapsed >> logs/removed.log
+      printf "elapsed: %d seconds\n" $elapsed >> $logfile
    else
       # apply removal patterns to ingredients
       while read -r pattern;
@@ -154,14 +169,14 @@ function cleanIngredients(){
 }
 
 function consolidateIngredients(){
-   printf "consolidating ingredients into set...\n"
+   printf "consolidating ingredients into sets...\n"
    # remove ingredients mentioned more than once
    > $3
    awk -f $1 $2 >> $3
 }
 
 function rejoinFiles(){
-   printf "combining non-ingredient data with ingredient set...\n"
+   printf "combining non-ingredient data with ingredient sets...\n"
    # add ingredients back to other data
    # final format should be gtin|modifiedDate|ingreds
    > $3
@@ -248,11 +263,13 @@ fi
 
 #prepData $INFILE $NOCATS_TMP $PREPPED_TMP
 
-extractRelevantCols $AWK_TRIM $PREPPED_TMP $RELEVANTDATA_TMP
+#extractRelevantCols $AWK_TRIM $PREPPED_TMP $RELEVANTDATA_TMP
 
 #createMap $AWK_MAP $RELEVANTDATA_TMP $MAPFILE 
 
-isolateIngredients $AWK_RM_INGRDS $RELEVANTDATA_TMP $NON_INGREDIENTS_TMP $INGREDIENTS_TMP 
+#isolateIngredients $AWK_RM_INGRDS $RELEVANTDATA_TMP $NON_INGREDIENTS_TMP $INGREDIENTS_TMP 
+
+createCleanTests $INGREDIENTS_TMP
 
 cleanIngredients $PATTERNFILE $INGREDIENTS_TMP 
 
