@@ -292,7 +292,7 @@
                     android:layout_width="250dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0"
-                    android:paddingTop="15dp"
+                    android:paddingTop="5dp"
                     android:text="How many aluminum cans did you use today?" />
 
                 <EditText
@@ -319,7 +319,7 @@
                     android:layout_width="250dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0"
-                    android:paddingTop="15dp"
+                    android:paddingTop="5dp"
                     android:text="How many styrofoam containers did you use today?" />
 
                 <EditText
@@ -346,7 +346,7 @@
                     android:layout_width="250dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0"
-                    android:paddingTop="15dp"
+                    android:paddingTop="5dp"
                     android:text="How many plastic straws did you use today?" />
 
                 <EditText
@@ -373,7 +373,7 @@
                     android:layout_width="250dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0"
-                    android:paddingTop="15dp"
+                    android:paddingTop="5dp"
                     android:text="How many plastic utensils did you use today?" />
 
                 <EditText
