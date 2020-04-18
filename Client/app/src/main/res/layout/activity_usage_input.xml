@@ -8,11 +8,11 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="143dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="280dp"
+            android:layout_width="wrap_content"
             android:layout_height="110dp"
             android:layout_marginTop="30dp"
             android:orientation="vertical">
@@ -63,7 +63,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="229dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -84,8 +84,8 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="5dp"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginRight="0dp"
             android:layout_weight="1"
             android:orientation="vertical">
@@ -116,8 +116,8 @@
                 <EditText
                     android:id="@+id/minutesShowered"
                     android:layout_width="wrap_content"
-                    android:layout_height="42dp"
-                    android:layout_marginTop="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
                     android:layout_marginRight="20dp"
                     android:autofillHints="Number"
                     android:enabled="false"
@@ -144,6 +144,7 @@
                     android:id="@+id/timesFlushed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
                     android:layout_marginTop="0dp"
                     android:layout_marginRight="20dp"
                     android:autofillHints="Number"
@@ -216,9 +217,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="450dp"
-        android:orientation="horizontal"
-        android:la>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -238,11 +238,11 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="5dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:layout_marginRight="20dp">
+            android:layout_marginRight="0dp">
 
             <TextView
                 android:id="@+id/wasterHeader"
@@ -254,112 +254,141 @@
                 android:textColor="#000000"
                 android:textSize="25dp" />
 
-            <TextView
-                android:id="@+id/waste_input1"
-                android:layout_width="250dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0"
-                android:paddingTop="15dp"
-                android:text="How long did you keep the light on today (in hours)?" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/waste_input2"
-                android:layout_width="250dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0"
-                android:paddingTop="15dp"
-                android:text="How many aluminum cans did you use today?" />
+                <TextView
+                    android:id="@+id/waste_input1"
+                    android:layout_width="250dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:paddingTop="5dp"
+                    android:text="How long did you keep the light on today (in hours)?" />
 
-            <TextView
-                android:id="@+id/waste_input3"
-                android:layout_width="250dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0"
-                android:paddingTop="15dp"
-                android:text="How many styrofoam container did you use today?" />
 
-            <TextView
-                android:id="@+id/waste_input4"
-                android:layout_width="250dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0"
-                android:paddingTop="15dp"
-                android:text="How many plastic straws did you use today?" />
+                <EditText
+                    android:id="@+id/hoursLightOn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="30dp"
+                    android:autofillHints="Number"
+                    android:hint="0"
+                    android:inputType="number"
+                    android:textSize="20dp"
+                    android:enabled="false"/>
 
-            <TextView
-                android:id="@+id/waste_input5"
-                android:layout_width="250dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0"
-                android:paddingTop="15dp"
-                android:text="How many plastic utensils did you use today?" />
+            </LinearLayout>
 
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="256dp"
-            android:layout_marginTop="45dp"
-            android:orientation="vertical">
+                <TextView
+                    android:id="@+id/waste_input2"
+                    android:layout_width="250dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:paddingTop="15dp"
+                    android:text="How many aluminum cans did you use today?" />
 
-            <EditText
-                android:id="@+id/hoursLightOn"
-                android:layout_width="wrap_content"
-                android:layout_height="42dp"
-                android:layout_marginRight="20dp"
-                android:autofillHints="Number"
-                android:hint="0"
-                android:inputType="number"
-                android:textSize="20dp"
-                android:enabled="false"/>
+                <EditText
+                    android:id="@+id/numAlumCansUsed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="20dp"
+                    android:autofillHints="Number"
+                    android:hint="0"
+                    android:inputType="number"
+                    android:textSize="20dp"
+                    android:enabled="false"/>
 
-            <EditText
-                android:id="@+id/numAlumCansUsed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:layout_marginRight="20dp"
-                android:autofillHints="Number"
-                android:hint="0"
-                android:inputType="number"
-                android:textSize="20dp"
-                android:enabled="false"/>
+            </LinearLayout>
 
-            <EditText
-                android:id="@+id/numStyroContainersUsed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="20dp"
-                android:autofillHints="Number"
-                android:hint="0"
-                android:inputType="number"
-                android:textSize="20dp"
-                android:enabled="false"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/numPlasticStrawsUsed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="20dp"
-                android:autofillHints="Number"
-                android:hint="0"
-                android:inputType="number"
-                android:textSize="20dp"
-                android:enabled="false"/>
+                <TextView
+                    android:id="@+id/waste_input3"
+                    android:layout_width="250dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:paddingTop="15dp"
+                    android:text="How many styrofoam containers did you use today?" />
 
-            <EditText
-                android:id="@+id/numPlasticUtensilsUsed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="20dp"
-                android:autofillHints="Number"
-                android:hint="0"
-                android:inputType="number"
-                android:textSize="20dp"
-                android:enabled="false"/>
+                <EditText
+                    android:id="@+id/numStyroContainersUsed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="20dp"
+                    android:autofillHints="Number"
+                    android:hint="0"
+                    android:inputType="number"
+                    android:textSize="20dp"
+                    android:enabled="false"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/waste_input4"
+                    android:layout_width="250dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:paddingTop="15dp"
+                    android:text="How many plastic straws did you use today?" />
+
+                <EditText
+                    android:id="@+id/numPlasticStrawsUsed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="20dp"
+                    android:autofillHints="Number"
+                    android:hint="0"
+                    android:inputType="number"
+                    android:textSize="20dp"
+                    android:enabled="false"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/waste_input5"
+                    android:layout_width="250dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:paddingTop="15dp"
+                    android:text="How many plastic utensils did you use today?" />
+
+                <EditText
+                    android:id="@+id/numPlasticUtensilsUsed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="20dp"
+                    android:autofillHints="Number"
+                    android:hint="0"
+                    android:inputType="number"
+                    android:textSize="20dp"
+                    android:enabled="false"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
