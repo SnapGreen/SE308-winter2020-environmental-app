@@ -67,6 +67,14 @@
             android:label="Stats">
         </activity>
         <activity
+            android:name=".ui.dashboard.SupportActivity"
+            android:label="Support">
+        </activity>
+        <activity
+            android:name=".ui.dashboard.ProfileActivity"
+            android:label="Profile">
+        </activity>
+        <activity
             android:name=".ui.scanner.ScanResultActivity"
             android:launchMode="singleInstance">
     </activity>
