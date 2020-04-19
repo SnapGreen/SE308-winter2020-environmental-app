@@ -15,14 +15,16 @@ BEGIN { FS = "\",\""}
 # trims to "fdcid|gtin|;ingred1;ingred2...|datemodified"
 # first ; in ingreds helps for parsing in next step
 {
-   printf("%06d|%014d|", substr($1,2), $3)
    num_ingreds = split($4, ingreds, ", ")
-   for (i = 1; i < num_ingreds; ++i){
-      printf(";%s", tolower(ingreds[i]))
+   if(num_ingreds > 0){
+      printf("%06d|%014d|", substr($1,2), $3)
+      for (i = 1; i < num_ingreds; ++i){
+         printf(";%s", tolower(ingreds[i]))
+      }
+      sub(/\./, "", ingreds[num_ingreds])
+      printf(";%s|%s\n", tolower(ingreds[num_ingreds]), $10)
+      # clear array
+      split("", ingreds)
+      num_ingreds=0
    }
-   sub(/\./, "", ingreds[num_ingreds])
-   printf(";%s|%s\n", tolower(ingreds[num_ingreds]), $10)
-   # clear array
-   split("", ingreds)
-   num_ingreds=0
 }

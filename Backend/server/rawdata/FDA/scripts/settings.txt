@@ -5,7 +5,7 @@ SPLIT_PREFIX:branded_food_
 SUFFIX_LEN:4
 OUTFILE_END:.json
 TMPFILE_END:.tmp
-PRODS_PER_JSON:500
+PRODS_PER_JSON:250
 CURRENTFILE:currentlatest.txt
 LASTFILE:lastlatest.txt
 FDC_DIR_ADDRESS:https://fdc.nal.usda.gov/fdc-datasets

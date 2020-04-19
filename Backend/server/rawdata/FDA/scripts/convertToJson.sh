@@ -104,11 +104,12 @@ function createCleanTests(){
    while [[ $num -le $NUM_CLEAN_TESTS ]] ;
    do
       outTestFile="${testOutPrefix}in${num}${testOutEnd}"
-      echo $outTestFile
       > $outTestFile
       tail -n $num $tmpCleanFile | head -n 1 | cut -f 2 >> $outTestFile
       num=$((num+1))
    done
+
+   rm $tmpCleanFile
 }
 
 
@@ -249,7 +250,7 @@ function splitChunks(){
 }
 
 function createJsons(){
-   printf "turning chunks into JSON files (longest part)...\n"
+   printf "turning chunks into JSON files (get comfy)...\n"
    for file in branded_food_[0-9]*.tmp
    do
       # extracting the suffix number from each temp file
@@ -260,7 +261,7 @@ function createJsons(){
       > $outname
       # place the first line into the outfile
       echo "{" >> $outname
-      printf "\"products\": [\n" >> $outname
+      printf "\t\"products\": [\n" >> $outname
       # run awk to process the rest
       awk -f $1 $file >> $outname
       # removes comma from last line of last entry
@@ -275,31 +276,31 @@ if [[ $debug == "on" ]] ; then
    checkSettings
 fi
 
-#prepData $INFILE $NOCATS_TMP $PREPPED_TMP
+prepData $INFILE $NOCATS_TMP $PREPPED_TMP
 
-#extractRelevantCols $AWK_TRIM $PREPPED_TMP $RELEVANTDATA_TMP
+extractRelevantCols $AWK_TRIM $PREPPED_TMP $RELEVANTDATA_TMP
 
-#createMap $AWK_MAP $RELEVANTDATA_TMP $MAPFILE 
+createMap $AWK_MAP $RELEVANTDATA_TMP $MAPFILE 
 
-#isolateIngredients $AWK_RM_INGRDS $RELEVANTDATA_TMP $NON_INGREDIENTS_TMP $INGREDIENTS_TMP 
+isolateIngredients $AWK_RM_INGRDS $RELEVANTDATA_TMP $NON_INGREDIENTS_TMP $INGREDIENTS_TMP 
 
 if [[ $debug == "on" ]] ; then
    createCleanTests $INGREDIENTSB4_TMP
 fi
 
-#cleanIngredients $PATTERNFILE $INGREDIENTS_TMP 
+cleanIngredients $PATTERNFILE $INGREDIENTS_TMP 
 
-#consolidateIngredients $AWK_SHRINK $INGREDIENTS_TMP $SET_INGREDIENTS_TMP 
+consolidateIngredients $AWK_SHRINK $INGREDIENTS_TMP $SET_INGREDIENTS_TMP 
 
-#rejoinFiles $NON_INGREDIENTS_TMP $SET_INGREDIENTS_TMP $JOINED_TMP
+rejoinFiles $NON_INGREDIENTS_TMP $SET_INGREDIENTS_TMP $JOINED_TMP
 
-#sortProducts $JOINED_TMP $SORTED_TMP
+sortProducts $JOINED_TMP $SORTED_TMP
 
-#removeBad $SORTED_TMP
+removeBad $SORTED_TMP
 
-#splitChunks $SORTED_TMP
+splitChunks $SORTED_TMP
 
-#createJsons $AWK_FORMAT
+createJsons $AWK_FORMAT
 
 if [ $debug == "off" ] ; then
    # removes all of the temporary files
