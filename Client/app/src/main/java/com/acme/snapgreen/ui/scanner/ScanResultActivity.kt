@@ -50,8 +50,8 @@ class ScanResultActivity : AppCompatActivity() {
         val score = findViewById<TextView>(R.id.barcode_score)
         val saveButton = findViewById<Button>(R.id.result_save_button)
         val cancelButton = findViewById<Button>(R.id.result_cancel_button)
-        score.text = ""
-        ingredients.text = ""
+        score.text = "+3"
+        ingredients.text = "Lead\nPlastic\nCardboard\nRubber"
 
 
         saveButton.setOnClickListener {
