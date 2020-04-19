@@ -4,35 +4,66 @@ PRODS_PER_JSON=$(grep -oP "(?<=PRODS_PER_JSON:).*" settings.txt)
 FB_WRITES_PER_DAY=$(grep -oP "(?<=FB_WRITES_PER_DAY:).*" settings.txt)
 SPLIT_PREFIX=$(grep -oP "(?<=SPLIT_PREFIX:).*" settings.txt)
 OUTFILE_END=$(grep -oP "(?<=OUTFILE_END:).*" settings.txt)
+UPLOAD_SLEEP=$(grep -oP "(?<=UPLOAD_SLEEP:).*" settings.txt)
 
+function uploadFiles(){
+   # uploads a json every 2 seconds
+   echo $@
+   success=true
+   for file in $@
+   do
+      if [ $success == "true" ] ; then
+         num=$(echo $file | grep -o '[0-9]\+')
+         logfile=${logdir}/${num}.log
+         echo $num $logfile
 
-max_file_uploads=$((FB_WRITES_PER_DAY / PRODS_PER_JSON))
+         curl --header "Content-Type: application/json"\
+            --request POST --data  @$file http://localhost:8080/products\
+            | sed 's//\n/g' &> ${logdir}/${num}.log
 
-shopt -s nullglob
+         result=$(cat $logfile | grep -o 'successful')
+         if [[ $result == "successful" ]] ; then
+            echo "$file was succesfully uploaded"
+            rm $file
+         else
+            echo "$file upload was unsuccessful"
+            success=false
+         fi
+         sleep $UPLOAD_SLEEP
+      fi
+   done
+}
 
-alljsons=(../$SPLIT_PREFIX*$OUTFILE_END)
+prompt=false
 
-logdir="logs/uploads"
+if [ $# -eq 0 ] ; then
 
-uploadfiles="${alljsons[@]:0:$max_file_uploads}"
+   echo "This will upload to the server: only one person should be doing it per day."
 
-# uploads a json every 2 seconds
-for file in $uploadfiles; 
-do
-   num=$(echo $file | grep -o '[0-9]\+')
-   logfile=${logdir}/${num}.log
+   read -p 'Are you sure you want to go forward? (y/n): ' response
 
-   curl --header "Content-Type: application/json"\
-      --request POST --data  @$file http://localhost:8080/products\
-      &> ${logdir}/${num}.log
-
-   result=$(cat $logfile | grep -o 'successful')
-   if [[ $result == "successful" ]] ; then
-      echo "$file was succesfully uploaded"
-      rm $file
+   if [ $response != "y" ] ; then
+      prompt=false
+      echo "goodbye!"
    else
-      echo "$file upload was unsuccessful"
+      prompt=true
    fi
-   sleep 2
-done
+elif [ $1 == "-b" ] ; then
+   prompt=true
+fi
 
+if [ $prompt == "true" ] ; then
+   max_file_uploads=$((FB_WRITES_PER_DAY / PRODS_PER_JSON))
+
+   shopt -s nullglob
+
+   alljsons=(../$SPLIT_PREFIX*$OUTFILE_END)
+
+   logdir="logs/uploads"
+
+   #filesToUpload="${alljsons[@]:0:$max_file_uploads}"
+   filesToUpload="${alljsons[@]:0:3}"
+
+   uploadFiles $filesToUpload
+fi
+   
