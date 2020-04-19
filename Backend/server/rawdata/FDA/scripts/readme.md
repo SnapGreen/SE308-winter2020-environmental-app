@@ -4,13 +4,13 @@ All of the following should be done from a linux command line.  Windows users mi
 
 Once on the Linux command line, verify that 'unzip' has been installed by typing:
 
-   'unzip --version'
+   `unzip --version`
 
 If it hasn't been installed, you'll get a message informing you of such, hopefully with information on how it can be installed.  On Ubuntu, the command to install is:
 
-   'apt get update'
-   'apt get ugrade'
-   'apt install unzip'
+   `apt get update`
+   `apt get ugrade`
+   `apt install unzip`
 
 This ensures that all of your other programs are up-to-date, and can be used for most other programs as well (troubleshooting notes at end for more information).
 
@@ -25,19 +25,19 @@ This will output a list of all files in the directory; on the far left you'll se
 ...
 
 Basically, if you aren't seeing an "x" in the files that end with .sh, you will need to change the file to make it e'x'ecutable before you can run it using:
-   'chmod u=rwx,g=rwx,u=r <filename>'
+   `chmod u=rwx,g=rwx,u=r *filename*`
 
 For a quick refresher, go here:
 https://www.computerhope.com/unix/uchmod.htm
 
 ## 1. in a linux shell, enter:
-   ./getFDAUpdate.sh [-f]|[-d]|[-h]
+   `./getFDAUpdate.sh [-f]|[-d]|[-h]`
 
 The [-f]|[-d]|[-h] part represents optional flags--i.e., you can run it in one of four ways:
-   ./getFDAUpdate.sh
-   ./getFDAUpdate.sh -h
-   ./getFDAUpdate.sh -d
-   ./getFDAUpdate.sh -f
+   `./getFDAUpdate.sh` or
+   `./getFDAUpdate.sh -h` or
+   `./getFDAUpdate.sh -d` or
+   `./getFDAUpdate.sh -f`
 
 If run without flags, the script will download a web page from the FDA which lists the contents of their data directory, parse that page for relevant data, then check if the newest data is different than our current data.  If so, it will ask if you would like to download the newer file.
 
@@ -51,10 +51,10 @@ More details can be found in comments of the script itself.
 
 If you choose to download, the script will then automatically call another script:
 
-## 2. downloadData.sh <filename>
+## 2. <span>downloadData.sh</span> *filename*
 This script will download the latest "FoodData_Central_....zip" file to this directory.  Once that's complete, the file will be passed to:
 
-## 3. distributeFiles.sh <filename>
+## 3. <span>distributeFiles.sh</span> *filename*
 This script unzips the archive into this directory, then distributes them to where they need to go.  It then deletes the files we don't need, and keeps:
 
 ### branded_food.csv
@@ -64,19 +64,19 @@ This is our main source of data--it contains a plethora of information.  We only
 This lists all of the changes that have been made since the last update.  Once our initial upload is finished, we will instead only upload/update the products listed in this file.  It stays in this folder
 
 ## 4. in a linux shell, enter:
-   ./convertToJson.sh
-   ./convertToJson.sh -f
+   `./convertToJson.sh` or
+   `./convertToJson.sh -f`
 
 The default method will do everything and leave the temporary files behind for inspection (debugging) purposes.  The second one will remove temporary files as it goes.
 
 This script does the heavy work, and can take quite awhile to complete.  Complete details can be found in the comments of the script itself, but basically it takes the FDA file and outputs: 
 
-### branded_food_xxxx.json
+#### branded_food_xxxx.json
 Expect hundreds of these, each placed in the parent directory.  They each contain a set number of products in json format:
 
 products: [
    {
-      "id": "<14 digit gtin>", 
+      "id": "*14 digit gtin*", 
       "info": {
          "ingredients": [
             "ingred1",
@@ -85,7 +85,7 @@ products: [
             "ingredn"
          ],
          "score": "-999999999",
-         "productModified": "<date from FDA>"
+         "productModified": "*date from FDA*"
       }
    },
    etc....
@@ -93,11 +93,11 @@ products: [
 
 The number of products per .json is set to 250, but can be changed by modifying the "SPLIT_FILE_LINES" constant in "settings.txt"
 
-### map_fdcid_gtin.txt
+#### map_fdcid_gtin.txt
 
 This file contains hundreds of thousands of pairs, mapping 6-digit fdc id numbers to 14 digit gtin upc codes.  When the FDA makes changes, they list them in a file included with our download; the changes are listed by fdc id, which we currently aren't storing in our database.  This file allows us to figure out which of our products need to be updated. 
 
-## 5. uploadToFirebase.sh
+## 5. <span>uploadToFirebase.sh</span>
 
 This script will upload ~34 of the lowest-numbered "branded_food_xxxx.json" files to our database, then delete them.  It is meant to be run once daily, ensuring that we don't go over our 20k writes/per day limit.
 
@@ -108,7 +108,7 @@ There are several other scripts in this directory--here's a short description of
 ### settings.txt
 The various scripts get their variables from here before they run.  It saves the effort of having to change, for instance, filenames in every script.  If, for instance, you wanted to change how many products are listed per json, you would do that here.
 
-### <something>.awk
+### *something*.awk
 These are scripts passed to 'awk', which is a program that specializes in processing table-like data quickly.
 
 ### removalpatterns.txt
@@ -117,7 +117,7 @@ This is a slew of regular expression patterns to help clean the "ingredients" pr
 ### currentlatest.txt and lastlatest.txt
 These files store the date that the most recent FDA data was uploaded, as well as the last one that was updated.  Whenever 
 
-### <something>.tmp
+### *something*.tmp
 These files pop up from time to time--they are usually deleted by the scripts, so you'll see them coming and going as you run them.  They serve as temporary files for intermediate steps in the data processing stages.
 
 ### sedxxxxx
@@ -129,10 +129,10 @@ This script isn't blazingly fast--it takes almost two minutes to run on my relat
 
 If you receive errors upon running the script re: "\r" in line xx:
    - install 'dos2unix' using the same process outlined at the top
-   - "dos2unix convertToJson.sh"
-   - then "./convertToJson.sh"
+   - `dos2unix convertToJson.sh`
+   - then `./convertToJson.sh`
 
 If you receive errors in the vein of "command on line xx not found", open the script that was running and look at that line--that will tell you which program you need to install using the process outlined at the top.
 
-Finally, if you get errors mentioning "sudo", you'll need to either log in as the administrator or try running from a linux environment where you -are- the administrator.  If you've installed your own version of linux, odds are that you already have those rights and simply need to enter "sudo <command>" instead of just <command>
+Finally, if you get errors mentioning "sudo", you'll need to either log in as the administrator or try running from a linux environment where you -are- the administrator.  If you've installed your own version of linux, odds are that you already have those rights and simply need to enter `sudo *command*` instead of just `*command*`
 
