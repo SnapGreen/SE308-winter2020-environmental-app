@@ -141,7 +141,7 @@ function isolateIngredients(){
 }
 
 function cleanIngredients(){
-   printf "transforming ingredients...\n"
+   printf "transforming ingredients (takes time)...\n"
 
    if [[ $debug == "on" ]] ; then
       # resets the ingredients file before starting
@@ -149,7 +149,7 @@ function cleanIngredients(){
       cat $INGREDIENTSB4_TMP > $2
       # write the timestamp in the log
       starttime=$(timestamp)
-      logfile="logs/cleaned${starttime}.log"
+      logfile="logs/cleans/cleaned${starttime}.log"
       # apply removal patterns to ingredients
       after=$(wc -c < $2)
       while read -r pattern;

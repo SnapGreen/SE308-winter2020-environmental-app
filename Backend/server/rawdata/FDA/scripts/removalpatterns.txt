@@ -55,6 +55,7 @@ s/water and citric acid thicken /water;citric acid;/g
 s/dusted with //g
 s/pure //g
 s/crushed //g
+s/roasted //g
 s/raw //g
 s/ powders\?//g
 s/mechanically separated //g
@@ -89,6 +90,7 @@ s/contains[^[:punct:]]\+ [1234]% /;/g
 s/contains [a-z0-9 ]\+including //g
 s/food starch-modified/modified food starch/g
 s/less than [0-9]% of //g
+s/ or less of //g
 s/ \(with \)\?less than //g
 s/\(stone \)\?ground //g
 s/(\?[0-9]\{1,3\}%)\? \?//g
@@ -124,5 +126,6 @@ s/[a-z]\./\U&/g
 s/[])}]//g
 s/[[({]/;/g
 s/;;\+/;/g
+s/\(\w\+\) (\w\+\) \1 \2/\1 \1/g
 s/;$//
 s/^;//

@@ -1,53 +1,38 @@
 #!/bin/bash
-PRODS_PER_JSON=500
-SUFFIX_LEN=4
+SUFFIX_LEN=$(grep -oP "(?<=SUFFIX_LEN:).*" settings.txt)
+PRODS_PER_JSON=$(grep -oP "(?<=PRODS_PER_JSON:).*" settings.txt)
 FB_WRITES_PER_DAY=$(grep -oP "(?<=FB_WRITES_PER_DAY:).*" settings.txt)
 SPLIT_PREFIX=$(grep -oP "(?<=SPLIT_PREFIX:).*" settings.txt)
-OUT_SUFFIX=$(grep -oP "(?<=OUT_SUFFIX:).*" settings.txt)
+OUTFILE_END=$(grep -oP "(?<=OUTFILE_END:).*" settings.txt)
 
 
-#max_file_uploads=$((FB_WRITES_PER_DAY / PRODS_PER_JSON))
+max_file_uploads=$((FB_WRITES_PER_DAY / PRODS_PER_JSON))
 
-#shopt -s nullglob
+shopt -s nullglob
 
-#alljsons=(../branded_food_*.json)
+alljsons=(../$SPLIT_PREFIX*$OUTFILE_END)
 
-#uploadfilenums="${alljsons[@]:0:$max_file_uploads}"
-#echo "${uploadfilenums[@]}"
+logdir="logs/uploads"
 
-file="../bf.json"
-curl --header "Content-Type: application/json" --request POST --data  @$file http://localhost:8080/products
-#for num in $filearr; 
-#do
-#   filename="${SPLIT_PREFIX}$num${OUT_SUFFIX}"
-#   echo $filename
-#done
+uploadfiles="${alljsons[@]:0:$max_file_uploads}"
 
-#app.post("/products", async function (req, res) {
-#  if (!req.body || !req.body.products) {
-#    res.status(401).json({
-#      message: "No req.body or req.body.products present",
-#    });
-#  }
-#
-#  try {
-#    // Need a bigger limit since we are handling a batch write containing 500 products
-#    app.use(
-#      bodyParser.json({
-#        limit: "1mb",
-#      })
-#    );
-#
-#    await FIREBASE.productBatchWrite(req.body.products);
-#    res.json({
-#      message: `Product batch write successful`,
-#    });
-#  } catch (err) {
-#    res.status(401).json({
-#      message: "Product Batch Write Error",
-#    });
-#    console.log(err);
-#  }
-#});
+# uploads a json every 2 seconds
+for file in $uploadfiles; 
+do
+   num=$(echo $file | grep -o '[0-9]\+')
+   logfile=${logdir}/${num}.log
 
+   curl --header "Content-Type: application/json"\
+      --request POST --data  @$file http://localhost:8080/products\
+      &> ${logdir}/${num}.log
+
+   result=$(cat $logfile | grep -o 'successful')
+   if [[ $result == "successful" ]] ; then
+      echo "$file was succesfully uploaded"
+      rm $file
+   else
+      echo "$file upload was unsuccessful"
+   fi
+   sleep 2
+done
 

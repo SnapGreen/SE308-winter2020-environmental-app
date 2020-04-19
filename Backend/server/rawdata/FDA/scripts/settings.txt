@@ -1,5 +1,5 @@
 INFILE:../branded_food.csv
-MAPFILE:../map_fdcid_gtin.txt
+MAPFILE:../map_fdcid_gtin.csv
 PATTERNFILE:removalpatterns.txt
 SPLIT_PREFIX:branded_food_
 SUFFIX_LEN:4
