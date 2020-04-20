@@ -14,7 +14,7 @@
         android:layout_marginTop="35dp"
         android:layout_marginEnd="182dp"
         android:gravity="center"
-        android:text="Score:"
+        android:text="Score"
         android:textAlignment="center"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -41,11 +41,26 @@
         app:layout_constraintTop_toBottomOf="@+id/barcodeResult" />
 
     <TextView
+        android:id="@+id/score_header3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Scan Result"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/barcodeResult"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
         android:id="@+id/barcodeResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="170dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="182dp"
         android:gravity="center"
         android:text="No Barcode Found"
@@ -82,6 +97,7 @@
         android:gravity="center"
         android:text="No Score Found"
         android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.464"
@@ -90,26 +106,30 @@
 
     <Button
         android:id="@+id/result_cancel_button"
-        android:layout_width="202dp"
-        android:layout_height="94dp"
-        android:layout_marginStart="4dp"
+        android:layout_width="215dp"
+        android:layout_height="100dp"
         android:layout_marginTop="64dp"
+        android:background="@android:drawable/title_bar"
+        android:backgroundTint="#FAA5A5"
+        android:shadowColor="#FFFFFF"
         android:text="@string/cast_tracks_chooser_dialog_cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/result_save_button"
         app:layout_constraintTop_toBottomOf="@+id/barcode_score"
-        app:layout_constraintVertical_bias="0.339" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/result_save_button"
         android:layout_width="196dp"
-        android:layout_height="95dp"
+        android:layout_height="100dp"
         android:layout_marginTop="64dp"
+        android:background="@android:drawable/title_bar"
+        android:backgroundTint="#91C861"
         android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/barcode_score"
-        app:layout_constraintVertical_bias="0.341" />
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
