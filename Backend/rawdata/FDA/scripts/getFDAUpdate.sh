@@ -58,7 +58,7 @@ elif [[ -z $1 ]] || [[ "$1" == "-f" ]] || [[ "$1" == "-d" ]] ; then
 
    if [[ "$1" == '-f' ]] ; then
       ./downloadData.sh $filename $FDC_DIR_ADDRESS
-      cat $CURRENTFILE >> $LASTFILE
+      cat $CURRENTFILE > $LASTFILE
    else
       currentdate=$(cut -d , -f 2 $CURRENTFILE)
       lastdate=$(cut -d , -f 2 $LASTFILE)

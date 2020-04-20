@@ -6,13 +6,13 @@
     <uses-permission android:name="android.permission.CAMERA" />
 
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:background="@color/light_green"
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
@@ -65,6 +65,14 @@
         <activity
             android:name=".ui.dashboard.StatsActivity"
             android:label="Stats">
+        </activity>
+        <activity
+            android:name=".ui.dashboard.SupportActivity"
+            android:label="Support">
+        </activity>
+        <activity
+            android:name=".ui.dashboard.ProfileActivity"
+            android:label="Profile">
         </activity>
         <activity
             android:name=".ui.scanner.ScanResultActivity"
