@@ -61,8 +61,7 @@ if [ $prompt == "true" ] ; then
 
    logdir="logs/uploads"
 
-   #filesToUpload="${alljsons[@]:0:$max_file_uploads}"
-   filesToUpload="${alljsons[@]:0:3}"
+   filesToUpload="${alljsons[@]:0:$max_file_uploads}"
 
    uploadFiles $filesToUpload
 fi
