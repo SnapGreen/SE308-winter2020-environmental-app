@@ -78,14 +78,23 @@ class Firebase {
 
   // Updates a product in the database
   async updateProduct(id, product) {
-    await this.db.collection("products").doc(id).set(product, { merge: true });
+    await this.db
+      .collection("products")
+      .doc(id)
+      .set(
+        {
+          ...product.info,
+          dateModified: admin.firestore.Timestamp.fromDate(
+            new Date(product.dateModified)
+          ),
+        },
+        { merge: true }
+      );
     return id;
   }
 
   // Batch writes products to firebase (max 500 operations)
   async productBatchWrite(products) {
-    // Timestamps when the server recieves the write request
-    let FieldValue = require("firebase-admin").firestore.FieldValue;
     let batch = this.db.batch();
 
     // Takes all the products, formats each product for the batch write
@@ -93,10 +102,9 @@ class Firebase {
       let ref = this.db.collection("products").doc(product.id);
       batch.set(ref, {
         ...product.info,
-        scoreModified: admin.firestore.Timestamp.fromDate(
-          new Date("December 1, 1000")
+        dateModified: admin.firestore.Timestamp.fromDate(
+          new Date(product.dateModified)
         ),
-        productModified: FieldValue.serverTimestamp(),
       });
     });
 
