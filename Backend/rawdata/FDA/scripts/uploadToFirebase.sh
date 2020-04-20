@@ -19,7 +19,9 @@ function uploadFiles(){
 
          curl --header "Content-Type: application/json"\
             --request POST --data  @$file http://localhost:8080/products\
-            | sed 's//\n/g' &> ${logdir}/${num}.log
+            &> $logfile
+
+         sed -i 's//\n/g' $logfile
 
          result=$(cat $logfile | grep -o 'successful')
          if [[ $result == "successful" ]] ; then
