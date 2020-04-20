@@ -52,7 +52,7 @@ const app = express();
 // The limit is meant prevent an injection
 app.use(
   bodyParser.json({
-    limit: "320b",
+    limit: 500kb,
   })
 );
 
@@ -169,13 +169,6 @@ app.post("/products", async function (req, res) {
   }
 
   try {
-    // Need a bigger limit since we are handling a batch write containing 500 products
-    app.use(
-      bodyParser.json({
-        limit: "1mb",
-      })
-    );
-
     await FIREBASE.productBatchWrite(req.body.products);
     res.json({
       message: `Product batch write successful`,
