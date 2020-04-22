@@ -52,7 +52,7 @@ const app = express();
 // The limit is meant prevent an injection
 app.use(
   bodyParser.json({
-    limit: 500kb,
+    limit: "500kb",
   })
 );
 

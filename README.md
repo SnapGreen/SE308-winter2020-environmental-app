@@ -4,6 +4,7 @@ Competitive, gamified behavior tracker to encourage awareness and encourage sust
 
 #Coding Style
 See the style convention we are using for Kotlin here: https://kotlinlang.org/docs/reference/coding-conventions.html
+Backend javascript style convention is JS Beautify via the 'prettify' plugin: https://www.prettifyjs.net/
 
 # See UI Mockup Here:
 
