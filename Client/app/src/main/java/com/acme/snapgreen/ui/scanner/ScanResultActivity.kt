@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.acme.snapgreen.Constants.Companion.SERVER_URL
 import com.acme.snapgreen.R
 import com.acme.snapgreen.data.NetworkManager
 import com.acme.snapgreen.data.StatUtil
@@ -24,12 +25,11 @@ class ScanResultActivity : AppCompatActivity() {
     /**
      * Saves the score associated with the barcode to the database
      */
-    private fun saveScore(score: Int)
-    {
+    private fun saveScore(score: Int) {
         val stats = StatUtil.getTodaysStats()
         stats.score += score
         StatUtil.setTodaysStats(stats)
-        Toast.makeText(applicationContext,"Added $score to your daily score", Toast.LENGTH_SHORT)
+        Toast.makeText(applicationContext, "Added $score to your daily score", Toast.LENGTH_SHORT)
             .show()
     }
 
@@ -49,8 +49,8 @@ class ScanResultActivity : AppCompatActivity() {
         val score = findViewById<TextView>(R.id.barcode_score)
         val saveButton = findViewById<Button>(R.id.result_save_button)
         val cancelButton = findViewById<Button>(R.id.result_cancel_button)
-        score.text = "3"
-        ingredients.text = ""
+        score.text = "+3"
+        ingredients.text = "Lead\nPlastic\nCardboard\nRubber"
 
 
         saveButton.setOnClickListener {
@@ -61,8 +61,7 @@ class ScanResultActivity : AppCompatActivity() {
             finish()
         }
 
-        //val url = "http://10.0.2.2:8080/products/$barCodeString"
-        val url = "http://10.0.2.2:8080/products/12345" // for test purposes
+        val url = "$SERVER_URL/products/12345" // for test purposes
 
         try {
 
