@@ -1,7 +1,6 @@
 package com.acme.snapgreen.ui.dashboard
 
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -28,7 +27,7 @@ class DashboardActivity : AppCompatActivity() {
 
         // Capture the layout's TextView and set the string as its text
         val welcomeView = findViewById<TextView>(R.id.textView).apply {
-            text = "Welcome " + username
+            text = "Welcome $username"
         }
 
         val waterButton = findViewById<Button>(R.id.usage_input)
