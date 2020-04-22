@@ -25,12 +25,11 @@ class ScanResultActivity : AppCompatActivity() {
     /**
      * Saves the score associated with the barcode to the database
      */
-    private fun saveScore(score: Int)
-    {
+    private fun saveScore(score: Int) {
         val stats = StatUtil.getTodaysStats()
         stats.score += score
         StatUtil.setTodaysStats(stats)
-        Toast.makeText(applicationContext,"Added $score to your daily score", Toast.LENGTH_SHORT)
+        Toast.makeText(applicationContext, "Added $score to your daily score", Toast.LENGTH_SHORT)
             .show()
     }
 
