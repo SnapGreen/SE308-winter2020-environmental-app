@@ -2,8 +2,9 @@
 
 Competitive, gamified behavior tracker to encourage awareness and encourage sustainable practices. Ability to scan product bar codes to see their environmental impact.
 
-#Coding Style
+# Coding Style
 Kotlin Style Convention: https://kotlinlang.org/docs/reference/coding-conventions.html
+
 Javascript Style Convention: ![Prettier](https://prettier.io/docs/en/)
 
 # See UI Mockup Here:
