@@ -3,8 +3,8 @@
 Competitive, gamified behavior tracker to encourage awareness and encourage sustainable practices. Ability to scan product bar codes to see their environmental impact.
 
 #Coding Style
-See the style convention we are using for Kotlin here: https://kotlinlang.org/docs/reference/coding-conventions.html
-Backend javascript style convention is JS Beautify via the 'prettify' plugin: https://www.prettifyjs.net/
+Kotlin Style Convention: https://kotlinlang.org/docs/reference/coding-conventions.html
+Javascript Style Convention: ![Prettier](https://prettier.io/docs/en/)
 
 # See UI Mockup Here:
 
