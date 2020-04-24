@@ -1,6 +1,9 @@
-RAWDATADIR:../dataraw/FDA/
-DATADIR:../data/FDA/
-TMPDIR:temp/
+RAWDATADIR:../dataraw/
+DATADIR:../data/
+FDADIR:FDA/
+EPADIR:EPA/
+LOGDIR:../logs/
+TMPDIR:../temp/
 SCRIPTDATADIR:files/
 MAPFILE:../data/FDA/map_fdcid_gtin.csv
 PATTERNFILE:removalpatterns.txt

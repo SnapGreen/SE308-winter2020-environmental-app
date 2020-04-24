@@ -1,13 +1,15 @@
 #!/bin/bash
-RAWDATADIR=$(grep -oP '(?<=RAWDATADIR:).*' settings.txt)
-MAPFILE=$(grep -oP '(?<=MAPFILE:).*' settings.txt)
-PRODS_PER_JSON=$(grep -oP '(?<=PRODS_PER_JSON:).*' settings.txt)
-PATTERNFILE=$(grep -oP '(?<=PATTERNFILE:).*' settings.txt)
-SPLIT_PREFIX=$(grep -oP '(?<=SPLIT_PREFIX:).*' settings.txt)
-SUFFIX_LEN=$(grep -oP '(?<=SUFFIX_LEN:).*' settings.txt)
-OUTFILE_END=$(grep -oP '(?<=OUTFILE_END:).*' settings.txt)
-TMPFILE_END=$(grep -oP '(?<=TMPFILE_END:).*' settings.txt)
-NUM_CLEAN_TESTS=$(grep -oP '(?<=NUM_CLEAN_TESTS:).*' settings.txt)
+SCRIPTDATADIR="files/"
+SETTINGS="${SCRIPTDATADIR}settings.txt"
+RAWDATADIR=$(grep -oP '(?<=RAWDATADIR:).*' $SETTINGS)
+MAPFILE=$(grep -oP '(?<=MAPFILE:).*' $SETTINGS)
+PRODS_PER_JSON=$(grep -oP '(?<=PRODS_PER_JSON:).*' $SETTINGS)
+PATTERNFILE=$(grep -oP '(?<=PATTERNFILE:).*' $SETTINGS)
+SPLIT_PREFIX=$(grep -oP '(?<=SPLIT_PREFIX:).*' $SETTINGS)
+SUFFIX_LEN=$(grep -oP '(?<=SUFFIX_LEN:).*' $SETTINGS)
+OUTFILE_END=$(grep -oP '(?<=OUTFILE_END:).*' $SETTINGS)
+TMPFILE_END=$(grep -oP '(?<=TMPFILE_END:).*' $SETTINGS)
+NUM_CLEAN_TESTS=$(grep -oP '(?<=NUM_CLEAN_TESTS:).*' $SETTINGS)
 NOCATS_TMP="nocats.tmp"
 PREPPED_TMP="prepped.tmp"
 INGREDIENTS_TMP="ingredients.tmp"
@@ -38,7 +40,7 @@ function timestamp(){
 
 function checkSettings(){
    # function to verify settings are what we expect (for debugging)
-   printf "settings check...\n"
+   print "settings check:"
    printf "\tRAWDATADIR: %s\n" $RAWDATADIR
    printf "\tMAPFILE: %s\n" $MAPFILE
    printf "\tPRODS_PER_JSON: %s\n" $PRODS_PER_JSON

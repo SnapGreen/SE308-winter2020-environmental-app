@@ -1,32 +1,43 @@
 #!/bin/bash
-SCRIPTDATADIR=$(grept -oP '(?<=SCRIPTDATADIR:).*' settings.txt)
-CURRENTFILE="${SCRIPTDATADIR}$(grep -oP '(?<=CURRENTFILE:).*' settings.txt)"
-LASTFILE="${SCRIPTDATADIR}$(grep -oP '(?<=LASTFILE:).*' settings.txt)"
-FDC_DIR_ADDRESS=$(grep -oP '(?<=FDC_DIR_ADDRESS:).*' settings.txt)
-TMPDIR=$(grep -oP '(?<=TMPDIR:).*' settings.txt)
-TMPFILE_END=$(grep -oP '(?<=TMPFILE_END:).*' settings.txt)
+SCRIPTDATADIR="files/"
+SETTINGS="${SCRIPTDATADIR}settings.txt"
+CURRENTFILE="${SCRIPTDATADIR}$(grep -oP '(?<=CURRENTFILE:).*' $SETTINGS)"
+LASTFILE="${SCRIPTDATADIR}$(grep -oP '(?<=LASTFILE:).*' $SETTINGS)"
+FDC_DIR_ADDRESS=$(grep -oP '(?<=FDC_DIR_ADDRESS:).*' $SETTINGS)
+TMPDIR=$(grep -oP '(?<=TMPDIR:).*' $SETTINGS)
+TMPFILE_END=$(grep -oP '(?<=TMPFILE_END:).*' $SETTINGS)
 TMPLINKSFILE="${TMPDIR}links${TMPFILE_END}"
 TMPFILELIST="${TMPDIR}available_data${TMPFILE_END}"
-USAGE="./getFDAUpdate.sh [OPTION]"
-HELP1="${USAGE}\n\tIf no OPTION supplied, debug mode"
-HELP2="\n\t-f: force download"
-HELP3="\n\t-s: bypass debug, download if update available w/o prompting\n"
-HELP="${HELP1}${HELP2}${HELP3}"
+USAGE="\tUsage: ./getFDAUpdate.sh [OPTION] (use option -h for help)\n"
+HELP="${USAGE}\t**If no OPTION supplied, debug mode on (temp files remain)\n"
+HELP="${HELP}\t\t-a: automation mode, download if update available w/out prompt\n"
+HELP="${HELP}\t\t-b: bypass debug mode\n"
+HELP="${HELP}\t\t-f: force download\n"
+HELP="${HELP}\t\t-h: print help\n"
 
 debug=true
+done=false
+silent=false
 
 function checkSettings(){
-   printf("SCRIPTDATADIR: %s\n", $SCRIPTDATADIR)
-   printf("SCRIPTDATADIR: %s\n", $SCRIPTDATADIR)
-   printf("SCRIPTDATADIR: %s\n", $SCRIPTDATADIR)
-   printf("SCRIPTDATADIR: %s\n", $SCRIPTDATADIR)
-   printf("SCRIPTDATADIR: %s\n", $SCRIPTDATADIR)
-   printf("SCRIPTDATADIR: %s\n", $SCRIPTDATADIR)
-   printf("SCRIPTDATADIR: %s\n", $SCRIPTDATADIR)
-   printf("SCRIPTDATADIR: %s\n", $SCRIPTDATADIR)
+   echo "settings check:"
+   printf "\tSCRIPTDATADIR: %s\n" $SCRIPTDATADIR
+   printf "\tSETTINGS: %s\n" $SETTINGS
+   printf "\tCURRENTFILE: %s\n" $CURRENTFILE
+   printf "\tLASTFILE: %s\n" $LASTFILE
+   printf "\tFDC_DIR_ADDRESS: %s\n" $FDC_DIR_ADDRESS
+   printf "\tTMPDIR: %s\n" $TMPDIR
+   printf "\tTMPFILE_END: %s\n" $TMPFILE_END
+   printf "\tTMPLINKSFILE: %s\n" $TMPLINKSFILE
+   printf "\tTMPFILELIST: %s\n" $TMPFILELIST
+   printf "\tUSAGE:\n"
+   printf "$USAGE"
+   printf "\tHELP:\n"
+   printf "$HELP"
 }
 
 function convertMonthToDigits(){
+   echo "converting months to digit format..."
    sed -i 's/-Jan-/01/; t;
            s/-Feb-/02/; t;
            s/-Mar-/03/; t;
@@ -42,69 +53,111 @@ function convertMonthToDigits(){
 }
 
 function rearrangeDate(){
+   echo "rearranging date..."
    a='s/,\([0-9]\{2\}\)\([0-9]\{2\}\)\([0-9]\{4\}\)'
    b=' \([0-9]\{2\}\):\([0-9]\{2\}\),/,\3\2\1\4\5,/g' 
    pattern="${a}${b}"
    sed -i "$pattern" $1
 }   
 
-
-if [[ "$1" == "-h" ]] ; then
-   printf "$HELP"
-elif [[ -z $1 ]] && [ [ "$1" == "-f" ] || [ "$1" == "-s" ] ] ; then
-   #gets the html file showing the directory structure
-   wget -O $TMPLINKSFILE -np $FDC_DIR_ADDRESS
-
+function isolateData(){
+   echo "isolating required data..."
    # eliminates the lines we don't need
-   sed '/branded_food/!d' $TMPLINKSFILE > $TMPFILELIST
-   rm $TMPLINKSFILE
-
+   sed '/branded_food/!d' $1 > $2
    # eliminates the first unneeded parts of the lines left 
-   sed -i 's/^.*\">//g' $TMPFILELIST 
+   sed -i 's/^.*\">//g' $2 
    # puts a , separator between the filename and date
-   sed -i 's/<\/a>\s\+/,/g' $TMPFILELIST 
+   sed -i 's/<\/a>\s\+/,/g' $2 
    # concatenates the last two columns to ...:seconds, datasize
-   sed -i 's/:\([0-9][0-9]\) \+\([0-9]\+\)/:\1,\2\n/g' $TMPFILELIST 
+   sed -i 's/:\([0-9][0-9]\) \+\([0-9]\+\)/:\1,\2\n/g' $2 
 
+   if [ $debug == "false" ] ; then
+      rm $1
+   fi
+}
+
+function getDirectoryFromWeb(){
+   echo "getting available file list from web..."
+   > $1
+   #gets the html file showing the directory structure
+   wget -O $1 -np $2
+}
+
+function storeNewestEntry(){
+   echo "storing newest file name and date..."
+   # https://unix.stackexchange.com/questions/170204/find-the-max-value-of-column-1-and-print-respective-record-from-column-2-from-fill
+   sort -t ',' -nrk2,2 $1 | head -1 > $2
+
+   if [ $debug == "false" ] ; then
+      rm $1
+   fi
+}
+
+function getFDAData(){
+   echo "downloading data..."
+   ./downloadData.sh $1 $2 -b
+   cat $3 > $4
+}
+
+function getIfNew(){
+   echo "checking if new data is available..."
+   currentdate=$(cut -d , -f 2 $3)
+   lastdate=$(cut -d , -f 2 $4)
+   datediff=$((currentdate - lastdate))
+
+   if [ "$1" == "-d" ] ; then
+      getFDAData $1 $2 $3 $4
+   elif [[ $datediff -gt 0 ]] ; then
+      printf "\tAn update is available:\n"
+      datasize=$(cut -d , -f 3 $CURRENTFILE | tr -d '\n')
+      let dataMB=datasize/1048576
+      printf "\tdownloading will overwrite last file, if present.\n"
+      printf "\tNew file is about %d MB.\n" $dataMB
+      printf "\tdownload new file? (Y/n): "
+      read reply
+      if [ $reply == "y" ] || [ $reply == "Y" ] ; then
+         getFDAData $1 $2 $3 $3
+      else
+         printf "reply was %s, goodbye!\n" $reply
+      fi
+   else
+      printf "...no updates available.\n"
+   fi
+}
+
+
+if [[ -n $1 ]] ; then
+   if [ "$1" == "-h" ] ; then
+      printf $HELP
+      done=true
+   elif [ "$1" == "-f" ] || [ "$1" == "-a" ] || [ "$1" == "-b" ] ; then
+      debug=false
+      if [ "$1" != "-b" ] ; then
+         silent=true
+      fi
+   else
+      echo $USAGE
+      done=true
+   fi
+fi
+
+if [ $done == "false" ] ; then
+   if [ $silent == "false" ] ; then
+      checkSettings
+   fi
+
+   getDirectoryFromWeb $TMPLINKSFILE $FDC_DIR_ADDRESS
+   isolateData $TMPLINKSFILE $TMPFILELIST
    convertMonthToDigits $TMPFILELIST
    rearrangeDate $TMPFILELIST
-
-   # https://unix.stackexchange.com/questions/170204/find-the-max-value-of-column-1-and-print-respective-record-from-column-2-from-fill
-   sort -t ',' -nrk2,2 $TMPFILELIST | head -1 > $CURRENTFILE
-   rm $TMPFILELIST
+   storeNewestEntry $TMPFILELIST $CURRENTFILE
 
    filename=$(cut -d , -f 1 $CURRENTFILE)
 
-   if [[ "$1" == '-f' ]] ; then
-      ./downloadData.sh $filename $FDC_DIR_ADDRESS
-      cat $CURRENTFILE > $LASTFILE
+   if [ "$1" == '-f' ] ; then
+      getFDAData $filename $FDC_DIR_ADDRESS $CURRENTFILE $LASTFILE
    else
-      currentdate=$(cut -d , -f 2 $CURRENTFILE)
-      lastdate=$(cut -d , -f 2 $LASTFILE)
-      datediff=$((currentdate - lastdate))
-
-      if [[ "$1" == "-d" ]] ; then
-         ./downloadData.sh $filename $FDC_DIR_ADDRESS
-         cat $CURRENTFILE >> $LASTFILE
-      elif [[ $datediff -gt 0 ]] ; then
-         printf "\tAn update is available:\n"
-         datasize=$(cut -d , -f 3 $CURRENTFILE | tr -d '\n')
-         let dataMB=datasize/1048576
-         printf "\tdownloading will overwrite last file, if present.\n"
-         printf "\tNew file is about %d MB.\n" $dataMB
-         printf "\tdownload new file? (Y/n): "
-         read reply
-         if [ $reply == "y" ] || [ $reply == "Y" ] ; then
-            ./downloadData.sh $filename $FDC_DIR_ADDRESS
-            cat $CURRENTFILE > $LASTFILE
-         else
-            printf "reply was %s, goodbye!\n" $reply
-         fi
-      else
-         printf "...no updates available.\n"
-      fi
+      getIfNew $filename $FDC_DIR_ADDRESS $CURRENTFILE $LASTFILE
    fi
-else
-   print $USAGE
 fi
 
