@@ -25,4 +25,4 @@ android:
 before_script:
   - cd Client
 before_install:
- - chmod +x gradlew
+ - chmod +x /.gradlew
