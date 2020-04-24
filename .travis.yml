@@ -29,3 +29,5 @@ before_install:
  - pwd
  - ls -la
  - chmod +x gradlew
+ - yes | sdkmanager "platforms;android-28"
+
