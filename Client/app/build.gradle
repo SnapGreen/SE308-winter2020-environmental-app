@@ -12,6 +12,9 @@ apply plugin: 'realm-android'
 android {
     viewBinding.enabled = true
     compileSdkVersion 28
+    lintOptions {
+        abortOnError false
+    }
     defaultConfig {
         applicationId "com.acme.snapgreen"
         minSdkVersion 26
