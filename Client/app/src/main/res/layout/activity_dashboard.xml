@@ -34,6 +34,7 @@
         app:layout_constraintVertical_bias="0.032" />
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="409dp"
         android:layout_height="109dp"
         android:layout_marginTop="52dp"
@@ -130,7 +131,7 @@
         android:textAlignment="center"
         android:textIsSelectable="false"
         android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@+id/dashboard_grade"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
         tools:layout_editor_absoluteX="20dp" />
 
     <TextView
@@ -198,7 +199,7 @@
         android:textIsSelectable="false"
         android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -221,6 +222,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
         app:srcCompat="@drawable/waste" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
