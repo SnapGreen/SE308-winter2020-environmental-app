@@ -15,7 +15,7 @@ PRODS_PER_JSON:250
 CURRENTFILE:currentlatest.txt
 LASTFILE:lastlatest.txt
 FDC_DIR_ADDRESS:https://fdc.nal.usda.gov/fdc-datasets
-FB_WRITES_PER_DAY:17000
+FB_WRITES_PER_DAY:16500
 DATASOURCE:branded_food.csv
 UPDATESOURCE:food_update_log_entry.csv
 NUM_CLEAN_TESTS:10

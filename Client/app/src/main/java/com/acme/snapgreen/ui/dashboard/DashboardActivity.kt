@@ -1,7 +1,6 @@
 package com.acme.snapgreen.ui.dashboard
 
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -15,6 +14,11 @@ const val EXTRA_MESSAGE = "com.acme.snapgreen.MESSAGE"
 class DashboardActivity : AppCompatActivity() {
 
     private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var gradeText: TextView
+    private lateinit var waterUsageText: TextView
+    private lateinit var wasteUsageText: TextView
+    private lateinit var waterPercentText: TextView
+    private lateinit var wastePercentText: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,19 +31,17 @@ class DashboardActivity : AppCompatActivity() {
         val username = intent.getStringExtra(EXTRA_MESSAGE)
 
         // Capture the layout's TextView and set the string as its text
-        val welcomeView = findViewById<TextView>(R.id.textView).apply {
-            text = "Welcome " + username
-        }
+        val welcomeView = findViewById<TextView>(R.id.textView)
+
+        val gradeText = findViewById<TextView>(R.id.dashboard_grade)
+        val waterUsageText = findViewById<TextView>(R.id.dashboard_water_usage)
+        val wasteUsageText = findViewById<TextView>(R.id.dashboard_trash_usage)
+        val waterPercentText = findViewById<TextView>(R.id.dashboard_water_percent)
+        val wastePercentText = findViewById<TextView>(R.id.dashboard_trash_percent)
 
         val waterButton = findViewById<Button>(R.id.usage_input)
         waterButton.setOnClickListener {
             val intent = Intent(this, UsageInputActivity::class.java)
-            startActivity(intent)
-        }
-
-        val shopListButton = findViewById<Button>(R.id.shopping_list)
-        shopListButton.setOnClickListener {
-            val intent = Intent(this, ShoppingListActivity::class.java)
             startActivity(intent)
         }
 
@@ -48,12 +50,14 @@ class DashboardActivity : AppCompatActivity() {
             val intent = Intent(this, InviteActivity::class.java)
             startActivity(intent)
         }
+        inviteButton.background = null
 
         val settingsButton = findViewById<Button>(R.id.settings)
         settingsButton.setOnClickListener {
             val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
         }
+        settingsButton.background = null
 
         val scannerButton = findViewById<Button>(R.id.scan)
         scannerButton.setOnClickListener {
@@ -66,5 +70,14 @@ class DashboardActivity : AppCompatActivity() {
             val intent = Intent(this, StatsActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    /**
+     * Updates the water usage, waste usage, percent change from last week, and the overall
+     * grade displayed in the center of the dashboard.
+     */
+    fun updateDashboardStatistics() {
+        //TODO: Query / calculate the combined statistics of the last 7 days and update the
+        // text views accordingly.
     }
 }

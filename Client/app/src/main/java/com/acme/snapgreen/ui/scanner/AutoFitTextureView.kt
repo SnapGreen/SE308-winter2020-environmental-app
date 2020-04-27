@@ -3,7 +3,6 @@ package com.acme.snapgreen.ui.scanner
 import android.content.Context
 import android.util.AttributeSet
 import android.view.TextureView
-import android.view.View
 
 /**
  * A [TextureView] that can be adjusted to a specified aspect ratio.
@@ -36,8 +35,8 @@ class AutoFitTextureView @JvmOverloads constructor(
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        val width = View.MeasureSpec.getSize(widthMeasureSpec)
-        val height = View.MeasureSpec.getSize(heightMeasureSpec)
+        val width = MeasureSpec.getSize(widthMeasureSpec)
+        val height = MeasureSpec.getSize(heightMeasureSpec)
         if (ratioWidth == 0 || ratioHeight == 0) {
             setMeasuredDimension(width, height)
         } else {
