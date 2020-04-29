@@ -43,63 +43,63 @@ class UsageInputActivity : AppCompatActivity() {
 
         var currentDateField = findViewById<TextView>(R.id.currentDate)
         val currentDateTimeString = DateFormat.getDateTimeInstance().format(Date())
-        currentDateField.setText(currentDateTimeString)
+        currentDateField.text = currentDateTimeString
 
         var saysEdit = true
         var maxLength = 3
         var minutesShoweredField = findViewById<EditText>(R.id.minutesShowered)
-        minutesShoweredField.setFilters(arrayOf<InputFilter>(LengthFilter(maxLength)))
+        minutesShoweredField.filters = arrayOf<InputFilter>(LengthFilter(maxLength))
         var timesFlushedField = findViewById<EditText>(R.id.timesFlushed)
-        timesFlushedField.setFilters(arrayOf<InputFilter>(LengthFilter(maxLength)))
+        timesFlushedField.filters = arrayOf<InputFilter>(LengthFilter(maxLength))
         var timesDishwasherRunField = findViewById<EditText>(R.id.timesDishwasherRun)
-        timesDishwasherRunField.setFilters(arrayOf<InputFilter>(LengthFilter(maxLength)))
+        timesDishwasherRunField.filters = arrayOf<InputFilter>(LengthFilter(maxLength))
         var minutesWashingMachineField = findViewById<EditText>(R.id.minutesWashingMachine)
-        minutesWashingMachineField.setFilters(arrayOf<InputFilter>(LengthFilter(maxLength)))
+        minutesWashingMachineField.filters = arrayOf<InputFilter>(LengthFilter(maxLength))
 
         var hoursLightOnField = findViewById<EditText>(R.id.hoursLightOn)
-        hoursLightOnField.setFilters(arrayOf<InputFilter>(LengthFilter(maxLength)))
+        hoursLightOnField.filters = arrayOf<InputFilter>(LengthFilter(maxLength))
         var numAlumCansUsedField = findViewById<EditText>(R.id.numAlumCansUsed)
-        numAlumCansUsedField.setFilters(arrayOf<InputFilter>(LengthFilter(maxLength)))
+        numAlumCansUsedField.filters = arrayOf<InputFilter>(LengthFilter(maxLength))
         var numStyroContainersUsedField = findViewById<EditText>(R.id.numStyroContainersUsed)
-        numStyroContainersUsedField.setFilters(arrayOf<InputFilter>(LengthFilter(maxLength)))
+        numStyroContainersUsedField.filters = arrayOf<InputFilter>(LengthFilter(maxLength))
         var numPlasticStrawsUsedField = findViewById<EditText>(R.id.numPlasticStrawsUsed)
-        numPlasticStrawsUsedField.setFilters(arrayOf<InputFilter>(LengthFilter(maxLength)))
+        numPlasticStrawsUsedField.filters = arrayOf<InputFilter>(LengthFilter(maxLength))
         var numPlasticUtensilsUsedField = findViewById<EditText>(R.id.numPlasticUtensilsUsed)
-        numPlasticUtensilsUsedField.setFilters(arrayOf<InputFilter>(LengthFilter(maxLength)))
+        numPlasticUtensilsUsedField.filters = arrayOf<InputFilter>(LengthFilter(maxLength))
 
         var editButton = findViewById<Button>(R.id.editButton)
         editButton.setOnClickListener {
             if (saysEdit) {
-                minutesShoweredField.setEnabled(true)
-                timesFlushedField.setEnabled(true)
-                timesDishwasherRunField.setEnabled(true)
-                minutesWashingMachineField.setEnabled(true)
+                minutesShoweredField.isEnabled = true
+                timesFlushedField.isEnabled = true
+                timesDishwasherRunField.isEnabled = true
+                minutesWashingMachineField.isEnabled = true
 
-                hoursLightOnField.setEnabled(true)
-                numAlumCansUsedField.setEnabled(true)
-                numStyroContainersUsedField.setEnabled(true)
-                numPlasticStrawsUsedField.setEnabled(true)
-                numPlasticUtensilsUsedField.setEnabled(true)
+                hoursLightOnField.isEnabled = true
+                numAlumCansUsedField.isEnabled = true
+                numStyroContainersUsedField.isEnabled = true
+                numPlasticStrawsUsedField.isEnabled = true
+                numPlasticUtensilsUsedField.isEnabled = true
 
-                editButton.setText("SAVE")
+                editButton.text = "SAVE"
                 saysEdit = false
             }
             else {
-                minutesShoweredField.setEnabled(false)
-                timesFlushedField.setEnabled(false)
-                timesDishwasherRunField.setEnabled(false)
-                minutesWashingMachineField.setEnabled(false)
+                minutesShoweredField.isEnabled = false
+                timesFlushedField.isEnabled = false
+                timesDishwasherRunField.isEnabled = false
+                minutesWashingMachineField.isEnabled = false
 
-                hoursLightOnField.setEnabled(false)
-                numAlumCansUsedField.setEnabled(false)
-                numStyroContainersUsedField.setEnabled(false)
-                numPlasticStrawsUsedField.setEnabled(false)
-                numPlasticUtensilsUsedField.setEnabled(false)
+                hoursLightOnField.isEnabled = false
+                numAlumCansUsedField.isEnabled = false
+                numStyroContainersUsedField.isEnabled = false
+                numPlasticStrawsUsedField.isEnabled = false
+                numPlasticUtensilsUsedField.isEnabled = false
 
                 saveScore(minutesShoweredField.text.toString().toDouble(), timesFlushedField.text.toString().toInt(), timesDishwasherRunField.text.toString().toInt(), minutesWashingMachineField.text.toString().toDouble(), hoursLightOnField.text.toString().toDouble(), numAlumCansUsedField.text.toString().toInt(), numStyroContainersUsedField.text.toString().toInt(), numPlasticStrawsUsedField.text.toString().toInt(), numPlasticUtensilsUsedField.text.toString().toInt())
                 finish()
 
-                editButton.setText("EDIT")
+                editButton.text = "EDIT"
                 saysEdit = true
             }
         }

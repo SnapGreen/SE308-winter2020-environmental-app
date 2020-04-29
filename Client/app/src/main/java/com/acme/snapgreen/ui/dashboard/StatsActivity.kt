@@ -8,7 +8,6 @@ import com.anychart.AnyChartView
 import com.anychart.chart.common.dataentry.DataEntry
 import com.anychart.chart.common.dataentry.ValueDataEntry
 
-
 class StatsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
