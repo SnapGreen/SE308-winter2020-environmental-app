@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout4"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -9,16 +10,24 @@
         android:id="@+id/imageView"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
-        app:srcCompat="@android:drawable/sym_action_chat" />
+        app:srcCompat="@drawable/avatar"
+        tools:layout_editor_absoluteX="24dp"
+        tools:layout_editor_absoluteY="32dp" />
 
     <TextView
         android:id="@+id/user_display_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="48dp"
-        android:text="friend_name"
-        android:textSize="18sp" />
-</LinearLayout>
+        android:text="Harry Josephstine"
+        android:textSize="18sp"
+        tools:layout_editor_absoluteX="86dp"
+        tools:layout_editor_absoluteY="32dp" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="226dp"
+        android:layout_height="wrap_content"
+        android:text="Score: 2341"
+        tools:layout_editor_absoluteX="86dp"
+        tools:layout_editor_absoluteY="56dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
