@@ -2,11 +2,7 @@ package com.acme.snapgreen.ui.login
 
 import android.app.Activity
 import android.content.Intent
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.annotation.StringRes
-import androidx.appcompat.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -15,10 +11,15 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.acme.snapgreen.R
 import com.acme.snapgreen.data.NetworkManager
 import com.acme.snapgreen.ui.dashboard.DashboardActivity
 import com.acme.snapgreen.ui.dashboard.EXTRA_MESSAGE
+import io.realm.Realm
 
 class LoginActivity : AppCompatActivity() {
 
@@ -27,16 +28,23 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         // set context for Valley calls for the remainder of the app
         NetworkManager.getInstance(applicationContext)
-
+        Realm.init(applicationContext)
 
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_login)
 
-        val username = findViewById<EditText>(R.id.username)
+        val username = findViewById<EditText>(R.id.login_email)
         val password = findViewById<EditText>(R.id.password)
         val login = findViewById<Button>(R.id.login)
         val loading = findViewById<ProgressBar>(R.id.loading)
+        val createUserBtn = findViewById<Button>(R.id.create_user_btn)
+
+        // moves to the create user page
+        createUserBtn.setOnClickListener {
+            val intent = Intent(this, CreateUserActivity::class.java)
+            startActivity(intent)
+        }
 
         loginViewModel = ViewModelProviders.of(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)

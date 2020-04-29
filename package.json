@@ -4,7 +4,8 @@
   "description": "Environmental App for Cal Poly CSC308, winter 202, Professor Bruno da Silva",
   "main": "index.js",
   "scripts": {
-    "serve": "nodemon backend/server/app/index.js",
+    "prettier": "prettier --write Backend/**/*.js",
+    "serve": "nodemon Backend/index.js",
     "test": "jest"
   },
   "author": "308Squad",
@@ -18,7 +19,18 @@
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
+    "husky": "^4.2.5",
     "jest": "^25.3.0",
-    "nodemon": "^2.0.2"
+    "lint-staged": "^10.1.7",
+    "nodemon": "^2.0.2",
+    "prettier": "^2.0.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,css,md}": "prettier --write"
   }
 }

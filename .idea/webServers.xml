@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="6155c1c0-cb9c-43ad-83a9-6d7578a0061f" name="SE_Server" url="https://34.209.125.52:22">
+        <fileTransfer rootFolder="/home/jtwedt/projSE308/SE308-winter2020-environmental-app" accessType="SFTP" host="34.209.125.52" port="22" sshConfigId="65ad4335-b481-4169-bd8a-2ac260548108" sshConfig="jtwedt@34.209.125.52:22 key" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
