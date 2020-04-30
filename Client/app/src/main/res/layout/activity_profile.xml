@@ -7,8 +7,7 @@
 
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_weight="">
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/imageView"
@@ -158,8 +157,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="">
+        android:layout_height="match_parent">
 
 
         <Button
