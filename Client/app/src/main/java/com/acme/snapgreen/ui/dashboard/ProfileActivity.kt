@@ -6,6 +6,7 @@ import android.text.TextUtils
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.acme.snapgreen.R
+import com.acme.snapgreen.ui.login.LoginActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -21,14 +22,14 @@ class ProfileActivity : AppCompatActivity() {
     lateinit var mEmail: EditText
     lateinit var mPassword: EditText
     lateinit var mUpdateButton: Button
-    lateinit var mDataBase: DatabaseReference
-    lateinit var mAuth: FirebaseAuth
-//
+//    lateinit var mDataBase: DatabaseReference
+//    lateinit var mAuth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Toast.makeText(applicationContext, "Activity launched!", Toast.LENGTH_SHORT).show()
         setContentView(R.layout.activity_profile)
-//
+
         mUserImage = findViewById(R.id.profilePicImageView)
         mFirstName = findViewById(R.id.profileFirstName)
         mLastName = findViewById(R.id.profileLastName)
@@ -36,12 +37,12 @@ class ProfileActivity : AppCompatActivity() {
         mEmail = findViewById(R.id.profileEmail)
         mPassword = findViewById(R.id.profilePassword)
         mUpdateButton = findViewById(R.id.profileUpdateButton)
-//
+
 //        mAuth = FirebaseAuth.getInstance()
 //        val uid = mAuth.currentUser?.uid
 //
-//        mDataBase = FirebaseDatabase.getInstance().getReference("Users").child(uid)
-//
+//        mDataBase = FirebaseDatabase.getInstance().getReference("Users").child(uid) //.getReference("Users")?
+
         mUpdateButton.setOnClickListener {
 
             val firstName = mFirstName.text.toString().trim()
@@ -71,11 +72,11 @@ class ProfileActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            //updateUser(firstName, lastName, phoneNum, email, password)
+//            updateUser(firstName, lastName, phoneNum, email, password)
         }
 
     }
-//
+
 //    private fun updateUser(
 //        firstName: String,
 //        lastName: String,
@@ -83,7 +84,7 @@ class ProfileActivity : AppCompatActivity() {
 //        email: String,
 //        password: String
 //    ) {
-//        val userMap = HashMap<String, String>()
+//        val userMap = HashMap<String, Any>()
 //
 //        userMap["firstName"] = firstName
 //        userMap["lastName"] = lastName
@@ -91,14 +92,14 @@ class ProfileActivity : AppCompatActivity() {
 //        userMap["email"] = email
 //        userMap["password"] = password
 //
-//        mDataBase.setValue(userMap).addOnCompleteListener(OnCompleteListener { task ->
+//        mDataBase.updateChildren(userMap).addOnCompleteListener { task ->
 //
 //            if (task.isSuccessful) {
-//                val Intent = Intent(applicationContext, ProfileActivity::class.java)
-//                startActivity(Intent)
+//                val intent = Intent(applicationContext, DashboardActivity::class.java)
+//                startActivity(intent)
 //                finish()
 //            }
-//        })
+//        }
 //    }
 
 
