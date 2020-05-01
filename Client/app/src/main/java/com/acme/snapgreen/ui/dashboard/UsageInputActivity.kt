@@ -17,11 +17,11 @@ import java.util.*
 class UsageInputActivity : AppCompatActivity() {
 
     private fun saveScore(
-        minutesShowered: Double,
+        minutesShowered: Int,
         timesFlushed: Int,
         timesDishwasherRun: Int,
-        minutesWashingMachine: Double,
-        hoursLightOn: Double,
+        minutesWashingMachine: Int,
+        hoursLightOn: Int,
         numAlumCansUsed: Int,
         numStyroContainersUsed: Int,
         numPlasticStrawsUsed: Int,
@@ -103,11 +103,11 @@ class UsageInputActivity : AppCompatActivity() {
                 numPlasticUtensilsUsedField.isEnabled = false
 
                 saveScore(
-                    minutesShoweredField.text.toString().toDouble(),
+                    minutesShoweredField.text.toString().toInt(),
                     timesFlushedField.text.toString().toInt(),
                     timesDishwasherRunField.text.toString().toInt(),
-                    minutesWashingMachineField.text.toString().toDouble(),
-                    hoursLightOnField.text.toString().toDouble(),
+                    minutesWashingMachineField.text.toString().toInt(),
+                    hoursLightOnField.text.toString().toInt(),
                     numAlumCansUsedField.text.toString().toInt(),
                     numStyroContainersUsedField.text.toString().toInt(),
                     numPlasticStrawsUsedField.text.toString().toInt(),
