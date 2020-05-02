@@ -13,10 +13,11 @@ HELP="${USAGE}\t**If no OPTION supplied, debug mode on (temp files remain)\n"
 HELP="${HELP}\t\t-a: automation mode, download if update available w/out prompt\n"
 HELP="${HELP}\t\t-b: bypass debug mode\n"
 HELP="${HELP}\t\t-f: force download\n"
+HELP="${HELP}\t\t-s: output settings only\n"
 HELP="${HELP}\t\t-h: print help\n"
 
 debug=true
-done=false
+fin=false
 silent=false
 
 function checkSettings(){
@@ -71,7 +72,7 @@ function isolateData(){
    # concatenates the last two columns to ...:seconds, datasize
    sed -i 's/:\([0-9][0-9]\) \+\([0-9]\+\)/:\1,\2\n/g' $2 
 
-   if [ $debug == "false" ] ; then
+   if [ "$debug" == "false" ] ; then
       rm $1
    fi
 }
@@ -88,7 +89,7 @@ function storeNewestEntry(){
    # https://unix.stackexchange.com/questions/170204/find-the-max-value-of-column-1-and-print-respective-record-from-column-2-from-fill
    sort -t ',' -nrk2,2 $1 | head -1 > $2
 
-   if [ $debug == "false" ] ; then
+   if [ "$debug" == "false" ] ; then
       rm $1
    fi
 }
@@ -115,7 +116,7 @@ function getIfNew(){
       printf "\tNew file is about %d MB.\n" $dataMB
       printf "\tdownload new file? (Y/n): "
       read reply
-      if [ $reply == "y" ] || [ $reply == "Y" ] ; then
+      if [ "$reply" == "y" ] || [ "$reply" == "Y" ] ; then
          getFDAData $1 $2 $3 $3
       else
          printf "reply was %s, goodbye!\n" $reply
@@ -128,21 +129,24 @@ function getIfNew(){
 
 if [[ -n $1 ]] ; then
    if [ "$1" == "-h" ] ; then
-      printf $HELP
-      done=true
+      printf "$HELP"
+      fin=true
    elif [ "$1" == "-f" ] || [ "$1" == "-a" ] || [ "$1" == "-b" ] ; then
       debug=false
       if [ "$1" != "-b" ] ; then
          silent=true
       fi
+   elif [ "$1" == "-s" ] ; then
+      checkSettings
+      fin=true
    else
-      echo $USAGE
-      done=true
+      printf "$USAGE"
+      fin=true
    fi
 fi
 
-if [ $done == "false" ] ; then
-   if [ $silent == "false" ] ; then
+if [ "$fin" == "false" ] ; then
+   if [ "$silent" == "false" ] ; then
       checkSettings
    fi
 
