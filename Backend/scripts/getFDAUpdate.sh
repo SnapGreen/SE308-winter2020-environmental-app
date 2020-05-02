@@ -1,11 +1,11 @@
 #!/bin/bash
 SCRIPTDATADIR="files/"
 SETTINGS="${SCRIPTDATADIR}settings.txt"
-CURRENTFILE="${SCRIPTDATADIR}$(grep -oP '(?<=CURRENTFILE:).*' $SETTINGS)"
-LASTFILE="${SCRIPTDATADIR}$(grep -oP '(?<=LASTFILE:).*' $SETTINGS)"
-FDC_DIR_ADDRESS=$(grep -oP '(?<=FDC_DIR_ADDRESS:).*' $SETTINGS)
-TMPDIR=$(grep -oP '(?<=TMPDIR:).*' $SETTINGS)
-TMPFILE_END=$(grep -oP '(?<=TMPFILE_END:).*' $SETTINGS)
+CURRENTFILE="${SCRIPTDATADIR}$(grep -oP '(?<=^CURRENTFILE:).*' $SETTINGS)"
+LASTFILE="${SCRIPTDATADIR}$(grep -oP '(?<=^LASTFILE:).*' $SETTINGS)"
+FDC_DIR_ADDRESS=$(grep -oP '(?<=^FDC_DIR_ADDRESS:).*' $SETTINGS)
+TMPDIR=$(grep -oP '(?<=^TMPDIR:).*' $SETTINGS)
+TMPFILE_END=$(grep -oP '(?<=^TMPFILE_END:).*' $SETTINGS)
 TMPLINKSFILE="${TMPDIR}links${TMPFILE_END}"
 TMPFILELIST="${TMPDIR}available_data${TMPFILE_END}"
 USAGE="\tUsage: ./getFDAUpdate.sh [OPTION] (use option -h for help)\n"

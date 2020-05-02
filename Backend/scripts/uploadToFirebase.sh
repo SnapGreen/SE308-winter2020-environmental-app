@@ -1,13 +1,13 @@
 #!/bin/bash
 SETTINGS="files/settings.txt"
-SUFFIX_LEN=$(grep -oP "(?<=SUFFIX_LEN:).*" $SETTINGS)
-PRODS_PER_JSON=$(grep -oP "(?<=PRODS_PER_JSON:).*" $SETTINGS)
-FB_WRITES_PER_DAY=$(grep -oP "(?<=FB_WRITES_PER_DAY:).*" $SETTINGS)
-SPLIT_PREFIX=$(grep -oP "(?<=SPLIT_PREFIX:).*" $SETTINGS)
-OUTFILE_END=$(grep -oP "(?<=OUTFILE_END:).*" $SETTINGS)
-UPLOAD_SLEEP=$(grep -oP "(?<=UPLOAD_SLEEP:).*" $SETTINGS)
-LOGDIR=$(grep -oP "(?<=LOGDIR:).*" $SETTINGS)
-LASTUPLOAD=$(grep -oP "(?<=LASTUPLOAD:).*" $SETTINGS)
+SUFFIX_LEN=$(grep -oP "(?<=^SUFFIX_LEN:).*" $SETTINGS)
+PRODS_PER_JSON=$(grep -oP "(?<=^PRODS_PER_JSON:).*" $SETTINGS)
+FB_WRITES_PER_DAY=$(grep -oP "(?<=^FB_WRITES_PER_DAY:).*" $SETTINGS)
+SPLIT_PREFIX=$(grep -oP "(?<=^SPLIT_PREFIX:).*" $SETTINGS)
+OUTFILE_END=$(grep -oP "(?<=^OUTFILE_END:).*" $SETTINGS)
+UPLOAD_SLEEP=$(grep -oP "(?<=^UPLOAD_SLEEP:).*" $SETTINGS)
+LOGDIR=$(grep -oP "(?<=^LOGDIR:).*" $SETTINGS)
+LASTUPLOAD=$(grep -oP "(?<=^LASTUPLOAD:).*" $SETTINGS)
 USAGE="\tUsage: ./uploadToFirebase.sh [OPTIONS] (-h for help)\n"
 HELP="${USAGE}\tOPTIONS:\n"
 HELP="${HELP}\t\t-b: upload without prompt\n"

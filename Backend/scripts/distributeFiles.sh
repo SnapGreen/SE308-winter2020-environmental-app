@@ -1,10 +1,10 @@
 #!/bin/bash
 SETTINGS="files/settings.txt"
 ZIPFILE="$1"
-RAWDATADIR=$(grep -oP '(?<=RAWDATADIR:).*' $SETTINGS)
-FDADIR=$(grep -oP '(?<=FDADIR:).*' $SETTINGS)
-DATASOURCE=$(grep -oP '(?<=DATASOURCE:).*' $SETTINGS)
-UPDATESOURCE=$(grep -oP '(?<=UPDATESOURCE:).*' $SETTINGS)
+RAWDATADIR=$(grep -oP '(?<=^RAWDATADIR:).*' $SETTINGS)
+FDADIR=$(grep -oP '(?<=^FDADIR:).*' $SETTINGS)
+FDADATASOURCE=$(grep -oP '(?<=^FDADATASOURCE:).*' $SETTINGS)
+FDAUPDATESOURCE=$(grep -oP '(?<=^FDAUPDATESOURCE:).*' $SETTINGS)
 RAWDATADEST="${RAWDATADIR}${FDADIR}"
 USAGE="Usage: ./distributeFiles.sh <zipfile> [OPTION] (use option -h for help)\n"
 HELP="\t-b: bypass debug mode (don't keep temp files)\n"
@@ -20,8 +20,8 @@ function checkSettings(){
    printf "\tZIPFILE: %s\n" $ZIPFILE
    printf "\tRAWDATADIR: %s\n" $RAWDATADIR
    printf "\tFDADIR: %s\n" $FDADIR
-   printf "\tDATASOURCE: %s\n" $DATASOURCE
-   printf "\tUPDATESOURCE: %s\n" $UPDATESOURCE
+   printf "\tFDADATASOURCE: %s\n" $FDADATASOURCE
+   printf "\tFDAUPDATESOURCE: %s\n" $FDAUPDATESOURCE
    printf "\tRAWDATADEST: %s\n" $RAWDATADEST
 }
 
@@ -76,6 +76,6 @@ if [ "$fin" == "false" ] ; then
       deleteUnneededFiles $ZIPFILE
    fi
 
-   moveToRawFDADir $DATASOURCE $UPDATESOURCE $RAWDATADEST
+   moveToRawFDADir $FDADATASOURCE $FDAUPDATESOURCE $RAWDATADEST
 fi
 

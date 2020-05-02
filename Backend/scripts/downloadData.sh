@@ -2,7 +2,7 @@
 SETTINGS="files/settings.txt"
 FILENAME="$1"
 FULLPATH="${2}/${FILENAME}"
-LOGDIR=$(grep -oP '(?<=LOGDIR:).*' $SETTINGS)
+LOGDIR=$(grep -oP '(?<=^LOGDIR:).*' $SETTINGS)
 DOWNLOADLOGDIR="${LOGDIR}downloads/"
 USAGE="Usage: ./downloadData.sh <filename> <url> [OPTION] (-h for help)\n"
 HELP="${USAGE}\t-b: bypass debug (will skip settings check)\n"

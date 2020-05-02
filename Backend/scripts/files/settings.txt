@@ -17,8 +17,8 @@ LASTFILE:files/lastlatest.txt
 LASTUPLOAD:files/lastupload.txt
 FDC_DIR_ADDRESS:https://fdc.nal.usda.gov/fdc-datasets
 FB_WRITES_PER_DAY:16500
-DATASOURCE:branded_food.csv
-UPDATESOURCE:food_update_log_entry.csv
+FDADATASOURCE:branded_food.csv
+FDAUPDATESOURCE:food_update_log_entry.csv
 NUM_CLEAN_TESTS:10
 UPLOAD_SLEEP:1
 

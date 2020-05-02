@@ -1,37 +1,47 @@
 #!/bin/bash
-SCRIPTDATADIR="files/"
-SETTINGS="${SCRIPTDATADIR}settings.txt"
-RAWDATADIR=$(grep -oP '(?<=RAWDATADIR:).*' $SETTINGS)
-MAPFILE=$(grep -oP '(?<=MAPFILE:).*' $SETTINGS)
-PRODS_PER_JSON=$(grep -oP '(?<=PRODS_PER_JSON:).*' $SETTINGS)
-PATTERNFILE=$(grep -oP '(?<=PATTERNFILE:).*' $SETTINGS)
-SPLIT_PREFIX=$(grep -oP '(?<=SPLIT_PREFIX:).*' $SETTINGS)
-SUFFIX_LEN=$(grep -oP '(?<=SUFFIX_LEN:).*' $SETTINGS)
-OUTFILE_END=$(grep -oP '(?<=OUTFILE_END:).*' $SETTINGS)
-TMPFILE_END=$(grep -oP '(?<=TMPFILE_END:).*' $SETTINGS)
-NUM_CLEAN_TESTS=$(grep -oP '(?<=NUM_CLEAN_TESTS:).*' $SETTINGS)
-NOCATS_TMP="nocats.tmp"
-PREPPED_TMP="prepped.tmp"
-INGREDIENTS_TMP="ingredients.tmp"
-INGREDIENTSB4_TMP="ingredientsb4.tmp"
-NON_INGREDIENTS_TMP="non_ingredients.tmp"
-SET_INGREDIENTS_TMP="set_ingredients.tmp"
-RELEVANTDATA_TMP="relevantdata.tmp"
-CLEANTEST_TMP="longestlines.tmp"
-JOINED_TMP="joined.tmp"
-SORTED_TMP="sorted.tmp"
-AWK_FORMAT="csvtojson.awk"
-AWK_SHRINK="consolidateIngreds.awk"
-AWK_TRIM="trim.awk"
-AWK_RM_INGRDS="removeIngreds.awk"
-AWK_MAP="map_fdcid_gtin.awk"
+SETTINGS="files/settings.txt"
+RAWDATADIR=$(grep -oP '(?<=^RAWDATADIR:).*' $SETTINGS)
+DATADIR=$(grep -oP '(?<=^DATADIR:).*' $SETTINGS)
+FDADIR=$(grep -oP '(?<=^FDADIR:).*' $SETTINGS)
+FDADATASOURCE=$(grep -oP '(?<=^FDADATASOURCE:).*' $SETTINGS)
+FDAINDIR="${RAWDATADIR}${FDADIR}"
+FDAINFILE="${FDAINDIR}${FDADATASOURCE}"
+FDAOUTDIR="${DATADIR}${FDADIR}"
+AWKDIR=$(grep -oP '(?<=^AWKDIR:).*' $SETTINGS)
+TMPDIR=$(grep -oP '(?<=^TMPDIR:).*' $SETTINGS)
+MAPFILE=$(grep -oP '(?<=^MAPFILE:).*' $SETTINGS)
+PRODS_PER_JSON=$(grep -oP '(?<=^PRODS_PER_JSON:).*' $SETTINGS)
+PATTERNFILE=$(grep -oP '(?<=^PATTERNFILE:).*' $SETTINGS)
+SPLIT_PREFIX=$(grep -oP '(?<=^SPLIT_PREFIX:).*' $SETTINGS)
+SUFFIX_LEN=$(grep -oP '(?<=^SUFFIX_LEN:).*' $SETTINGS)
+OUTFILE_END=$(grep -oP '(?<=^OUTFILE_END:).*' $SETTINGS)
+TMPFILE_END=$(grep -oP '(?<=^TMPFILE_END:).*' $SETTINGS)
+NUM_CLEAN_TESTS=$(grep -oP '(?<=^NUM_CLEAN_TESTS:).*' $SETTINGS)
+AWK_FORMAT="${AWKDIR}csvtojson.awk"
+AWK_SHRINK="${AWKDIR}consolidateIngreds.awk"
+AWK_TRIM="${AWKDIR}trim.awk"
+AWK_RM_INGRDS="${AWKDIR}removeIngreds.awk"
+AWK_MAP="${AWKDIR}map_fdcid_gtin.awk"
+NOCATS_TMP="${TMPDIR}nocats.tmp"
+PREPPED_TMP="${TMPDIR}prepped.tmp"
+INGREDIENTS_TMP="${TMPDIR}ingredients.tmp"
+INGREDIENTSB4_TMP="${TMPDIR}ingredientsb4.tmp"
+NON_INGREDIENTS_TMP="${TMPDIR}non_ingredients.tmp"
+SET_INGREDIENTS_TMP="${TMPDIR}set_ingredients.tmp"
+RELEVANTDATA_TMP="${TMPDIR}relevantdata.tmp"
+CLEANTEST_TMP="${TMPDIR}longestlines.tmp"
+JOINED_TMP="${TMPDIR}joined.tmp"
+SORTED_TMP="${TMPDIR}sorted.tmp"
+USAGE="\t\tUsage: ./convertToJson.sh [OPTION] (-h for help)\n"
+HELP="${USAGE}\t\tOPTIONS:\n"
+HELP="${HELP}\t\t\t-b: bypass debug mode\n"
+HELP="${HELP}\t\t\t-s: print settings only\n"
+HELP="${HELP}\t\t\t-h: print help\n"
+HELP="${HELP}\t\t**debug mode: leave temp files undeleted**\n"
+HELP="${HELP}\t\t**debug mode is ON if no OPTION specified\n"
 
 debug="on"
-
-if [ $# != 0 ] && [ $1 == "-f" ] ; then
-   echo "debug mode off"
-   debug="off"
-fi
+fin=false
 
 #https://stackoverflow.com/questions/17066250/create-timestamp-variable-in-bash-script
 function timestamp(){
@@ -40,16 +50,42 @@ function timestamp(){
 
 function checkSettings(){
    # function to verify settings are what we expect (for debugging)
-   print "settings check:"
-   printf "\tRAWDATADIR: %s\n" $RAWDATADIR
-   printf "\tMAPFILE: %s\n" $MAPFILE
-   printf "\tPRODS_PER_JSON: %s\n" $PRODS_PER_JSON
-   printf "\tPATTERNFILE: %s\n" $PATTERNFILE
-   printf "\tSPLIT_PREFIX: %s\n" $SPLIT_PREFIX
-   printf "\tSUFFIX_LEN: %s\n" $SUFFIX_LEN
-   printf "\tOUTFILE_END: %s\n" $OUTFILE_END
-   printf "\tTMPFILE_END: %s\n" $TMPFILE_END
-   printf "\tNUM_CLEAN_TESTS: %s\n" $NUM_CLEAN_TESTS
+   echo "settings check:"
+   printf "\tSETTINGS: %s\n" "$SETTINGS"
+   printf "\tRAWDATADIR: %s\n" "$RAWDATADIR"
+   printf "\tDATADIR: %s\n" "$DATADIR"
+   printf "\tFDAINDIR: %s\n" "$FDAINDIR"
+   printf "\tFDAINFILE: %s\n" "$FDAINFILE"
+   printf "\tFDAOUTDIR: %s\n" "$FDAOUTDIR"
+   printf "\tAWKDIR: %s\n" "$AWKDIR"
+   printf "\tTMPDIR: %s\n" "$TMPDIR"
+   printf "\tMAPFILE: %s\n" "$MAPFILE"
+   printf "\tPRODS_PER_JSON: %s\n" "$PRODS_PER_JSON"
+   printf "\tPATTERNFILE: %s\n" "$PATTERNFILE"
+   printf "\tSPLIT_PREFIX: %s\n" "$SPLIT_PREFIX"
+   printf "\tSUFFIX_LEN: %s\n" "$SUFFIX_LEN"
+   printf "\tOUTFILE_END: %s\n" "$OUTFILE_END"
+   printf "\tTMPFILE_END: %s\n" "$TMPFILE_END"
+   printf "\tNUM_CLEAN_TESTS: %s\n" "$NUM_CLEAN_TESTS"
+	printf "\tAWK_FORMAT: %s\n" "$AWK_FORMAT"
+	printf "\tAWK_SHRINK: %s\n" "$AWK_SHRINK"
+	printf "\tAWK_TRIM: %s\n" "$AWK_TRIM"
+	printf "\tAWK_RM_INGRDS: %s\n" "$AWK_RM_INGRDS"
+	printf "\tAWK_MAP: %s\n" "$AWK_MAP"
+	printf "\tNOCATS_TMP: %s\n" "$NOCATS_TMP"
+	printf "\tPREPPED_TMP: %s\n" "$PREPPED_TMP"
+	printf "\tINGREDIENTS_TMP: %s\n" "$INGREDIENTS_TMP"
+	printf "\tINGREDIENTSB4_TMP: %s\n" $INGREDIENTSB4_TMP
+	printf "\tNON_INGREDIENTS_TMP: %s\n" "$NON_INGREDIENTS_TMP"
+	printf "\tSET_INGREDIENTS_TMP: %s\n" "$SET_INGREDIENTS_TMP"
+	printf "\tRELEVANTDATA_TMP: %s\n" "$RELEVANTDATA_TMP"
+	printf "\tCLEANTEST_TMP: %s\n" "$CLEANTEST_TMP"
+	printf "\tJOINED_TMP: %s\n" "$JOINED_TMP"
+	printf "\tSORTED_TMP: %s\n" "$SORTED_TMP"
+	printf "\tUSAGE:\n" 
+	printf "$USAGE" 
+	printf "\tHELP:\n" 
+	printf "$HELP" 
 }
 
 function prepData(){
@@ -57,8 +93,8 @@ function prepData(){
    # makes sure any Windows <CR> are converted to linux \r
    dos2unix $1
 
-   # commands like these will create the args as files, or clear them if they
-   # already exist.  
+   # lines like these create the files if they don't exist, and clear them if
+   # they do exist
    > $2
    > $3
 
@@ -274,45 +310,63 @@ function createJsons(){
    done
 }
 
-if [[ $debug == "on" ]] ; then
-   checkSettings
+
+if [ $# != 0 ] ; then
+   if [ $1 == "-b" ] ; then
+      echo "debug mode off"
+      debug="off"
+   elif [ $1 == "-h" ] ; then
+      printf "$HELP"
+      fin=true
+   elif [ $1 == "-s" ] ; then
+      checkSettings
+      fin=true
+   else
+      printf "$USAGE"
+      fin=true
+   fi
 fi
 
-prepData $RAWDATADIR $NOCATS_TMP $PREPPED_TMP
+if [ "$fin" == "false" ] ; then
+   if [[ "$debug" == "on" ]] ; then
+      checkSettings
+   fi
 
-extractRelevantCols $AWK_TRIM $PREPPED_TMP $RELEVANTDATA_TMP
+   prepData $FDAINFILE $NOCATS_TMP $PREPPED_TMP
 
-createMap $AWK_MAP $RELEVANTDATA_TMP $MAPFILE 
+   extractRelevantCols $AWK_TRIM $PREPPED_TMP $RELEVANTDATA_TMP
 
-isolateIngredients $AWK_RM_INGRDS $RELEVANTDATA_TMP $NON_INGREDIENTS_TMP $INGREDIENTS_TMP 
+   createMap $AWK_MAP $RELEVANTDATA_TMP $MAPFILE 
 
-if [[ $debug == "on" ]] ; then
-   createCleanTests $INGREDIENTSB4_TMP
+   isolateIngredients $AWK_RM_INGRDS $RELEVANTDATA_TMP $NON_INGREDIENTS_TMP $INGREDIENTS_TMP 
+
+   if [[ $debug == "on" ]] ; then
+      createCleanTests $INGREDIENTSB4_TMP
+   fi
+
+   cleanIngredients $PATTERNFILE $INGREDIENTS_TMP 
+
+   consolidateIngredients $AWK_SHRINK $INGREDIENTS_TMP $SET_INGREDIENTS_TMP 
+
+   rejoinFiles $NON_INGREDIENTS_TMP $SET_INGREDIENTS_TMP $JOINED_TMP
+
+   sortProducts $JOINED_TMP $SORTED_TMP
+
+   removeBad $SORTED_TMP
+
+   splitChunks $SORTED_TMP
+
+   createJsons $AWK_FORMAT
+
+   if [ $debug == "off" ] ; then
+      # removes all of the temporary files
+      # comment this out for testing & debugging
+      rm *$TMPFILE_END
+   fi
+
+   # removes files that sed produces, if any
+   find .. -maxdepth 2 -regextype sed -regex ".*/sed[a-zA-Z0-9]\{6\}" -delete
+
+   printf "...all done!\n"
 fi
-
-cleanIngredients $PATTERNFILE $INGREDIENTS_TMP 
-
-consolidateIngredients $AWK_SHRINK $INGREDIENTS_TMP $SET_INGREDIENTS_TMP 
-
-rejoinFiles $NON_INGREDIENTS_TMP $SET_INGREDIENTS_TMP $JOINED_TMP
-
-sortProducts $JOINED_TMP $SORTED_TMP
-
-removeBad $SORTED_TMP
-
-splitChunks $SORTED_TMP
-
-createJsons $AWK_FORMAT
-
-if [ $debug == "off" ] ; then
-   # removes all of the temporary files
-   # comment this out for testing & debugging
-   rm *$TMPFILE_END
-fi
-
-# removes files that sed produces, if any
-find .. -maxdepth 2 -regextype sed -regex ".*/sed[a-zA-Z0-9]\{6\}" -delete
-
-printf "...all done!\n"
-
 
