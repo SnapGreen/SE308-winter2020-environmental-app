@@ -48,11 +48,11 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="311dp"
-        android:layout_height="203dp"
+        android:layout_width="322dp"
+        android:layout_height="80dp"
         android:layout_marginTop="16dp"
         android:paddingTop="30dp"
-        android:text="Welcome, Username to SnapGreen!"
+        android:text="SnapGreen"
         android:textAlignment="center"
         android:textSize="36sp"
         android:textStyle="bold"
