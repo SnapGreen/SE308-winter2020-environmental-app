@@ -8,6 +8,7 @@ TMPDIR=$(grep -oP '(?<=^TMPDIR:).*' $SETTINGS)
 TMPFILE_END=$(grep -oP '(?<=^TMPFILE_END:).*' $SETTINGS)
 TMPLINKSFILE="${TMPDIR}links${TMPFILE_END}"
 TMPFILELIST="${TMPDIR}available_data${TMPFILE_END}"
+LASTUPLOAD=$(grep -oP "(?<=^LASTUPLOAD:).*" $SETTINGS)
 USAGE="\tUsage: ./getFDAUpdate.sh [OPTION] (use option -h for help)\n"
 HELP="${USAGE}\t**If no OPTION supplied, debug mode on (temp files remain)\n"
 HELP="${HELP}\t\t-a: automation mode, download if update available w/out prompt\n"
@@ -31,6 +32,7 @@ function checkSettings(){
    printf "\tTMPFILE_END: %s\n" $TMPFILE_END
    printf "\tTMPLINKSFILE: %s\n" $TMPLINKSFILE
    printf "\tTMPFILELIST: %s\n" $TMPFILELIST
+   printf "\tLASTUPLOAD: %s\n" $LASTUPLOAD
    printf "\tUSAGE:\n"
    printf "$USAGE"
    printf "\tHELP:\n"
@@ -94,6 +96,12 @@ function storeNewestEntry(){
    fi
 }
 
+function startNewUploadCycle(){
+   # remove the file that lists the last json uploaded
+   # if the file isn't there, the function knows to start fresh
+   rm $LASTUPLOAD
+}
+
 function getFDAData(){
    echo "downloading data..."
    ./downloadData.sh $1 $2 -b
@@ -107,6 +115,7 @@ function getIfNew(){
    datediff=$((currentdate - lastdate))
 
    if [ "$1" == "-d" ] ; then
+      startNewUploadCycle
       getFDAData $1 $2 $3 $4
    elif [[ $datediff -gt 0 ]] ; then
       printf "\tAn update is available:\n"
@@ -117,6 +126,7 @@ function getIfNew(){
       printf "\tdownload new file? (Y/n): "
       read reply
       if [ "$reply" == "y" ] || [ "$reply" == "Y" ] ; then
+         startNewUploadCycle
          getFDAData $1 $2 $3 $3
       else
          printf "reply was %s, goodbye!\n" $reply

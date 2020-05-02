@@ -1,5 +1,7 @@
 #!/bin/bash
 SETTINGS="files/settings.txt"
+DATADIR=$(grep -oP "(?<=^DATADIR:).*" $SETTINGS)
+SUFFIX_LEN=$(grep -oP "(?<=^SUFFIX_LEN:).*" $SETTINGS)
 SUFFIX_LEN=$(grep -oP "(?<=^SUFFIX_LEN:).*" $SETTINGS)
 PRODS_PER_JSON=$(grep -oP "(?<=^PRODS_PER_JSON:).*" $SETTINGS)
 FB_WRITES_PER_DAY=$(grep -oP "(?<=^FB_WRITES_PER_DAY:).*" $SETTINGS)
@@ -8,11 +10,11 @@ OUTFILE_END=$(grep -oP "(?<=^OUTFILE_END:).*" $SETTINGS)
 UPLOAD_SLEEP=$(grep -oP "(?<=^UPLOAD_SLEEP:).*" $SETTINGS)
 LOGDIR=$(grep -oP "(?<=^LOGDIR:).*" $SETTINGS)
 LASTUPLOAD=$(grep -oP "(?<=^LASTUPLOAD:).*" $SETTINGS)
-USAGE="\tUsage: ./uploadToFirebase.sh [OPTIONS] (-h for help)\n"
-HELP="${USAGE}\tOPTIONS:\n"
-HELP="${HELP}\t\t-b: upload without prompt\n"
-HELP="${HELP}\t\t-s: print settings only\n"
-HELP="${HELP}\t\t-h: print help\n"
+USAGE="\t\tUsage: ./uploadToFirebase.sh [OPTIONS] (-h for help)\n"
+HELP="${USAGE}\t\tOPTIONS:\n"
+HELP="${HELP}\t\t\t-b: upload without prompt\n"
+HELP="${HELP}\t\t\t-s: print settings only\n"
+HELP="${HELP}\t\t\t-h: print help\n"
 
 fin=false
 prompt=true
@@ -20,6 +22,7 @@ prompt=true
 function checkSettings(){
    echo "settings check:"
    printf "\tSETTINGS: %s\n" "$SETTINGS"
+   printf "\tDATADIR: %s\n" "$DATADIR"
    printf "\tSUFFIX_LEN: %s\n" "$SUFFIX_LEN"
    printf "\tPRODS_PER_JSON: %s\n" "$PRODS_PER_JSON"
    printf "\tFB_WRITES_PER_DAY: %s\n" "$FB_WRITES_PER_DAY"
@@ -32,6 +35,20 @@ function checkSettings(){
    printf "$USAGE"
    printf "\tHELP:\n"
    printf "$HELP"
+}
+
+function removePreviousUploads(){
+   # if the $LASTUPLOAD file exists, this function will get the last uploaded
+   # file and ensure that it and every file below it is deleted before uploading
+   # although the function deletes files as it uploads, this ensures that the
+   # files haven't shown up again (i.e., through testing).
+   upper=$(cat $LASTUPLOAD | grep -o "[0-9]\+")
+   for num in $(seq -w 0000 $upper); do
+      file="$DATADIR$SPLIT_PREFIX$num$OUTFILE_END"
+      if [ -e $file ] ; then
+         rm $file
+      fi
+   done
 }
 
 function uploadFiles(){
@@ -92,14 +109,17 @@ if [ "$prompt" == "true" ] ; then
 fi
 
 if [ "$fin" == "false" ] ; then
-   max_file_uploads=$((FB_WRITES_PER_DAY / PRODS_PER_JSON))
+   if [ -n $LASTUPLOAD ] ; then
+      removePreviousUploads
+   fi
+   #max_file_uploads=$((FB_WRITES_PER_DAY / PRODS_PER_JSON))
 
-   shopt -s nullglob
+   #shopt -s nullglob
 
-   alljsons=(../$SPLIT_PREFIX*$OUTFILE_END)
+   #alljsons=($DATADIR$SPLIT_PREFIX*$OUTFILE_END)
 
-   filesToUpload="${alljsons[@]:0:$max_file_uploads}"
+   #filesToUpload="${alljsons[@]:0:$max_file_uploads}"
 
-   uploadFiles $filesToUpload
+   #uploadFiles $filesToUpload
 fi
    

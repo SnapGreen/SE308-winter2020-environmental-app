@@ -4,6 +4,7 @@ FDADIR:FDA/
 EPADIR:EPA/
 LOGDIR:../logs/
 TMPDIR:../temp/
+TESTDIR:../tests/
 AWKDIR:files/awk/
 MAPFILE:../data/FDA/map_fdcid_gtin.csv
 PATTERNFILE:files/removalpatterns.txt

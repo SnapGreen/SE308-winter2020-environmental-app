@@ -1,14 +1,16 @@
 #!/bin/bash
 SETTINGS="files/settings.txt"
-RAWDATADIR=$(grep -oP '(?<=^RAWDATADIR:).*' $SETTINGS)
+AWKDIR=$(grep -oP '(?<=^AWKDIR:).*' $SETTINGS)
 DATADIR=$(grep -oP '(?<=^DATADIR:).*' $SETTINGS)
 FDADIR=$(grep -oP '(?<=^FDADIR:).*' $SETTINGS)
+LOGDIR=$(grep -oP '(?<=^LOGDIR:).*' $SETTINGS)
+RAWDATADIR=$(grep -oP '(?<=^RAWDATADIR:).*' $SETTINGS)
+TESTDIR=$(grep -oP '(?<=^TESTDIR:).*' $SETTINGS)
+TMPDIR=$(grep -oP '(?<=^TMPDIR:).*' $SETTINGS)
 FDADATASOURCE=$(grep -oP '(?<=^FDADATASOURCE:).*' $SETTINGS)
 FDAINDIR="${RAWDATADIR}${FDADIR}"
-FDAINFILE="${FDAINDIR}${FDADATASOURCE}"
 FDAOUTDIR="${DATADIR}${FDADIR}"
-AWKDIR=$(grep -oP '(?<=^AWKDIR:).*' $SETTINGS)
-TMPDIR=$(grep -oP '(?<=^TMPDIR:).*' $SETTINGS)
+FDAINFILE="${FDAINDIR}${FDADATASOURCE}"
 MAPFILE=$(grep -oP '(?<=^MAPFILE:).*' $SETTINGS)
 PRODS_PER_JSON=$(grep -oP '(?<=^PRODS_PER_JSON:).*' $SETTINGS)
 PATTERNFILE=$(grep -oP '(?<=^PATTERNFILE:).*' $SETTINGS)
@@ -52,13 +54,16 @@ function checkSettings(){
    # function to verify settings are what we expect (for debugging)
    echo "settings check:"
    printf "\tSETTINGS: %s\n" "$SETTINGS"
-   printf "\tRAWDATADIR: %s\n" "$RAWDATADIR"
-   printf "\tDATADIR: %s\n" "$DATADIR"
-   printf "\tFDAINDIR: %s\n" "$FDAINDIR"
-   printf "\tFDAINFILE: %s\n" "$FDAINFILE"
-   printf "\tFDAOUTDIR: %s\n" "$FDAOUTDIR"
    printf "\tAWKDIR: %s\n" "$AWKDIR"
+   printf "\tDATADIR: %s\n" "$DATADIR"
+   printf "\tFDADIR: %s\n" "$FDADIR"
+   printf "\tFDAINDIR: %s\n" "$FDAINDIR"
+   printf "\tFDAOUTDIR: %s\n" "$FDAOUTDIR"
+   printf "\tLOGDIR: %s\n" "$LOGDIR"
+   printf "\tRAWDATADIR: %s\n" "$RAWDATADIR"
    printf "\tTMPDIR: %s\n" "$TMPDIR"
+   printf "\tTESTDIR: %s\n" "$TESTDIR"
+   printf "\tFDAINFILE: %s\n" "$FDAINFILE"
    printf "\tMAPFILE: %s\n" "$MAPFILE"
    printf "\tPRODS_PER_JSON: %s\n" "$PRODS_PER_JSON"
    printf "\tPATTERNFILE: %s\n" "$PATTERNFILE"
@@ -130,24 +135,21 @@ function createCleanTests(){
    # number of products selected = NUM_CLEAN_TESTS
    # places them separately in tests/clean/
    # expected versions need to be manually written out
-   testOutPrefix="tests/clean/"
-   testOutEnd=".test"
-   tmpCleanFile="${testOutPrefix}${CLEANTEST_TMP}"
-   > $tmpCleanFile
+   testOutPrefix="${TESTDIR}clean/"
+   testOutEnd=".txt"
+   > $CLEANTEST_TMP
 
    awk '{printf("%d\t%s\n",length, $0)}' $1 | sort -nr | head -$NUM_CLEAN_TESTS\
-      >> $tmpCleanFile
+      >> $CLEANTEST_TMP
 
    num=1
    while [[ $num -le $NUM_CLEAN_TESTS ]] ;
    do
       outTestFile="${testOutPrefix}in${num}${testOutEnd}"
       > $outTestFile
-      tail -n $num $tmpCleanFile | head -n 1 | cut -f 2 >> $outTestFile
+      tail -n $num $CLEANTEST_TMP | head -n 1 | cut -f 2 >> $outTestFile
       num=$((num+1))
    done
-
-   rm $tmpCleanFile
 }
 
 
@@ -187,7 +189,7 @@ function cleanIngredients(){
       cat $INGREDIENTSB4_TMP > $2
       # write the timestamp in the log
       starttime=$(timestamp)
-      logfile="logs/cleans/cleaned${starttime}.log"
+      logfile="${LOGDIR}cleans/cleaned${starttime}.log"
       # apply removal patterns to ingredients
       after=$(wc -c < $2)
       while read -r pattern;
@@ -277,10 +279,11 @@ function splitChunks(){
    # -d means we want digit suffixes
    # -a $SUFFIX_LEN means we want $SUFFIX_LEN digits in each suffix
    # -e means don't output zero size files
+   # $TMPDIR is the directory where the split files will be placed
    # $SPLIT_PREFIX is the first part of what each file will be named
    # --additional-suffix will be added to the end
-   split -l $PRODS_PER_JSON -d  -e $1 $SPLIT_PREFIX \
-      --additional-suffix=$TMPFILE_END -a $SUFFIX_LEN
+   split -l $PRODS_PER_JSON -d  -e  --additional-suffix=$TMPFILE_END\
+      -a $SUFFIX_LEN $1 "${TMPDIR}${SPLIT_PREFIX}"
 
    if [ $debug == "off" ] ; then
       rm $1
@@ -289,12 +292,13 @@ function splitChunks(){
 
 function createJsons(){
    printf "turning chunks into JSON files (get comfy)...\n"
-   for file in branded_food_[0-9]*.tmp
+   files="${TMPDIR}${SPLIT_PREFIX}[0-9]*.tmp"
+   for file in $files
    do
       # extracting the suffix number from each temp file
       outnum=$(echo $file | egrep -o [0-9]+)
       # putting together an output file name
-      outname="../${SPLIT_PREFIX}${outnum}${OUTFILE_END}"
+      outname="${FDAOUTDIR}${SPLIT_PREFIX}"$outnum"${OUTFILE_END}"
       # make sure the outfile is clear, if it exists
       > $outname
       # place the first line into the outfile
@@ -361,11 +365,11 @@ if [ "$fin" == "false" ] ; then
    if [ $debug == "off" ] ; then
       # removes all of the temporary files
       # comment this out for testing & debugging
-      rm *$TMPFILE_END
+      rm "${TMPDIR}*$TMPFILE_END"
    fi
 
    # removes files that sed produces, if any
-   find .. -maxdepth 2 -regextype sed -regex ".*/sed[a-zA-Z0-9]\{6\}" -delete
+   find "$TMPDIR" -regextype sed -regex ".*/sed[a-zA-Z0-9]\{6\}" -delete
 
    printf "...all done!\n"
 fi
