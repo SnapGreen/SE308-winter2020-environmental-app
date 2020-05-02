@@ -14,6 +14,7 @@ TMPFILE_END:.tmp
 PRODS_PER_JSON:250
 CURRENTFILE:files/currentlatest.txt
 LASTFILE:files/lastlatest.txt
+LASTUPLOAD:files/lastupload.txt
 FDC_DIR_ADDRESS:https://fdc.nal.usda.gov/fdc-datasets
 FB_WRITES_PER_DAY:16500
 DATASOURCE:branded_food.csv
