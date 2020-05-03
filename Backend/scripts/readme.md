@@ -1,6 +1,6 @@
 # Script usage:
 
-All of the following should be done from a linux command line.  Windows users might consider enabling wsl (Windows Subsystem for Linux), or opting for something like the Bash environment optionally provided when Git is installed.
+All of the following should be done from a linux command line.  Windows users might consider enabling wsl (Windows Subsystem for Linux), or opting for something like the Bash environment optionally provided when Git is installed.  All scripts are written for use on Ubuntu Server 18.04.04 LTS
 
 Once on the Linux command line, verify that 'unzip' has been installed by typing:
 
@@ -122,6 +122,14 @@ These files pop up from time to time--they are usually deleted by the scripts, s
 
 ### sedxxxxx
 These files pop up while sed is running through the 'ingredients.tmp' file.  They'll disappear when it's done, unless the program is interrupted.  If you happen to see them lying around while the program isn't running, it's safe to remove them.
+
+# Server Automation
+
+In order to automate these processes on the server, you'll have to schedule them to be performed automatically.  On our server, this was done via cron as described here:  https://opensource.com/article/17/11/how-use-cron-linux
+In the case of our server, two lines were added:
+   - `01 23 * * * .../getFDAUpdate.sh -b`
+   - `01 00 * * * .../uploadToFirebase.sh -b`
+The first line tells the server to check for an update from the FDA at 11:01 PM every night (bypassing debug mode, which would prompt the user).  the second line tells the server to upload to Firebase at 12:01 AM every night (also bypassing debug mode).
 
 # Troubleshooting
 
