@@ -1,11 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="0dp">
 
-    <TextView
-        android:id="@+id/stats_header"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Statistics" />
+        android:layout_height="143dp"
+        android:layout_weight="0">
+
+		<TextView
+			android:id="@+id/stats_header"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentBottom="true"
+			android:layout_marginBottom="0dp"
+			android:text="@string/your_statistics"
+			android:textAlignment="viewStart"
+			android:textColor="#8BC34A"
+			android:textSize="50sp"
+			android:textStyle="bold" />
+    </RelativeLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_weight="0"
+		android:orientation="vertical">
+
+    <com.github.mikephil.charting.charts.CombinedChart
+        android:id="@+id/chart1"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:padding="9dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+	</LinearLayout>
+
 </LinearLayout>
