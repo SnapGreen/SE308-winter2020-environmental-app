@@ -18,19 +18,11 @@ class CreateUserActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_user)
 
-<<<<<<< HEAD
-        var firstName = findViewById<EditText>(R.id.create_user_first_name)
-        var lastName = findViewById<EditText>(R.id.create_user_last_name)
-        var email = findViewById<EditText>(R.id.create_user_email)
-        var password = findViewById<EditText>(R.id.create_user_password)
-        var saveUser = findViewById<Button>(R.id.save_user_btn)
-=======
         val firstName = findViewById<EditText>(R.id.create_user_first_name)
         val lastName = findViewById<EditText>(R.id.create_user_last_name)
         val email = findViewById<EditText>(R.id.create_user_email)
         val password = findViewById<EditText>(R.id.create_user_password)
         val saveUser = findViewById<Button>(R.id.save_user_btn)
->>>>>>> bb52b99e2fc093b53c82de927d1087f108467f20
 
         saveUser.setOnClickListener {
             val url = "http://10.0.2.2:8080/users"
@@ -56,14 +48,8 @@ class CreateUserActivity : AppCompatActivity() {
                 NetworkManager.getInstance()?.addToRequestQueue(createUserRequest)
                 Toast.makeText(applicationContext, "New user created!", Toast.LENGTH_SHORT).show()
                 finish()
-<<<<<<< HEAD
-            }
-            catch (e: Throwable) {
-                Log.e("Create User Activity","Create user request failed")
-=======
             } catch (e: Throwable) {
                 Log.e("Create User Activity", "Create user request failed")
->>>>>>> bb52b99e2fc093b53c82de927d1087f108467f20
             }
         }
     }

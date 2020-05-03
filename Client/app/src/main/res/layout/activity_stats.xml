@@ -19,7 +19,7 @@
 			android:layout_marginBottom="0dp"
 			android:text="@string/your_statistics"
 			android:textAlignment="viewStart"
-			android:textColor="#7BC02C"
+			android:textColor="#8BC34A"
 			android:textSize="50sp"
 			android:textStyle="bold" />
     </RelativeLayout>

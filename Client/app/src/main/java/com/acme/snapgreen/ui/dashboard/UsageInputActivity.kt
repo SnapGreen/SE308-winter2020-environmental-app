@@ -53,30 +53,6 @@ class UsageInputActivity : AppCompatActivity() {
         currentDateField.text = currentDateTimeString
 
         var saysEdit = true
-<<<<<<< HEAD
-        var maxLength = 3
-        var minutesShoweredField = findViewById<EditText>(R.id.minutesShowered)
-        minutesShoweredField.filters = arrayOf<InputFilter>(LengthFilter(maxLength))
-        var timesFlushedField = findViewById<EditText>(R.id.timesFlushed)
-        timesFlushedField.filters = arrayOf<InputFilter>(LengthFilter(maxLength))
-        var timesDishwasherRunField = findViewById<EditText>(R.id.timesDishwasherRun)
-        timesDishwasherRunField.filters = arrayOf<InputFilter>(LengthFilter(maxLength))
-        var minutesWashingMachineField = findViewById<EditText>(R.id.minutesWashingMachine)
-        minutesWashingMachineField.filters = arrayOf<InputFilter>(LengthFilter(maxLength))
-
-        var hoursLightOnField = findViewById<EditText>(R.id.hoursLightOn)
-        hoursLightOnField.filters = arrayOf<InputFilter>(LengthFilter(maxLength))
-        var numAlumCansUsedField = findViewById<EditText>(R.id.numAlumCansUsed)
-        numAlumCansUsedField.filters = arrayOf<InputFilter>(LengthFilter(maxLength))
-        var numStyroContainersUsedField = findViewById<EditText>(R.id.numStyroContainersUsed)
-        numStyroContainersUsedField.filters = arrayOf<InputFilter>(LengthFilter(maxLength))
-        var numPlasticStrawsUsedField = findViewById<EditText>(R.id.numPlasticStrawsUsed)
-        numPlasticStrawsUsedField.filters = arrayOf<InputFilter>(LengthFilter(maxLength))
-        var numPlasticUtensilsUsedField = findViewById<EditText>(R.id.numPlasticUtensilsUsed)
-        numPlasticUtensilsUsedField.filters = arrayOf<InputFilter>(LengthFilter(maxLength))
-
-        var editButton = findViewById<Button>(R.id.editButton)
-=======
         val maxLength = 3
         val minutesShoweredField = findViewById<EditText>(R.id.minutesShowered)
         minutesShoweredField.filters = arrayOf<InputFilter>(LengthFilter(maxLength))
@@ -99,7 +75,6 @@ class UsageInputActivity : AppCompatActivity() {
         numPlasticUtensilsUsedField.filters = arrayOf<InputFilter>(LengthFilter(maxLength))
 
         val editButton = findViewById<Button>(R.id.editButton)
->>>>>>> bb52b99e2fc093b53c82de927d1087f108467f20
         editButton.setOnClickListener {
             if (saysEdit) {
                 minutesShoweredField.isEnabled = true
@@ -115,12 +90,7 @@ class UsageInputActivity : AppCompatActivity() {
 
                 editButton.text = "SAVE"
                 saysEdit = false
-<<<<<<< HEAD
-            }
-            else {
-=======
             } else {
->>>>>>> bb52b99e2fc093b53c82de927d1087f108467f20
                 minutesShoweredField.isEnabled = false
                 timesFlushedField.isEnabled = false
                 timesDishwasherRunField.isEnabled = false
@@ -132,9 +102,6 @@ class UsageInputActivity : AppCompatActivity() {
                 numPlasticStrawsUsedField.isEnabled = false
                 numPlasticUtensilsUsedField.isEnabled = false
 
-<<<<<<< HEAD
-                saveScore(minutesShoweredField.text.toString().toDouble(), timesFlushedField.text.toString().toInt(), timesDishwasherRunField.text.toString().toInt(), minutesWashingMachineField.text.toString().toDouble(), hoursLightOnField.text.toString().toDouble(), numAlumCansUsedField.text.toString().toInt(), numStyroContainersUsedField.text.toString().toInt(), numPlasticStrawsUsedField.text.toString().toInt(), numPlasticUtensilsUsedField.text.toString().toInt())
-=======
                 saveScore(
                     minutesShoweredField.text.toString().toDouble(),
                     timesFlushedField.text.toString().toInt(),
@@ -146,7 +113,6 @@ class UsageInputActivity : AppCompatActivity() {
                     numPlasticStrawsUsedField.text.toString().toInt(),
                     numPlasticUtensilsUsedField.text.toString().toInt()
                 )
->>>>>>> bb52b99e2fc093b53c82de927d1087f108467f20
                 finish()
 
                 editButton.text = "EDIT"

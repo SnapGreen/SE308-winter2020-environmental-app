@@ -40,8 +40,11 @@ class StatsActivity : AppCompatActivity() {
         lineData.add(Entry(5f, 1f))
         lineData.add(Entry(6f, 4f))
         val lines = LineDataSet(lineData, "Average Data")
-        lines.color = Color.rgb(48, 94, 213)
+        lines.color = Color.rgb(139, 195, 74)
         lines.setDrawValues(false)
+        lines.setDrawFilled(true)
+        lines.setDrawCircles(false)
+        lines.setDrawCircleHole(false)
 
         val xLabel: ArrayList<String> = ArrayList()
         xLabel.add("Sun")
@@ -58,6 +61,8 @@ class StatsActivity : AppCompatActivity() {
         data.setData(BarData(bars))
         data.setData(LineData(lines))
         chart1.data = data
+        chart1.setTouchEnabled(true)
+        chart1.setPinchZoom(true)
         chart1.invalidate()
     }
 }
