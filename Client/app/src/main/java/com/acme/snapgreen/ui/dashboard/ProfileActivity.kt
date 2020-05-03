@@ -123,7 +123,7 @@ class ProfileActivity : AppCompatActivity() {
             when (requestCode) {
                 0 -> if (resultCode == Activity.RESULT_OK && data != null) {
                     val selectedImage = data.extras["data"] as Bitmap
-                    imageView.setImageBitmap(selectedImage)
+                    mUserImage.setImageBitmap(selectedImage)
                 }
                 1 -> if (resultCode == Activity.RESULT_OK && data != null) {
                     val selectedImage: Uri? = data.data
@@ -138,7 +138,7 @@ class ProfileActivity : AppCompatActivity() {
                             cursor.moveToFirst()
                             val columnIndex: Int = cursor.getColumnIndex(filePathColumn[0])
                             val picturePath: String = cursor.getString(columnIndex)
-                            imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath))
+                            mUserImage.setImageBitmap(BitmapFactory.decodeFile(picturePath))
                             cursor.close()
                         }
                     }
