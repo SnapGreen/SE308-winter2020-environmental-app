@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ProjectModuleManager">
@@ -5,4 +6,13 @@
       <module fileurl="file://$PROJECT_DIR$/Client/app/src/main/main.iml" filepath="$PROJECT_DIR$/Client/app/src/main/main.iml" />
     </modules>
   </component>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/SE308-winter2020-environmental-app.iml" filepath="$PROJECT_DIR$/.idea/SE308-winter2020-environmental-app.iml" />
+    </modules>
+  </component>
+>>>>>>> bb52b99e2fc093b53c82de927d1087f108467f20
 </project>

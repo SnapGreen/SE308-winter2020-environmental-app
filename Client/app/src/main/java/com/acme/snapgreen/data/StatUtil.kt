@@ -1,5 +1,5 @@
 package com.acme.snapgreen.data
-import android.content.Context
+
 import android.util.Log
 import io.realm.Realm
 import io.realm.kotlin.where
@@ -19,7 +19,7 @@ class StatUtil private constructor() {
          * Returns the DailyStatistic associated with today's date from Realm DB, or creates one if
          * it doesn't exist.
          */
-        fun getTodaysStats() : DailyStatistic {
+        fun getTodaysStats(): DailyStatistic {
 
             // get the date and parse out the specific time (we just want day/month/year)
             val dateStringList = DateFormat.getDateTimeInstance().format(Date()).split(",", " ")
@@ -27,23 +27,24 @@ class StatUtil private constructor() {
             val realm = Realm.getDefaultInstance()
 
             // query database for today's date to see if we've already created a DailyStat for today
-            var stat = realm.where<DailyStatistic>().
-            contains("today",  dateString).findFirst()
+            var stat = realm.where<DailyStatistic>().contains("today", dateString).findFirst()
             realm.beginTransaction()
 
-            if(stat == null) {
+            if (stat == null) {
                 // create entry for today's date if it does not exist
                 stat = DailyStatistic().apply {
                     this.today = dateString
                 }
                 realm.copyToRealm(stat)
-                Log.i("Realm Database",
+                Log.i(
+                    "Realm Database",
                     "Created DailyStatistic for $dateString"
                 )
-            }
-            else {
-                Log.i("Realm Database",
-                    "Returning previously created DailyStatistic for $dateString")
+            } else {
+                Log.i(
+                    "Realm Database",
+                    "Returning previously created DailyStatistic for $dateString"
+                )
             }
 
             return stat
@@ -56,8 +57,10 @@ class StatUtil private constructor() {
             val realm = Realm.getDefaultInstance()
             realm.copyToRealmOrUpdate(stats)
             realm.commitTransaction()
-            Log.i("Realm Database",
-                "Updating statistics associated with ${stats.today}")
+            Log.i(
+                "Realm Database",
+                "Updating statistics associated with ${stats.today}"
+            )
         }
     }
 

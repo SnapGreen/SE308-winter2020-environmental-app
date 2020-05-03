@@ -15,21 +15,21 @@ class SettingsActivity : AppCompatActivity() {
         Toast.makeText(applicationContext, "Activity launched!", Toast.LENGTH_SHORT).show()
         setContentView(R.layout.activity_settings)
 
-        var signOutButton = findViewById<Button>(R.id.signOutSettingsButton)
+        val signOutButton = findViewById<Button>(R.id.signOutSettingsButton)
         signOutButton.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }
 
-        var supportButton = findViewById<Button>(R.id.supportSettingsButton)
+        val supportButton = findViewById<Button>(R.id.supportSettingsButton)
         supportButton.setOnClickListener {
             val intent = Intent(this, SupportActivity::class.java)
             startActivity(intent)
 
         }
 
-        var profileButton = findViewById<Button>(R.id.profileSettingsButton)
+        val profileButton = findViewById<Button>(R.id.profileSettingsButton)
         profileButton.setOnClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)

@@ -15,9 +15,9 @@ BEGIN { FS = "|" }
    printf("\t\t\t\t\t\"%s\"\n", ingreds[num_ingreds])
    print("\t\t\t\t],")
 
-   print("\t\t\t\t\"score\": \"-999999999\",")
-   printf("\t\t\t\t\"dateModified\": \"%s\"\n", $2)
-   print("\t\t\t}")
+   print("\t\t\t\t\"score\": \"-999999999\"")
+   print("\t\t\t},")
+   printf("\t\t\t\"dateModified\": \"%s\"\n", $2)
    print("\t\t},")
    # clear the array, reset
    split("", ingreds)

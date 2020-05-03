@@ -8,18 +8,18 @@ UPLOAD_SLEEP=$(grep -oP "(?<=UPLOAD_SLEEP:).*" settings.txt)
 
 function uploadFiles(){
    # uploads a json every 2 seconds
-   echo $@
    success=true
    for file in $@
    do
       if [ $success == "true" ] ; then
          num=$(echo $file | grep -o '[0-9]\+')
          logfile=${logdir}/${num}.log
-         echo $num $logfile
 
          curl --header "Content-Type: application/json"\
             --request POST --data  @$file http://localhost:8080/products\
-            | sed 's//\n/g' &> ${logdir}/${num}.log
+            &> $logfile
+
+         sed -i 's//\n/g' $logfile
 
          result=$(cat $logfile | grep -o 'successful')
          if [[ $result == "successful" ]] ; then
@@ -61,8 +61,7 @@ if [ $prompt == "true" ] ; then
 
    logdir="logs/uploads"
 
-   #filesToUpload="${alljsons[@]:0:$max_file_uploads}"
-   filesToUpload="${alljsons[@]:0:3}"
+   filesToUpload="${alljsons[@]:0:$max_file_uploads}"
 
    uploadFiles $filesToUpload
 fi

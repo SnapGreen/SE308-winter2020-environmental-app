@@ -1,4 +1,5 @@
 package com.acme.snapgreen.data
+
 import com.acme.snapgreen.data.model.LoggedInUser
 import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
@@ -55,8 +56,7 @@ class LoginDataSource {
 
             //TODO: return result of server auth instead of fake success
             return Result.Success(user)
-        }
-        catch (e: Throwable) {
+        } catch (e: Throwable) {
             return Result.Error(IOException("Error logging in", e))
         }
     }
