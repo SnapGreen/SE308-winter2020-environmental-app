@@ -100,7 +100,7 @@
         android:text="Welcome to SnapGreen"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/login_email"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="26dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
