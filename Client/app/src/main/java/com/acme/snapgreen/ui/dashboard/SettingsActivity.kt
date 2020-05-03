@@ -31,8 +31,9 @@ class SettingsActivity : AppCompatActivity() {
 
         val profileButton = findViewById<Button>(R.id.profileSettingsButton)
         profileButton.setOnClickListener {
-            val intent = Intent(this, ProfileActivity::class.java)
-            startActivity(intent)
+            val profile = Intent(this, ProfileActivity::class.java)
+            startActivity(profile)
+            finish()
 
         }
     }
