@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import com.acme.snapgreen.R
+import com.acme.snapgreen.data.WeeklyStatsCalc
 import com.acme.snapgreen.ui.scanner.PreviewActivity
 
 const val EXTRA_MESSAGE = "com.acme.snapgreen.MESSAGE"
@@ -34,8 +35,8 @@ class DashboardActivity : AppCompatActivity() {
         val welcomeView = findViewById<TextView>(R.id.textView)
 
         val gradeText = findViewById<TextView>(R.id.dashboard_grade)
-        val waterUsageText = findViewById<TextView>(R.id.dashboard_water_usage)
-        val wasteUsageText = findViewById<TextView>(R.id.dashboard_trash_usage)
+        waterUsageText = findViewById<TextView>(R.id.dashboard_water_usage)
+        wasteUsageText = findViewById<TextView>(R.id.dashboard_trash_usage)
         val waterPercentText = findViewById<TextView>(R.id.dashboard_water_percent)
         val wastePercentText = findViewById<TextView>(R.id.dashboard_trash_percent)
 
@@ -70,6 +71,8 @@ class DashboardActivity : AppCompatActivity() {
             val intent = Intent(this, StatsActivity::class.java)
             startActivity(intent)
         }
+
+        updateDashboardStatistics()
     }
 
     /**
@@ -79,5 +82,8 @@ class DashboardActivity : AppCompatActivity() {
     fun updateDashboardStatistics() {
         //TODO: Query / calculate the combined statistics of the last 7 days and update the
         // text views accordingly.
+        val combinedWS = WeeklyStatsCalc.getWeeksCombinedStats()
+        waterUsageText.text = combinedWS.numGals.toString() + " gal"
+        wasteUsageText.text = combinedWS.numKgWaste.toString() + " kg"
     }
 }

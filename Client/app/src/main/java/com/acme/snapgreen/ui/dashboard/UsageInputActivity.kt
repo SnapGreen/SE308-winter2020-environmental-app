@@ -21,7 +21,6 @@ class UsageInputActivity : AppCompatActivity() {
         timesFlushed: Int,
         timesDishwasherRun: Int,
         minutesWashingMachine: Int,
-        hoursLightOn: Int,
         numAlumCansUsed: Int,
         numStyroContainersUsed: Int,
         numPlasticStrawsUsed: Int,
@@ -32,7 +31,6 @@ class UsageInputActivity : AppCompatActivity() {
         stats.timesFlushed = timesFlushed
         stats.timesDishwasherRun = timesDishwasherRun
         stats.minutesWashingMachine = minutesWashingMachine
-        stats.hoursLightOn = hoursLightOn
         stats.numAlumCansUsed = numAlumCansUsed
         stats.numStyroContainersUsed = numStyroContainersUsed
         stats.numPlasticStrawsUsed = numPlasticStrawsUsed
@@ -63,8 +61,6 @@ class UsageInputActivity : AppCompatActivity() {
         val minutesWashingMachineField = findViewById<EditText>(R.id.minutesWashingMachine)
         minutesWashingMachineField.filters = arrayOf<InputFilter>(LengthFilter(maxLength))
 
-        val hoursLightOnField = findViewById<EditText>(R.id.hoursLightOn)
-        hoursLightOnField.filters = arrayOf<InputFilter>(LengthFilter(maxLength))
         val numAlumCansUsedField = findViewById<EditText>(R.id.numAlumCansUsed)
         numAlumCansUsedField.filters = arrayOf<InputFilter>(LengthFilter(maxLength))
         val numStyroContainersUsedField = findViewById<EditText>(R.id.numStyroContainersUsed)
@@ -82,7 +78,6 @@ class UsageInputActivity : AppCompatActivity() {
                 timesDishwasherRunField.isEnabled = true
                 minutesWashingMachineField.isEnabled = true
 
-                hoursLightOnField.isEnabled = true
                 numAlumCansUsedField.isEnabled = true
                 numStyroContainersUsedField.isEnabled = true
                 numPlasticStrawsUsedField.isEnabled = true
@@ -96,7 +91,6 @@ class UsageInputActivity : AppCompatActivity() {
                 timesDishwasherRunField.isEnabled = false
                 minutesWashingMachineField.isEnabled = false
 
-                hoursLightOnField.isEnabled = false
                 numAlumCansUsedField.isEnabled = false
                 numStyroContainersUsedField.isEnabled = false
                 numPlasticStrawsUsedField.isEnabled = false
@@ -107,7 +101,6 @@ class UsageInputActivity : AppCompatActivity() {
                     timesFlushedField.text.toString().toInt(),
                     timesDishwasherRunField.text.toString().toInt(),
                     minutesWashingMachineField.text.toString().toInt(),
-                    hoursLightOnField.text.toString().toInt(),
                     numAlumCansUsedField.text.toString().toInt(),
                     numStyroContainersUsedField.text.toString().toInt(),
                     numPlasticStrawsUsedField.text.toString().toInt(),
