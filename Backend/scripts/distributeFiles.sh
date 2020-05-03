@@ -6,10 +6,10 @@ FDADIR=$(grep -oP '(?<=^FDADIR:).*' $SETTINGS)
 FDADATASOURCE=$(grep -oP '(?<=^FDADATASOURCE:).*' $SETTINGS)
 FDAUPDATESOURCE=$(grep -oP '(?<=^FDAUPDATESOURCE:).*' $SETTINGS)
 RAWDATADEST="${RAWDATADIR}${FDADIR}"
-USAGE="Usage: ./distributeFiles.sh <zipfile> [OPTION] (use option -h for help)\n"
-HELP="\t-b: bypass debug mode (don't keep temp files)\n"
-HELP="${HELP}\t-s: output settings only\n"
-HELP="${HELP}\t-h: print help\n"
+USAGE="\t\tUsage: ./distributeFiles.sh <zipfile> [OPTION] (use option -h for help)\n"
+HELP="${USAGE}\t\t\t-b: bypass debug mode (don't keep temp files)\n"
+HELP="${HELP}\t\t\t-s: output settings only\n"
+HELP="${HELP}\t\t\t-h: print help\n"
 
 debug=true
 fin=false
@@ -23,6 +23,10 @@ function checkSettings(){
    printf "\tFDADATASOURCE: %s\n" $FDADATASOURCE
    printf "\tFDAUPDATESOURCE: %s\n" $FDAUPDATESOURCE
    printf "\tRAWDATADEST: %s\n" $RAWDATADEST
+   printf "\tUSAGE:\n"
+   printf "$USAGE"
+   printf "\tHELP:\n"
+   printf "$HELP"
 }
 
 function expandArchive(){

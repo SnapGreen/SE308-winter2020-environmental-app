@@ -4,20 +4,24 @@ FILENAME="$1"
 FULLPATH="${2}/${FILENAME}"
 LOGDIR=$(grep -oP '(?<=^LOGDIR:).*' $SETTINGS)
 DOWNLOADLOGDIR="${LOGDIR}downloads/"
-USAGE="Usage: ./downloadData.sh <filename> <url> [OPTION] (-h for help)\n"
-HELP="${USAGE}\t-b: bypass debug (will skip settings check)\n"
-HELP="${HELP}\t-s: output settings only\n"
-HELP="${HELP}\t-h: print help\n"
+USAGE="\t\tUsage: ./downloadData.sh <filename> <url> [OPTION] (-h for help)\n"
+HELP="${USAGE}\t\t\t-b: bypass debug (will skip settings check)\n"
+HELP="${HELP}\t\t\t-s: output settings only\n"
+HELP="${HELP}\t\t\t-h: print help\n"
 
 debug=true
 fin=false
 
 function checkSettings(){
-   printf "SETTINGS: %s\n" $SETTINGS
-   printf "FILENAME: %s\n" $FILENAME
-   printf "FULLPATH: %s\n" $FULLPATH
-   printf "LOGDIR: %s\n" $LOGDIR
-   printf "DOWNLOADLOGDIR: %s\n" $DOWNLOADLOGDIR
+   printf "\tSETTINGS: %s\n" $SETTINGS
+   printf "\tFILENAME: %s\n" $FILENAME
+   printf "\tFULLPATH: %s\n" $FULLPATH
+   printf "\tLOGDIR: %s\n" $LOGDIR
+   printf "\tDOWNLOADLOGDIR: %s\n" $DOWNLOADLOGDIR
+   printf "\tUSAGE:\n"
+   printf "$USAGE"
+   printf "\tHELP:\n"
+   printf "$HELP"
 }
 
 function getData(){
