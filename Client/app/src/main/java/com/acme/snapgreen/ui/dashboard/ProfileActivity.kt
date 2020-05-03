@@ -80,7 +80,7 @@ class ProfileActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-//            updateUser(firstName, lastName, phoneNum, email, password)
+            updateUser(firstName, lastName, phoneNum, email, password)
 
         }
 
@@ -147,30 +147,29 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
-//    private fun updateUser(
-//        firstName: String,
-//        lastName: String,
-//        phoneNum: String,
-//        email: String,
-//        password: String
-//    ) {
-//        val userMap = HashMap<String, Any>()
-//
-//        userMap["firstName"] = firstName
-//        userMap["lastName"] = lastName
-//        userMap["phoneNum"] = phoneNum
-//        userMap["email"] = email
-//        userMap["password"] = password
-//
-//        mDataBase.updateChildren(userMap).addOnCompleteListener { task ->
-//
-//            if (task.isSuccessful) {
-//                val intent = Intent(applicationContext, DashboardActivity::class.java)
-//                startActivity(intent)
-//                finish()
-//            }
-//        }
-//    }
+    private fun updateUser(
+        firstName: String,
+        lastName: String,
+        phoneNum: String,
+        email: String,
+        password: String
+    ) {
+        val userMap = HashMap<String, Any>()
 
+        userMap["firstName"] = firstName
+        userMap["lastName"] = lastName
+        userMap["phoneNum"] = phoneNum
+        userMap["email"] = email
+        userMap["password"] = password
 
+        //mDataBase.updateChildren(userMap).addOnCompleteListener { task ->
+
+        // if (task.isSuccessful) {
+        val intent = Intent(applicationContext, DashboardActivity::class.java)
+        startActivity(intent)
+        finish()
+        //   }
+    }
 }
+
+
