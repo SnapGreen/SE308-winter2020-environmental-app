@@ -89,7 +89,7 @@ function storeNewestEntry(){
    echo "storing newest file name and date..."
    # https://unix.stackexchange.com/questions/170204/find-the-max-value-of-column-1-and-print-respective-record-from-column-2-from-fill
    newest=$(sort -t ',' -nrk2,2 $1 | head -1)
-   sed -i "s/^CURRENTLATEST:.*/CURRENTLATEST:$newest/g"
+   sed -i "s/^CURRENTLATEST:.*/CURRENTLATEST:$newest/g" "$SETTINGS"
    CURRENTLATEST=$newest
 
    if [ "$debug" == "false" ] ; then
@@ -104,7 +104,7 @@ function getFDAData(){
 
 function getUpdateIfNew(){
    echo "checking if new data is available..."
-   datediff=$(($4 - $3))
+   datediff=$(($3 - $4))
 
    if [[ $datediff -gt 0 ]] ; then
       if [ "$1" == "-b" ] ; then
@@ -150,10 +150,10 @@ if [ "$fin" == "false" ] ; then
       checkSettings
    fi
 
-   getDirectoryFromWeb $TMPLINKSFILE $FDC_DIR_ADDRESS
-   isolateData $TMPLINKSFILE $TMPFILELIST
-   convertMonthToDigits $TMPFILELIST
-   rearrangeDate $TMPFILELIST
+   #getDirectoryFromWeb $TMPLINKSFILE $FDC_DIR_ADDRESS
+   #isolateData $TMPLINKSFILE $TMPFILELIST
+   #convertMonthToDigits $TMPFILELIST
+   #rearrangeDate $TMPFILELIST
    storeNewestEntry $TMPFILELIST
 
    IFS=',' read -r -a currarray <<< "$CURRENTLATEST"

@@ -1,5 +1,5 @@
 #!/bin/bash
-SETTINGS="files/settings.txt"
+SETTINGS="settings.txt"
 TESTDIR=$(grep -oP '(?<=^TESTDIR:).*' $SETTINGS)
 TESTDIR="${TESTDIR}settings/"
 

@@ -3,6 +3,7 @@ SETTINGS="settings.txt"
 FILENAME="$1"
 FULLPATH="${2}/${FILENAME}"
 LOGDIR=$(grep -oP '(?<=^LOGDIR:).*' $SETTINGS)
+CURRENTLATEST=$(grep -oP '(?<=^CURRENTLATEST:).*' $SETTINGS)
 DONE_UPLOADING=$(grep -oP '(?<=^DONE_UPLOADING:).*' $SETTINGS)
 DOWNLOADLOGDIR="${LOGDIR}downloads/"
 USAGE="\t\tUsage: ./downloadData.sh <filename> <url> [OPTION] (-h for help)\n"
@@ -14,12 +15,13 @@ debug=true
 fin=false
 
 function checkSettings(){
-   printf "\tSETTINGS: %s\n" $SETTINGS
-   printf "\tFILENAME: %s\n" $FILENAME
-   printf "\tFULLPATH: %s\n" $FULLPATH
-   printf "\tLOGDIR: %s\n" $LOGDIR
+   printf "\tSETTINGS: %s\n" "$SETTINGS"
+   printf "\tFILENAME: %s\n" "$FILENAME"
+   printf "\tFULLPATH: %s\n" "$FULLPATH"
+   printf "\tLOGDIR: %s\n" "$LOGDIR"
+   printf "\tCURRENTLATEST: %s\n" "$CURRENTLATEST"
    printf "\tDONE_UPLOADING: %s\n" $DONE_UPLOADING
-   printf "\tDOWNLOADLOGDIR: %s\n" $DOWNLOADLOGDIR
+   printf "\tDOWNLOADLOGDIR: %s\n" "$DOWNLOADLOGDIR"
    printf "\tUSAGE:\n"
    printf "$USAGE"
    printf "\tHELP:\n"
@@ -35,6 +37,7 @@ function getData(){
       if [ "$DONE_UPLOADING" == "true" ] ; then
          sed -i "s/^DONE_UPLOADING:.*/DONE_UPLOADING:false/g" $SETTINGS
       fi
+      sed -i "s/^LASTLATEST:.*/LASTLATEST:$CURRENTLATEST/g" "$SETTINGS"
    fi
 }
 

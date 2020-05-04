@@ -23,5 +23,5 @@ SERVER_POPULATED:false
 DONE_UPLOADING:false
 LASTUPLOAD:../data/FDA/branded_food_0066.json
 CURRENTLATEST:FoodData_Central_branded_food_csv_2020-04-29.zip,202005010424,74439754
-LASTLATEST:FoodData_Central_branded_food_csv_2020-03-31.zip,202004151648,73949343
+LASTLATEST:FoodData_Central_branded_food_csv_2020-04-29.zip,202005010424,74439754
 
