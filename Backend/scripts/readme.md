@@ -97,7 +97,7 @@ The number of products per .json is set to 250, but can be changed by modifying 
 
 This file contains hundreds of thousands of pairs, mapping 6-digit fdc id numbers to 14 digit gtin upc codes.  When the FDA makes changes, they list them in a file included with our download; the changes are listed by fdc id, which we currently aren't storing in our database.  This file allows us to figure out which of our products need to be updated. 
 
-## 5. <span>uploadToFirebase.sh</span>
+## 5. <span>uploadToDB.sh</span>
 
 This script will upload ~34 of the lowest-numbered "branded_food_xxxx.json" files to our database, then delete them.  It is meant to be run once daily, ensuring that we don't go over our 20k writes/per day limit.
 
@@ -128,7 +128,7 @@ These files pop up while sed is running through the 'ingredients.tmp' file.  The
 In order to automate these processes on the server, you'll have to schedule them to be performed automatically.  On our server, this was done via cron as described here:  https://opensource.com/article/17/11/how-use-cron-linux
 In the case of our server, two lines were added:
    - `01 23 * * * .../getFDAUpdate.sh -b`
-   - `01 00 * * * .../uploadToFirebase.sh -b`
+   - `01 00 * * * .../uploadToDB.sh -b`
 The first line tells the server to check for an update from the FDA at 11:01 PM every night (bypassing debug mode, which would prompt the user).  the second line tells the server to upload to Firebase at 12:01 AM every night (also bypassing debug mode).
 
 # Troubleshooting

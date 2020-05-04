@@ -1,5 +1,5 @@
 #!/bin/bash
-SETTINGS="files/settings.txt"
+SETTINGS="settings.txt"
 AWKDIR=$(grep -oP '(?<=^AWKDIR:).*' $SETTINGS)
 DATADIR=$(grep -oP '(?<=^DATADIR:).*' $SETTINGS)
 FDADIR=$(grep -oP '(?<=^FDADIR:).*' $SETTINGS)

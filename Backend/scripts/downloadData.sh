@@ -1,8 +1,9 @@
 #!/bin/bash
-SETTINGS="files/settings.txt"
+SETTINGS="settings.txt"
 FILENAME="$1"
 FULLPATH="${2}/${FILENAME}"
 LOGDIR=$(grep -oP '(?<=^LOGDIR:).*' $SETTINGS)
+DONE_UPLOADING=$(grep -oP '(?<=^DONE_UPLOADING:).*' $SETTINGS)
 DOWNLOADLOGDIR="${LOGDIR}downloads/"
 USAGE="\t\tUsage: ./downloadData.sh <filename> <url> [OPTION] (-h for help)\n"
 HELP="${USAGE}\t\t\t-b: bypass debug (will skip settings check)\n"
@@ -17,6 +18,7 @@ function checkSettings(){
    printf "\tFILENAME: %s\n" $FILENAME
    printf "\tFULLPATH: %s\n" $FULLPATH
    printf "\tLOGDIR: %s\n" $LOGDIR
+   printf "\tDONE_UPLOADING: %s\n" $DONE_UPLOADING
    printf "\tDOWNLOADLOGDIR: %s\n" $DOWNLOADLOGDIR
    printf "\tUSAGE:\n"
    printf "$USAGE"
@@ -28,9 +30,12 @@ function getData(){
    printf "dowloading from %s\n" "$1"
    timestamp=$(date +%s)
    logfile="${DOWNLOADLOGDIR}${timestamp}.log"
-   #curl -v -O $FULLPATH 
-   # for logging (needs testing):
    curl -vs -O --stderr $logfile $FULLPATH
+   if [ $? -eq 0 ] ; then
+      if [ "$DONE_UPLOADING" == "true" ] ; then
+         sed -i "s/^DONE_UPLOADING:.*/DONE_UPLOADING:false/g" $SETTINGS
+      fi
+   fi
 }
 
 if [[ $# -gt 2 ]] ; then

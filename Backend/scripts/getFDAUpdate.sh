@@ -1,21 +1,20 @@
 #!/bin/bash
-SCRIPTDATADIR="files/"
-SETTINGS="${SCRIPTDATADIR}settings.txt"
-CURRENTFILE="${SCRIPTDATADIR}$(grep -oP '(?<=^CURRENTFILE:).*' $SETTINGS)"
-LASTFILE="${SCRIPTDATADIR}$(grep -oP '(?<=^LASTFILE:).*' $SETTINGS)"
+SETTINGS="settings.txt"
+CURRENTLATEST=$(grep -oP '(?<=^CURRENTLATEST:).*' $SETTINGS)
+LASTLATEST=$(grep -oP '(?<=^LASTLATEST:).*' $SETTINGS)
+SERVER_POPULATED=$(grep -oP '(?<=^SERVER_POPULATED:).*' $SETTINGS)
 FDC_DIR_ADDRESS=$(grep -oP '(?<=^FDC_DIR_ADDRESS:).*' $SETTINGS)
 TMPDIR=$(grep -oP '(?<=^TMPDIR:).*' $SETTINGS)
 TMPFILE_END=$(grep -oP '(?<=^TMPFILE_END:).*' $SETTINGS)
 TMPLINKSFILE="${TMPDIR}links${TMPFILE_END}"
 TMPFILELIST="${TMPDIR}available_data${TMPFILE_END}"
 LASTUPLOAD=$(grep -oP "(?<=^LASTUPLOAD:).*" $SETTINGS)
-USAGE="\tUsage: ./getFDAUpdate.sh [OPTION] (use option -h for help)\n"
-HELP="${USAGE}\t**If no OPTION supplied, debug mode on (temp files remain)\n"
-HELP="${HELP}\t\t-a: automation mode, download if update available w/out prompt\n"
-HELP="${HELP}\t\t-b: bypass debug mode\n"
-HELP="${HELP}\t\t-f: force download\n"
-HELP="${HELP}\t\t-s: output settings only\n"
-HELP="${HELP}\t\t-h: print help\n"
+USAGE="\t\tUsage: ./getFDAUpdate.sh [OPTION] (use option -h for help)\n"
+HELP="${USAGE}\t\t**If no OPTION supplied, debug mode on (temp files remain)\n"
+HELP="${HELP}\t\t\t-b: bypass debug mode, download only if new\n"
+HELP="${HELP}\t\t\t-f: force download\n"
+HELP="${HELP}\t\t\t-s: output settings only\n"
+HELP="${HELP}\t\t\t-h: print help\n"
 
 debug=true
 fin=false
@@ -23,10 +22,10 @@ silent=false
 
 function checkSettings(){
    echo "settings check:"
-   printf "\tSCRIPTDATADIR: %s\n" $SCRIPTDATADIR
    printf "\tSETTINGS: %s\n" $SETTINGS
-   printf "\tCURRENTFILE: %s\n" $CURRENTFILE
-   printf "\tLASTFILE: %s\n" $LASTFILE
+   printf "\tCURRENTLATEST: %s\n" $CURRENTLATEST
+   printf "\tLASTLATEST: %s\n" $LASTLATEST
+   printf "\tSERVER_POPULATED: %s\n" $SERVER_POPULATED
    printf "\tFDC_DIR_ADDRESS: %s\n" $FDC_DIR_ADDRESS
    printf "\tTMPDIR: %s\n" $TMPDIR
    printf "\tTMPFILE_END: %s\n" $TMPFILE_END
@@ -89,47 +88,40 @@ function getDirectoryFromWeb(){
 function storeNewestEntry(){
    echo "storing newest file name and date..."
    # https://unix.stackexchange.com/questions/170204/find-the-max-value-of-column-1-and-print-respective-record-from-column-2-from-fill
-   sort -t ',' -nrk2,2 $1 | head -1 > $2
+   newest=$(sort -t ',' -nrk2,2 $1 | head -1)
+   sed -i "s/^CURRENTLATEST:.*/CURRENTLATEST:$newest/g"
+   CURRENTLATEST=$newest
 
    if [ "$debug" == "false" ] ; then
       rm $1
    fi
 }
 
-function startNewUploadCycle(){
-   # remove the file that lists the last json uploaded
-   # if the file isn't there, the function knows to start fresh
-   rm $LASTUPLOAD
-}
-
 function getFDAData(){
    echo "downloading data..."
    ./downloadData.sh $1 $2 -b
-   cat $3 > $4
 }
 
-function getIfNew(){
+function getUpdateIfNew(){
    echo "checking if new data is available..."
-   currentdate=$(cut -d , -f 2 $3)
-   lastdate=$(cut -d , -f 2 $4)
-   datediff=$((currentdate - lastdate))
+   datediff=$(($4 - $3))
 
-   if [ "$1" == "-d" ] ; then
-      startNewUploadCycle
-      getFDAData $1 $2 $3 $4
-   elif [[ $datediff -gt 0 ]] ; then
-      printf "\tAn update is available:\n"
-      datasize=$(cut -d , -f 3 $CURRENTFILE | tr -d '\n')
-      let dataMB=datasize/1048576
-      printf "\tdownloading will overwrite last file, if present.\n"
-      printf "\tNew file is about %d MB.\n" $dataMB
-      printf "\tdownload new file? (Y/n): "
-      read reply
-      if [ "$reply" == "y" ] || [ "$reply" == "Y" ] ; then
-         startNewUploadCycle
-         getFDAData $1 $2 $3 $3
+   if [[ $datediff -gt 0 ]] ; then
+      if [ "$1" == "-b" ] ; then
+         getFDAData $1 $2 
       else
-         printf "reply was %s, goodbye!\n" $reply
+         printf "\tAn update is available:\n"
+         datasize=$5
+         let dataMB=$((datasize/1048576))
+         dataMB=$((dataMB + 1))
+         printf "\tNew file is about %d MB.\n" $dataMB
+         printf "\tdownload new file? (Y/n): "
+         read reply
+         if [ "$reply" == "y" ] || [ "$reply" == "Y" ] ; then
+            getFDAData $1 $2 
+         else
+            printf "reply was %s, goodbye!\n" $reply
+         fi
       fi
    else
       printf "...no updates available.\n"
@@ -141,11 +133,9 @@ if [[ -n $1 ]] ; then
    if [ "$1" == "-h" ] ; then
       printf "$HELP"
       fin=true
-   elif [ "$1" == "-f" ] || [ "$1" == "-a" ] || [ "$1" == "-b" ] ; then
+   elif [ "$1" == "-f" ] || [ "$1" == "-b" ] ; then
       debug=false
-      if [ "$1" != "-b" ] ; then
-         silent=true
-      fi
+      silent=true
    elif [ "$1" == "-s" ] ; then
       checkSettings
       fin=true
@@ -164,14 +154,20 @@ if [ "$fin" == "false" ] ; then
    isolateData $TMPLINKSFILE $TMPFILELIST
    convertMonthToDigits $TMPFILELIST
    rearrangeDate $TMPFILELIST
-   storeNewestEntry $TMPFILELIST $CURRENTFILE
+   storeNewestEntry $TMPFILELIST
 
-   filename=$(cut -d , -f 1 $CURRENTFILE)
+   IFS=',' read -r -a currarray <<< "$CURRENTLATEST"
+   IFS=',' read -r -a lastarray <<< "$LASTLATEST"
+
+   currfile=${currarray[0]}
+   currdate=${currarray[1]}
+   currsize=${currarray[2]}
+   lastdate=${lastarray[1]}
 
    if [ "$1" == '-f' ] ; then
-      getFDAData $filename $FDC_DIR_ADDRESS $CURRENTFILE $LASTFILE
-   else
-      getIfNew $filename $FDC_DIR_ADDRESS $CURRENTFILE $LASTFILE
+      getFDAData $currfile $FDC_DIR_ADDRESS 
+   elif [ "$SERVER_POPULATED" == "false" ] ; then
+      getUpdateIfNew $currfile $FDC_DIR_ADDRESS $currdate $lastdate $currsize
    fi
 fi
 
