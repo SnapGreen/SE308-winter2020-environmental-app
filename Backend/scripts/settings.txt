@@ -21,7 +21,7 @@ NUM_CLEAN_TESTS:10
 UPLOAD_SLEEP:1
 SERVER_POPULATED:false
 DONE_UPLOADING:false
-LASTUPLOAD:../data/FDA/branded_food_0066.json
+LASTUPLOAD:../data/FDA/branded_food_0110.json
 CURRENTLATEST:FoodData_Central_branded_food_csv_2020-04-29.zip,202005010424,74439754
 LASTLATEST:FoodData_Central_branded_food_csv_2020-04-29.zip,202005010424,74439754
 

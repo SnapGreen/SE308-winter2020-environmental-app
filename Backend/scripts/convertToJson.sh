@@ -50,6 +50,27 @@ function timestamp(){
    date +%s
 }
 
+#function findWorkingDirectories(){
+#   if [ -z ${FDAOUTDIR} ] ; then
+#      work_out_dirs=$FDAOUTDIR
+#      work_in_dirs=$FDAINDIR
+#   else
+#      work_out_dirs=$($FDAOUTDIR*/)
+#      work_in_dirs=$($FDAINDIR*/)
+#      for dir in $work_out_dirs; do
+#         if [ -n $dir ] ; then
+#            work_out_dirs=${work_out_dirs[@]/$dir} 
+#            indir=$(echo $dir | grep -o "\[0-9]\+\/")
+#            indir="${FDAINDIR}${indir}"
+#            work_in_dirs=${work_in_dirs[@]/$indir} 
+#         fi
+#      done
+#   fi
+#   if [ -z $work_out_dirs ] ; then
+#      fin=true
+#   fi
+#}
+
 function checkSettings(){
    # function to verify settings are what we expect (for debugging)
    echo "settings check:"
@@ -151,7 +172,6 @@ function createCleanTests(){
       num=$((num+1))
    done
 }
-
 
 function createMap(){
    printf "creating fdcid-gtin map...\n"
@@ -330,6 +350,8 @@ if [ $# != 0 ] ; then
       fin=true
    fi
 fi
+
+#findWorkingDirectories
 
 if [ "$fin" == "false" ] ; then
    if [[ "$debug" == "on" ]] ; then

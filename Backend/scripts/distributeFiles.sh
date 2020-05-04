@@ -1,6 +1,7 @@
 #!/bin/bash
 SETTINGS="settings.txt"
 ZIPFILE="$1"
+DATADIR=$(grep -oP '(?<=^DATADIR:).*' $SETTINGS)
 RAWDATADIR=$(grep -oP '(?<=^RAWDATADIR:).*' $SETTINGS)
 FDADIR=$(grep -oP '(?<=^FDADIR:).*' $SETTINGS)
 FDADATASOURCE=$(grep -oP '(?<=^FDADATASOURCE:).*' $SETTINGS)
@@ -9,10 +10,17 @@ SERVER_POPULATED=$(grep -oP '(?<=^SERVER_POPULATED:).*' $SETTINGS)
 DONE_UPLOADING=$(grep -oP '(?<=^SERVER_POPULATED:).*' $SETTINGS)
 LASTLATEST=$(grep -oP '(?<=^LASTLATEST:).*' $SETTINGS)
 RAWDATADEST="${RAWDATADIR}${FDADIR}"
+DATADEST="${DATADIR}${FDADIR}"
 IFS=',' read -r -a lastarray <<< "$LASTLATEST"
-RAWDATAUPDATEDEST="${RAWDATADIR}${FDADIR}${lastarray[1]}/"
+RAWDATAUPDATEDEST="${RAWDATADEST}${lastarray[1]}/"
+DATAUPDATEDEST="${DATADEST}${lastarray[1]}/"
+HELP="\tThis script distributes the contents of the provided FDA zipfile to\n"
+HELP="${HELP}\tthe proper directories.  If there are no uploads left, it\n"
+HELP="${HELP}\tputs them in the upload directory.  Otherwise, it creates\n"
+HELP="${HELP}\ta new directory in both data/ and dataraw/ for the update\n"
 USAGE="\t\tUsage: ./distributeFiles.sh <zipfile> [OPTION] (use option -h for help)\n"
-HELP="${USAGE}\t\t\t-b: bypass debug mode (don't keep temp files)\n"
+HELP="${HELP}${USAGE}"
+HELP="${HELP}\t\t\t-b: bypass debug mode (don't keep temp files)\n"
 HELP="${HELP}\t\t\t-s: output settings only\n"
 HELP="${HELP}\t\t\t-h: print help\n"
 
@@ -23,13 +31,16 @@ function checkSettings(){
    echo "settings check:"
    printf "\tSETTINGS: %s\n" "$SETTINGS"
    printf "\tZIPFILE: %s\n" "$ZIPFILE"
+   printf "\tDATADIR: %s\n" "$DATADIR"
    printf "\tRAWDATADIR: %s\n" "$RAWDATADIR"
    printf "\tFDADIR: %s\n" "$FDADIR"
    printf "\tFDADATASOURCE: %s\n" "$FDADATASOURCE"
    printf "\tFDAUPDATESOURCE: %s\n" "$FDAUPDATESOURCE"
    printf "\tLASTLATEST: %s\n" "$LASTLATEST"
    printf "\tRAWDATADEST: %s\n" "$RAWDATADEST"
+   printf "\tDATADEST: %s\n" "$DATADEST"
    printf "\tRAWDATAUPDATEDEST: %s\n" "$RAWDATAUPDATEDEST"
+   printf "\tDATAUPDATEDEST: %s\n" "$DATAUPDATEDEST"
    printf "\tUSAGE:\n"
    printf "$USAGE"
    printf "\tHELP:\n"
@@ -65,7 +76,7 @@ if [[ $# -gt 1 ]] ; then
       checkSettings
       fin=true
    elif [ "$2" == "-h" ] ; then
-      printf $HELP
+      printf "$HELP"
       fin=true
    else
       printf "$USAGE"
@@ -74,6 +85,14 @@ if [[ $# -gt 1 ]] ; then
 elif [[ $# -lt 1 ]] ; then
    printf "$USAGE"
    fin=true
+else
+   if [ "$1" == "-h" ] ; then
+      printf "$HELP"
+      fin=true
+   elif [ "$1" == "-s" ] ; then
+      checkSettings
+      fin=true
+   fi
 fi
 
 if [ "$fin" == "false" ] ; then
@@ -93,6 +112,7 @@ if [ "$fin" == "false" ] ; then
       moveToRawFDADir $FDADATASOURCE $FDAUPDATESOURCE $RAWDATADEST
    else
       mkdir $RAWDATAUPDATEDEST
+      mkdir $DATAUPDATEDEST
       moveToRawFDADir $FDADATASOURCE $FDAUPDATESOURCE $RAWDATAUPDATEDEST
    fi
 fi
