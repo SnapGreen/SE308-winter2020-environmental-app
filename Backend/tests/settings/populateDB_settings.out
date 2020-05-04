@@ -1,0 +1,13 @@
+settings check:
+	SETTINGS: settings.txt
+	SERVER_POPULATED: false
+	LASTUPLOAD: ../data/FDA/branded_food_0110.json
+	USAGE:
+		Usage: ./populateDB.sh [OPTION] (use option -h for help)
+	HELP:
+		This script will download the latest FDA database
+		and adjust the settings so that updates are stored,
+		then applied after the databse is fully populated.
+		Usage: ./populateDB.sh [OPTION] (use option -h for help)
+			-s: output settings only
+			-h: print help
