@@ -91,6 +91,7 @@ function uploadFiles(){
          if [[ $result == "successful" ]] ; then
             echo "$file was succesfully uploaded"
             lastupload=$file
+            rm $file
          else
             echo "$file upload was unsuccessful"
             success=false
@@ -127,6 +128,7 @@ function uploadLastFiles(){
          if [[ $result == "successful" ]] ; then
             echo "$file was succesfully uploaded"
             lastupload=$file
+            rm $file
          else
             echo "$file upload was unsuccessful"
             success=false
