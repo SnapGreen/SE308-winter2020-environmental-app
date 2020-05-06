@@ -54,7 +54,7 @@ function removePreviousUploads(){
    # files haven't shown up again (i.e., through testing).
    upper=$(echo $LASTUPLOAD | grep -o "[0-9]\+")
    for num in $(seq -w 0000 $upper); do
-      file="$DATADIR$SPLIT_PREFIX$num$OUTFILE_END"
+      file="$FDADATADIR$SPLIT_PREFIX$num$OUTFILE_END"
       if [ -e $file ] ; then
          rm $file
       fi
