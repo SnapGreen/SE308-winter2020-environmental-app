@@ -7,6 +7,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 apply plugin: 'realm-android'
+apply plugin: 'com.google.gms.google-services'
 
 
 android {
@@ -49,7 +50,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    implementation 'com.google.android.gms:play-services:12.0.1'
     implementation 'com.android.volley:volley:1.1.1'
     implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation 'com.android.support:design:28.0.0'
@@ -59,5 +59,11 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.3'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     androidTestImplementation 'androidx.test:rules:1.3.0-alpha02'
+<<<<<<< HEAD
 
+=======
+    implementation 'com.google.firebase:firebase-analytics:17.4.0'
+    implementation 'com.google.firebase:firebase-auth:19.3.1'
+    implementation 'com.google.android.gms:play-services-vision:20.0.0'
+>>>>>>> Added firebase packages to build.grade files
 }
