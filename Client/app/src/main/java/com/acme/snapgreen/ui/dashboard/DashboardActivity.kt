@@ -85,5 +85,11 @@ class DashboardActivity : AppCompatActivity() {
         val combinedWS = WeeklyStatsCalc.getWeeksCombinedStats()
         waterUsageText.text = combinedWS.numGals.toString() + " gal"
         wasteUsageText.text = combinedWS.numKgWaste.toString() + " kg"
+
+//        if (combinedWS.numGals == 0.0 || combinedWS.numKgWaste == 0.0) {
+//            gradeText.text = "F"
+//        } else {
+//            gradeText.text = "B+"
+//        }
     }
 }

@@ -63,6 +63,13 @@ class StatUtil private constructor() {
             return realm.where<DailyStatistic>().sort("date", Sort.DESCENDING).limit(7).findAll()
         }
 
+        fun getPastTwoWeeksStats(): List<DailyStatistic> {
+            val realm = Realm.getDefaultInstance()
+
+            // query database for the DailyStatistic entries of the past 14 days
+            return realm.where<DailyStatistic>().sort("date", Sort.DESCENDING).limit(14).findAll()
+        }
+
         /**
          * Updates the DailyStatistic in the database
          */
