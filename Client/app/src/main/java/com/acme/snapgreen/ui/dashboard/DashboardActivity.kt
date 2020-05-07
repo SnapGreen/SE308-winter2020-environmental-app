@@ -14,7 +14,6 @@ const val EXTRA_MESSAGE = "com.acme.snapgreen.MESSAGE"
 
 class DashboardActivity : AppCompatActivity() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
     private lateinit var gradeText: TextView
     private lateinit var waterUsageText: TextView
     private lateinit var wasteUsageText: TextView
@@ -24,8 +23,6 @@ class DashboardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        dashboardViewModel = ViewModelProviders.of(this, DashboardViewModelFactory())
-            .get(DashboardViewModel::class.java)
         setContentView(R.layout.activity_dashboard)
 
         // get the username from the login activity
