@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.acme.snapgreen.R
 import com.acme.snapgreen.ui.login.LoginActivity
+import com.firebase.ui.auth.AuthUI
 
 class SettingsActivity : AppCompatActivity() {
 
@@ -17,9 +18,14 @@ class SettingsActivity : AppCompatActivity() {
 
         val signOutButton = findViewById<Button>(R.id.signOutSettingsButton)
         signOutButton.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
+            AuthUI.getInstance()
+                .signOut(this)
+                .addOnCompleteListener {
+                    val intent = Intent(this, LoginActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // Removes other Activities from stack
+                    startActivity(intent)
+                    finish()
+                }
         }
 
         val supportButton = findViewById<Button>(R.id.supportSettingsButton)
