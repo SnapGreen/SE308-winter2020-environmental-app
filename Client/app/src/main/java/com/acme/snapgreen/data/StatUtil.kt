@@ -18,6 +18,23 @@ class StatUtil private constructor() {
     companion object {
 
         /**
+         * Returns the TotalScore from Realm DB, or creates one if it doesn't exist.
+         */
+        fun getScore(): TotalScore {
+            val realm = Realm.getDefaultInstance()
+            var totalScore = realm.where<TotalScore>().findFirst()
+
+            if (totalScore == null) {
+                totalScore = TotalScore()
+                realm.beginTransaction()
+                realm.copyToRealm(totalScore)
+                realm.commitTransaction()
+            }
+
+            return totalScore
+        }
+
+        /**
          * Returns the DailyStatistic associated with today's date from Realm DB, or creates one if
          * it doesn't exist.
          */
@@ -75,6 +92,17 @@ class StatUtil private constructor() {
          */
         fun setTodaysStats(stats: DailyStatistic) {
             val realm = Realm.getDefaultInstance()
+            var totalScore = getScore()
+
+            if (stats.hasBeenSaved) {
+                totalScore.score -= stats.score
+            }
+            stats.refreshScore()
+            totalScore.score += stats.score
+            realm.copyToRealmOrUpdate(totalScore)
+
+            stats.hasBeenSaved = true
+
             realm.copyToRealmOrUpdate(stats)
             realm.commitTransaction()
             Log.i(

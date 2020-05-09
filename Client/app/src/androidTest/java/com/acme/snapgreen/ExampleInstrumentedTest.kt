@@ -63,4 +63,26 @@ class ExampleInstrumentedTest {
         assertEquals(133.4, combinedWS.numGals, .1)
         assertEquals(1.16004, combinedWS.numKgWaste, .1)
     }
+
+    @Test
+    fun testSetInputData() {
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+        assertEquals("com.acme.snapgreen", appContext.packageName)
+
+        Realm.init(appContext)
+        val testConfig =
+            RealmConfiguration.Builder().inMemory().name("test-realm").build()
+        Realm.setDefaultConfiguration(testConfig)
+
+        val stats = StatUtil.getTodaysStats()
+        stats.minutesShowered = 12
+        stats.timesFlushed = 4
+        stats.timesDishwasherRun = 1
+        stats.minutesWashingMachine = 30
+        stats.numAlumCansUsed = 2
+        stats.numStyroContainersUsed = 1
+        stats.numPlasticStrawsUsed = 3
+        stats.numPlasticUtensilsUsed = 5
+        StatUtil.setTodaysStats(stats)
+    }
 }

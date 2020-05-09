@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import com.acme.snapgreen.R
+import com.acme.snapgreen.data.StatUtil
 import com.acme.snapgreen.data.WeeklyStatsCalc
 import com.acme.snapgreen.ui.scanner.PreviewActivity
 
@@ -14,7 +15,7 @@ const val EXTRA_MESSAGE = "com.acme.snapgreen.MESSAGE"
 
 class DashboardActivity : AppCompatActivity() {
 
-    private lateinit var gradeText: TextView
+    private lateinit var scoreText: TextView
     private lateinit var waterUsageText: TextView
     private lateinit var wasteUsageText: TextView
     private lateinit var waterPercentText: TextView
@@ -25,13 +26,7 @@ class DashboardActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_dashboard)
 
-        // get the username from the login activity
-        val username = intent.getStringExtra(EXTRA_MESSAGE)
-
-        // Capture the layout's TextView and set the string as its text
-        val welcomeView = findViewById<TextView>(R.id.textView)
-
-        val gradeText = findViewById<TextView>(R.id.dashboard_grade)
+        scoreText = findViewById<TextView>(R.id.dashboard_grade)
         waterUsageText = findViewById<TextView>(R.id.dashboard_water_usage)
         wasteUsageText = findViewById<TextView>(R.id.dashboard_trash_usage)
         val waterPercentText = findViewById<TextView>(R.id.dashboard_water_percent)
@@ -76,17 +71,17 @@ class DashboardActivity : AppCompatActivity() {
      * Updates the water usage, waste usage, percent change from last week, and the overall
      * grade displayed in the center of the dashboard.
      */
-    fun updateDashboardStatistics() {
-        //TODO: Query / calculate the combined statistics of the last 7 days and update the
-        // text views accordingly.
+    private fun updateDashboardStatistics() {
         val combinedWS = WeeklyStatsCalc.getWeeksCombinedStats()
         waterUsageText.text = combinedWS.numGals.toString() + " gal"
         wasteUsageText.text = combinedWS.numKgWaste.toString() + " kg"
 
-//        if (combinedWS.numGals == 0.0 || combinedWS.numKgWaste == 0.0) {
-//            gradeText.text = "F"
-//        } else {
-//            gradeText.text = "B+"
-//        }
+        scoreText.text = StatUtil.getScore().score.toString()
+
+    }
+
+    public override fun onResume() {
+        super.onResume()
+        updateDashboardStatistics()
     }
 }
