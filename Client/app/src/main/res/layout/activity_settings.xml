@@ -46,8 +46,7 @@
                 android:id="@+id/profileSettingsButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/cast_ic_mini_controller_play" />
+                android:layout_weight="1"/>
         </LinearLayout>
 
         <View
@@ -87,8 +86,7 @@
                 android:id="@+id/supportSettingsButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/cast_ic_mini_controller_play" />
+                android:layout_weight="1"/>
 
         </LinearLayout>
 
@@ -116,8 +114,7 @@
                 android:id="@+id/signOutSettingsButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/cast_ic_mini_controller_play" />
+                android:layout_weight="1"/>
         </LinearLayout>
 
         <View
