@@ -64,19 +64,17 @@ class WeeklyStatsCalc() {
             var numGals: Double,
             var numKgWaste: Double
         ) {
-
         }
 
         /**
-         * Object to hold the combined data from the past week (could be less than past 7 days if there
-         * less than 7 entries)
+         * Object to hold the combined data from the past week (could be less than past 7 days if
+         * there are less than 7 entries)
          */
         class CombinedWSData(
             var numGals: Double,
             var numKgWaste: Double,
             var combinedDSDataList: MutableList<CombinedDSData>
         ) {
-
         }
     }
 

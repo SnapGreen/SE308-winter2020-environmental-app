@@ -27,7 +27,7 @@ class ScanResultActivity : AppCompatActivity() {
      */
     private fun saveScore(score: Int) {
         val stats = StatUtil.getTodaysStats()
-        stats.score += score
+        stats.barcodeScore += score
         StatUtil.setTodaysStats(stats)
         Toast.makeText(applicationContext, "Added $score to your daily score", Toast.LENGTH_SHORT)
             .show()
