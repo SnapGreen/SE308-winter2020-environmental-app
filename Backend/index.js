@@ -64,22 +64,24 @@ app.get("/", function (req, res) {
 
 // Used to create a new user
 app.post("/users", async function (req, res) {
-  if (!req.body) {
+  if (!req.body || !req.body.token || !req.body.email) {
     res.status(401).json({
-      message: "No req.body present",
+      message: "Missing body, token, or email",
     });
   }
 
-  let user = await FIREBASE.getUser(req.body.id);
+  let uid = await FIREBASE.getUIDFromToken(req.body.token);
+  let user = await FIREBASE.getUser(uid);
+
   if (user) {
     res.json({
       message: "User already exists",
     });
   } else {
     try {
-      let newId = await FIREBASE.createUser(req.body);
+      await FIREBASE.createUser(uid, req.body.email);
       res.json({
-        message: `New user added. Id is ${newId}`,
+        message: `New user added to users collection`,
       });
     } catch (err) {
       res.status(401).json({
