@@ -89,7 +89,6 @@ class InviteActivity : AppCompatActivity() {
                     }
                 },
                 Response.ErrorListener {
-                    var hello = 1
                 }
             )
             NetworkManager.getInstance()?.addToRequestQueue(jsonRequest)
