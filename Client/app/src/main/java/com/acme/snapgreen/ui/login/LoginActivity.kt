@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-<<<<<<< HEAD
 import com.acme.snapgreen.Constants
 import com.acme.snapgreen.R
 import com.acme.snapgreen.data.NetworkManager
@@ -14,11 +13,6 @@ import com.acme.snapgreen.ui.dashboard.DashboardActivity
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
-=======
-import com.acme.snapgreen.R
-import com.acme.snapgreen.data.NetworkManager
-import com.acme.snapgreen.ui.dashboard.DashboardActivity
->>>>>>> 69f98d7a4267bf0f80c69c28c0a1c47920ebd816
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
@@ -73,11 +67,7 @@ class LoginActivity : AppCompatActivity() {
                 val user = FirebaseAuth.getInstance().currentUser
                 createUser(user)
                 val intent = Intent(this, DashboardActivity::class.java).apply {
-<<<<<<< HEAD
-=======
 
-                    
->>>>>>> 69f98d7a4267bf0f80c69c28c0a1c47920ebd816
                 }
                 startActivity(intent)
             } else {
