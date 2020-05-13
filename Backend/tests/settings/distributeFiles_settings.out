@@ -1,0 +1,24 @@
+settings check:
+	SETTINGS: settings.txt
+	ZIPFILE: fakefile.zip
+	DATADIR: ../data/
+	RAWDATADIR: ../dataraw/
+	FDADIR: FDA/
+	FDADATASOURCE: branded_food.csv
+	FDAUPDATESOURCE: food_update_log_entry.csv
+	LASTLATEST: FoodData_Central_branded_food_csv_2020-04-29.zip,202005010424,74439754
+	RAWDATADEST: ../dataraw/FDA/
+	DATADEST: ../data/FDA/
+	RAWDATAUPDATEDEST: ../dataraw/FDA/202005010424/
+	DATAUPDATEDEST: ../data/FDA/202005010424/
+	USAGE:
+		Usage: ./distributeFiles.sh <zipfile> [OPTION] (use option -h for help)
+	HELP:
+	This script distributes the contents of the provided FDA zipfile to
+	the proper directories.  If there are no uploads left, it
+	puts them in the upload directory.  Otherwise, it creates
+	a new directory in both data/ and dataraw/ for the update
+		Usage: ./distributeFiles.sh <zipfile> [OPTION] (use option -h for help)
+			-b: bypass debug mode (don't keep temp files)
+			-s: output settings only
+			-h: print help
