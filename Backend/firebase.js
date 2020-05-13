@@ -39,17 +39,11 @@ class Firebase {
   }
 
   // Check to ensure username doesn't exist, then creates a user
-  async createUser(user) {
-    let ref = await this.db.collection("users").add(
-      {
-        username: user.username,
-        password: user.password,
-        firstName: user.firstName,
-        lastName: user.lastName,
-      },
-      { merge: true }
-    );
-    return ref.id;
+  async createUser(uid, email) {
+    await this.db
+      .collection("users")
+      .doc(uid)
+      .set({ username: email, score: 0, friendsList: [] });
   }
 
   getAllUsers() {

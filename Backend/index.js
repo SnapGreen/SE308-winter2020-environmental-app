@@ -8,42 +8,7 @@ const port = 8080;
 const firebase = require("./firebase");
 let FIREBASE;
 
-/* these will be integrated later, when we need socket.io comms
-const http = require('http').createServer(app);
-const io = require('socket.io')(http);
-*/
-
-//const passport = require("passport");
-//const passportJWT = require("passport-jwt");
-
-//var ExtractJwt = passportJWT.ExtractJwt;
-//var JwtStrategy = passportJWT.Strategy;
-
-// var jwtOptions = {};
-// jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-// jwtOptions.secretOrKey = "308Squad";
-
-// var strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
-//   console.log("payload received", jwt_payload);
-//   // this will be a database call
-//   var user =
-//     users[
-//       _.findIndex(users, {
-//         id: jwt_payload.id
-//       })
-//     ];
-
-//   if (user) {
-//     next(null, user);
-//   } else {
-//     next(null, false);
-//   }
-// });
-
-// passport.use(strategy);
-
 const app = express();
-// app.use(passport.initialize());
 
 // this is what we will actually use
 // this will receive a "raw json" string from Android
@@ -64,22 +29,24 @@ app.get("/", function (req, res) {
 
 // Used to create a new user
 app.post("/users", async function (req, res) {
-  if (!req.body) {
+  if (!req.body || !req.body.token || !req.body.email) {
     res.status(401).json({
-      message: "No req.body present",
+      message: "Missing body, token, or email",
     });
   }
 
-  let user = await FIREBASE.getUser(req.body.id);
+  let uid = await FIREBASE.getUIDFromToken(req.body.token);
+  let user = await FIREBASE.getUser(uid);
+
   if (user) {
     res.json({
       message: "User already exists",
     });
   } else {
     try {
-      let newId = await FIREBASE.createUser(req.body);
+      await FIREBASE.createUser(uid, req.body.email);
       res.json({
-        message: `New user added. Id is ${newId}`,
+        message: `New user added to users collection`,
       });
     } catch (err) {
       res.status(401).json({
