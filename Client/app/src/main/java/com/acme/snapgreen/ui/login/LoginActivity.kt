@@ -6,13 +6,19 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.acme.snapgreen.Constants
 import com.acme.snapgreen.R
 import com.acme.snapgreen.data.NetworkManager
 import com.acme.snapgreen.ui.dashboard.DashboardActivity
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import io.realm.Realm
+import org.json.JSONObject
 
 class LoginActivity : AppCompatActivity() {
 
@@ -59,9 +65,8 @@ class LoginActivity : AppCompatActivity() {
             if (resultCode == Activity.RESULT_OK) {
                 // Successfully signed in
                 val user = FirebaseAuth.getInstance().currentUser
+                createUser(user)
                 val intent = Intent(this, DashboardActivity::class.java).apply {
-
-                    
                 }
                 startActivity(intent)
             } else {
@@ -75,6 +80,37 @@ class LoginActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
+            }
+        }
+    }
+
+    private fun createUser(user: FirebaseUser?) {
+        val url = Constants.SERVER_URL + "/users"
+
+        user?.getIdToken(true)?.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val idToken: String? = task.result?.token
+                val jsonObj = JSONObject()
+                jsonObj.put("token", idToken)
+                jsonObj.put("email", user.email)
+                try {
+                    val jsonRequest = JsonObjectRequest(
+                        Request.Method.POST,
+                        url, jsonObj,
+                        Response.Listener { response ->
+
+                        },
+                        Response.ErrorListener {
+
+                        }
+                    )
+                    NetworkManager.getInstance()?.addToRequestQueue(jsonRequest)
+
+                } catch (e: Throwable) {
+                    //TODO: Handle failed connection
+                }
+            } else {
+                // Handle error -> task.getException();
             }
         }
     }

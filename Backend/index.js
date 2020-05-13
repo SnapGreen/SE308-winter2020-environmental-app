@@ -8,42 +8,7 @@ const port = 8080;
 const firebase = require("./firebase");
 let FIREBASE;
 
-/* these will be integrated later, when we need socket.io comms
-const http = require('http').createServer(app);
-const io = require('socket.io')(http);
-*/
-
-//const passport = require("passport");
-//const passportJWT = require("passport-jwt");
-
-//var ExtractJwt = passportJWT.ExtractJwt;
-//var JwtStrategy = passportJWT.Strategy;
-
-// var jwtOptions = {};
-// jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-// jwtOptions.secretOrKey = "308Squad";
-
-// var strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
-//   console.log("payload received", jwt_payload);
-//   // this will be a database call
-//   var user =
-//     users[
-//       _.findIndex(users, {
-//         id: jwt_payload.id
-//       })
-//     ];
-
-//   if (user) {
-//     next(null, user);
-//   } else {
-//     next(null, false);
-//   }
-// });
-
-// passport.use(strategy);
-
 const app = express();
-// app.use(passport.initialize());
 
 // this is what we will actually use
 // this will receive a "raw json" string from Android
