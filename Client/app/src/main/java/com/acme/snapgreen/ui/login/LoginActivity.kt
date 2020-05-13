@@ -3,19 +3,12 @@ package com.acme.snapgreen.ui.login
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.view.View
-import android.view.inputmethod.EditorInfo
-import android.widget.*
-import androidx.annotation.StringRes
+import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.acme.snapgreen.R
 import com.acme.snapgreen.data.NetworkManager
 import com.acme.snapgreen.ui.dashboard.DashboardActivity
-import com.acme.snapgreen.ui.dashboard.EXTRA_MESSAGE
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
@@ -67,7 +60,8 @@ class LoginActivity : AppCompatActivity() {
                 // Successfully signed in
                 val user = FirebaseAuth.getInstance().currentUser
                 val intent = Intent(this, DashboardActivity::class.java).apply {
-//                    putExtra(EXTRA_MESSAGE, displayName)
+
+                    
                 }
                 startActivity(intent)
             } else {
