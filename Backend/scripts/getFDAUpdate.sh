@@ -1,5 +1,5 @@
 #!/bin/bash
-SETTINGS="settings.txt"
+SETTINGS="/home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/settings.txt"
 CURRENTLATEST=$(grep -oP '(?<=^CURRENTLATEST:).*' $SETTINGS)
 LASTLATEST=$(grep -oP '(?<=^LASTLATEST:).*' $SETTINGS)
 SERVER_POPULATED=$(grep -oP '(?<=^SERVER_POPULATED:).*' $SETTINGS)

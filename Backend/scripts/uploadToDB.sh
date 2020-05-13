@@ -1,9 +1,8 @@
 #!/bin/bash
-SETTINGS="settings.txt"
+SETTINGS="/home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/settings.txt"
 DATADIR=$(grep -oP "(?<=^DATADIR:).*" $SETTINGS)
 FDADIR=$(grep -oP "(?<=^FDADIR:).*" $SETTINGS)
 FDADATADIR="${DATADIR}${FDADIR}"
-SUFFIX_LEN=$(grep -oP "(?<=^SUFFIX_LEN:).*" $SETTINGS)
 SUFFIX_LEN=$(grep -oP "(?<=^SUFFIX_LEN:).*" $SETTINGS)
 PRODS_PER_JSON=$(grep -oP "(?<=^PRODS_PER_JSON:).*" $SETTINGS)
 FB_WRITES_PER_DAY=$(grep -oP "(?<=^FB_WRITES_PER_DAY:).*" $SETTINGS)
@@ -52,7 +51,7 @@ function removePreviousUploads(){
    # file and ensure that it and every file below it is deleted before uploading
    # although the function deletes files as it uploads, this ensures that the
    # files haven't shown up again (i.e., through testing).
-   upper=$(echo $LASTUPLOAD | grep -o "[0-9]\+")
+   upper=$(echo $LASTUPLOAD | grep -oP "(?=.json)[0-9]\{$SUFFIX_LEN\}")
    for num in $(seq -w 0000 $upper); do
       file="$FDADATADIR$SPLIT_PREFIX$num$OUTFILE_END"
       if [ -e $file ] ; then
@@ -78,11 +77,11 @@ function uploadFiles(){
    for file in $@
    do
       if [ $success == "true" ] ; then
-         num=$(echo $file | grep -o '[0-9]\+')
+         num=$(echo $file | grep -oP "(?=.json)[0-9]\{$SUFFIX_LEN\}")
          logfile="${UPLOADLOGDIR}/${num}.log"
 
          curl --header "Content-Type: application/json"\
-            --request POST --data  @$file http://localhost:8080/products\
+            --request POST --data @$file http://localhost:8080/products\
             &> $logfile
 
          sed -i 's//\n/g' $logfile
@@ -99,10 +98,10 @@ function uploadFiles(){
          sleep $UPLOAD_SLEEP
       fi
    done
-   if [ $lastupload != "" ] ; then
+   if [ -n $lastupload ] ; then
       # note: you can replace sed's delimiter
       # here I'm using @ instead of / because of the forward slashes in 
-      # $lastupload, which contains a relative path and filename
+      # $lastupload, which contains a path and filename
       sed -i "s@^LASTUPLOAD:.*@LASTUPLOAD:$lastupload@g" $SETTINGS
    fi
 }
@@ -115,12 +114,12 @@ function uploadLastFiles(){
    for file in $@
    do
       if [ $success == "true" ] ; then
-         num=$(echo $file | grep -o '[0-9]\+')
+         num=$(echo $file | grep -oP "(?=.json)[0-9]\{$SUFFIX_LEN\}")
          logfile="${UPLOADLOGDIR}/${num}.log"
 
+         #curl -vs -O --stderr $logfile $FULLPATH
          curl --header "Content-Type: application/json"\
-            --request POST --data  @$file http://localhost:8080/products\
-            &> $logfile
+            --request POST --data @$file http://localhost:8080/products
 
          sed -i 's//\n/g' $logfile
 
@@ -136,7 +135,7 @@ function uploadLastFiles(){
          sleep $UPLOAD_SLEEP
       fi
    done
-   if [ $lastupload != "" ] ; then
+   if [ -n $lastupload ] ; then
       # note: you can replace sed's delimiter
       # here I'm using @ instead of / because of the forward slashes in 
       # $lastupload

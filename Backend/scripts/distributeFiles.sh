@@ -1,5 +1,5 @@
 #!/bin/bash
-SETTINGS="settings.txt"
+SETTINGS="/home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/settings.txt"
 ZIPFILE="$1"
 DATADIR=$(grep -oP '(?<=^DATADIR:).*' $SETTINGS)
 RAWDATADIR=$(grep -oP '(?<=^RAWDATADIR:).*' $SETTINGS)

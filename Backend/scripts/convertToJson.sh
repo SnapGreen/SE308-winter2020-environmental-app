@@ -1,5 +1,5 @@
 #!/bin/bash
-SETTINGS="settings.txt"
+SETTINGS="/home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/settings.txt"
 AWKDIR=$(grep -oP '(?<=^AWKDIR:).*' $SETTINGS)
 DATADIR=$(grep -oP '(?<=^DATADIR:).*' $SETTINGS)
 FDADIR=$(grep -oP '(?<=^FDADIR:).*' $SETTINGS)
@@ -316,7 +316,7 @@ function createJsons(){
    for file in $files
    do
       # extracting the suffix number from each temp file
-      outnum=$(echo $file | egrep -o [0-9]+)
+      outnum=$(echo $file | grep -oP "(?=.tmp)[0-9]\{$SUFFIX_LEN\}")
       # putting together an output file name
       outname="${FDAOUTDIR}${SPLIT_PREFIX}"$outnum"${OUTFILE_END}"
       # make sure the outfile is clear, if it exists

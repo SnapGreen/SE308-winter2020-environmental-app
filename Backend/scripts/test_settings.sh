@@ -1,5 +1,5 @@
 #!/bin/bash
-SETTINGS="settings.txt"
+SETTINGS="/home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/settings.txt"
 TESTDIR=$(grep -oP '(?<=^TESTDIR:).*' $SETTINGS)
 TESTDIR="${TESTDIR}settings/"
 
