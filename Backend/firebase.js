@@ -16,22 +16,16 @@ class Firebase {
     this.db = admin.firestore();
   }
 
-  // Returns the user that matches the provided username
-  async getUser(username) {
-    username = username.toLowerCase();
-
+  // Returns the user json object based on their UUID
+  async getUser(uuid) {
     // Queries for the specified user
-    let userQuery = await this.db
-      .collection("users")
-      .where("username", "==", username)
-      .get();
+    let userDoc = await this.db.collection("users").doc(uuid).get();
 
-    if (userQuery.empty) {
-      console.log("No matching documents.");
+    if (!userDoc.exists) {
+      console.log("No such document!");
       return null;
     }
-    // if username matches, returns the document for that user
-    return userQuery.docs[0].data();
+    return userDoc.data();
   }
 
   // Check to ensure username doesn't exist, then creates a user
@@ -109,6 +103,24 @@ class Firebase {
     });
 
     return await batch.commit();
+  }
+
+  async getFriends(id) {
+    //list of UUIDs
+    let user = await this.getUser(id);
+
+    let friendsListDetailed = [];
+
+    for (let i = 0; i < user.friendsList.length; i++) {
+      let friendData = await this.getUser(user.friendsList[i]);
+      console.log(friendData);
+      friendsListDetailed.push(friendData);
+    }
+
+    console.log(friendsListDetailed);
+
+    // if a product exists, returns the document
+    return friendsListDetailed;
   }
 }
 

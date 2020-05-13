@@ -1,0 +1,45 @@
+settings check:
+	SETTINGS: settings.txt
+	AWKDIR: awk/
+	DATADIR: ../data/
+	FDADIR: FDA/
+	FDAINDIR: ../dataraw/FDA/
+	FDAOUTDIR: ../data/FDA/
+	LOGDIR: ../logs/
+	RAWDATADIR: ../dataraw/
+	TMPDIR: ../temp/
+	TESTDIR: ../tests/
+	FDAINFILE: ../dataraw/FDA/branded_food.csv
+	MAPFILE: ../data/FDA/map_fdcid_gtin.csv
+	PRODS_PER_JSON: 250
+	PATTERNFILE: removalpatterns.txt
+	SPLIT_PREFIX: branded_food_
+	SUFFIX_LEN: 4
+	OUTFILE_END: .json
+	TMPFILE_END: .tmp
+	NUM_CLEAN_TESTS: 10
+	AWK_FORMAT: awk/csvtojson.awk
+	AWK_SHRINK: awk/consolidateIngreds.awk
+	AWK_TRIM: awk/trim.awk
+	AWK_RM_INGRDS: awk/removeIngreds.awk
+	AWK_MAP: awk/map_fdcid_gtin.awk
+	NOCATS_TMP: ../temp/nocats.tmp
+	PREPPED_TMP: ../temp/prepped.tmp
+	INGREDIENTS_TMP: ../temp/ingredients.tmp
+	INGREDIENTSB4_TMP: ../temp/ingredientsb4.tmp
+	NON_INGREDIENTS_TMP: ../temp/non_ingredients.tmp
+	SET_INGREDIENTS_TMP: ../temp/set_ingredients.tmp
+	RELEVANTDATA_TMP: ../temp/relevantdata.tmp
+	CLEANTEST_TMP: ../temp/longestlines.tmp
+	JOINED_TMP: ../temp/joined.tmp
+	SORTED_TMP: ../temp/sorted.tmp
+	USAGE:
+		Usage: ./convertToJson.sh [OPTION] (-h for help)
+	HELP:
+		Usage: ./convertToJson.sh [OPTION] (-h for help)
+		OPTIONS:
+			-b: bypass debug mode
+			-s: print settings only
+			-h: print help
+		**debug mode: leave temp files undeleted**
+		**debug mode is ON if no OPTION specified
