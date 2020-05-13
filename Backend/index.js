@@ -129,6 +129,32 @@ app.post("/login", async function (req, res) {
   }
 });
 
+app.get("/friends/:id", async function (req, res) {
+  if (!req.params || !req.params.id) {
+    res.send("No ID provided");
+  } else if (req.params.id) {
+    try {
+      // checks the database and then determines if the passwords match
+      let friends = await FIREBASE.getFriends(req.params.id);
+      if (!friends) {
+        console.log("Friends List Not Found");
+        res.status(401).json({
+          message: "Friends List Not Found",
+        });
+      }
+
+      // Returns a json of the friends list associated with the user
+      res.json(friends);
+    } catch (err) {
+      console.log("Friends List Lookup Error");
+      res.status(401).json({
+        message: "Friends List Lookup Error",
+      });
+      console.log(err);
+    }
+  }
+});
+
 app.get("/products/:id", async function (req, res) {
   console.log("barcode scan request received");
   if (!req.params || !req.params.id) {

@@ -2,6 +2,8 @@ package com.acme.snapgreen.data
 
 import android.util.Log
 import io.realm.Realm
+import io.realm.RealmResults
+import io.realm.Sort
 import io.realm.kotlin.where
 import java.text.DateFormat
 import java.util.*
@@ -14,6 +16,23 @@ import java.util.*
 class StatUtil private constructor() {
 
     companion object {
+
+        /**
+         * Returns the TotalScore from Realm DB, or creates one if it doesn't exist.
+         */
+        fun getScore(): TotalScore {
+            val realm = Realm.getDefaultInstance()
+            var totalScore = realm.where<TotalScore>().findFirst()
+
+            if (totalScore == null) {
+                totalScore = TotalScore()
+                realm.beginTransaction()
+                realm.copyToRealm(totalScore)
+                realm.commitTransaction()
+            }
+
+            return totalScore
+        }
 
         /**
          * Returns the DailyStatistic associated with today's date from Realm DB, or creates one if
@@ -51,10 +70,39 @@ class StatUtil private constructor() {
         }
 
         /**
+         * Return a list of DailyStatistics for the past 7 days (or less if there are less than 7
+         * total entries in the database)
+         */
+        fun getPastWeeksStats(): List<DailyStatistic> {
+            val realm = Realm.getDefaultInstance()
+
+            // query database for the DailyStatistic entries of the past 7 days
+            return realm.where<DailyStatistic>().sort("date", Sort.DESCENDING).limit(7).findAll()
+        }
+
+        fun getPastTwoWeeksStats(): List<DailyStatistic> {
+            val realm = Realm.getDefaultInstance()
+
+            // query database for the DailyStatistic entries of the past 14 days
+            return realm.where<DailyStatistic>().sort("date", Sort.DESCENDING).limit(14).findAll()
+        }
+
+        /**
          * Updates the DailyStatistic in the database
          */
         fun setTodaysStats(stats: DailyStatistic) {
             val realm = Realm.getDefaultInstance()
+            var totalScore = getScore()
+
+            if (stats.hasBeenSaved) {
+                totalScore.score -= stats.score
+            }
+            stats.refreshScore()
+            totalScore.score += stats.score
+            realm.copyToRealmOrUpdate(totalScore)
+
+            stats.hasBeenSaved = true
+
             realm.copyToRealmOrUpdate(stats)
             realm.commitTransaction()
             Log.i(

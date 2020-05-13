@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig host="34.209.125.52" id="65ad4335-b481-4169-bd8a-2ac260548108" keyPath="C:\Users\fadei\Documents\School\jtwedt.pem" port="22" nameFormat="DESCRIPTIVE" username="jtwedt" />
+    </configs>
+  </component>
+</project>
