@@ -26,7 +26,7 @@ open class DailyStatistic(
 ) : RealmObject() {
 
     public fun refreshScore() {
-
+        
         score = 2
     }
 }

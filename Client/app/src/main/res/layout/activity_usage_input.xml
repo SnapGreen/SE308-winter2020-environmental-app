@@ -24,7 +24,7 @@
                 android:layout_weight="0"
                 android:text=" Your Usage"
                 android:textAlignment="viewStart"
-                android:textColor="#000000"
+                android:textColor="#8BC34A"
                 android:textSize="50dp"
                 android:textStyle="bold" />
 
@@ -33,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="42dp"
                 android:layout_marginLeft="20dp"
-                android:textColor="#000000"
+                android:textColor="#8BC34A"
                 android:textSize="30dp"
                 android:text="TextView"
                 android:textStyle="bold" />
