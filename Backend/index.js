@@ -70,10 +70,10 @@ app.post("/users", async function (req, res) {
     });
   }
 
-  let user = await FIREBASE.getUser(req.body.username);
+  let user = await FIREBASE.getUser(req.body.id);
   if (user) {
     res.json({
-      message: "User already exists. Please try a different username.",
+      message: "User already exists",
     });
   } else {
     try {

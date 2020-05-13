@@ -16,6 +16,16 @@ class Firebase {
     this.db = admin.firestore();
   }
 
+  async getUIDFromToken(idToken) {
+    try {
+      // idToken comes from the client app
+      let decodedToken = await admin.auth().verifyIdToken(idToken);
+      return decodedToken.uid;
+    } catch (err) {
+      console.log("Error getting UID from token", err);
+    }
+  }
+
   // Returns the user json object based on their UUID
   async getUser(uuid) {
     // Queries for the specified user
@@ -105,8 +115,9 @@ class Firebase {
     return await batch.commit();
   }
 
-  async getFriends(id) {
+  async getFriends(idToken) {
     //list of UUIDs
+    let id = await this.getUIDFromToken(idToken);
     let user = await this.getUser(id);
 
     let friendsListDetailed = [];
