@@ -1,0 +1,24 @@
+settings check:
+	SETTINGS: settings.txt
+	DATADIR: ../data/
+	FDADIR: FDA/
+	FDADATADIR: ../data/FDA/
+	SUFFIX_LEN: 4
+	PRODS_PER_JSON: 250
+	FB_WRITES_PER_DAY: 16500
+	SPLIT_PREFIX: branded_food_
+	OUTFILE_END: .json
+	UPLOAD_SLEEP: 1
+	LOGDIR: ../logs/
+	UPLOADLOGDIR: ../logs/uploads/
+	LASTUPLOAD: ../data/FDA/branded_food_0110.json
+	SERVER_POPULATED: false
+	DONE_UPLOADING: false
+	USAGE:
+		Usage: ./uploadToDB.sh [OPTIONS] (-h for help)
+	HELP:
+		Usage: ./uploadToDB.sh [OPTIONS] (-h for help)
+		OPTIONS:
+			-b: upload without prompt
+			-s: print settings only
+			-h: print help
