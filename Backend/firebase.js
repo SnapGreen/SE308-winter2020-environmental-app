@@ -16,6 +16,16 @@ class Firebase {
     this.db = admin.firestore();
   }
 
+  async getUIDFromToken(idToken) {
+    try {
+      // idToken comes from the client app
+      let decodedToken = await admin.auth().verifyIdToken(idToken);
+      return decodedToken.uid;
+    } catch (err) {
+      console.log("Error getting UID from token", err);
+    }
+  }
+
   // Returns the user json object based on their UUID
   async getUser(uuid) {
     // Queries for the specified user
@@ -29,17 +39,11 @@ class Firebase {
   }
 
   // Check to ensure username doesn't exist, then creates a user
-  async createUser(user) {
-    let ref = await this.db.collection("users").add(
-      {
-        username: user.username,
-        password: user.password,
-        firstName: user.firstName,
-        lastName: user.lastName,
-      },
-      { merge: true }
-    );
-    return ref.id;
+  async createUser(uid, email) {
+    await this.db
+      .collection("users")
+      .doc(uid)
+      .set({ username: email, score: 0, friendsList: [] });
   }
 
   getAllUsers() {
@@ -105,8 +109,9 @@ class Firebase {
     return await batch.commit();
   }
 
-  async getFriends(id) {
+  async getFriends(idToken) {
     //list of UUIDs
+    let id = await this.getUIDFromToken(idToken);
     let user = await this.getUser(id);
 
     let friendsListDetailed = [];

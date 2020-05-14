@@ -8,8 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.acme.snapgreen.R
 
+class FirebaseFriend(val name: String, val score: Int)
 
-class FriendAdapter(private val friendsList: List<String>) :
+class FriendAdapter(private val friendsList: List<FirebaseFriend>) :
 
     RecyclerView.Adapter<FriendAdapter.FriendEntryHolder>() {
 
@@ -42,10 +43,8 @@ class FriendAdapter(private val friendsList: List<String>) :
     override fun onBindViewHolder(holder: FriendEntryHolder, position: Int) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.name.text = friendsList[position]
-
-        //TODO: save and update score properly
-        holder.score.text = "Score: " + (90..700).shuffled().first().toString()
+        holder.name.text = friendsList[position].name
+        holder.score.text = friendsList[position].score.toString()
     }
 
     // Return the size of your dataset (invoked by the layout manager)
