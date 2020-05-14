@@ -40,7 +40,7 @@ class ProfileActivity : AppCompatActivity() {
 
         mUserImage = findViewById(R.id.profilePicImageView)
         mFirstName = findViewById(R.id.profileFirstName)
-        mLastName = findViewById(R.id.profileLastName)
+        mLastName = findViewById(R.id.profileUserName)
         mPhoneNumber = findViewById(R.id.profilePhone)
         mEmail = findViewById(R.id.profileEmail)
         mPassword = findViewById(R.id.profilePassword)

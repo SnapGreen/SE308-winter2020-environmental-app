@@ -5,46 +5,74 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <ImageView
-        android:id="@+id/profilePicImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:adjustViewBounds="true"
-        app:layout_collapseMode="parallax"
-        app:layout_collapseParallaxMultiplier="0.7"
-        app:srcCompat="@android:drawable/sym_def_app_icon" />
-
-    <TextView
-        android:id="@+id/profileHeaderTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:paddingTop="60dp"
-        android:paddingBottom="40dp"
-        android:text="  Profile"
-        android:textColor="@android:color/black"
-        android:textSize="30sp"
-        android:textStyle="bold" />
-</RelativeLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0"
+        android:layout_weight="1"
         android:orientation="vertical"
         >
 
         <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/profileCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="Cancel" />
+
+            <TextView
+                android:id="@+id/profilePicHeaderText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="Edit Profile" />
+
+            <TextView
+                android:id="@+id/profileDone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="Done" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/profilePicImageView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="0"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/avatar" />
+
+        <EditText
+            android:id="@+id/changeProfilePlainText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0"
+            android:clickable="true"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:text="Change Profile Photo" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
             android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/profileNameTextView"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Name"
+                android:textColor="@android:color/black" />
 
             <EditText
                 android:id="@+id/profileFirstName"
@@ -52,46 +80,51 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="First Name"
-                />
-        </LinearLayout>
+                android:gravity="bottom"
+                android:hint="Name"
 
-        <View
-            android:layout_margin="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="3dp"
-            android:background="@android:color/black" />
+                android:inputType="textPersonName" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0"
             android:orientation="horizontal">
 
+            <TextView
+                android:id="@+id/profileUserNameTextView"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Username"
+                android:textColor="@android:color/black" />
+
             <EditText
-                android:id="@+id/profileLastName"
+                android:id="@+id/profileUserName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="Last Name" />
+                android:hint="Username"
+                android:inputType="textPersonName" />
         </LinearLayout>
 
-
-        <View
-            android:layout_margin="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="3dp"
-            android:background="@android:color/black" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0"
             android:orientation="horizontal">
 
+
+            <TextView
+                android:id="@+id/profilePhoneTextView"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Phone"
+                android:textColor="@android:color/black" />
 
             <EditText
                 android:id="@+id/profilePhone"
@@ -99,22 +132,24 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="phone"
-                android:hint="Phone Number"/>
+                android:hint="Phone Number"
+                android:inputType="phone" />
         </LinearLayout>
-
-        <View
-            android:layout_margin="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="3dp"
-            android:background="@android:color/black" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0"
             android:orientation="horizontal">
 
+
+            <TextView
+                android:id="@+id/profileEmailTextView"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Email"
+                android:textColor="@android:color/black" />
 
             <EditText
                 android:id="@+id/profileEmail"
@@ -122,22 +157,24 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textEmailAddress"
-                android:hint="Email"/>
+                android:hint="Email"
+                android:inputType="textEmailAddress" />
         </LinearLayout>
-
-        <View
-            android:layout_margin="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="3dp"
-            android:background="@android:color/black" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0"
             android:orientation="horizontal">
 
+
+            <TextView
+                android:id="@+id/profilePasswordTextView"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Password"
+                android:textColor="@android:color/black" />
 
             <EditText
                 android:id="@+id/profilePassword"
@@ -145,30 +182,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPassword"
-                android:hint="Password"/>
+                android:hint="Password"
+                android:inputType="textPassword" />
         </LinearLayout>
 
-        <View
-            android:layout_margin="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="3dp"
-            android:background="@android:color/black" />
-
     </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-        <Button
-            android:id="@+id/profileUpdateButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Update" />
-    </RelativeLayout>
 
 
 </LinearLayout>
