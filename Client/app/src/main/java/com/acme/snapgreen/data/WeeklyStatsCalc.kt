@@ -1,5 +1,7 @@
 package com.acme.snapgreen.data
 
+import java.math.BigDecimal
+import java.math.RoundingMode
 import java.util.*
 
 /**
@@ -27,9 +29,11 @@ class WeeklyStatsCalc() {
             //piece of combined data to hold the number of gallons of water used in that day
             var numGals: Double =
                 (ds.minutesShowered * 2.1) + (ds.timesFlushed * 1.6) + (ds.timesDishwasherRun * 6) + (ds.minutesWashingMachine * 2)
+            numGals = BigDecimal(numGals).setScale(2, RoundingMode.HALF_EVEN).toDouble()
             //piece of combined data to hold the number of kg of waste produced in that day
             var numKgWaste: Double =
                 (ds.numAlumCansUsed * 0.00002) + (ds.numStyroContainersUsed * 0.6) + (ds.numPlasticStrawsUsed * 0.08) + (ds.numPlasticUtensilsUsed * 0.08)
+            numKgWaste = BigDecimal(numKgWaste).setScale(2, RoundingMode.HALF_EVEN).toDouble()
             var date: Date =
                 ds.date
 
