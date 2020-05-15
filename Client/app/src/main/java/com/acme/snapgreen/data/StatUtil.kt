@@ -88,7 +88,7 @@ class StatUtil private constructor() {
         }
 
         /**
-         * Updates the DailyStatistic in the database
+         * Updates the DailyStatistic in the database and adds score to TotalScore object
          */
         fun setTodaysStats(stats: DailyStatistic) {
             val realm = Realm.getDefaultInstance()
