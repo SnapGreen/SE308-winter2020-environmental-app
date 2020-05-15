@@ -26,28 +26,39 @@ open class DailyStatistic(
 ) : RealmObject() {
 
     public fun refreshScore() {
-        score -= barcodeScore
+        score = barcodeScore
 
-        if (minutesShowered <= 6) {
-            score += 3
-        } else if (minutesShowered <= 9) {
-            score += 1
-        } else if (minutesShowered <= 12) {
-            score -= 1
-        } else if (minutesShowered <= 16) {
-            score -= 2
-        } else {
-            score -= 3
+        when {
+            minutesShowered <= 6 -> {
+                score += 3
+            }
+            minutesShowered <= 9 -> {
+                score += 1
+            }
+            minutesShowered <= 12 -> {
+                score -= 1
+            }
+            minutesShowered <= 16 -> {
+                score -= 2
+            }
+            else -> {
+                score -= 3
+            }
         }
 
-        if (timesFlushed <= 5) {
-            score += 2
-        } else if (timesFlushed <= 7) {
-            score += 0
-        } else if (timesFlushed <= 10) {
-            score -= 1
-        } else {
-            score -= 2
+        when {
+            timesFlushed <= 5 -> {
+                score += 2
+            }
+            timesFlushed <= 7 -> {
+                score += 0
+            }
+            timesFlushed <= 10 -> {
+                score -= 1
+            }
+            else -> {
+                score -= 2
+            }
         }
 
         if (timesDishwasherRun == 0) {
@@ -62,39 +73,53 @@ open class DailyStatistic(
             score -= 1
         }
 
-        if (numAlumCansUsed == 0) {
-            score += 1
-        } else if (numAlumCansUsed <= 1) {
-            score -= 1
-        } else {
-            score -= 2
+        when {
+            numAlumCansUsed == 0 -> {
+                score += 1
+            }
+            numAlumCansUsed <= 1 -> {
+                score -= 1
+            }
+            else -> {
+                score -= 2
+            }
         }
 
-        if (numStyroContainersUsed == 0) {
-            score += 1
-        } else if (numStyroContainersUsed <= 1) {
-            score -= 1
-        } else {
-            score -= 2
+        when {
+            numStyroContainersUsed == 0 -> {
+                score += 1
+            }
+            numStyroContainersUsed <= 1 -> {
+                score -= 1
+            }
+            else -> {
+                score -= 2
+            }
         }
 
-        if (numPlasticStrawsUsed == 0) {
-            score += 1
-        } else if (numPlasticStrawsUsed <= 1) {
-            score += 0
-        } else {
-            score -= 1
+        when {
+            numPlasticStrawsUsed == 0 -> {
+                score += 1
+            }
+            numPlasticStrawsUsed <= 1 -> {
+                score += 0
+            }
+            else -> {
+                score -= 1
+            }
         }
 
-        if (numPlasticUtensilsUsed == 0) {
-            score += 1
-        } else if (numPlasticUtensilsUsed <= 1) {
-            score -= 1
-        } else {
-            score -= 2
+        when {
+            numPlasticUtensilsUsed == 0 -> {
+                score += 1
+            }
+            numPlasticUtensilsUsed <= 1 -> {
+                score -= 1
+            }
+            else -> {
+                score -= 2
+            }
         }
-
-        score += barcodeScore
     }
 }
 
