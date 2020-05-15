@@ -16,36 +16,34 @@ class Firebase {
     this.db = admin.firestore();
   }
 
-  // Returns the user that matches the provided username
-  async getUser(username) {
-    username = username.toLowerCase();
+  async getUIDFromToken(idToken) {
+    try {
+      // idToken comes from the client app
+      let decodedToken = await admin.auth().verifyIdToken(idToken);
+      return decodedToken.uid;
+    } catch (err) {
+      console.log("Error getting UID from token", err);
+    }
+  }
 
+  // Returns the user json object based on their UUID
+  async getUser(uuid) {
     // Queries for the specified user
-    let userQuery = await this.db
-      .collection("users")
-      .where("username", "==", username)
-      .get();
+    let userDoc = await this.db.collection("users").doc(uuid).get();
 
-    if (userQuery.empty) {
-      console.log("No matching documents.");
+    if (!userDoc.exists) {
+      console.log("No such document!");
       return null;
     }
-    // if username matches, returns the document for that user
-    return userQuery.docs[0].data();
+    return userDoc.data();
   }
 
   // Check to ensure username doesn't exist, then creates a user
-  async createUser(user) {
-    let ref = await this.db.collection("users").add(
-      {
-        username: user.username,
-        password: user.password,
-        firstName: user.firstName,
-        lastName: user.lastName,
-      },
-      { merge: true }
-    );
-    return ref.id;
+  async createUser(uid, email) {
+    await this.db
+      .collection("users")
+      .doc(uid)
+      .set({ username: email, score: 0, friendsList: [] });
   }
 
   getAllUsers() {
@@ -109,6 +107,25 @@ class Firebase {
     });
 
     return await batch.commit();
+  }
+
+  async getFriends(idToken) {
+    //list of UUIDs
+    let id = await this.getUIDFromToken(idToken);
+    let user = await this.getUser(id);
+
+    let friendsListDetailed = [];
+
+    for (let i = 0; i < user.friendsList.length; i++) {
+      let friendData = await this.getUser(user.friendsList[i]);
+      console.log(friendData);
+      friendsListDetailed.push(friendData);
+    }
+
+    console.log(friendsListDetailed);
+
+    // if a product exists, returns the document
+    return friendsListDetailed;
   }
 }
 
