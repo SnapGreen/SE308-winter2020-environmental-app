@@ -51,7 +51,7 @@ function removePreviousUploads(){
    # file and ensure that it and every file below it is deleted before uploading
    # although the function deletes files as it uploads, this ensures that the
    # files haven't shown up again (i.e., through testing).
-   upper=$(echo $LASTUPLOAD | grep -oP "(?=.json)[0-9]\{$SUFFIX_LEN\}")
+   upper=$(echo $LASTUPLOAD | grep -oP "[0-9]{$SUFFIX_LEN}(?=.json)")
    for num in $(seq -w 0000 $upper); do
       file="$FDADATADIR$SPLIT_PREFIX$num$OUTFILE_END"
       if [ -e $file ] ; then
@@ -77,8 +77,8 @@ function uploadFiles(){
    for file in $@
    do
       if [ $success == "true" ] ; then
-         num=$(echo $file | grep -oP "(?=.json)[0-9]\{$SUFFIX_LEN\}")
-         logfile="${UPLOADLOGDIR}/${num}.log"
+         num=$(echo $file | grep -oP "[0-9]{$SUFFIX_LEN}(?=.json)")
+         logfile="${UPLOADLOGDIR}${num}.log"
 
          curl --header "Content-Type: application/json"\
             --request POST --data @$file http://localhost:8080/products\
@@ -86,7 +86,7 @@ function uploadFiles(){
 
          sed -i 's//\n/g' $logfile
 
-         result=$(cat $logfile | grep -o 'successful')
+         result=$(cat "$logfile" | grep -o 'successful')
          if [[ $result == "successful" ]] ; then
             echo "$file was succesfully uploaded"
             lastupload=$file
@@ -191,9 +191,9 @@ if [ "$DONE_UPLOADING" != "true" ] ; then
    fi
 
    if [ "$fin" == "false" ] ; then
-      if [ -n $LASTUPLOAD ] ; then
-         removePreviousUploads
-      fi
+      #if [ -n $LASTUPLOAD ] ; then
+      #   removePreviousUploads
+      #fi
       max_file_uploads=$((FB_WRITES_PER_DAY / PRODS_PER_JSON))
 
       shopt -s nullglob

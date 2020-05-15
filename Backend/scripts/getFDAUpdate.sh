@@ -150,10 +150,10 @@ if [ "$fin" == "false" ] ; then
       checkSettings
    fi
 
-   #getDirectoryFromWeb $TMPLINKSFILE $FDC_DIR_ADDRESS
-   #isolateData $TMPLINKSFILE $TMPFILELIST
-   #convertMonthToDigits $TMPFILELIST
-   #rearrangeDate $TMPFILELIST
+   getDirectoryFromWeb $TMPLINKSFILE $FDC_DIR_ADDRESS
+   isolateData $TMPLINKSFILE $TMPFILELIST
+   convertMonthToDigits $TMPFILELIST
+   rearrangeDate $TMPFILELIST
    storeNewestEntry $TMPFILELIST
 
    IFS=',' read -r -a currarray <<< "$CURRENTLATEST"
