@@ -86,7 +86,7 @@ function uploadFiles(){
 
          sed -i 's//\n/g' $logfile
 
-         result=$(cat "$logfile" | grep -o 'successful')
+         result=$(cat $logfile | grep -o 'successful')
          if [[ $result == "successful" ]] ; then
             echo "$file was succesfully uploaded"
             lastupload=$file
@@ -114,8 +114,8 @@ function uploadLastFiles(){
    for file in $@
    do
       if [ $success == "true" ] ; then
-         num=$(echo $file | grep -oP "(?=.json)[0-9]\{$SUFFIX_LEN\}")
-         logfile="${UPLOADLOGDIR}/${num}.log"
+         num=$(echo $file | grep -oP "[0-9]{$SUFFIX_LEN}(?=.json)")
+         logfile="${UPLOADLOGDIR}${num}.log"
 
          #curl -vs -O --stderr $logfile $FULLPATH
          curl --header "Content-Type: application/json"\
