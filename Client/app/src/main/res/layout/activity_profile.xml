@@ -25,6 +25,7 @@
                 android:layout_gravity="bottom|center"
                 android:layout_marginLeft="10sp"
                 android:layout_weight="1"
+                android:clickable="true"
                 android:text="Cancel"
                 android:textColor="@android:color/black" />
 
@@ -47,6 +48,7 @@
                 android:layout_gravity="bottom|center"
                 android:layout_marginRight="10sp"
                 android:layout_weight="1"
+                android:clickable="true"
                 android:gravity="right"
                 android:text="Done"
                 android:textColor="@android:color/widget_edittext_dark" />
@@ -68,14 +70,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:clickable="true"
-            android:contextClickable="true"
-            android:ems="10"
             android:gravity="center|top"
-            android:inputType="textPersonName"
-            android:saveEnabled="true"
             android:text="Change Profile Photo"
-            android:textSize="14sp" />
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
+
+
 
         <LinearLayout
             android:layout_width="match_parent"

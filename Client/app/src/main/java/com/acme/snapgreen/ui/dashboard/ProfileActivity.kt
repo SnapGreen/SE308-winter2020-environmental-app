@@ -22,7 +22,8 @@ class ProfileActivity : AppCompatActivity() {
     lateinit var mCancel: TextView
     lateinit var mDone: TextView
     lateinit var mUserImage: ImageButton
-    lateinit var mChangeImage: EditText
+
+    //lateinit var mChangeImage: EditText
     lateinit var mName: EditText
     lateinit var mUserName: EditText
     lateinit var mPhoneNumber: EditText
@@ -44,7 +45,7 @@ class ProfileActivity : AppCompatActivity() {
         mEmail = findViewById(R.id.profileEmail)
         mPassword = findViewById(R.id.profilePassword)
         mDone = findViewById(R.id.profileDone)
-
+        mCancel = findViewById(R.id.profileCancel)
 //        mAuth = FirebaseAuth.getInstance()
 //        val uid = mAuth.currentUser?.uid
 //
@@ -83,7 +84,7 @@ class ProfileActivity : AppCompatActivity() {
 
         }
 
-        mChangeImage.setOnClickListener {
+        mUserImage.setOnClickListener {
             selectImage(this)
         }
 
