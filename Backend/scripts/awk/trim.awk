@@ -4,7 +4,7 @@ BEGIN { FS = "\",\""}
 # deletes inner extraneous quotes from ingredients column
 {gsub(/"/, "", $4)}
 # removes ascii "horizontal tab", etc. from ingredients column
-{gsub(/[::cntrl:]/, "", $4)}
+{gsub(/[:cntrl:]/, "", $4)}
 # replaces ." with "
 {gsub(/\.\"/, "\"", $4)}
 # removes asterisks from ingredients column
