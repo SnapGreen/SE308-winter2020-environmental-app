@@ -77,11 +77,7 @@ function uploadFiles(){
    for file in $@
    do
       if [ $success == "true" ] ; then
-<<<<<<< HEAD
          num=$(echo $file | grep -oP "[0-9]{$SUFFIX_LEN}(?=.json)")
-=======
-         num=$(echo $file | grep -oP "(?=.json)[0-9]\{$SUFFIX_LEN\}")
->>>>>>> edae56a595da49daa6fde9c7276eaa188cd3e65f
          logfile="${UPLOADLOGDIR}/${num}.log"
 
          curl --header "Content-Type: application/json"\
@@ -102,15 +98,14 @@ function uploadFiles(){
          sleep $UPLOAD_SLEEP
       fi
    done
-<<<<<<< HEAD
    if [ -n "$lastupload" ] ; then
-=======
-   if [ -n $lastupload ] ; then
->>>>>>> edae56a595da49daa6fde9c7276eaa188cd3e65f
       # note: you can replace sed's delimiter
       # here I'm using @ instead of / because of the forward slashes in 
       # $lastupload, which contains a path and filename
       sed -i "s@^LASTUPLOAD:.*@LASTUPLOAD:$lastupload@g" $SETTINGS
+      # this line updates the relevant line for the settings tests
+      sed -i "s@LASTUPLOAD: .*@LASTUPLOAD: $lastupload@g" ../tests/settings/uploadToDB_settings.txt
+      sed -i "s@LASTUPLOAD: .*@LASTUPLOAD: $lastupload@g" ../tests/settings/populateDB_settings.txt
    fi
 }
 
@@ -122,11 +117,7 @@ function uploadLastFiles(){
    for file in $@
    do
       if [ $success == "true" ] ; then
-<<<<<<< HEAD
          num=$(echo $file | grep -oP "[0-9]{$SUFFIX_LEN}(?=.json)")
-=======
-         num=$(echo $file | grep -oP "(?=.json)[0-9]\{$SUFFIX_LEN\}")
->>>>>>> edae56a595da49daa6fde9c7276eaa188cd3e65f
          logfile="${UPLOADLOGDIR}/${num}.log"
 
          #curl -vs -O --stderr $logfile $FULLPATH

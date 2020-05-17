@@ -27,7 +27,7 @@ if [ $# -eq 0 ] ; then
 
    sed -i 's/^DONE_UPLOADING:.*/DONE_UPLOADING:false/g' $SETTINGS
 
-   sed -i 's/^LASTUPLOAD:.*/LASTUPLOAD:false/g' $SETTINGS
+   sed -i 's/^LASTUPLOAD:.*/LASTUPLOAD:/g' $SETTINGS
 
    ./getFDAUpdate -f
 elif [ $# -eq 1 ] ; then
