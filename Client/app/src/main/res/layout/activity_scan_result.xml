@@ -112,7 +112,7 @@
         android:background="@android:drawable/title_bar"
         android:backgroundTint="#FAA5A5"
         android:shadowColor="#FFFFFF"
-        android:text="@string/cast_tracks_chooser_dialog_cancel"
+        android:text="cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
