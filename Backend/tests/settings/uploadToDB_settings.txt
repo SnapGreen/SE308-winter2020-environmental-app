@@ -1,17 +1,17 @@
 settings check:
-	SETTINGS: settings.txt
-	DATADIR: ../data/
+	SETTINGS: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/settings.txt
+	DATADIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/data/
 	FDADIR: FDA/
-	FDADATADIR: ../data/FDA/
+	FDADATADIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/data/FDA/
 	SUFFIX_LEN: 4
 	PRODS_PER_JSON: 250
 	FB_WRITES_PER_DAY: 16500
 	SPLIT_PREFIX: branded_food_
 	OUTFILE_END: .json
 	UPLOAD_SLEEP: 1
-	LOGDIR: ../logs/
-	UPLOADLOGDIR: ../logs/uploads/
-	LASTUPLOAD: ../data/FDA/branded_food_0110.json
+	LOGDIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/logs/
+	UPLOADLOGDIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/logs/uploads/
+	LASTUPLOAD: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/data/FDA/branded_food_0186.json
 	SERVER_POPULATED: false
 	DONE_UPLOADING: false
 	USAGE:

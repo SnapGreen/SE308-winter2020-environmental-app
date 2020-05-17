@@ -1,16 +1,16 @@
 settings check:
-	SETTINGS: settings.txt
+	SETTINGS: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/settings.txt
 	ZIPFILE: fakefile.zip
-	DATADIR: ../data/
-	RAWDATADIR: ../dataraw/
+	DATADIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/data/
+	RAWDATADIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/dataraw/
 	FDADIR: FDA/
 	FDADATASOURCE: branded_food.csv
 	FDAUPDATESOURCE: food_update_log_entry.csv
 	LASTLATEST: FoodData_Central_branded_food_csv_2020-04-29.zip,202005010424,74439754
-	RAWDATADEST: ../dataraw/FDA/
-	DATADEST: ../data/FDA/
-	RAWDATAUPDATEDEST: ../dataraw/FDA/202005010424/
-	DATAUPDATEDEST: ../data/FDA/202005010424/
+	RAWDATADEST: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/dataraw/FDA/
+	DATADEST: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/data/FDA/
+	RAWDATAUPDATEDEST: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/dataraw/FDA/202005010424/
+	DATAUPDATEDEST: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/data/FDA/202005010424/
 	USAGE:
 		Usage: ./distributeFiles.sh <zipfile> [OPTION] (use option -h for help)
 	HELP:
