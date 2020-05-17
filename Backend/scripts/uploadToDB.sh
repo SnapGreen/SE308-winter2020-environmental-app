@@ -98,7 +98,7 @@ function uploadFiles(){
          sleep $UPLOAD_SLEEP
       fi
    done
-   if [ -n $lastupload ] ; then
+   if [ -n "$lastupload" ] ; then
       # note: you can replace sed's delimiter
       # here I'm using @ instead of / because of the forward slashes in 
       # $lastupload, which contains a path and filename
