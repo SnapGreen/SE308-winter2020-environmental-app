@@ -77,7 +77,7 @@ function uploadFiles(){
    for file in $@
    do
       if [ $success == "true" ] ; then
-         num=$(echo $file | grep -oP "(?=.json)[0-9]\{$SUFFIX_LEN\}")
+         num=$(echo $file | grep -oP "[0-9]{$SUFFIX_LEN}(?=.json)")
          logfile="${UPLOADLOGDIR}/${num}.log"
 
          curl --header "Content-Type: application/json"\
@@ -114,7 +114,7 @@ function uploadLastFiles(){
    for file in $@
    do
       if [ $success == "true" ] ; then
-         num=$(echo $file | grep -oP "(?=.json)[0-9]\{$SUFFIX_LEN\}")
+         num=$(echo $file | grep -oP "[0-9]{$SUFFIX_LEN}(?=.json)")
          logfile="${UPLOADLOGDIR}/${num}.log"
 
          #curl -vs -O --stderr $logfile $FULLPATH
