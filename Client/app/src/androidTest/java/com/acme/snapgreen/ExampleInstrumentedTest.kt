@@ -11,6 +11,7 @@ import io.realm.RealmConfiguration
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
+import java.text.DateFormat
 import java.util.*
 
 
@@ -27,7 +28,7 @@ class ExampleInstrumentedTest {
         testRealm: Realm,
         minsShowered: Int,
         timesFlushed: Int,
-        timesDiswasher: Int,
+        timesDishwasher: Int,
         minsWashingMach: Int,
         numAlum: Int,
         numStyro: Int,
@@ -35,10 +36,11 @@ class ExampleInstrumentedTest {
         numUtils: Int
     ): DailyStatistic {
         val testDS = DailyStatistic()
-        testDS.date = Date(System.currentTimeMillis() - (daysAgo * 24) * 60 * 60 * 1000);
+        testDS.date = Date(System.currentTimeMillis() - (daysAgo * 24) * 60 * 60 * 1000)
+        testDS.today = DateFormat.getDateTimeInstance().format(testDS.date)
         testDS.minutesShowered = minsShowered
         testDS.timesFlushed = timesFlushed
-        testDS.timesDishwasherRun = timesDiswasher
+        testDS.timesDishwasherRun = timesDishwasher
         testDS.minutesWashingMachine = minsWashingMach
         testDS.numAlumCansUsed = numAlum
         testDS.numStyroContainersUsed = numStyro
@@ -57,7 +59,7 @@ class ExampleInstrumentedTest {
     }
 
     @Test
-    fun useAppContext() {
+    fun testCalcDailyStatistics() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("com.acme.snapgreen", appContext.packageName)
@@ -74,8 +76,35 @@ class ExampleInstrumentedTest {
 
         val combinedWS = WeeklyStatsCalc.getWeeksCombinedStats()
 
-        assertEquals(133.4, combinedWS.numGals, .1)
-        assertEquals(1.16004, combinedWS.numKgWaste, .1)
+        assertEquals(933.8, combinedWS.numGals, .01)
+        assertEquals(0.30982000000000004, combinedWS.numKgWaste, .01)
+        assertEquals("933.800", "%.3f".format(combinedWS.numGals))
+        assertEquals("0.310", "%.3f".format(combinedWS.numKgWaste))
+    }
+
+    @Test
+    fun percentTest() {
+        // Context of the app under test.
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+        assertEquals("com.acme.snapgreen", appContext.packageName)
+
+        Realm.init(appContext)
+        val testConfig =
+            RealmConfiguration.Builder().inMemory().name("test-realm").build()
+        Realm.setDefaultConfiguration(testConfig)
+        val testRealm: Realm = Realm.getInstance(testConfig)
+
+        for (i in 1..7) {
+            addDSToRealm(i, testRealm, 10, 4, 1, 50, 1, 1, 2, 1)
+        }
+        for (i in 8..14) {
+            addDSToRealm(i, testRealm, 15, 6, 2, 53, 1, 0, 1, 1)
+        }
+
+        val percentChanges = WeeklyStatsCalc.calculatePercentChange()
+
+        assertEquals("↓ 16.15%", percentChanges.galsChange)
+        assertEquals("↑ 27.51%", percentChanges.kgChange)
     }
 
     @Test
