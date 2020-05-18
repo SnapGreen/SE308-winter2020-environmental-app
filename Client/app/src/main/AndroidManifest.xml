@@ -2,10 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.acme.snapgreen">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
@@ -20,7 +22,9 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES" android:value="barcode"/>
+        <meta-data
+            android:name="com.google.android.gms.vision.DEPENDENCIES"
+            android:value="barcode" />
 
         <activity
             android:name=".ui.login.LoginActivity"
@@ -30,60 +34,59 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="http"
+                    android:host="www.snapgreen-app-qa.com" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".ui.login.CreateUserActivity"
-            android:label="Create a New User">
-        </activity>
+            android:label="Create a New User"></activity>
         <activity
             android:name=".ui.dashboard.DashboardActivity"
-            android:label="@string/app_name">
-        </activity>
+            android:label="@string/app_name"></activity>
         <activity
 
             android:name=".ui.dashboard.UsageInputActivity"
-            android:label="Usage Inputs">
-         </activity>
+            android:label="Usage Inputs"></activity>
 
         <activity
 
             android:name=".ui.dashboard.ShoppingListActivity"
-            android:label="Your Shopping List">
-        </activity>
+            android:label="Your Shopping List"></activity>
 
         <activity
 
             android:name=".ui.dashboard.InviteActivity"
-            android:label="Invite Some Friends!">
-        </activity>
+            android:label="Invite Some Friends!"></activity>
 
         <activity
 
             android:name=".ui.dashboard.SettingsActivity"
-            android:label="Adjust Your Settings">
-        </activity>
+            android:label="Adjust Your Settings"></activity>
         <activity
             android:name=".ui.scanner.PreviewActivity"
-            android:label="Scanner">
-        </activity>
+            android:label="Scanner"></activity>
         <activity
             android:name=".ui.dashboard.StatsActivity"
-            android:label="Stats">
-        </activity>
+            android:label="Stats"></activity>
         <activity
             android:name=".ui.dashboard.SupportActivity"
-            android:label="Support">
-        </activity>
+            android:label="Support"></activity>
         <activity
             android:name=".ui.dashboard.ProfileActivity"
-            android:label="Profile">
-        </activity>
+            android:label="Profile"></activity>
         <activity
             android:name=".ui.scanner.ScanResultActivity"
-            android:launchMode="singleInstance">
-    </activity>
+            android:launchMode="singleInstance"></activity>
 
 
-</application>
+    </application>
 
 </manifest>
