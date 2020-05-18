@@ -28,7 +28,7 @@ class StatsActivity : AppCompatActivity() {
         barData.add(BarEntry(5f, 5f))
         barData.add(BarEntry(6f, 6f))
         val bars = BarDataSet(barData, "Daily Data")
-        bars.color = Color.rgb(31,175, 241)
+        bars.color = Color.rgb(31, 175, 241)
         bars.setDrawValues(false)
 
         val lineData = ArrayList<Entry>()
