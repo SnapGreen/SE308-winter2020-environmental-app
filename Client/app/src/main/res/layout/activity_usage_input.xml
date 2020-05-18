@@ -53,11 +53,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_marginRight="5dp"
-                android:backgroundTint="#26A69A"
+                android:backgroundTint="#8BC34A"
                 android:text="Edit"
                 android:textStyle="bold"
-                android:textSize="20sp"
-                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:textColor="#1290CC"
                 android:textAllCaps="true" />
 
         </LinearLayout>
@@ -101,7 +101,7 @@
                 android:layout_marginTop="7dp"
                 android:text="Water"
                 android:textStyle="bold"
-                android:textColor="#04610C"
+                android:textColor="#1290CC"
                 android:textSize="25dp" />
 
             <LinearLayout
@@ -255,7 +255,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="7dp"
                 android:text="Waste"
-                android:textColor="#04610C"
+                android:textColor="#1290CC"
                 android:textStyle="bold"
                 android:textSize="25dp" />
 
