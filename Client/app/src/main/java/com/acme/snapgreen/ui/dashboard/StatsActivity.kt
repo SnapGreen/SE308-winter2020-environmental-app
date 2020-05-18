@@ -2,11 +2,18 @@ package com.acme.snapgreen.ui.dashboard
 
 import android.graphics.Color
 import android.os.Bundle
+import android.widget.TextView
+import android.widget.ToggleButton
 import androidx.appcompat.app.AppCompatActivity
 import com.acme.snapgreen.R
+import com.acme.snapgreen.data.WeeklyStatsCalc
 import com.github.mikephil.charting.charts.CombinedChart
+import com.github.mikephil.charting.charts.HorizontalBarChart
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import java.text.DateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class StatsActivity : AppCompatActivity() {
@@ -14,19 +21,146 @@ class StatsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_stats)
-        val chart1 = findViewById<CombinedChart>(R.id.chart1)
-        chart1.setDrawBarShadow(false)
-        chart1.setDrawGridBackground(false)
-        chart1.axisRight.isEnabled = false
+        val currentDateField = findViewById<TextView>(R.id.currentDate2)
+        val currentDateTimeString = DateFormat.getDateInstance().format(Date())
+        currentDateField.text = currentDateTimeString
+        val stats = WeeklyStatsCalc.getWeeksCombinedStats()
+        val dailyHeader: TextView = findViewById(R.id.dailyHeader)
+        val weeklyHeader: TextView = findViewById(R.id.weeklyHeader)
+        val dailyFeedback: TextView = findViewById(R.id.dailyFeedback)
+        val weeklyFeedback: TextView = findViewById(R.id.weeklyFeedback)
+        if (stats.combinedDSDataList.isEmpty()) {
+            dailyHeader.text = "No Data Available"
+            weeklyHeader.text = "No Data Available"
+            dailyFeedback.text = "Please enter data to receive feedback."
+            weeklyFeedback.text = "Please enter data to receive feedback."
+        } else {
+            waterCharts(stats.combinedDSDataList)
+            val dailyFeedback: TextView = findViewById(R.id.dailyFeedback)
+            val weeklyFeedback: TextView = findViewById(R.id.weeklyFeedback)
+            dailyWaterFeedback(stats.combinedDSDataList, dailyFeedback)
+            val toggle: ToggleButton = findViewById(R.id.statsToggle)
+            toggle.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    dailyHeader.text = "Today's Waste(kg)"
+                    weeklyHeader.text = "This Week's Waste(kg)"
+                    wasteCharts(stats.combinedDSDataList)
+                    dailyWasteFeedback(stats.combinedDSDataList)
+                } else {
+                    dailyHeader.text = "Today's Water Usage(gal)"
+                    weeklyHeader.text = "This Week's Water Usage(gal)"
+                    waterCharts(stats.combinedDSDataList)
+                }
+            }
+        }
+    }
 
+    private fun dailyWaterFeedback(
+        stats: MutableList<WeeklyStatsCalc.Companion.CombinedDSData>,
+        dailyFeedback: TextView
+    ) {
+        if (stats[stats.size - 1].numGals > stats[stats.size - 2].numGals) {
+
+        }
+    }
+
+    private fun dailyWasteFeedback(
+        stats: MutableList<WeeklyStatsCalc.Companion.CombinedDSData>,
+        dailyFeedback: TextView
+    ) {
+        if (stats[stats.size - 1].numGals > stats[stats.size - 2].numGals) {
+
+        }
+    }
+
+    private fun weeklyWaterFeedback(
+        stats: MutableList<WeeklyStatsCalc.Companion.CombinedDSData>,
+        dailyFeedback: TextView
+    ) {
+        if (stats[stats.size - 1].numGals > stats[stats.size - 2].numGals) {
+
+        }
+    }
+
+    private fun weeklyWasteFeedback(
+        stats: MutableList<WeeklyStatsCalc.Companion.CombinedDSData>,
+        dailyFeedback: TextView
+    ) {
+        if (stats[stats.size - 1].numGals > stats[stats.size - 2].numGals) {
+
+        }
+    }
+
+    private fun waterCharts(stats: MutableList<WeeklyStatsCalc.Companion.CombinedDSData>) {
+        dailyWater(stats.last())
+        weeklyWater(stats)
+    }
+
+    private fun dailyWater(today: WeeklyStatsCalc.Companion.CombinedDSData) {
+        val dailyWaterChart = findViewById<HorizontalBarChart>(R.id.dailyChart)
+        dailyProperties(dailyWaterChart)
+        dailyWaterData(dailyWaterChart, today)
+    }
+
+    private fun dailyProperties(dailyChart: HorizontalBarChart) {
+        dailyChart.description.isEnabled = false
+        dailyChart.setDrawBarShadow(false)
+        dailyChart.setDrawGridBackground(false)
+        dailyChart.legend.isEnabled = false
+        dailyChart.xAxis.setDrawGridLines(false)
+        dailyChart.xAxis.setDrawLabels(false)
+        dailyChart.axisLeft.setDrawLabels(false)
+        dailyChart.axisLeft.axisMinimum = 0F
+        dailyChart.axisRight.axisMinimum = 0F
+        dailyChart.invalidate()
+    }
+
+    private fun dailyWaterData(
+        dailyWaterChart: HorizontalBarChart,
+        today: WeeklyStatsCalc.Companion.CombinedDSData
+    ) {
+        val data = ArrayList<BarEntry>()
+        data.add(BarEntry(0f, today.numGals.toFloat()))
+        val dailyWaterSet = BarDataSet(data, "Daily Water Use")
+        dailyWaterSet.color = Color.rgb(31, 175, 241)
+        val dailyWaterData = BarData(dailyWaterSet)
+        dailyWaterChart.data = dailyWaterData
+    }
+
+    private fun weeklyWater(stats: MutableList<WeeklyStatsCalc.Companion.CombinedDSData>) {
+        val weeklyWaterChart = findViewById<CombinedChart>(R.id.weeklyChart)
+        weeklyProperties(weeklyWaterChart, stats)
+        weeklyWaterData(weeklyWaterChart, stats)
+    }
+
+    private fun weeklyProperties(
+        weeklyChart: CombinedChart,
+        days: MutableList<WeeklyStatsCalc.Companion.CombinedDSData>
+    ) {
+        weeklyChart.setDrawBarShadow(false)
+        weeklyChart.setDrawGridBackground(false)
+        weeklyChart.axisRight.isEnabled = false
+        val xLabel: ArrayList<String> = ArrayList()
+        for (day in days) {
+            xLabel.add(day.date.toString())
+        }
+        weeklyChart.xAxis.valueFormatter = IndexAxisValueFormatter(xLabel)
+        weeklyChart.setTouchEnabled(true)
+        weeklyChart.setPinchZoom(true)
+        weeklyChart.invalidate()
+        weeklyChart.description.isEnabled = false
+    }
+
+    private fun weeklyWaterData(
+        weeklyWaterChart: CombinedChart,
+        stats: MutableList<WeeklyStatsCalc.Companion.CombinedDSData>
+    ) {
         val barData = ArrayList<BarEntry>()
-        barData.add(BarEntry(0f, 4f))
-        barData.add(BarEntry(1f, 2f))
-        barData.add(BarEntry(2f, 7f))
-        barData.add(BarEntry(3f, 5f))
-        barData.add(BarEntry(4f, 3f))
-        barData.add(BarEntry(5f, 5f))
-        barData.add(BarEntry(6f, 6f))
+        var count = 0f
+        for (stat in stats) {
+            barData.add(BarEntry(count, stat.numGals.toFloat()))
+            count++
+        }
         val bars = BarDataSet(barData, "Daily Data")
         bars.color = Color.rgb(31, 175, 241)
         bars.setDrawValues(false)
@@ -46,23 +180,73 @@ class StatsActivity : AppCompatActivity() {
         lines.setDrawCircles(false)
         lines.setDrawCircleHole(false)
 
-        val xLabel: ArrayList<String> = ArrayList()
-        xLabel.add("Sun")
-        xLabel.add("Mon")
-        xLabel.add("Tues")
-        xLabel.add("Wed")
-        xLabel.add("Thurs")
-        xLabel.add("Fri")
-        xLabel.add("Sat")
-        chart1.xAxis.valueFormatter = IndexAxisValueFormatter(xLabel)
+        val weeklyWaterData = CombinedData()
+        weeklyWaterData.setData(BarData(bars))
+        weeklyWaterData.setData(LineData(lines))
+        weeklyWaterChart.data = weeklyWaterData
+    }
 
-        chart1.description.text = "Water Usage(gal)"
-        val data = CombinedData()
-        data.setData(BarData(bars))
-        data.setData(LineData(lines))
-        chart1.data = data
-        chart1.setTouchEnabled(true)
-        chart1.setPinchZoom(true)
-        chart1.invalidate()
+    private fun wasteCharts(stats: MutableList<WeeklyStatsCalc.Companion.CombinedDSData>) {
+        dailyWaste(stats.last())
+        weeklyWaste(stats)
+    }
+
+    private fun dailyWaste(today: WeeklyStatsCalc.Companion.CombinedDSData) {
+        val dailyWasteChart = findViewById<HorizontalBarChart>(R.id.dailyChart)
+        dailyProperties(dailyWasteChart)
+        dailyWasteData(dailyWasteChart, today)
+    }
+
+    private fun dailyWasteData(
+        dailyWasteChart: HorizontalBarChart,
+        today: WeeklyStatsCalc.Companion.CombinedDSData
+    ) {
+        val data = ArrayList<BarEntry>()
+        data.add(BarEntry(0f, today.numKgWaste.toFloat()))
+        val dailyWasteSet = BarDataSet(data, "Daily Waste")
+        dailyWasteSet.color = Color.rgb(31, 175, 241)
+        val dailyWasteData = BarData(dailyWasteSet)
+        dailyWasteChart.data = dailyWasteData
+    }
+
+    private fun weeklyWaste(stats: MutableList<WeeklyStatsCalc.Companion.CombinedDSData>) {
+        val weeklyWasteChart = findViewById<CombinedChart>(R.id.weeklyChart)
+        weeklyProperties(weeklyWasteChart, stats)
+        weeklyWasteData(weeklyWasteChart, stats)
+    }
+
+    private fun weeklyWasteData(
+        weeklyWasteChart: CombinedChart,
+        stats: MutableList<WeeklyStatsCalc.Companion.CombinedDSData>
+    ) {
+        val barData = ArrayList<BarEntry>()
+        var count = 0f
+        for (stat in stats) {
+            barData.add(BarEntry(count, stat.numKgWaste.toFloat()))
+            count++
+        }
+        val bars = BarDataSet(barData, "Daily Data")
+        bars.color = Color.rgb(31, 175, 241)
+        bars.setDrawValues(false)
+
+        val lineData = ArrayList<Entry>()
+        lineData.add(Entry(0f, 1f))
+        lineData.add(Entry(1f, 2f))
+        lineData.add(Entry(2f, 3f))
+        lineData.add(Entry(3f, 4f))
+        lineData.add(Entry(4f, 4f))
+        lineData.add(Entry(5f, 1f))
+        lineData.add(Entry(6f, 4f))
+        val lines = LineDataSet(lineData, "Average Data")
+        lines.color = Color.rgb(139, 195, 74)
+        lines.setDrawValues(false)
+        lines.setDrawFilled(true)
+        lines.setDrawCircles(false)
+        lines.setDrawCircleHole(false)
+
+        val weeklyWasteData = CombinedData()
+        weeklyWasteData.setData(BarData(bars))
+        weeklyWasteData.setData(LineData(lines))
+        weeklyWasteChart.data = weeklyWasteData
     }
 }
