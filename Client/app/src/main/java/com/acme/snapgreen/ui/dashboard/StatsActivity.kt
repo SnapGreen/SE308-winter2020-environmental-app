@@ -39,17 +39,21 @@ class StatsActivity : AppCompatActivity() {
             val dailyFeedback: TextView = findViewById(R.id.dailyFeedback)
             val weeklyFeedback: TextView = findViewById(R.id.weeklyFeedback)
             dailyWaterFeedback(stats.combinedDSDataList, dailyFeedback)
+            weeklyWaterFeedback(stats.combinedDSDataList, weeklyFeedback)
             val toggle: ToggleButton = findViewById(R.id.statsToggle)
             toggle.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
                     dailyHeader.text = "Today's Waste(kg)"
                     weeklyHeader.text = "This Week's Waste(kg)"
                     wasteCharts(stats.combinedDSDataList)
-                    dailyWasteFeedback(stats.combinedDSDataList)
+                    dailyWasteFeedback(stats.combinedDSDataList, dailyFeedback)
+                    weeklyWasteFeedback(stats.combinedDSDataList, weeklyFeedback)
                 } else {
                     dailyHeader.text = "Today's Water Usage(gal)"
                     weeklyHeader.text = "This Week's Water Usage(gal)"
                     waterCharts(stats.combinedDSDataList)
+                    dailyWaterFeedback(stats.combinedDSDataList, dailyFeedback)
+                    weeklyWaterFeedback(stats.combinedDSDataList, weeklyFeedback)
                 }
             }
         }
@@ -142,7 +146,7 @@ class StatsActivity : AppCompatActivity() {
         weeklyChart.axisRight.isEnabled = false
         val xLabel: ArrayList<String> = ArrayList()
         for (day in days) {
-            xLabel.add(day.date.toString())
+            xLabel.add(day.date.toString().subSequence(0, 3).toString())
         }
         weeklyChart.xAxis.valueFormatter = IndexAxisValueFormatter(xLabel)
         weeklyChart.setTouchEnabled(true)
@@ -166,13 +170,13 @@ class StatsActivity : AppCompatActivity() {
         bars.setDrawValues(false)
 
         val lineData = ArrayList<Entry>()
-        lineData.add(Entry(0f, 3f))
-        lineData.add(Entry(1f, 4f))
-        lineData.add(Entry(2f, 2f))
-        lineData.add(Entry(3f, 4f))
-        lineData.add(Entry(4f, 7f))
-        lineData.add(Entry(5f, 1f))
-        lineData.add(Entry(6f, 4f))
+        lineData.add(Entry(0f, 100f))
+        lineData.add(Entry(1f, 90f))
+        lineData.add(Entry(2f, 110f))
+        lineData.add(Entry(3f, 84f))
+        lineData.add(Entry(4f, 75f))
+        lineData.add(Entry(5f, 99f))
+        lineData.add(Entry(6f, 100f))
         val lines = LineDataSet(lineData, "Average Data")
         lines.color = Color.rgb(139, 195, 74)
         lines.setDrawValues(false)
@@ -230,13 +234,13 @@ class StatsActivity : AppCompatActivity() {
         bars.setDrawValues(false)
 
         val lineData = ArrayList<Entry>()
-        lineData.add(Entry(0f, 1f))
-        lineData.add(Entry(1f, 2f))
-        lineData.add(Entry(2f, 3f))
-        lineData.add(Entry(3f, 4f))
-        lineData.add(Entry(4f, 4f))
-        lineData.add(Entry(5f, 1f))
-        lineData.add(Entry(6f, 4f))
+        lineData.add(Entry(0f, 0.1f))
+        lineData.add(Entry(1f, 0.2f))
+        lineData.add(Entry(2f, 0.05f))
+        lineData.add(Entry(3f, 0.1f))
+        lineData.add(Entry(4f, 0.11f))
+        lineData.add(Entry(5f, 0.07f))
+        lineData.add(Entry(6f, 0.14f))
         val lines = LineDataSet(lineData, "Average Data")
         lines.color = Color.rgb(139, 195, 74)
         lines.setDrawValues(false)

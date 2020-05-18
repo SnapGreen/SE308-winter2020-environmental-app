@@ -3,6 +3,7 @@ package com.acme.snapgreen.data
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.util.*
+import kotlin.math.abs
 
 /**
  * A class to combine all the fields of data from the Usage Input page from the past 7 (or less if
@@ -15,13 +16,6 @@ class WeeklyStatsCalc() {
     companion object {
 
         /**
-         * Getter method to access the list of DailyStatistics from past 7 days
-         */
-        fun getWeeklyStatsList(): List<DailyStatistic> {
-            return StatUtil.getPastWeeksStats()
-        }
-
-        /**
          * Calculates the combined numbers for one day (based on that day's DailyStatistic) and returns
          * that information in a CombinedDSData object
          */
@@ -29,11 +23,9 @@ class WeeklyStatsCalc() {
             //piece of combined data to hold the number of gallons of water used in that day
             var numGals: Double =
                 (ds.minutesShowered * 2.1) + (ds.timesFlushed * 1.6) + (ds.timesDishwasherRun * 6) + (ds.minutesWashingMachine * 2)
-            numGals = BigDecimal(numGals).setScale(2, RoundingMode.HALF_EVEN).toDouble()
             //piece of combined data to hold the number of kg of waste produced in that day
             var numKgWaste: Double =
-                (ds.numAlumCansUsed * 0.00002) + (ds.numStyroContainersUsed * 0.6) + (ds.numPlasticStrawsUsed * 0.08) + (ds.numPlasticUtensilsUsed * 0.08)
-            numKgWaste = BigDecimal(numKgWaste).setScale(2, RoundingMode.HALF_EVEN).toDouble()
+                (ds.numAlumCansUsed * 0.0149) + (ds.numStyroContainersUsed * 0.0044) + (ds.numPlasticStrawsUsed * 0.00042) + (ds.numPlasticUtensilsUsed * 0.0022)
             var date: Date =
                 ds.date
 
@@ -48,15 +40,82 @@ class WeeklyStatsCalc() {
             var combinedWeekly: CombinedWSData =
                 CombinedWSData(0.0, 0.0, mutableListOf<CombinedDSData>())
             //extracts data from the past 7 days in a list from the StatUtil class
-            var weeklyDSList = getWeeklyStatsList()
+            var weeklyDSList: List<DailyStatistic> = StatUtil.getPastWeeksStats()
+
+            combineWeekData(weeklyDSList, combinedWeekly)
+
+            return combinedWeekly
+        }
+
+        /**
+         * Calculates combined numbers for the week before the last (based on the List of
+         * DailyStatistic objects passed in) and returns that information in a CombinedWSData
+         * object. Used only to calculate the percentage change on Dashboard.
+         */
+        private fun getWeeksCombinedStats(weeklyDSList: MutableList<DailyStatistic>): CombinedWSData {
+            var combinedWeekly: CombinedWSData =
+                CombinedWSData(0.0, 0.0, mutableListOf<CombinedDSData>())
+
+            combineWeekData(weeklyDSList, combinedWeekly)
+
+            return combinedWeekly
+        }
+
+        private fun combineWeekData(
+            weeklyDSList: List<DailyStatistic>,
+            combinedWeekly: CombinedWSData
+        ) {
             for (ds in weeklyDSList) {
                 val combinedDaily: CombinedDSData = calculateDailyNumbers(ds)
                 combinedWeekly.combinedDSDataList.add(combinedDaily)
                 combinedWeekly.numGals += combinedDaily.numGals
                 combinedWeekly.numKgWaste += combinedDaily.numKgWaste
             }
+        }
 
-            return combinedWeekly
+        /**
+         * Calculate percentage changes and returns it in a PercentChangeData object.
+         */
+        fun calculatePercentChange(): PercentChangeData {
+            var weeklyDSList: MutableList<DailyStatistic> =
+                StatUtil.getPastTwoWeeksStats().toMutableList()
+            var percentChanges: PercentChangeData =
+                PercentChangeData("", "")
+
+            if (weeklyDSList.size <= 7) {
+                percentChanges.galsChange = "N/A"
+                percentChanges.kgChange = "N/A"
+                return percentChanges
+            }
+
+            for (i in 1..7) {
+                weeklyDSList.removeAt(0)
+            }
+
+            var weeklyDataOld = getWeeksCombinedStats(weeklyDSList)
+            var weeklyDataNew = getWeeksCombinedStats()
+            var changeGals =
+                (abs(weeklyDataOld.numGals - weeklyDataNew.numGals) / weeklyDataOld.numGals) * 100
+            changeGals = BigDecimal(changeGals).setScale(2, RoundingMode.HALF_EVEN).toDouble()
+            var changeKg =
+                (abs(weeklyDataOld.numKgWaste - weeklyDataNew.numKgWaste) / weeklyDataOld.numKgWaste) * 100
+            changeKg = BigDecimal(changeKg).setScale(2, RoundingMode.HALF_EVEN).toDouble()
+
+            if (weeklyDataOld.numGals > weeklyDataNew.numGals) {
+                percentChanges.galsChange += "↓ "
+            } else if (weeklyDataOld.numGals < weeklyDataNew.numGals) {
+                percentChanges.galsChange += "↑ "
+            }
+            if (weeklyDataOld.numKgWaste > weeklyDataNew.numKgWaste) {
+                percentChanges.kgChange += "↓ "
+            } else if (weeklyDataOld.numKgWaste < weeklyDataNew.numKgWaste) {
+                percentChanges.kgChange += "↑ "
+            }
+
+            percentChanges.galsChange += "$changeGals%"
+            percentChanges.kgChange += "$changeKg%"
+
+            return percentChanges
         }
 
         /**
@@ -77,6 +136,15 @@ class WeeklyStatsCalc() {
             var numGals: Double,
             var numKgWaste: Double,
             var combinedDSDataList: MutableList<CombinedDSData>
+        ) {
+        }
+
+        /**
+         * Object to hold the combined data from any given day
+         */
+        class PercentChangeData(
+            var galsChange: String,
+            var kgChange: String
         ) {
         }
     }
