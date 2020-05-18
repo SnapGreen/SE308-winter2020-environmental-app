@@ -31,6 +31,9 @@ INGREDIENTSB4_TMP="${TMPDIR}ingredientsb4.tmp"
 NON_INGREDIENTS_TMP="${TMPDIR}non_ingredients.tmp"
 SET_INGREDIENTS_TMP="${TMPDIR}set_ingredients.tmp"
 RELEVANTDATA_TMP="${TMPDIR}relevantdata.tmp"
+RELEVANTSORTED_TMP="${TMPDIR}relevantsorted.tmp"
+RELEVANTTRIMMED_TMP="${TMPDIR}relevanttrimmed.tmp"
+RELEVANTDATASORTED_TMP="${TMPDIR}relevantdatasorted.tmp"
 CLEANTEST_TMP="${TMPDIR}longestlines.tmp"
 JOINED_TMP="${TMPDIR}joined.tmp"
 SORTED_TMP="${TMPDIR}sorted.tmp"
@@ -105,6 +108,8 @@ function checkSettings(){
 	printf "\tNON_INGREDIENTS_TMP: %s\n" "$NON_INGREDIENTS_TMP"
 	printf "\tSET_INGREDIENTS_TMP: %s\n" "$SET_INGREDIENTS_TMP"
 	printf "\tRELEVANTDATA_TMP: %s\n" "$RELEVANTDATA_TMP"
+	printf "\tRELEVANTSORTED_TMP: %s\n" "$RELEVANTSORTED_TMP"
+	printf "\tRELEVANTTRIMMED_TMP: %s\n" "$RELEVANTTRIMMED_TMP"
 	printf "\tCLEANTEST_TMP: %s\n" "$CLEANTEST_TMP"
 	printf "\tJOINED_TMP: %s\n" "$JOINED_TMP"
 	printf "\tSORTED_TMP: %s\n" "$SORTED_TMP"
@@ -148,6 +153,24 @@ function extractRelevantCols(){
    if [ $debug == "off" ] ; then
       rm $2
    fi
+}
+
+function sortRelevantData(){
+   printf "sorting FDA entries...\n"
+   # sorts the file from highest gtin to the lowest 
+   # this prepares the file for removal of duplicate entries, saving only the
+   # newest
+   >$2
+   sort -t '|' -nrk2 $1 >> $2
+
+   if [ $debug == "off" ] ; then
+      rm $1
+   fi
+}
+
+function removeOlderData(){
+   printf "removing older entries...\n"
+   uniq -s 7 -w 14 $1 $2
 }
 
 function createCleanTests(){
@@ -316,7 +339,7 @@ function createJsons(){
    for file in $files
    do
       # extracting the suffix number from each temp file
-      outnum=$(echo $file | grep -oP "(?=.tmp)[0-9]\{$SUFFIX_LEN\}")
+      outnum=$(echo $file | grep -oP "[0-9]{$SUFFIX_LEN}(?=.tmp)")
       # putting together an output file name
       outname="${FDAOUTDIR}${SPLIT_PREFIX}"$outnum"${OUTFILE_END}"
       # make sure the outfile is clear, if it exists
@@ -362,9 +385,13 @@ if [ "$fin" == "false" ] ; then
 
    extractRelevantCols $AWK_TRIM $PREPPED_TMP $RELEVANTDATA_TMP
 
-   createMap $AWK_MAP $RELEVANTDATA_TMP $MAPFILE 
+   sortRelevantData $RELEVANTDATA_TMP $RELEVANTSORTED_TMP
 
-   isolateIngredients $AWK_RM_INGRDS $RELEVANTDATA_TMP $NON_INGREDIENTS_TMP $INGREDIENTS_TMP 
+   removeOlderData $RELEVANTSORTED_TMP $RELEVANTTRIMMED_TMP
+
+   createMap $AWK_MAP $RELEVANTTRIMMED_TMP $MAPFILE 
+
+   isolateIngredients $AWK_RM_INGRDS $RELEVANTTRIMMED_TMP $NON_INGREDIENTS_TMP $INGREDIENTS_TMP 
 
    if [[ $debug == "on" ]] ; then
       createCleanTests $INGREDIENTSB4_TMP
@@ -386,7 +413,6 @@ if [ "$fin" == "false" ] ; then
 
    if [ $debug == "off" ] ; then
       # removes all of the temporary files
-      # comment this out for testing & debugging
       rm "${TMPDIR}*$TMPFILE_END"
    fi
 

@@ -1,16 +1,16 @@
 settings check:
-	SETTINGS: settings.txt
+	SETTINGS: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/settings.txt
 	AWKDIR: awk/
-	DATADIR: ../data/
+	DATADIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/data/
 	FDADIR: FDA/
-	FDAINDIR: ../dataraw/FDA/
-	FDAOUTDIR: ../data/FDA/
-	LOGDIR: ../logs/
-	RAWDATADIR: ../dataraw/
-	TMPDIR: ../temp/
-	TESTDIR: ../tests/
-	FDAINFILE: ../dataraw/FDA/branded_food.csv
-	MAPFILE: ../data/FDA/map_fdcid_gtin.csv
+	FDAINDIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/dataraw/FDA/
+	FDAOUTDIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/data/FDA/
+	LOGDIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/logs/
+	RAWDATADIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/dataraw/
+	TMPDIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/
+	TESTDIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/tests/
+	FDAINFILE: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/dataraw/FDA/branded_food.csv
+	MAPFILE: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/data/FDA/map_fdcid_gtin.csv
 	PRODS_PER_JSON: 250
 	PATTERNFILE: removalpatterns.txt
 	SPLIT_PREFIX: branded_food_
@@ -23,16 +23,18 @@ settings check:
 	AWK_TRIM: awk/trim.awk
 	AWK_RM_INGRDS: awk/removeIngreds.awk
 	AWK_MAP: awk/map_fdcid_gtin.awk
-	NOCATS_TMP: ../temp/nocats.tmp
-	PREPPED_TMP: ../temp/prepped.tmp
-	INGREDIENTS_TMP: ../temp/ingredients.tmp
-	INGREDIENTSB4_TMP: ../temp/ingredientsb4.tmp
-	NON_INGREDIENTS_TMP: ../temp/non_ingredients.tmp
-	SET_INGREDIENTS_TMP: ../temp/set_ingredients.tmp
-	RELEVANTDATA_TMP: ../temp/relevantdata.tmp
-	CLEANTEST_TMP: ../temp/longestlines.tmp
-	JOINED_TMP: ../temp/joined.tmp
-	SORTED_TMP: ../temp/sorted.tmp
+	NOCATS_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/nocats.tmp
+	PREPPED_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/prepped.tmp
+	INGREDIENTS_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/ingredients.tmp
+	INGREDIENTSB4_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/ingredientsb4.tmp
+	NON_INGREDIENTS_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/non_ingredients.tmp
+	SET_INGREDIENTS_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/set_ingredients.tmp
+	RELEVANTDATA_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/relevantdata.tmp
+	RELEVANTSORTED_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/relevantsorted.tmp
+	RELEVANTTRIMMED_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/relevanttrimmed.tmp
+	CLEANTEST_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/longestlines.tmp
+	JOINED_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/joined.tmp
+	SORTED_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/sorted.tmp
 	USAGE:
 		Usage: ./convertToJson.sh [OPTION] (-h for help)
 	HELP:
