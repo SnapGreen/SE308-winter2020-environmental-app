@@ -167,4 +167,18 @@ class ExampleInstrumentedTest {
         StatUtil.setTodaysStats(stats)
         assertEquals(4, StatUtil.getScore())
     }
+
+    @Test
+    fun testGraphs1() {
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+        Realm.init(appContext)
+        var realm = Realm.getDefaultInstance()
+        addDSToRealm(7, realm, 10, 4, 1, 50, 0, 1, 3, 4)
+        addDSToRealm(6, realm, 2, 4, 1, 50, 5, 1, 3, 4)
+        addDSToRealm(5, realm, 1, 4, 1, 50, 3, 1, 3, 4)
+        addDSToRealm(4, realm, 3, 4, 1, 50, 10, 1, 3, 4)
+        addDSToRealm(3, realm, 5, 4, 1, 50, 15, 1, 3, 4)
+        addDSToRealm(2, realm, 6, 4, 1, 50, 2, 1, 3, 4)
+        addDSToRealm(1, realm, 2, 4, 1, 50, 8, 1, 3, 4)
+    }
 }
