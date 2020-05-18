@@ -1,10 +1,10 @@
-	SETTINGS: settings.txt
+	SETTINGS: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/settings.txt
 	FILENAME: fakefile
 	FULLPATH: fakeurl/fakefile
-	LOGDIR: ../logs/
+	LOGDIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/logs/
 	CURRENTLATEST: FoodData_Central_branded_food_csv_2020-04-29.zip,202005010424,74439754
 	DONE_UPLOADING: false
-	DOWNLOADLOGDIR: ../logs/downloads/
+	DOWNLOADLOGDIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/logs/downloads/
 	USAGE:
 		Usage: ./downloadData.sh <filename> <url> [OPTION] (-h for help)
 	HELP:

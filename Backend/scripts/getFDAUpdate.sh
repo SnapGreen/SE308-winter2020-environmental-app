@@ -8,7 +8,6 @@ TMPDIR=$(grep -oP '(?<=^TMPDIR:).*' $SETTINGS)
 TMPFILE_END=$(grep -oP '(?<=^TMPFILE_END:).*' $SETTINGS)
 TMPLINKSFILE="${TMPDIR}links${TMPFILE_END}"
 TMPFILELIST="${TMPDIR}available_data${TMPFILE_END}"
-LASTUPLOAD=$(grep -oP "(?<=^LASTUPLOAD:).*" $SETTINGS)
 USAGE="\t\tUsage: ./getFDAUpdate.sh [OPTION] (use option -h for help)\n"
 HELP="${USAGE}\t\t**If no OPTION supplied, debug mode on (temp files remain)\n"
 HELP="${HELP}\t\t\t-b: bypass debug mode, download only if new\n"
@@ -31,7 +30,6 @@ function checkSettings(){
    printf "\tTMPFILE_END: %s\n" $TMPFILE_END
    printf "\tTMPLINKSFILE: %s\n" $TMPLINKSFILE
    printf "\tTMPFILELIST: %s\n" $TMPFILELIST
-   printf "\tLASTUPLOAD: %s\n" $LASTUPLOAD
    printf "\tUSAGE:\n"
    printf "$USAGE"
    printf "\tHELP:\n"
@@ -150,10 +148,10 @@ if [ "$fin" == "false" ] ; then
       checkSettings
    fi
 
-   #getDirectoryFromWeb $TMPLINKSFILE $FDC_DIR_ADDRESS
-   #isolateData $TMPLINKSFILE $TMPFILELIST
-   #convertMonthToDigits $TMPFILELIST
-   #rearrangeDate $TMPFILELIST
+   getDirectoryFromWeb $TMPLINKSFILE $FDC_DIR_ADDRESS
+   isolateData $TMPLINKSFILE $TMPFILELIST
+   convertMonthToDigits $TMPFILELIST
+   rearrangeDate $TMPFILELIST
    storeNewestEntry $TMPFILELIST
 
    IFS=',' read -r -a currarray <<< "$CURRENTLATEST"

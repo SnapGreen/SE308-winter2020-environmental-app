@@ -6,6 +6,10 @@ FDADATADIR="${DATADIR}${FDADIR}"
 SUFFIX_LEN=$(grep -oP "(?<=^SUFFIX_LEN:).*" $SETTINGS)
 PRODS_PER_JSON=$(grep -oP "(?<=^PRODS_PER_JSON:).*" $SETTINGS)
 FB_WRITES_PER_DAY=$(grep -oP "(?<=^FB_WRITES_PER_DAY:).*" $SETTINGS)
+TESTDIR=$(grep -oP "(?<=TESTDIR).*" $SETTINGS)
+TESTSETTINGSDIR=$"${TESTDIR}settings/"
+TEST_POPDB_SETTINGS="${TESTSETTINGSDIR}populateDB_settings.txt"
+TEST_UPLOADTODB_SETTINGS="${TESTSETTINGSDIR}uploadToDB_settings.txt"
 SPLIT_PREFIX=$(grep -oP "(?<=^SPLIT_PREFIX:).*" $SETTINGS)
 OUTFILE_END=$(grep -oP "(?<=^OUTFILE_END:).*" $SETTINGS)
 UPLOAD_SLEEP=$(grep -oP "(?<=^UPLOAD_SLEEP:).*" $SETTINGS)
@@ -32,6 +36,10 @@ function checkSettings(){
    printf "\tSUFFIX_LEN: %s\n" "$SUFFIX_LEN"
    printf "\tPRODS_PER_JSON: %s\n" "$PRODS_PER_JSON"
    printf "\tFB_WRITES_PER_DAY: %s\n" "$FB_WRITES_PER_DAY"
+   printf "\tTESTDIR: %s\n" "$TESTDIR"
+   printf "\tTESTSETTINGSDIR: %s\n" "$TESTSETTINGSDIR"
+   printf "\tTEST_POPDB_SETTINGS: %s\n" "$TEST_POPDB_SETTINGS"
+   printf "\tTEST_UPLOADTODB_SETTINGS: %s\n" "$TEST_UPLOADTODB_SETTINGS"
    printf "\tSPLIT_PREFIX: %s\n" "$SPLIT_PREFIX"
    printf "\tOUTFILE_END: %s\n" "$OUTFILE_END"
    printf "\tUPLOAD_SLEEP: %s\n" "$UPLOAD_SLEEP"
@@ -77,7 +85,7 @@ function uploadFiles(){
    for file in $@
    do
       if [ $success == "true" ] ; then
-         num=$(echo $file | grep -oP "(?=.json)[0-9]\{$SUFFIX_LEN\}")
+         num=$(echo $file | grep -oP "[0-9]{$SUFFIX_LEN}(?=.json)")
          logfile="${UPLOADLOGDIR}/${num}.log"
 
          curl --header "Content-Type: application/json"\
@@ -98,11 +106,14 @@ function uploadFiles(){
          sleep $UPLOAD_SLEEP
       fi
    done
-   if [ -n $lastupload ] ; then
+   if [ -n "$lastupload" ] ; then
       # note: you can replace sed's delimiter
       # here I'm using @ instead of / because of the forward slashes in 
       # $lastupload, which contains a path and filename
       sed -i "s@^LASTUPLOAD:.*@LASTUPLOAD:$lastupload@g" $SETTINGS
+      # this line updates the relevant line for the settings tests
+      sed -i "s@LASTUPLOAD: .*@LASTUPLOAD: $lastupload@g" $TEST_UPLOADTODB_SETTINGS
+      sed -i "s@LASTUPLOAD: .*@LASTUPLOAD: $lastupload@g" $TEST_POPDB_SETTINGS
    fi
 }
 
@@ -114,7 +125,7 @@ function uploadLastFiles(){
    for file in $@
    do
       if [ $success == "true" ] ; then
-         num=$(echo $file | grep -oP "(?=.json)[0-9]\{$SUFFIX_LEN\}")
+         num=$(echo $file | grep -oP "[0-9]{$SUFFIX_LEN}(?=.json)")
          logfile="${UPLOADLOGDIR}/${num}.log"
 
          #curl -vs -O --stderr $logfile $FULLPATH

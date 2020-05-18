@@ -1,3 +1,4 @@
+s/[[:cntrl:]]//g
 s/ \+/ /g
 s/,\([])}]\)/\1/
 s/,/;/g
@@ -19,6 +20,7 @@ s/-\?{\(an \)\?emulsifiers\?}//g
 s/\[artificial flavor\]//g
 s/(natural vitamin e)//g
 s/all natural //g
+s/\s*_x000d_\s*//g
 s/fresh //g
 s/steamed //g
 s/chopped //g
