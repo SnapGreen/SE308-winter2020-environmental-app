@@ -1,7 +1,7 @@
 settings check:
-	SETTINGS: settings.txt
+	SETTINGS: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/settings.txt
 	SERVER_POPULATED: false
-	LASTUPLOAD: ../data/FDA/branded_food_0110.json
+	LASTUPLOAD: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/data/FDA/branded_food_0186.json
 	USAGE:
 		Usage: ./populateDB.sh [OPTION] (use option -h for help)
 	HELP:
