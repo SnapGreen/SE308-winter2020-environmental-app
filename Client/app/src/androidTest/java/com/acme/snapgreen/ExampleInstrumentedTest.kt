@@ -11,6 +11,7 @@ import io.realm.RealmConfiguration
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
+import java.text.DateFormat
 import java.util.*
 
 
@@ -22,17 +23,31 @@ import java.util.*
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
 
-    private fun addDSToRealm(daysAgo: Int, testRealm: Realm) {
+    private fun addDSToRealm(
+        daysAgo: Int,
+        testRealm: Realm,
+        minsShowered: Int,
+        timesFlushed: Int,
+        timesDishwasher: Int,
+        minsWashingMach: Int,
+        numAlum: Int,
+        numStyro: Int,
+        numStraws: Int,
+        numUtils: Int
+    ): DailyStatistic {
         val testDS = DailyStatistic()
-        testDS.date = Date(System.currentTimeMillis() - (daysAgo * 24) * 60 * 60 * 1000);
-        testDS.minutesShowered = 10
-        testDS.timesFlushed = 4
-        testDS.timesDishwasherRun = 1
-        testDS.minutesWashingMachine = 50
-        testDS.numAlumCansUsed = 2
-        testDS.numStyroContainersUsed = 1
-        testDS.numPlasticStrawsUsed = 3
-        testDS.numPlasticUtensilsUsed = 4
+        testDS.date = Date(System.currentTimeMillis() - (daysAgo * 24) * 60 * 60 * 1000)
+        testDS.today = DateFormat.getDateTimeInstance().format(testDS.date)
+        testDS.minutesShowered = minsShowered
+        testDS.timesFlushed = timesFlushed
+        testDS.timesDishwasherRun = timesDishwasher
+        testDS.minutesWashingMachine = minsWashingMach
+        testDS.numAlumCansUsed = numAlum
+        testDS.numStyroContainersUsed = numStyro
+        testDS.numPlasticStrawsUsed = numStraws
+        testDS.numPlasticUtensilsUsed = numUtils
+        testDS.barcodeScore = 0
+        testDS.hasBeenSaved = false
         testRealm.beginTransaction()
         testRealm.copyToRealmOrUpdate(testDS)
         testRealm.commitTransaction()
@@ -40,10 +55,11 @@ class ExampleInstrumentedTest {
             "Realm Database",
             "Updating statistics associated with test"
         )
+        return testDS
     }
 
     @Test
-    fun useAppContext() {
+    fun testCalcDailyStatistics() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("com.acme.snapgreen", appContext.packageName)
@@ -55,13 +71,40 @@ class ExampleInstrumentedTest {
         val testRealm: Realm = Realm.getInstance(testConfig)
 
         for (i in 1..14) {
-            addDSToRealm(i, testRealm)
+            addDSToRealm(i, testRealm, 10, 4, 1, 50, 2, 1, 3, 4)
         }
 
         val combinedWS = WeeklyStatsCalc.getWeeksCombinedStats()
 
-        assertEquals(133.4, combinedWS.numGals, .1)
-        assertEquals(1.16004, combinedWS.numKgWaste, .1)
+        assertEquals(933.8, combinedWS.numGals, .01)
+        assertEquals(0.30982000000000004, combinedWS.numKgWaste, .01)
+        assertEquals("933.800", "%.3f".format(combinedWS.numGals))
+        assertEquals("0.310", "%.3f".format(combinedWS.numKgWaste))
+    }
+
+    @Test
+    fun percentTest() {
+        // Context of the app under test.
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+        assertEquals("com.acme.snapgreen", appContext.packageName)
+
+        Realm.init(appContext)
+        val testConfig =
+            RealmConfiguration.Builder().inMemory().name("test-realm").build()
+        Realm.setDefaultConfiguration(testConfig)
+        val testRealm: Realm = Realm.getInstance(testConfig)
+
+        for (i in 1..7) {
+            addDSToRealm(i, testRealm, 10, 4, 1, 50, 1, 1, 2, 1)
+        }
+        for (i in 8..14) {
+            addDSToRealm(i, testRealm, 15, 6, 2, 53, 1, 0, 1, 1)
+        }
+
+        val percentChanges = WeeklyStatsCalc.calculatePercentChange()
+
+        assertEquals("↓ 16.15%", percentChanges.galsChange)
+        assertEquals("↑ 27.51%", percentChanges.kgChange)
     }
 
     @Test
@@ -84,5 +127,44 @@ class ExampleInstrumentedTest {
         stats.numPlasticStrawsUsed = 3
         stats.numPlasticUtensilsUsed = 5
         StatUtil.setTodaysStats(stats)
+    }
+
+    @Test
+    fun testSetInputsTwiceToday() {
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+        assertEquals("com.acme.snapgreen", appContext.packageName)
+
+        Realm.init(appContext)
+        val testConfig =
+            RealmConfiguration.Builder().inMemory().name("test-realm").build()
+        Realm.setDefaultConfiguration(testConfig)
+
+
+        var stats = StatUtil.getTodaysStats()
+        stats.date = Date(System.currentTimeMillis() - (0 * 24) * 60 * 60 * 1000);
+        stats.minutesShowered = 10
+        stats.timesFlushed = 4
+        stats.timesDishwasherRun = 1
+        stats.minutesWashingMachine = 50
+        stats.numAlumCansUsed = 2
+        stats.numStyroContainersUsed = 1
+        stats.numPlasticStrawsUsed = 3
+        stats.numPlasticUtensilsUsed = 4
+        stats.barcodeScore = 0
+        stats.hasBeenSaved = false
+        StatUtil.setTodaysStats(stats)
+        assertEquals(-5, StatUtil.getScore())
+
+        stats = StatUtil.getTodaysStats()
+        stats.minutesShowered = 5
+        stats.timesFlushed = 9
+        stats.timesDishwasherRun = 0
+        stats.minutesWashingMachine = 27
+        stats.numAlumCansUsed = 0
+        stats.numStyroContainersUsed = 5
+        stats.numPlasticStrawsUsed = 1
+        stats.numPlasticUtensilsUsed = 0
+        StatUtil.setTodaysStats(stats)
+        assertEquals(4, StatUtil.getScore())
     }
 }

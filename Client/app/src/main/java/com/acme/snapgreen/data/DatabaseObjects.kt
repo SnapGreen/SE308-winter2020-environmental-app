@@ -26,8 +26,100 @@ open class DailyStatistic(
 ) : RealmObject() {
 
     public fun refreshScore() {
+        score = barcodeScore
 
-        score = 2
+        when {
+            minutesShowered <= 6 -> {
+                score += 3
+            }
+            minutesShowered <= 9 -> {
+                score += 1
+            }
+            minutesShowered <= 12 -> {
+                score -= 1
+            }
+            minutesShowered <= 16 -> {
+                score -= 2
+            }
+            else -> {
+                score -= 3
+            }
+        }
+
+        when {
+            timesFlushed <= 5 -> {
+                score += 2
+            }
+            timesFlushed <= 7 -> {
+                score += 0
+            }
+            timesFlushed <= 10 -> {
+                score -= 1
+            }
+            else -> {
+                score -= 2
+            }
+        }
+
+        if (timesDishwasherRun == 0) {
+            score += 1
+        } else if (timesDishwasherRun >= 2) {
+            score -= 1
+        }
+
+        if (minutesWashingMachine <= 30) {
+            score += 1
+        } else if (minutesWashingMachine > 50) {
+            score -= 1
+        }
+
+        when {
+            numAlumCansUsed == 0 -> {
+                score += 1
+            }
+            numAlumCansUsed <= 1 -> {
+                score -= 1
+            }
+            else -> {
+                score -= 2
+            }
+        }
+
+        when {
+            numStyroContainersUsed == 0 -> {
+                score += 1
+            }
+            numStyroContainersUsed <= 1 -> {
+                score -= 1
+            }
+            else -> {
+                score -= 2
+            }
+        }
+
+        when {
+            numPlasticStrawsUsed == 0 -> {
+                score += 1
+            }
+            numPlasticStrawsUsed <= 1 -> {
+                score += 0
+            }
+            else -> {
+                score -= 1
+            }
+        }
+
+        when {
+            numPlasticUtensilsUsed == 0 -> {
+                score += 1
+            }
+            numPlasticUtensilsUsed <= 1 -> {
+                score -= 1
+            }
+            else -> {
+                score -= 2
+            }
+        }
     }
 }
 

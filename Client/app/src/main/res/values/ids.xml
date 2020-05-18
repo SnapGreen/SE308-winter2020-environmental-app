@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="login_email" type="id" />
+    <item name="login" type="id" />
+    <item name="test_button" type="id" />
+</resources>
