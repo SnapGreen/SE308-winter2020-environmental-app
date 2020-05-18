@@ -28,11 +28,7 @@ class ExampleInstrumentedTest {
         testRealm: Realm,
         minsShowered: Int,
         timesFlushed: Int,
-<<<<<<< HEAD
         timesDishwasher: Int,
-=======
-        timesDiswasher: Int,
->>>>>>> edae56a595da49daa6fde9c7276eaa188cd3e65f
         minsWashingMach: Int,
         numAlum: Int,
         numStyro: Int,
@@ -40,18 +36,11 @@ class ExampleInstrumentedTest {
         numUtils: Int
     ): DailyStatistic {
         val testDS = DailyStatistic()
-<<<<<<< HEAD
         testDS.date = Date(System.currentTimeMillis() - (daysAgo * 24) * 60 * 60 * 1000)
         testDS.today = DateFormat.getDateTimeInstance().format(testDS.date)
         testDS.minutesShowered = minsShowered
         testDS.timesFlushed = timesFlushed
         testDS.timesDishwasherRun = timesDishwasher
-=======
-        testDS.date = Date(System.currentTimeMillis() - (daysAgo * 24) * 60 * 60 * 1000);
-        testDS.minutesShowered = minsShowered
-        testDS.timesFlushed = timesFlushed
-        testDS.timesDishwasherRun = timesDiswasher
->>>>>>> edae56a595da49daa6fde9c7276eaa188cd3e65f
         testDS.minutesWashingMachine = minsWashingMach
         testDS.numAlumCansUsed = numAlum
         testDS.numStyroContainersUsed = numStyro
