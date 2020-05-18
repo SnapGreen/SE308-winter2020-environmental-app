@@ -54,7 +54,7 @@
                 android:textColor="@android:color/widget_edittext_dark" />
         </LinearLayout>
 
-        <ImageButton
+        <ImageView
             android:id="@+id/profilePicImageView"
             android:layout_width="100dp"
             android:layout_height="50dp"
@@ -62,8 +62,8 @@
             android:layout_weight="1"
             android:adjustViewBounds="true"
             android:backgroundTint="#F8F8F6"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/avatar" />
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_launcher" />
 
         <EditText
             android:id="@+id/changeProfilePlainText"

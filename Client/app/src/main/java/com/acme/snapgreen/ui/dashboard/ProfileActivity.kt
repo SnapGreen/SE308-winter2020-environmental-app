@@ -21,7 +21,7 @@ class ProfileActivity : AppCompatActivity() {
 
     lateinit var mCancel: TextView
     lateinit var mDone: TextView
-    lateinit var mUserImage: ImageButton
+    lateinit var mUserImage: ImageView
 
     //lateinit var mChangeImage: EditText
     lateinit var mName: EditText
@@ -167,9 +167,11 @@ class ProfileActivity : AppCompatActivity() {
         // if (task.isSuccessful) {
         val intent = Intent(applicationContext, DashboardActivity::class.java)
         startActivity(intent)
-        finish()
+
         //   }
     }
+
+
 }
 
 
