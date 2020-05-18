@@ -10,6 +10,8 @@ import com.acme.snapgreen.R
 import com.acme.snapgreen.data.StatUtil
 import com.acme.snapgreen.data.WeeklyStatsCalc
 import com.acme.snapgreen.ui.scanner.PreviewActivity
+import java.math.BigDecimal
+import java.math.RoundingMode
 
 const val EXTRA_MESSAGE = "com.acme.snapgreen.MESSAGE"
 
@@ -29,8 +31,8 @@ class DashboardActivity : AppCompatActivity() {
         scoreText = findViewById<TextView>(R.id.dashboard_grade)
         waterUsageText = findViewById<TextView>(R.id.dashboard_water_usage)
         wasteUsageText = findViewById<TextView>(R.id.dashboard_trash_usage)
-        val waterPercentText = findViewById<TextView>(R.id.dashboard_water_percent)
-        val wastePercentText = findViewById<TextView>(R.id.dashboard_trash_percent)
+        waterPercentText = findViewById<TextView>(R.id.dashboard_water_percent)
+        wastePercentText = findViewById<TextView>(R.id.dashboard_trash_percent)
 
         val waterButton = findViewById<Button>(R.id.usage_input)
         waterButton.setOnClickListener {
@@ -73,10 +75,14 @@ class DashboardActivity : AppCompatActivity() {
      */
     private fun updateDashboardStatistics() {
         val combinedWS = WeeklyStatsCalc.getWeeksCombinedStats()
-        waterUsageText.text = combinedWS.numGals.toString() + " gal"
-        wasteUsageText.text = combinedWS.numKgWaste.toString() + " kg"
+        waterUsageText.text = "%.3f".format(combinedWS.numGals) + " gal"
+        wasteUsageText.text = "%.3f".format(combinedWS.numKgWaste) + " kg"
 
         scoreText.text = StatUtil.getScore().score.toString()
+
+        val percentChanges = WeeklyStatsCalc.calculatePercentChange()
+        waterPercentText.text = percentChanges.galsChange
+        wastePercentText.text = percentChanges.kgChange
 
     }
 
