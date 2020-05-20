@@ -66,7 +66,7 @@ class ExampleInstrumentedTest {
 
         Realm.init(appContext)
         val testConfig =
-            RealmConfiguration.Builder().inMemory().name("test-realm").build()
+            RealmConfiguration.Builder().inMemory().name("test-realm0").build()
         Realm.setDefaultConfiguration(testConfig)
         val testRealm: Realm = Realm.getInstance(testConfig)
 
@@ -90,7 +90,7 @@ class ExampleInstrumentedTest {
 
         Realm.init(appContext)
         val testConfig =
-            RealmConfiguration.Builder().inMemory().name("test-realm").build()
+            RealmConfiguration.Builder().inMemory().name("percentTest").build()
         Realm.setDefaultConfiguration(testConfig)
         val testRealm: Realm = Realm.getInstance(testConfig)
 
@@ -136,9 +136,8 @@ class ExampleInstrumentedTest {
 
         Realm.init(appContext)
         val testConfig =
-            RealmConfiguration.Builder().inMemory().name("test-realm").build()
+            RealmConfiguration.Builder().inMemory().name("test-realm2").build()
         Realm.setDefaultConfiguration(testConfig)
-
 
         var stats = StatUtil.getTodaysStats()
         stats.date = Date(System.currentTimeMillis() - (0 * 24) * 60 * 60 * 1000);
@@ -153,7 +152,7 @@ class ExampleInstrumentedTest {
         stats.barcodeScore = 0
         stats.hasBeenSaved = false
         StatUtil.setTodaysStats(stats)
-        assertEquals(-5, StatUtil.getScore())
+        assertEquals(-5, StatUtil.getScore().score)
 
         stats = StatUtil.getTodaysStats()
         stats.minutesShowered = 5
@@ -165,11 +164,10 @@ class ExampleInstrumentedTest {
         stats.numPlasticStrawsUsed = 1
         stats.numPlasticUtensilsUsed = 0
         StatUtil.setTodaysStats(stats)
-        assertEquals(4, StatUtil.getScore())
+        assertEquals(4, StatUtil.getScore().score)
     }
 
-    @Test
-    fun testGraphs1() {
+    fun addWeeksData() {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         Realm.init(appContext)
         var realm = Realm.getDefaultInstance()

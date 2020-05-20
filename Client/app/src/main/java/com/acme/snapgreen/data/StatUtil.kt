@@ -95,7 +95,12 @@ class StatUtil private constructor() {
          */
         fun setTodaysStats(stats: DailyStatistic) {
             val realm = Realm.getDefaultInstance()
-            var totalScore = getScore()
+            var totalScore = realm.where<TotalScore>().findFirst()
+
+            if (totalScore == null) {
+                totalScore = TotalScore()
+                realm.copyToRealm(totalScore)
+            }
 
             if (stats.hasBeenSaved) {
                 totalScore.score -= stats.score
