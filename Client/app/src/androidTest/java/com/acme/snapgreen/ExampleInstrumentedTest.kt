@@ -8,7 +8,9 @@ import com.acme.snapgreen.data.StatUtil
 import com.acme.snapgreen.data.WeeklyStatsCalc
 import io.realm.Realm
 import io.realm.RealmConfiguration
+import org.junit.After
 import org.junit.Assert.assertEquals
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.text.DateFormat
@@ -61,15 +63,7 @@ class ExampleInstrumentedTest {
     @Test
     fun testCalcDailyStatistics() {
         // Context of the app under test.
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.acme.snapgreen", appContext.packageName)
-
-        Realm.init(appContext)
-        val testConfig =
-            RealmConfiguration.Builder().inMemory().name("test-realm0").build()
-        Realm.setDefaultConfiguration(testConfig)
-        val testRealm: Realm = Realm.getInstance(testConfig)
-
+        val testRealm = Realm.getDefaultInstance()
         for (i in 1..14) {
             addDSToRealm(i, testRealm, 10, 4, 1, 50, 2, 1, 3, 4)
         }
@@ -84,15 +78,7 @@ class ExampleInstrumentedTest {
 
     @Test
     fun percentTest() {
-        // Context of the app under test.
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.acme.snapgreen", appContext.packageName)
-
-        Realm.init(appContext)
-        val testConfig =
-            RealmConfiguration.Builder().inMemory().name("percentTest").build()
-        Realm.setDefaultConfiguration(testConfig)
-        val testRealm: Realm = Realm.getInstance(testConfig)
+        val testRealm: Realm = Realm.getDefaultInstance()
 
         for (i in 1..7) {
             addDSToRealm(i, testRealm, 10, 4, 1, 50, 1, 1, 2, 1)
@@ -109,13 +95,6 @@ class ExampleInstrumentedTest {
 
     @Test
     fun testSetInputData() {
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.acme.snapgreen", appContext.packageName)
-
-        Realm.init(appContext)
-        val testConfig =
-            RealmConfiguration.Builder().inMemory().name("test-realm").build()
-        Realm.setDefaultConfiguration(testConfig)
 
         val stats = StatUtil.getTodaysStats()
         stats.minutesShowered = 12
@@ -129,15 +108,9 @@ class ExampleInstrumentedTest {
         StatUtil.setTodaysStats(stats)
     }
 
+
     @Test
     fun testSetInputsTwiceToday() {
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.acme.snapgreen", appContext.packageName)
-
-        Realm.init(appContext)
-        val testConfig =
-            RealmConfiguration.Builder().inMemory().name("test-realm2").build()
-        Realm.setDefaultConfiguration(testConfig)
 
         var stats = StatUtil.getTodaysStats()
         stats.date = Date(System.currentTimeMillis() - (0 * 24) * 60 * 60 * 1000);
@@ -165,6 +138,25 @@ class ExampleInstrumentedTest {
         stats.numPlasticUtensilsUsed = 0
         StatUtil.setTodaysStats(stats)
         assertEquals(4, StatUtil.getScore().score)
+    }
+
+    @Before
+    public fun setupRealm() {
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+        assertEquals("com.acme.snapgreen", appContext.packageName)
+
+        Realm.init(appContext)
+        val testConfig =
+            RealmConfiguration.Builder().inMemory().name("test-realm").build()
+        Realm.setDefaultConfiguration(testConfig)
+    }
+
+    @After
+    public fun breakdownRealm() {
+        var realm = Realm.getDefaultInstance()
+        realm.beginTransaction()
+        realm.deleteAll()
+        realm.commitTransaction()
     }
 
     fun addWeeksData() {
