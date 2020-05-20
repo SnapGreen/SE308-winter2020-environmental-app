@@ -27,7 +27,6 @@ class ExampleInstrumentedTest {
 
     private fun addDSToRealm(
         daysAgo: Int,
-        testRealm: Realm,
         minsShowered: Int,
         timesFlushed: Int,
         timesDishwasher: Int,
@@ -37,6 +36,8 @@ class ExampleInstrumentedTest {
         numStraws: Int,
         numUtils: Int
     ): DailyStatistic {
+        val testRealm: Realm = Realm.getDefaultInstance()
+
         val testDS = DailyStatistic()
         testDS.date = Date(System.currentTimeMillis() - (daysAgo * 24) * 60 * 60 * 1000)
         testDS.today = DateFormat.getDateTimeInstance().format(testDS.date)
@@ -65,7 +66,7 @@ class ExampleInstrumentedTest {
         // Context of the app under test.
         val testRealm = Realm.getDefaultInstance()
         for (i in 1..14) {
-            addDSToRealm(i, testRealm, 10, 4, 1, 50, 2, 1, 3, 4)
+            addDSToRealm(i, 10, 4, 1, 50, 2, 1, 3, 4)
         }
 
         val combinedWS = WeeklyStatsCalc.getWeeksCombinedStats()
@@ -81,10 +82,10 @@ class ExampleInstrumentedTest {
         val testRealm: Realm = Realm.getDefaultInstance()
 
         for (i in 1..7) {
-            addDSToRealm(i, testRealm, 10, 4, 1, 50, 1, 1, 2, 1)
+            addDSToRealm(i, 10, 4, 1, 50, 1, 1, 2, 1)
         }
         for (i in 8..14) {
-            addDSToRealm(i, testRealm, 15, 6, 2, 53, 1, 0, 1, 1)
+            addDSToRealm(i, 15, 6, 2, 53, 1, 0, 1, 1)
         }
 
         val percentChanges = WeeklyStatsCalc.calculatePercentChange()
@@ -140,6 +141,16 @@ class ExampleInstrumentedTest {
         assertEquals(4, StatUtil.getScore().score)
     }
 
+    @Test
+    fun fillOneEmptyDayTest() {
+        addDSToRealm(2, 10, 4, 1, 50, 0, 1, 3, 4)
+        addDSToRealm(3, 2, 4, 1, 50, 5, 1, 3, 4)
+        addDSToRealm(4, 1, 4, 1, 50, 3, 1, 3, 4)
+
+        StatUtil.fillEmptyDays()
+    }
+
+
     @Before
     public fun setupRealm() {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
@@ -163,12 +174,12 @@ class ExampleInstrumentedTest {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         Realm.init(appContext)
         var realm = Realm.getDefaultInstance()
-        addDSToRealm(7, realm, 10, 4, 1, 50, 0, 1, 3, 4)
-        addDSToRealm(6, realm, 2, 4, 1, 50, 5, 1, 3, 4)
-        addDSToRealm(5, realm, 1, 4, 1, 50, 3, 1, 3, 4)
-        addDSToRealm(4, realm, 3, 4, 1, 50, 10, 1, 3, 4)
-        addDSToRealm(3, realm, 5, 4, 1, 50, 15, 1, 3, 4)
-        addDSToRealm(2, realm, 6, 4, 1, 50, 2, 1, 3, 4)
-        addDSToRealm(1, realm, 2, 4, 1, 50, 8, 1, 3, 4)
+        addDSToRealm(7, 10, 4, 1, 50, 0, 1, 3, 4)
+        addDSToRealm(6, 2, 4, 1, 50, 5, 1, 3, 4)
+        addDSToRealm(5, 1, 4, 1, 50, 3, 1, 3, 4)
+        addDSToRealm(4, 3, 4, 1, 50, 10, 1, 3, 4)
+        addDSToRealm(3, 5, 4, 1, 50, 15, 1, 3, 4)
+        addDSToRealm(2, 6, 4, 1, 50, 2, 1, 3, 4)
+        addDSToRealm(1, 2, 4, 1, 50, 8, 1, 3, 4)
     }
 }
