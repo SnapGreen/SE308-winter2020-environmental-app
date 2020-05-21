@@ -173,12 +173,20 @@ class ExampleInstrumentedTest {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         Realm.init(appContext)
         var realm = Realm.getDefaultInstance()
-        addDSToRealm(7, realm, 10, 4, 1, 50, 0, 1, 3, 4)
-        addDSToRealm(6, realm, 2, 4, 1, 50, 5, 1, 3, 4)
-        addDSToRealm(5, realm, 1, 4, 1, 50, 3, 1, 3, 4)
-        addDSToRealm(4, realm, 3, 4, 1, 50, 10, 1, 3, 4)
-        addDSToRealm(3, realm, 5, 4, 1, 50, 15, 1, 3, 4)
-        addDSToRealm(2, realm, 6, 4, 1, 50, 2, 1, 3, 4)
-        addDSToRealm(1, realm, 2, 4, 1, 50, 8, 1, 3, 4)
+        addDSToRealm(7, realm, 10, 4, 1, 0, 0, 1, 3, 4)
+        addDSToRealm(6, realm, 2, 4, 1, 0, 5, 1, 3, 4)
+        addDSToRealm(5, realm, 1, 4, 1, 0, 3, 1, 3, 4)
+        addDSToRealm(4, realm, 3, 4, 1, 0, 10, 1, 3, 4)
+        addDSToRealm(3, realm, 5, 4, 1, 0, 15, 1, 3, 4)
+        addDSToRealm(2, realm, 6, 4, 1, 0, 2, 1, 3, 4)
+        addDSToRealm(1, realm, 2, 4, 1, 0, 8, 1, 3, 4)
+
+        addDSToRealm(8, realm, 8, 2, 0, 10, 0, 0, 2, 3)
+        addDSToRealm(9, realm, 1, 2, 1, 10, 5, 1, 3, 4)
+        addDSToRealm(10, realm, 1, 2, 1, 10, 3, 1, 3, 4)
+        addDSToRealm(11, realm, 3, 2, 1, 10, 10, 1, 3, 4)
+        addDSToRealm(12, realm, 5, 2, 1, 10, 15, 1, 3, 4)
+        addDSToRealm(13, realm, 6, 2, 1, 10, 2, 1, 3, 4)
+        addDSToRealm(14, realm, 2, 2, 1, 10, 8, 1, 3, 4)
     }
 }

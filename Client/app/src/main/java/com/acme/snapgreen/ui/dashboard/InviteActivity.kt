@@ -78,7 +78,7 @@ class InviteActivity : AppCompatActivity() {
                     recyclerView = findViewById<RecyclerView>(R.id.friends_recycle_view).apply {
                         // use this setting to improve performance if you know that changes
                         // in content do not change the layout size of the RecyclerView
-                        setHasFixedSize(false)
+                        setHasFixedSize(true)
 
                         // use a linear layout manager
                         layoutManager = viewManager

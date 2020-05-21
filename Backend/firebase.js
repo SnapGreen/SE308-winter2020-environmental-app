@@ -63,7 +63,10 @@ class Firebase {
 
   // Queries and returns a product document
   async getProduct(id) {
-    let productQuery = await this.db.collection("products").doc(`${id}`).get();
+    let productQuery = await this.db
+      .collection("products")
+      .doc(`00${id}`)
+      .get();
 
     console.log(productQuery);
     if (productQuery.empty) {
