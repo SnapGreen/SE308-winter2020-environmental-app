@@ -43,14 +43,12 @@ class UsageInputActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Toast.makeText(applicationContext, "Activity launched!", Toast.LENGTH_SHORT).show()
         setContentView(R.layout.activity_usage_input)
 
         val currentDateField = findViewById<TextView>(R.id.currentDate)
         val currentDateTimeString = DateFormat.getDateTimeInstance().format(Date())
         currentDateField.text = currentDateTimeString
 
-        var saysEdit = true
         val maxLength = 3
         val minutesShoweredField = findViewById<EditText>(R.id.minutesShowered)
         minutesShoweredField.filters = arrayOf<InputFilter>(LengthFilter(maxLength))
@@ -72,48 +70,18 @@ class UsageInputActivity : AppCompatActivity() {
 
         val editButton = findViewById<Button>(R.id.editButton)
         editButton.setOnClickListener {
-            if (saysEdit) {
-                minutesShoweredField.isEnabled = true
-                timesFlushedField.isEnabled = true
-                timesDishwasherRunField.isEnabled = true
-                minutesWashingMachineField.isEnabled = true
-
-                numAlumCansUsedField.isEnabled = true
-                numStyroContainersUsedField.isEnabled = true
-                numPlasticStrawsUsedField.isEnabled = true
-                numPlasticUtensilsUsedField.isEnabled = true
-
-                editButton.text = "SAVE"
-                saysEdit = false
-            } else {
-                minutesShoweredField.isEnabled = false
-                timesFlushedField.isEnabled = false
-                timesDishwasherRunField.isEnabled = false
-                minutesWashingMachineField.isEnabled = false
-
-                numAlumCansUsedField.isEnabled = false
-                numStyroContainersUsedField.isEnabled = false
-                numPlasticStrawsUsedField.isEnabled = false
-                numPlasticUtensilsUsedField.isEnabled = false
-
-                saveScore(
-                    minutesShoweredField.text.toString().toInt(),
-                    timesFlushedField.text.toString().toInt(),
-                    timesDishwasherRunField.text.toString().toInt(),
-                    minutesWashingMachineField.text.toString().toInt(),
-                    numAlumCansUsedField.text.toString().toInt(),
-                    numStyroContainersUsedField.text.toString().toInt(),
-                    numPlasticStrawsUsedField.text.toString().toInt(),
-                    numPlasticUtensilsUsedField.text.toString().toInt()
-                )
-                finish()
-
-                editButton.text = "EDIT"
-                saysEdit = true
-            }
+            saveScore(
+                minutesShoweredField.text.toString().toInt(),
+                timesFlushedField.text.toString().toInt(),
+                timesDishwasherRunField.text.toString().toInt(),
+                minutesWashingMachineField.text.toString().toInt(),
+                numAlumCansUsedField.text.toString().toInt(),
+                numStyroContainersUsedField.text.toString().toInt(),
+                numPlasticStrawsUsedField.text.toString().toInt(),
+                numPlasticUtensilsUsedField.text.toString().toInt()
+            )
+            finish()
         }
-
     }
-
 
 }
