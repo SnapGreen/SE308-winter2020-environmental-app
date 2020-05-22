@@ -8,23 +8,26 @@
     android:backgroundTint="@color/cotton_white">
 
     <LinearLayout
-        android:layout_width="422dp"
-        android:layout_height="124dp"
+        android:layout_width="418dp"
+        android:layout_height="134dp"
         android:background="@color/spring_green"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="449dp"
-        android:layout_height="218dp"
+        android:layout_width="450dp"
+        android:layout_height="131dp"
+        android:layout_marginBottom="100dp"
         android:background="@color/spring_green"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.846"
         app:layout_constraintStart_toStartOf="parent"></LinearLayout>
 
     <TextView
@@ -119,7 +122,7 @@
         android:layout_width="196dp"
         android:layout_height="100dp"
         android:background="@android:drawable/title_bar"
-        android:backgroundTint="#8BC34A"
+        android:backgroundTint="#C9FB8E"
         android:enabled="false"
         android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -130,7 +133,7 @@
         android:layout_width="330dp"
         android:layout_height="0dp"
         android:layout_marginTop="3dp"
-        android:layout_marginBottom="3dp"
+        android:layout_marginBottom="8dp"
         android:background="#00FFFFFF"
         android:backgroundTint="#008EC891"
         android:backgroundTintMode="add"
