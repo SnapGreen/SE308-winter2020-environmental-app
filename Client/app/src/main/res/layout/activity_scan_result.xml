@@ -132,7 +132,7 @@
         android:id="@+id/ingredients_recycle_view"
         android:layout_width="330dp"
         android:layout_height="0dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:background="#00FFFFFF"
         android:backgroundTint="#008EC891"
