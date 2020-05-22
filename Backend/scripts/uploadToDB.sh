@@ -86,11 +86,7 @@ function uploadFiles(){
    do
       if [ $success == "true" ] ; then
          num=$(echo $file | grep -oP "[0-9]{$SUFFIX_LEN}(?=.json)")
-<<<<<<< HEAD
          logfile="${UPLOADLOGDIR}${num}.log"
-=======
-         logfile="${UPLOADLOGDIR}/${num}.log"
->>>>>>> 7a58b31707b478ff776f9810badb4052d3161af3
 
          curl --header "Content-Type: application/json"\
             --request POST --data @$file http://localhost:8080/products\
