@@ -83,11 +83,14 @@ app.get("/friends/:id", async function (req, res) {
 });
 
 app.post("/friends", async function (req, res) {
+  console.log("Attempting to add friend!");
   if (!req.body || !req.body.token || !req.body.friendUsername) {
+    console.log(req.body.friendUsername);
     res.send("No req.body, token or friend username provided");
     return;
   }
   try {
+    console.log("JSON constructed properly for friend, adding now");
     let friend = await FIREBASE.addFriend(
       req.body.token,
       req.body.friendUsername
@@ -97,6 +100,7 @@ app.post("/friends", async function (req, res) {
       res.status(401).json({
         message: "Friend Not Found",
       });
+      return;
     }
 
     // Returns a json of the new friend added

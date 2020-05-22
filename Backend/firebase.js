@@ -150,12 +150,14 @@ class Firebase {
 
   async addFriend(idToken, friendUsername) {
     let id = await this.getUIDFromToken(idToken);
-    let user = await this.getUserByUUID(id);
     let friend = await this.getUserByUsername(friendUsername);
+    if (!friend) {
+      return null;
+    }
     try {
       await this.db
         .collection("users")
-        .doc(user)
+        .doc(id)
         .update({
           friendsList: admin.firestore.FieldValue.arrayUnion(friend.id),
         });
