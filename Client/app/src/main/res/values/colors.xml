@@ -4,5 +4,9 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="light_green">#CCFFCC</color>
+    <color name="spring_green">#B3DE81</color>
+    <color name="cotton_white">#FDFFFF</color>
+
+
 
 </resources>
