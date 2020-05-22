@@ -10,9 +10,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout5"
-        android:layout_width="381dp"
-        android:layout_height="83dp"
-        android:layout_marginStart="12dp"
+        android:layout_width="418dp"
+        android:layout_height="84dp"
         android:layout_marginTop="84dp"
         android:background="@color/cotton_white"
         android:orientation="horizontal"
@@ -21,16 +20,16 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/friends_recycle_view"
-        android:layout_width="0dp"
+        android:layout_width="414dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="48dp"
         android:background="@color/cotton_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
@@ -39,12 +38,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="24dp"
         android:text="Following"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
 
