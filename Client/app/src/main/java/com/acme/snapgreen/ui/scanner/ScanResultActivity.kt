@@ -89,7 +89,7 @@ class ScanResultActivity : AppCompatActivity() {
                     populateResults(response, saveButton, score)
                 },
                 Response.ErrorListener {
-                    score.text = "Failed to retrieve score"
+                    score.text = "Product not found"
                 }
             )
             NetworkManager.getInstance()?.addToRequestQueue(jsonRequest)

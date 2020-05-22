@@ -5,46 +5,43 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E0FFEA">
+    android:background="#FDFFFF">
 
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="414dp"
-        android:layout_height="175dp"
-        android:layout_marginTop="160dp"
-        android:background="#6095FFA6"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
-
-    </LinearLayout>
 
     <Button
         android:id="@+id/invite"
         android:layout_width="63dp"
         android:layout_height="58dp"
+        android:layout_marginTop="41dp"
         android:drawableTop="@drawable/invite"
         android:scaleX=".5"
         android:scaleY=".5"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/settings"
+        android:layout_width="66dp"
+        android:layout_height="71dp"
+        android:layout_marginTop="40dp"
+        android:drawableTop="@drawable/settings"
+        android:scaleX=".5"
+        android:scaleY=".5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.032" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="409dp"
+        android:layout_width="415dp"
         android:layout_height="109dp"
-        android:layout_marginTop="52dp"
-        android:background="#B0E2F8"
+        android:background="#B3De81"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"></LinearLayout>
+        app:layout_constraintTop_toTopOf="parent">
 
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textView"
@@ -61,26 +58,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <Button
         android:id="@+id/usage_input"
-        android:layout_width="409dp"
-        android:layout_height="88dp"
-        android:background="@android:drawable/title_bar"
-        android:backgroundTint="#F8E4A7"
+        android:layout_width="416dp"
+        android:layout_height="87dp"
+        android:layout_marginTop="32dp"
+        android:background="#B3De81"
+        android:backgroundTint="#B3De81"
         android:text="LOG USAGE"
         android:textColor="@color/cardview_dark_background"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
-
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <Button
         android:id="@+id/stats"
         android:layout_width="222dp"
         android:layout_height="76dp"
         android:background="@android:drawable/title_bar"
-        android:backgroundTint="#FF8BB2"
+        android:backgroundTint="#C3F18E"
         android:drawableTop="@drawable/stats"
         android:text="Stats"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -93,46 +92,38 @@
         android:layout_width="198dp"
         android:layout_height="76dp"
         android:background="@android:drawable/title_bar"
-        android:backgroundTint="#FFF496"
+        android:backgroundTint="#9ABF70"
         android:drawableTop="@drawable/scan"
         android:text="Scan"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/settings"
-        android:layout_width="66dp"
-        android:layout_height="71dp"
-        android:layout_marginTop="24dp"
-        android:drawableTop="@drawable/settings"
-        android:scaleX=".5"
-        android:scaleY=".5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="28dp"
         android:text="Your Rating"
         android:textAlignment="center"
         android:textIsSelectable="false"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:layout_editor_absoluteX="0dp" />
+        tools:layout_editor_absoluteX="-16dp" />
 
     <TextView
         android:id="@+id/textView13"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="Weekly Summary"
         android:textAlignment="center"
         android:textIsSelectable="false"
         android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        tools:layout_editor_absoluteX="20dp" />
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dashboard_grade" />
 
     <TextView
         android:id="@+id/dashboard_water_usage"
@@ -152,7 +143,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="100dp"
+        android:layout_marginEnd="24dp"
         android:text="↑ 7%"
         android:textAlignment="textStart"
         android:textColor="@android:color/holo_red_dark"
@@ -166,7 +157,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:layout_marginEnd="100dp"
+        android:layout_marginEnd="24dp"
         android:text="↓ 13%"
         android:textAlignment="center"
         android:textColor="@android:color/holo_blue_dark"
@@ -193,13 +184,14 @@
         android:id="@+id/dashboard_grade"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="B+"
         android:textAlignment="center"
         android:textColor="#1B8802"
         android:textIsSelectable="false"
         android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -207,7 +199,7 @@
         android:id="@+id/imageView2"
         android:layout_width="43dp"
         android:layout_height="37dp"
-        android:layout_marginStart="68dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13"
@@ -217,7 +209,7 @@
         android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
