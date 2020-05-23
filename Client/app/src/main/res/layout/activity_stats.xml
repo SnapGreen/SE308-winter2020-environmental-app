@@ -6,39 +6,132 @@
     android:orientation="vertical"
     android:paddingTop="0dp">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="143dp"
-        android:layout_weight="0">
-
-		<TextView
-			android:id="@+id/stats_header"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_alignParentBottom="true"
-			android:layout_marginBottom="0dp"
-			android:text="@string/your_statistics"
-			android:textAlignment="viewStart"
-			android:textColor="#8BC34A"
-			android:textSize="50sp"
-			android:textStyle="bold" />
-    </RelativeLayout>
-
-	<LinearLayout
+	<ScrollView
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:layout_weight="0"
-		android:orientation="vertical">
+		android:layout_weight="0">
 
-    <com.github.mikephil.charting.charts.CombinedChart
-        android:id="@+id/chart1"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:padding="9dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-	</LinearLayout>
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical" >
+
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="134dp"
+				android:layout_weight="0">
+
+				<TextView
+					android:id="@+id/stats_header"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignParentBottom="true"
+					android:layout_marginLeft="10dp"
+					android:layout_marginBottom="43dp"
+					android:text="Your Stats"
+					android:textAlignment="viewEnd"
+					android:textColor="#8BC34A"
+					android:textSize="50sp"
+					android:textStyle="bold" />
+
+				<TextView
+					android:id="@+id/currentDate2"
+					android:layout_width="259dp"
+					android:layout_height="wrap_content"
+					android:layout_alignParentBottom="true"
+					android:layout_marginLeft="20dp"
+					android:text="TextView"
+					android:textColor="#8BC34A"
+					android:textSize="30dp"
+					android:textStyle="bold" />
+
+				<ToggleButton
+					android:id="@+id/statsToggle"
+					android:layout_width="105dp"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="10dp"
+					android:layout_marginTop="85dp"
+					android:layout_marginBottom="0dp"
+					android:layout_toRightOf="@id/currentDate2"
+					android:background="#8BC34A"
+					android:text="ToggleButton"
+					android:textColor="#1290CC"
+					android:textOff="Water"
+					android:textOn="Waste"
+					android:textSize="24sp"
+					android:textStyle="bold" />
+
+			</RelativeLayout>
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="708dp"
+				android:layout_weight="0"
+				android:orientation="vertical">
+
+				<TextView
+					android:id="@+id/dailyHeader"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="10dp"
+					android:text="Today's Water Usage (gal)"
+					android:textColor="#1290CC"
+					android:textSize="24sp"
+					android:textStyle="bold|italic" />
+
+				<com.github.mikephil.charting.charts.HorizontalBarChart
+					android:id="@+id/dailyChart"
+					android:layout_width="match_parent"
+					android:layout_height="80dp"
+					android:layout_marginStart="0dp"
+					android:layout_marginTop="0dp"
+					android:layout_marginEnd="0dp"
+					android:layout_marginBottom="0dp"
+					android:padding="9dp">
+
+				</com.github.mikephil.charting.charts.HorizontalBarChart>
+
+				<TextView
+					android:id="@+id/dailyFeedback"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginBottom="30dp"
+					android:text="Feedback"
+					android:textColor="#8BC34A"
+					android:textSize="20sp" />
+
+				<TextView
+					android:id="@+id/weeklyHeader"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:text="This Week's Water Usage (gal)"
+					android:textColor="#1290CC"
+					android:textSize="24sp"
+					android:textStyle="bold|italic" />
+
+				<com.github.mikephil.charting.charts.CombinedChart
+					android:id="@+id/weeklyChart"
+					android:layout_width="match_parent"
+					android:layout_height="342dp"
+					android:layout_marginStart="0dp"
+					android:layout_marginTop="0dp"
+					android:layout_marginEnd="0dp"
+					android:layout_marginBottom="0dp"
+					android:padding="0dp">
+
+				</com.github.mikephil.charting.charts.CombinedChart>
+
+				<TextView
+					android:id="@+id/weeklyFeedback"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:text="Feedback"
+					android:textColor="#8BC34A"
+					android:textSize="20sp" />
+
+			</LinearLayout>
+
+		</LinearLayout>
+	</ScrollView>
 
 </LinearLayout>

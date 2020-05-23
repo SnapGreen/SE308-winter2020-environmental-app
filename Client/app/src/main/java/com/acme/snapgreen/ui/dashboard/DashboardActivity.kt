@@ -5,13 +5,10 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProviders
 import com.acme.snapgreen.R
 import com.acme.snapgreen.data.StatUtil
 import com.acme.snapgreen.data.WeeklyStatsCalc
 import com.acme.snapgreen.ui.scanner.PreviewActivity
-import java.math.BigDecimal
-import java.math.RoundingMode
 
 const val EXTRA_MESSAGE = "com.acme.snapgreen.MESSAGE"
 
@@ -75,8 +72,8 @@ class DashboardActivity : AppCompatActivity() {
      */
     private fun updateDashboardStatistics() {
         val combinedWS = WeeklyStatsCalc.getWeeksCombinedStats()
-        waterUsageText.text = "%.3f".format(combinedWS.numGals) + " gal"
-        wasteUsageText.text = "%.3f".format(combinedWS.numKgWaste) + " kg"
+        waterUsageText.text = "%.1f".format(combinedWS.numGals) + " gal"
+        wasteUsageText.text = "%.1f".format(combinedWS.numKgWaste) + " kg"
 
         scoreText.text = StatUtil.getScore().score.toString()
 

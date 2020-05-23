@@ -7,8 +7,8 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 apply plugin: 'realm-android'
-apply plugin: 'com.google.gms.google-services'
 
+apply plugin: 'com.google.gms.google-services'
 
 android {
     viewBinding.enabled = true
