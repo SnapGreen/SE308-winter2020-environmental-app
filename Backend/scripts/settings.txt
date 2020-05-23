@@ -5,6 +5,7 @@ EPADIR:EPA/
 LOGDIR:/home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/logs/
 TMPDIR:/home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/
 TESTDIR:/home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/tests/
+SCRIPTDIR:/home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/
 AWKDIR:awk/
 MAPFILE:/home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/data/FDA/map_fdcid_gtin.csv
 PATTERNFILE:removalpatterns.txt
