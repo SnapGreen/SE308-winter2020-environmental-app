@@ -110,10 +110,10 @@ function uploadFiles(){
       # note: you can replace sed's delimiter
       # here I'm using @ instead of / because of the forward slashes in 
       # $lastupload, which contains a path and filename
-      sed -i "s@^LASTUPLOAD:.*@LASTUPLOAD:$lastupload@g" $SETTINGS
+      sed -i "s@^LASTUPLOAD:.*@LASTUPLOAD:$lastupload@g" "$SETTINGS"
       # this line updates the relevant line for the settings tests
-      sed -i "s@LASTUPLOAD: .*@LASTUPLOAD: $lastupload@g" $TEST_UPLOADTODB_SETTINGS
-      sed -i "s@LASTUPLOAD: .*@LASTUPLOAD: $lastupload@g" $TEST_POPDB_SETTINGS
+      sed -i "s@LASTUPLOAD: .*@LASTUPLOAD: $lastupload@g" "$TEST_UPLOADTODB_SETTINGS"
+      sed -i "s@LASTUPLOAD: .*@LASTUPLOAD: $lastupload@g" "$TEST_POPDB_SETTINGS"
    fi
 }
 
@@ -126,11 +126,7 @@ function uploadLastFiles(){
    do
       if [ $success == "true" ] ; then
          num=$(echo $file | grep -oP "[0-9]{$SUFFIX_LEN}(?=.json)")
-<<<<<<< HEAD
          logfile="${UPLOADLOGDIR}${num}.log"
-=======
-         logfile="${UPLOADLOGDIR}/${num}.log"
->>>>>>> 7a58b31707b478ff776f9810badb4052d3161af3
 
          #curl -vs -O --stderr $logfile $FULLPATH
          curl --header "Content-Type: application/json"\
