@@ -15,8 +15,10 @@ OUTFILE_END:.json
 TMPFILE_END:.tmp
 PRODS_PER_JSON:250
 FDC_DIR_ADDRESS:https://fdc.nal.usda.gov/fdc-datasets
+EPA_DIR_ADDRESS:https://www.epa.gov/sites/production/files/2015-09/
 FB_WRITES_PER_DAY:16500
 FDADATASOURCE:branded_food.csv
+EPADATASOURCE:safer_chemical_ingredients_list.xls
 FDAUPDATESOURCE:food_update_log_entry.csv
 NUM_CLEAN_TESTS:10
 UPLOAD_SLEEP:1
