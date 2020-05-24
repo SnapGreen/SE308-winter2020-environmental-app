@@ -3,6 +3,7 @@ SETTINGS="/home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scri
 DATADIR=$(grep -oP '(?<=^DATADIR:).*' $SETTINGS)
 NEWDATADIR="$1"
 EPADATASOURCE="$2"
+EPA_PATTERNFILE=$(grep -oP '(?<=^EPA_PATTERNFILE:).*' $SETTINGS)
 NEWDATAPATH="${NEWDATADIR}${EPADATASOURCE}"
 AWKDIR=$(grep -oP '(?<=^AWKDIR:).*' $SETTINGS)
 TMPDIR=$(grep -oP '(?<=^TMPDIR:).*' $SETTINGS)
@@ -16,6 +17,10 @@ SAFERNEW_TMP="${TMPDIR}${SAFER_PREFIX}01"
 SAFEROLDTRIM_TMP="${TMPDIR}${SAFER_PREFIX}_oldtrim${TMPFILE_END}"
 SAFERNEWTRIM_TMP="${TMPDIR}${SAFER_PREFIX}_newtrim${TMPFILE_END}"
 SAFERJOINED_TMP="${TMPDIR}${SAFER_PREFIX}_joined${TMPFILE_END}"
+SAFERB4_TMP="${TMPDIR}${SAFER_PREFIX}_b4${TMPFILE_END}"
+SAFERCLEANREL_TMP="../temp/${SAFER_PREFIX}_clean${TMPFILE_END}"
+SAFERCLEAN_TMP="${TMPDIR}${SAFER_PREFIX}_clean${TMPFILE_END}"
+SAFERSORTED_TMP="${TMPDIR}${SAFER_PREFIX}_sorted${TMPFILE_END}"
 AWK_OLDEPA_TRIM="${AWKDIR}epaoldtrim.awk"
 AWK_NEWEPA_TRIM="${AWKDIR}epanewtrim.awk"
 USAGE="\t\tUsage: ./convertEPAData.sh [OPTION] (use option -h for help)\n"
@@ -47,12 +52,21 @@ function checkSettings(){
    printf "\tSAFEROLDTRIM_TMP: %s\n" "$SAFEROLDTRIM_TMP"
    printf "\tSAFERNEWTRIM_TMP: %s\n" "$SAFERNEWTRIM_TMP"
    printf "\tSAFERJOINED_TMP: %s\n" "$SAFERJOINED_TMP"
+   printf "\tSAFERB4_TMP: %s\n" "$SAFERB4_TMP"
+   printf "\tSAFERCLEAN_TMP: %s\n" "$SAFERCLEAN_TMP"
+   printf "\tSAFERCLEANREL_TMP: %s\n" "$SAFERCLEANREL_TMP"
+   printf "\tSAFERSORTED_TMP: %s\n" "$SAFERSORTED_TMP"
    printf "\tAWK_OLDEPA_TRIM: %s\n" "$AWK_OLDEPA_TRIM"
    printf "\tAWK_NEWEPA_TRIM: %s\n" "$AWK_NEWEPA_TRIM"
    printf "\tUSAGE:\n"
    printf "$USAGE"
    printf "\tHELP:\n"
    printf "$HELP"
+}
+
+#https://stackoverflow.com/questions/17066250/create-timestamp-variable-in-bash-script
+function timestamp(){
+   date +%s
 }
 
 function convertToCsv(){
@@ -99,9 +113,6 @@ function processNewData(){
    #this removes those entries and leaves the ones that have/will be deleted
    sed -i '/"gr[ea]y \[square\]"/!d' "$SAFERNEW_TMP"
 
-   #this will convert the 'grey/gray [square]' to a score of -2
-   sed -i 's/gr[ea]y \[square\]/-2/g' "$SAFERNEW_TMP"
-
    #there is a column in the update portion that sometimes goes unused; in order
    #for awk to process the file correctly, "" needs to be added between ,,
    sed -i 's/,,/,"",/g' "$SAFERNEW_TMP"
@@ -111,8 +122,13 @@ function processNewData(){
 function extractRelevantOldData(){
    printf "extracting relevant old data...\n"
    > $3
+
    #created a reduced file consisting only of the parts we need
    awk -f $1 $2 >> $3
+
+   #an artifact is left by awk, as our delimiter is "," but we're getting our
+   #score from the frist column.  This removes it.
+   sed -i 's/|"/|/g' "$3"
 
    if [ $debug == "off" ] ; then
       rm $2
@@ -125,10 +141,6 @@ function extractRelevantNewData(){
    #created a reduced file consisting only of the parts we need
    awk -f $1 $2 >> $3
 
-   #for whatever reason, awk is leaving an extra "
-   #running short on time for the quarter, this works
-   #sed -i 's/|"/|/g' "$3"
-
    if [ $debug == "off" ] ; then
       rm $2
    fi
@@ -137,6 +149,61 @@ function extractRelevantNewData(){
 function joinOldAndNew(){
    printf "rejoining old and new items...\n"
    cat $1 $2 > $3
+
+   if [ $debug == "off" ] ; then
+      rm "$1"
+      rm "$2"
+   else
+      #this gives us a "before" file to look at
+      cat $3 > $SAFERB4_TMP
+   fi
+}
+
+function cleanChemicals(){
+   printf "transforming chemicals...\n"
+
+   if [[ $debug == "on" ]] ; then
+      #resets the ingredients file before starting
+      #this is necessary because sed is converting the file in place
+      #if debug mode is off, the copy likely isn't in the directory 
+      > "$2"
+      cat "$SAFERB4_TMP" > "$2"
+      # write the timestamp in the log
+      starttime=$(timestamp)
+      #logfile="${LOGDIR}cleans/cleaned${starttime}.log"
+      # apply removal patterns to ingredients
+      after=$(wc -c < $2)
+      while read -r pattern;
+      do
+         # this allows us to comment out patterns in removalpatterns.txt
+         if [[ ${pattern:0:1} != "#" ]] ; then
+            before=$after
+            sed -i "$pattern" "$2" 
+            after=$(wc -c < $2)
+            removed=$((before - after))
+            printf "\tpattern %s removed %s characters\n" "$pattern" "$removed"
+         else
+            printf "\tskipping %s\n" "${pattern:1}"
+         fi
+      done < $1
+      endtime=$(timestamp)
+      elapsed=$((endtime - starttime))
+      printf "elapsed: %d seconds\n" $elapsed >> $logfile
+   else
+      # apply removal patterns to ingredients
+      while read -r pattern;
+      do
+         if [[ ${pattern:0:1} != "#" ]] ; then
+            sed -i "$pattern" $2
+         else
+            printf "skipping %s\n" "${pattern:1}"
+         fi
+      done < $1
+   fi
+}
+
+function sortOnChem(){
+   sort "$1" > "$2"
 }
 
 
@@ -170,7 +237,9 @@ if [ "$fin" == "false" ] ; then
    splitOldAndNew "$SAFERCSVPREPPED_TMP"
    processNewData "$SAFERNEW_TMP"
    extractRelevantOldData "$AWK_OLDEPA_TRIM" "$SAFEROLD_TMP" "$SAFEROLDTRIM_TMP"
-   extractRelevantNewData "$AWK_OLDEPA_TRIM" "$SAFERNEW_TMP" "$SAFERNEWTRIM_TMP"
+   extractRelevantNewData "$AWK_NEWEPA_TRIM" "$SAFERNEW_TMP" "$SAFERNEWTRIM_TMP"
    joinOldAndNew "$SAFEROLDTRIM_TMP" "$SAFERNEWTRIM_TMP" "$SAFERJOINED_TMP"
+   cleanChemicals "$EPA_PATTERNFILE" "$SAFERCLEANREL_TMP"
+   sortOnChem "$SAFERJOINED_TMP" "$SAFERSORTED_TMP"
 
 fi

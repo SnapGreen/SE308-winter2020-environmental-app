@@ -1,1 +1,6 @@
-s/[[:cntrl:]]//g
+s/",\+".*|/|/g
+s/fats and glyceridic oils, \([a-z ]\+\)|/\1 oil|/g
+s/^.*(\(\w\+\)) \(\w\+\) oil/\1 \2 oil/g
+s/oils, \(\w\+\)|/\1 oil|/g
+s/^.*(shea)/shea/g
+s/^.*jojoba/jojoba/g

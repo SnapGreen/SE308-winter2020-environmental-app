@@ -7,6 +7,8 @@ RAWDATADIR=$(grep -oP '(?<=^RAWDATADIR:).*' $SETTINGS)
 EPADIR=$(grep -oP '(?<=^EPADIR:).*' $SETTINGS)
 RAWDATADEST="${RAWDATADIR}${EPADIR}"
 LASTDATAPATH="${RAWDATADEST}${EPADATASOURCE}"
+LOGDIR=$(grep -oP '(?<=^LOGDIR:).*' $SETTINGS)
+DOWNLOADLOGDIR="${LOGDIR}downloads/"
 USAGE="\t\tUsage: ./getEPAUpdate.sh [OPTION] (use option -h for help)\n"
 HELP="${USAGE}\t\t**If no OPTION supplied, debug mode on (temp files remain)\n"
 HELP="${HELP}\t\t\t-b: bypass debug mode\n"
@@ -27,6 +29,8 @@ function checkSettings(){
    printf "\tEPADIR: %s\n" "$EPADIR"
    printf "\tRAWDATADEST: %s\n" "$RAWDATADEST"
    printf "\tLASTDATAPATH: %s\n" "$LASTDATAPATH"
+   printf "\tLOGDIR: %s\n" "$LOGDIR"
+   printf "\tDOWNLOADLOGIR: %s\n" "$DOWNLOADLOGDIR"
    printf "\tUSAGE:\n"
    printf "$USAGE"
    printf "\tHELP:\n"
