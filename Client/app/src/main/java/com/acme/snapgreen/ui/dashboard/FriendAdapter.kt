@@ -43,7 +43,7 @@ class FriendAdapter(private val friendsList: List<FirebaseFriend>) :
     override fun onBindViewHolder(holder: FriendEntryHolder, position: Int) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.name.text = friendsList[position].name
+        holder.name.text = friendsList[position].name.substringBefore("@")
         holder.score.text = friendsList[position].score.toString()
     }
 
