@@ -212,6 +212,10 @@ function cleanChemicals(){
 function sortOnChem(){
    printf "sorting...\n"
    sort "$1" > "$2"
+
+   if [ $debug == "false" ] ; then
+      rm $1
+   fi
 }
 
 function decideScores(){
@@ -250,6 +254,10 @@ function decideScores(){
 function removeDuplicates(){
    printf "removing duplicates...\n"
    uniq $1 $2
+
+   if [ $debug == "false" ] ; then
+      rm $1
+   fi
 }
 
 function createJson(){
@@ -261,6 +269,10 @@ function createJson(){
    sed -i '$s/,$//' $3
    printf "\t]\n" >> $3
    echo "}" >> $3
+
+   if [ $debug == "false" ] ; then
+      rm $2
+   fi
 }
 
 
