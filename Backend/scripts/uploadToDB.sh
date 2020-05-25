@@ -6,10 +6,9 @@ FDADATADIR="${DATADIR}${FDADIR}"
 SUFFIX_LEN=$(grep -oP "(?<=^SUFFIX_LEN:).*" $SETTINGS)
 PRODS_PER_JSON=$(grep -oP "(?<=^PRODS_PER_JSON:).*" $SETTINGS)
 FB_WRITES_PER_DAY=$(grep -oP "(?<=^FB_WRITES_PER_DAY:).*" $SETTINGS)
-TESTDIR=$(grep -oP "(?<=TESTDIR).*" $SETTINGS)
-TESTSETTINGSDIR=$"${TESTDIR}settings/"
-TEST_POPDB_SETTINGS="${TESTSETTINGSDIR}populateDB_settings.txt"
-TEST_UPLOADTODB_SETTINGS="${TESTSETTINGSDIR}uploadToDB_settings.txt"
+TESTDIR=$(grep -oP "(?<=^TESTDIR:).*" "$SETTINGS")
+TEST_POPDB_SETTINGS="${TESTDIR}settings/populateDB_settings.txt"
+TEST_UPLOADTODB_SETTINGS="${TESTDIR}settings/uploadToDB_settings.txt"
 SPLIT_PREFIX=$(grep -oP "(?<=^SPLIT_PREFIX:).*" $SETTINGS)
 OUTFILE_END=$(grep -oP "(?<=^OUTFILE_END:).*" $SETTINGS)
 UPLOAD_SLEEP=$(grep -oP "(?<=^UPLOAD_SLEEP:).*" $SETTINGS)
@@ -37,7 +36,6 @@ function checkSettings(){
    printf "\tPRODS_PER_JSON: %s\n" "$PRODS_PER_JSON"
    printf "\tFB_WRITES_PER_DAY: %s\n" "$FB_WRITES_PER_DAY"
    printf "\tTESTDIR: %s\n" "$TESTDIR"
-   printf "\tTESTSETTINGSDIR: %s\n" "$TESTSETTINGSDIR"
    printf "\tTEST_POPDB_SETTINGS: %s\n" "$TEST_POPDB_SETTINGS"
    printf "\tTEST_UPLOADTODB_SETTINGS: %s\n" "$TEST_UPLOADTODB_SETTINGS"
    printf "\tSPLIT_PREFIX: %s\n" "$SPLIT_PREFIX"

@@ -14,6 +14,12 @@ If it hasn't been installed, you'll get a message informing you of such, hopeful
 
 This ensures that all of your other programs are up-to-date, and can be used for most other programs as well (troubleshooting notes at end for more information).
 
+Similarly, you will likely need to install `catdoc` (a lightweight program that that can convert .xls files to .csv.  If you install it right after `unzip`, you can omit the first two commands below:
+
+   `apt get update`
+   `apt get ugrade`
+   `apt install catdoc`
+
 All of the scripts need to be made executable, if not already.  You can check by typing:
 
    'ls -la'
@@ -122,14 +128,6 @@ These files pop up from time to time--they are usually deleted by the scripts, s
 
 ### sedxxxxx
 These files pop up while sed is running through the 'ingredients.tmp' file.  They'll disappear when it's done, unless the program is interrupted.  If you happen to see them lying around while the program isn't running, it's safe to remove them.
-
-# Server Automation
-
-In order to automate these processes on the server, you'll have to schedule them to be performed automatically.  On our server, this was done via cron as described here:  https://opensource.com/article/17/11/how-use-cron-linux
-In the case of our server, two lines were added:
-   - `01 23 * * * .../getFDAUpdate.sh -b`
-   - `01 00 * * * .../uploadToDB.sh -b`
-The first line tells the server to check for an update from the FDA at 11:01 PM every night (bypassing debug mode, which would prompt the user).  the second line tells the server to upload to Firebase at 12:01 AM every night (also bypassing debug mode).
 
 # Troubleshooting
 
