@@ -1,6 +1,8 @@
 #!/bin/bash
 SETTINGS="/home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/settings.txt"
 DATADIR=$(grep -oP '(?<=^DATADIR:).*' $SETTINGS)
+EPADIR=$(grep -oP '(?<=^EPADIR:).*' $SETTINGS)
+OUTFILE_END=$(grep -oP '(?<=^OUTFILE_END:).*' $SETTINGS)
 NEWDATADIR="$1"
 EPADATASOURCE="$2"
 EPA_PATTERNFILE=$(grep -oP '(?<=^EPA_PATTERNFILE:).*' $SETTINGS)
@@ -18,11 +20,13 @@ SAFEROLDTRIM_TMP="${TMPDIR}${SAFER_PREFIX}_oldtrim${TMPFILE_END}"
 SAFERNEWTRIM_TMP="${TMPDIR}${SAFER_PREFIX}_newtrim${TMPFILE_END}"
 SAFERJOINED_TMP="${TMPDIR}${SAFER_PREFIX}_joined${TMPFILE_END}"
 SAFERB4_TMP="${TMPDIR}${SAFER_PREFIX}_b4${TMPFILE_END}"
-SAFERCLEANREL_TMP="../temp/${SAFER_PREFIX}_clean${TMPFILE_END}"
 SAFERCLEAN_TMP="${TMPDIR}${SAFER_PREFIX}_clean${TMPFILE_END}"
 SAFERSORTED_TMP="${TMPDIR}${SAFER_PREFIX}_sorted${TMPFILE_END}"
+SAFERUNIQUE_TMP="${TMPDIR}${SAFER_PREFIX}_unique${TMPFILE_END}"
+SAFER_JSON="${DATADIR}${EPADIR}${SAFER_PREFIX}${OUTFILE_END}"
 AWK_OLDEPA_TRIM="${AWKDIR}epaoldtrim.awk"
 AWK_NEWEPA_TRIM="${AWKDIR}epanewtrim.awk"
+AWK_EPA_JSON="${AWKDIR}epatojson.awk"
 USAGE="\t\tUsage: ./convertEPAData.sh [OPTION] (use option -h for help)\n"
 HELP="${USAGE}\t\t**If no OPTION supplied, debug mode on (temp files remain)\n"
 HELP="${HELP}\t\t\t-b: bypass debug mode\n"
@@ -37,6 +41,8 @@ function checkSettings(){
    echo "settings check:"
    printf "\tSETTINGS: %s\n" $SETTINGS
    printf "\tDATADIR: %s\n" "$DATADIR"
+   printf "\tEPADIR: %s\n" "$EPADIR"
+   printf "\tOUTFILE_END: %s\n" "$OUTFILE_END"
    printf "\tNEWDATADIR: %s\n" "$NEWDATADIR"
    printf "\tEPADATASOURCE: %s\n" "$EPADATASOURCE"
    printf "\tNEWDATAPATH: %s\n" "$NEWDATAPATH"
@@ -54,10 +60,12 @@ function checkSettings(){
    printf "\tSAFERJOINED_TMP: %s\n" "$SAFERJOINED_TMP"
    printf "\tSAFERB4_TMP: %s\n" "$SAFERB4_TMP"
    printf "\tSAFERCLEAN_TMP: %s\n" "$SAFERCLEAN_TMP"
-   printf "\tSAFERCLEANREL_TMP: %s\n" "$SAFERCLEANREL_TMP"
    printf "\tSAFERSORTED_TMP: %s\n" "$SAFERSORTED_TMP"
+   printf "\tSAFERUNIQUE_TMP: %s\n" "$SAFERUNIQUE_TMP"
+   printf "\tSAFER_JSON: %s\n" "$SAFER_JSON"
    printf "\tAWK_OLDEPA_TRIM: %s\n" "$AWK_OLDEPA_TRIM"
    printf "\tAWK_NEWEPA_TRIM: %s\n" "$AWK_NEWEPA_TRIM"
+   printf "\tAWK_EPA_JSON: %s\n" "$AWK_EPA_JSON"
    printf "\tUSAGE:\n"
    printf "$USAGE"
    printf "\tHELP:\n"
@@ -77,7 +85,7 @@ function convertToCsv(){
    #printf "prepping data...\n"
    #dos2unix $2
 
-   if [ $debug == "off" ] ; then
+   if [ $debug == "false" ] ; then
       rm $1
    fi
 }
@@ -92,7 +100,7 @@ function prepForSplit(){
    printf "removing header lines...\n"
    sed -i '/^"list call".*/d' "$2"
 
-   if [ $debug == "off" ] ; then
+   if [ $debug == "false" ] ; then
       rm $1
    fi
 }
@@ -130,7 +138,7 @@ function extractRelevantOldData(){
    #score from the frist column.  This removes it.
    sed -i 's/|"/|/g' "$3"
 
-   if [ $debug == "off" ] ; then
+   if [ $debug == "false" ] ; then
       rm $2
    fi
 }
@@ -141,7 +149,7 @@ function extractRelevantNewData(){
    #created a reduced file consisting only of the parts we need
    awk -f $1 $2 >> $3
 
-   if [ $debug == "off" ] ; then
+   if [ $debug == "false" ] ; then
       rm $2
    fi
 }
@@ -150,23 +158,21 @@ function joinOldAndNew(){
    printf "rejoining old and new items...\n"
    cat $1 $2 > $3
 
-   if [ $debug == "off" ] ; then
+   if [ $debug == "false" ] ; then
       rm "$1"
       rm "$2"
    else
       #this gives us a "before" file to look at
-      cat $3 > $SAFERB4_TMP
+      cat $3 > "$SAFERB4_TMP"
    fi
 }
 
 function cleanChemicals(){
    printf "transforming chemicals...\n"
-
-   if [[ $debug == "on" ]] ; then
+   if [[ $debug == "true" ]] ; then
       #resets the ingredients file before starting
       #this is necessary because sed is converting the file in place
       #if debug mode is off, the copy likely isn't in the directory 
-      > "$2"
       cat "$SAFERB4_TMP" > "$2"
       # write the timestamp in the log
       starttime=$(timestamp)
@@ -188,7 +194,8 @@ function cleanChemicals(){
       done < $1
       endtime=$(timestamp)
       elapsed=$((endtime - starttime))
-      printf "elapsed: %d seconds\n" $elapsed >> $logfile
+      #printf "elapsed: %d seconds\n" $elapsed >> $logfile
+      printf "elapsed: %d seconds\n" $elapsed 
    else
       # apply removal patterns to ingredients
       while read -r pattern;
@@ -203,8 +210,59 @@ function cleanChemicals(){
 }
 
 function sortOnChem(){
+   printf "sorting...\n"
    sort "$1" > "$2"
 }
+
+function decideScores(){
+   printf "deciding scores...\n"
+   while read line
+   do
+      IFS='|'; linearr=($line); unset IFS
+      chem="${linearr[0]}"
+      count_n3=$(grep "$chem|-3" $1 | wc -l)
+      count_1=$(grep  "$chem|1" $1 | wc -l)
+      count_2=$(grep  "$chem|2" $1 | wc -l)
+      count_3=$(grep  "$chem|3" $1 | wc -l)
+
+      if [[ $count_n3 -gt 0 ]] ; then
+         sed -i "/$chem|1/d" $1
+         sed -i "/$chem|2/d" $1
+         sed -i "/$chem|3/d" $1
+      elif [[ $count_1 -gt $count_2 ]] ; then
+         if [[ $count_1 -gt $count_3 ]] ; then
+            sed -i "/$chem|2/d" $1
+            sed -i "/$chem|3/d" $1
+         else
+            sed -i "/$chem|1/d" $1
+            sed -i "/$chem|2/d" $1
+         fi
+      elif [[ $count_2 -gt $count_3 ]] ; then
+         sed -i "/$chem|1/d" $1
+         sed -i "/$chem|3/d" $1
+      else
+         sed -i "/$chem|1/d" $1
+         sed -i "/$chem|2/d" $1
+      fi
+   done < $1
+}
+
+function removeDuplicates(){
+   printf "removing duplicates...\n"
+   uniq $1 $2
+}
+
+function createJson(){
+   printf "creating json...\n"
+
+   echo "{" > $3
+   printf "\t\"safer_chems:\" [\n" >> $3
+   awk -f $1 $2 >> $3
+   sed -i '$s/,$//' $3
+   printf "\t]\n" >> $3
+   echo "}" >> $3
+}
+
 
 
 if [[ $# -gt 2 ]] ; then
@@ -239,7 +297,10 @@ if [ "$fin" == "false" ] ; then
    extractRelevantOldData "$AWK_OLDEPA_TRIM" "$SAFEROLD_TMP" "$SAFEROLDTRIM_TMP"
    extractRelevantNewData "$AWK_NEWEPA_TRIM" "$SAFERNEW_TMP" "$SAFERNEWTRIM_TMP"
    joinOldAndNew "$SAFEROLDTRIM_TMP" "$SAFERNEWTRIM_TMP" "$SAFERJOINED_TMP"
-   cleanChemicals "$EPA_PATTERNFILE" "$SAFERCLEANREL_TMP"
-   sortOnChem "$SAFERJOINED_TMP" "$SAFERSORTED_TMP"
+   cleanChemicals "$EPA_PATTERNFILE" "$SAFERCLEAN_TMP"
+   sortOnChem "$SAFERCLEAN_TMP" "$SAFERSORTED_TMP"
+   decideScores "$SAFERSORTED_TMP" 
+   removeDuplicates "$SAFERSORTED_TMP" "$SAFERUNIQUE_TMP"
+   createJson "$AWK_EPA_JSON" "$SAFERUNIQUE_TMP" "$SAFER_JSON"
 
 fi

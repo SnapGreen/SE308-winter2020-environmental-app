@@ -1,6 +1,18 @@
-s/",\+".*|/|/g
+s/",\+"[^|]*//g
+s/"|/|/g
+s/c\. i/c.i/g
 s/fats and glyceridic oils, \([a-z ]\+\)|/\1 oil|/g
 s/^.*(\(\w\+\)) \(\w\+\) oil/\1 \2 oil/g
-s/oils, \(\w\+\)|/\1 oil|/g
+s/^.*(\([a-z ]\+\)) oil/\1 oil/g
+s/^oils, \([a-z ]*\)/\1 oil/g
 s/^.*(shea)/shea/g
 s/^.*jojoba/jojoba/g
+s/acetic acid,[^|]*/acetic acid/g
+s/^aloe[^|]*/aloe/g
+s/amylase[^|]*/amylase/g
+s/amines[^|]*/amines/g
+/fatty acids, c[0-9]/d
+s/fatty acids, //g
+s/pulp, cellulose/cellulose/g
+s/^\([^,]*\), [^|]*/\1/g
+s/ethylene\/acrylic \(.*\)/ethylene \1\nacrylic \1/g
