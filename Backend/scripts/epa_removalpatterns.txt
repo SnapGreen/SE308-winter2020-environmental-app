@@ -5,9 +5,17 @@ s/fats and glyceridic oils, \([a-z ]\+\)|/\1 oil|/g
 s/^.*(\(\w\+\)) \(\w\+\) oil/\1 \2 oil/g
 s/^.*(\([a-z ]\+\)) oil/\1 oil/g
 s/^oils, \([a-z ]*\)/\1 oil/g
+s/pistacia vera/pistachio/g
+s/ (aqueous)//g
 s/^.*(shea)/shea/g
 s/^.*jojoba/jojoba/g
+s/\(\w\+\)-oil/\1 oil/g
+s/argania spinosa/argan/g
+s/avena sativa/oat/g
+s/ kernel//g
+s/ceramic materials and wares/ceramic/g
 s/acetic acid,[^|]*/acetic acid/g
+s/cuburbita pepo/summer squash/g
 s/^aloe[^|]*/aloe/g
 s/amylase[^|]*/amylase/g
 s/amines[^|]*/amines/g
