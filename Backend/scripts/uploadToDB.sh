@@ -99,7 +99,30 @@ function uploadFiles(){
             rm $file
          else
             echo "$file upload was unsuccessful"
-            success=false
+            if [[ $file == ${@:-1} ]] ; then
+               success=false
+            elif [[ $failures -gt 2 ]] ; then
+               echo "$failures this session.  Aborting rest."
+               #this ensures we don't keep looping forever on the bad files 
+               #at the end
+               success=false
+            else
+               failures=$((failures+1))
+               echo "failures this session: $failures"
+               leftjsons=($FDADATADIR$SPLIT_PREFIX*$OUTFILE_END)
+               lastjson=${leftjsons[-1]}
+               lastnum=$(echo $lastjson | grep -oP "[0-9]{$SUFFIX_LEN}")
+               lastnum=$((lastnum+1))
+               newlast="$FDADATADIR$SPLIT_PREFIX$lastnum$OUTFILE_END"
+               mv $file $newlast
+               echo "moving $file to $newlast"
+               thislast=${@:-1}
+               thislastnum=$(echo $thislast | grep -oP "[0-9]{$SUFFIX_LEN}")
+               thislastnum=$((thislastnum+1))
+               thisnewlast="$FDADATADIR$SPLIT_PREFIX$thislastnum$OUTFILE_END"
+               echo "new last upload: $thisnewlast"
+               $@+=("$thisnewlast")
+            fi
          fi
          sleep $UPLOAD_SLEEP
       fi
@@ -118,6 +141,7 @@ function uploadFiles(){
 function uploadLastFiles(){
    # uploads a json every UPLOAD_SLEEP seconds
    # will update settings file if all upload successfully
+   failures=0
    lastupload=""
    success=true
    for file in $@
@@ -139,7 +163,30 @@ function uploadLastFiles(){
             rm $file
          else
             echo "$file upload was unsuccessful"
-            success=false
+            if [[ $file == ${@:-1} ]] ; then
+               success=false
+            elif [[ $failures -eq 3 ]] ; then
+               #this ensures we don't keep looping forever on the bad files 
+               #at the end
+               echo "$failures this session.  Aborting rest."
+               success=false
+            else
+               failures=$((failures+1))
+               echo "failures this session: $failures"
+               leftjsons=($FDADATADIR$SPLIT_PREFIX*$OUTFILE_END)
+               lastjson=${leftjsons[-1]}
+               lastnum=$(echo $lastjson | grep -oP "[0-9]{$SUFFIX_LEN}")
+               lastnum=$((lastnum+1))
+               newlast="$FDADATADIR$SPLIT_PREFIX$lastnum$OUTFILE_END"
+               mv $file $newlast
+               echo "moving $file to $newlast"
+               thislast=${@:-1}
+               thislastnum=$(echo $thislast | grep -oP "[0-9]{$SUFFIX_LEN}")
+               thislastnum=$((thislastnum+1))
+               thisnewlast="$FDADATADIR$SPLIT_PREFIX$thislastnum$OUTFILE_END"
+               echo "new last upload: $thisnewlast"
+               $@+=("$thisnewlast")
+            fi
          fi
          sleep $UPLOAD_SLEEP
       fi
