@@ -6,16 +6,20 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.acme.snapgreen.Constants
 import com.acme.snapgreen.R
 import com.acme.snapgreen.data.NetworkManager
+import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
+import com.android.volley.toolbox.JsonObjectRequest
 import com.google.firebase.auth.FirebaseAuth
+import org.json.JSONObject
 
 
 class InviteActivity : AppCompatActivity() {
@@ -24,6 +28,7 @@ class InviteActivity : AppCompatActivity() {
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var searchUserText: EditText
+    private var friendsList = mutableListOf<FirebaseFriend>()
 
     /**
      * Populate and display recycler (list) view of all friends
@@ -34,31 +39,79 @@ class InviteActivity : AppCompatActivity() {
 
         viewManager = LinearLayoutManager(this)
         searchUserText = findViewById(R.id.invite_user_text)
-        searchUserText.onSubmit { addFriend() }
+        searchUserText.onSubmit {
+            addFriendFromSearchBox()
+            hideKeyboard(this)
+        }
 
         getFriends()
 
     }
 
-    private fun getFriends(): List<FirebaseFriend>? {
+    private fun addFriendFromSearchBox() {
         val mUser = FirebaseAuth.getInstance().currentUser
-        var friendsList: List<FirebaseFriend>? = null
         mUser!!.getIdToken(true)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val idToken: String? = task.result?.token
                     // Send token to your backend via HTTPS
-                    friendsList = getFriendsFromBackEnd(idToken)
+                    tryAddFriend(idToken)
                 } else {
                     // Handle error -> task.getException();
                 }
             }
-        return friendsList
+    }
+
+    private fun getFriends() {
+        val mUser = FirebaseAuth.getInstance().currentUser
+        mUser!!.getIdToken(true)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val idToken: String? = task.result?.token
+                    // Send token to your backend via HTTPS
+                    getFriendsFromBackEnd(idToken)
+                } else {
+                    // Handle error -> task.getException();
+                }
+            }
+    }
+
+    private fun tryAddFriend(idToken: String?) {
+        val url = "${Constants.SERVER_URL}/friends"
+        var firebaseFriend: FirebaseFriend? = null
+
+        try {
+            val jsonObj = JSONObject()
+            jsonObj.put("token", idToken)
+            jsonObj.put("friendUsername", searchUserText.text.toString())
+            searchUserText.setText("")
+
+            val jsonRequest = JsonObjectRequest(
+                Request.Method.POST,
+                url, jsonObj,
+                Response.Listener { response ->
+                    firebaseFriend = FirebaseFriend(
+                        response.getString("username"),
+                        response.getInt("score")
+                    )
+                    addFriendToList(firebaseFriend!!)
+                },
+                Response.ErrorListener {
+                    Toast.makeText(
+                        applicationContext, "Email could not be found",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            )
+            NetworkManager.getInstance()?.addToRequestQueue(jsonRequest)
+
+        } catch (e: Throwable) {
+            //TODO: Handle failed connection
+        }
     }
 
     private fun getFriendsFromBackEnd(idToken: String?): List<FirebaseFriend> {
         val url = "${Constants.SERVER_URL}/friends/" + idToken
-        val friendsList = mutableListOf<FirebaseFriend>()
         try {
             val jsonRequest = JsonArrayRequest(
                 Request.Method.GET,
@@ -91,6 +144,11 @@ class InviteActivity : AppCompatActivity() {
                 Response.ErrorListener {
                 }
             )
+            jsonRequest.retryPolicy = DefaultRetryPolicy(
+                0,
+                0,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+            )
             NetworkManager.getInstance()?.addToRequestQueue(jsonRequest)
 
         } catch (e: Throwable) {
@@ -99,13 +157,14 @@ class InviteActivity : AppCompatActivity() {
         return friendsList
     }
 
-    /**
-     *  Adds a friend to the friends list based on the users search query
-     *  TODO: make this connect to backend
-     */
-    private fun addFriend() {
-        searchUserText.setText("")
-        hideKeyboard(this)
+
+    private fun addFriendToList(friend: FirebaseFriend) {
+        friendsList.add(friend)
+        viewAdapter.notifyDataSetChanged()
+        Toast.makeText(
+            applicationContext, "Added " + friendsList.last().name,
+            Toast.LENGTH_SHORT
+        ).show()
     }
 
     /**
