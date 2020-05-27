@@ -6,16 +6,15 @@ settings check:
 	SUFFIX_LEN: 4
 	PRODS_PER_JSON: 250
 	FB_WRITES_PER_DAY: 16500
-	REL_TESTDIR: ../tests/
-	REL_TESTSETTINGSDIR: ../tests/settings/
-	TEST_POPDB_SETTINGS: ../tests/settings/populateDB_settings.txt
-	TEST_UPLOADTODB_SETTINGS: ../tests/settings/uploadToDB_settings.txt
+	TESTDIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/tests/
+	TEST_POPDB_SETTINGS: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/tests/settings/populateDB_settings.txt
+	TEST_UPLOADTODB_SETTINGS: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/tests/settings/uploadToDB_settings.txt
 	SPLIT_PREFIX: branded_food_
 	OUTFILE_END: .json
 	UPLOAD_SLEEP: 1
 	LOGDIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/logs/
 	UPLOADLOGDIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/logs/uploads/
-	LASTUPLOAD: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/data/FDA/branded_food_0318.json
+	LASTUPLOAD: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/data/FDA/branded_food_0451.json
 	SERVER_POPULATED: false
 	DONE_UPLOADING: false
 	USAGE:
