@@ -52,9 +52,8 @@ In my first attempts, I tried to use one of my existing gmail accounts.  As I di
 
 # Troubleshooting
 
-This script isn't blazingly fast--it takes almost two minutes to run on my relatively new computer.  You should expect hundreds of new files to pop up in your directory--over 600 at least.  It's doing a lot, and it doesn't need to be run very often.  I imagine the linux gurus looking over this code and grimacing--sorry, I've only been using it for about a year.  I will continue to optimize as time goes on, time permitting.
-
-If you receive errors upon running the script re: "\r" in line xx:
+Depending on the host operating system, you may run into a variety of issues.  For instance, if you are running a server from the wsl (Windows Subsystem for Linux), you might come across errors mentioning "\r" in line xx.  If that is the
+case:
    - install 'dos2unix' using the same process outlined at the top
    - `dos2unix convertToJson.sh`
    - then `./convertToJson.sh`
@@ -63,3 +62,4 @@ If you receive errors in the vein of "command on line xx not found", open the sc
 
 Finally, if you get errors mentioning "sudo", you'll need to either log in as the administrator or try running from a linux environment where you -are- the administrator.  If you've installed your own version of linux, odds are that you already have those rights and simply need to enter `sudo *command*` instead of just `*command*`
 
+In general, while it can seem overwhelming to work with a linux OS if you've never done so before, you will likely find that it is usually easy to find a solution online, and they tend to be easy to implement. 
