@@ -170,14 +170,16 @@ class StatsActivity : AppCompatActivity() {
         bars.setDrawValues(false)
 
         val lineData = ArrayList<Entry>()
-        lineData.add(Entry(0f, 100f))
-        lineData.add(Entry(1f, 90f))
-        lineData.add(Entry(2f, 110f))
-        lineData.add(Entry(3f, 84f))
-        lineData.add(Entry(4f, 75f))
-        lineData.add(Entry(5f, 99f))
-        lineData.add(Entry(6f, 100f))
-        val lines = LineDataSet(lineData, "Average Data")
+        var average: Float
+        var waterCount = 0f
+        var dayCount2 = 0f
+        for (stat in stats) {
+            waterCount += stat.numGals.toFloat()
+            dayCount2++
+            average = (waterCount / dayCount2)
+            lineData.add(Entry((dayCount2 - 1), average))
+        }
+        val lines = LineDataSet(lineData, "Average Data(past week)")
         lines.color = Color.rgb(139, 195, 74)
         lines.setDrawValues(false)
         lines.setDrawFilled(true)
@@ -224,24 +226,26 @@ class StatsActivity : AppCompatActivity() {
         stats: MutableList<WeeklyStatsCalc.Companion.CombinedDSData>
     ) {
         val barData = ArrayList<BarEntry>()
-        var count = 0f
+        var dayCount = 0f
         for (stat in stats) {
-            barData.add(BarEntry(count, stat.numKgWaste.toFloat()))
-            count++
+            barData.add(BarEntry(dayCount, stat.numKgWaste.toFloat()))
+            dayCount++
         }
         val bars = BarDataSet(barData, "Daily Data")
         bars.color = Color.rgb(31, 175, 241)
         bars.setDrawValues(false)
 
         val lineData = ArrayList<Entry>()
-        lineData.add(Entry(0f, 0.1f))
-        lineData.add(Entry(1f, 0.2f))
-        lineData.add(Entry(2f, 0.05f))
-        lineData.add(Entry(3f, 0.1f))
-        lineData.add(Entry(4f, 0.11f))
-        lineData.add(Entry(5f, 0.07f))
-        lineData.add(Entry(6f, 0.14f))
-        val lines = LineDataSet(lineData, "Average Data")
+        var average: Float
+        var wasteCount = 0f
+        var dayCount2 = 0f
+        for (stat in stats) {
+            wasteCount += stat.numKgWaste.toFloat()
+            dayCount2++
+            average = (wasteCount / dayCount2)
+            lineData.add(Entry((dayCount2 - 1), average))
+        }
+        val lines = LineDataSet(lineData, "Average Data(past week)")
         lines.color = Color.rgb(139, 195, 74)
         lines.setDrawValues(false)
         lines.setDrawFilled(true)
