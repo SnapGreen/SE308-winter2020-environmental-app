@@ -80,7 +80,13 @@ function uploadFiles(){
    # uploads a json every $UPLOAD_SLEEP seconds
    success=true
    lastupload=""
-   for file in $@
+   failures=0
+   args=()
+   for i in $@
+   do
+      args+=($i)
+   done
+   for file in ${args[@]}
    do
       if [ $success == "true" ] ; then
          num=$(echo $file | grep -oP "[0-9]{$SUFFIX_LEN}(?=.json)")
@@ -93,8 +99,9 @@ function uploadFiles(){
          sed -i 's//\n/g' $logfile
 
          result=$(cat $logfile | grep -o 'successful')
+
          if [[ $result == "successful" ]] ; then
-            echo "$file was succesfully uploaded"
+            echo "$file was successfully uploaded"
             lastupload=$file
             rm $file
          else
@@ -121,7 +128,7 @@ function uploadFiles(){
                thislastnum=$((thislastnum+1))
                thisnewlast="$FDADATADIR$SPLIT_PREFIX$thislastnum$OUTFILE_END"
                echo "new last upload: $thisnewlast"
-               $@+=("$thisnewlast")
+               args+=($thisnewlast)
             fi
          fi
          sleep $UPLOAD_SLEEP
@@ -144,7 +151,12 @@ function uploadLastFiles(){
    failures=0
    lastupload=""
    success=true
-   for file in $@
+   args=()
+   for i in $@
+   do
+      args+=($i)
+   done
+   for file in ${args[@]}
    do
       if [ $success == "true" ] ; then
          num=$(echo $file | grep -oP "[0-9]{$SUFFIX_LEN}(?=.json)")
@@ -158,7 +170,7 @@ function uploadLastFiles(){
 
          result=$(cat $logfile | grep -o 'successful')
          if [[ $result == "successful" ]] ; then
-            echo "$file was succesfully uploaded"
+            echo "$file was successfully uploaded"
             lastupload=$file
             rm $file
          else
@@ -185,7 +197,7 @@ function uploadLastFiles(){
                thislastnum=$((thislastnum+1))
                thisnewlast="$FDADATADIR$SPLIT_PREFIX$thislastnum$OUTFILE_END"
                echo "new last upload: $thisnewlast"
-               $@+=("$thisnewlast")
+               args+=($thisnewlast)
             fi
          fi
          sleep $UPLOAD_SLEEP
