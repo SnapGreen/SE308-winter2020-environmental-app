@@ -1,9 +1,15 @@
 package com.acme.snapgreen.data
 
 import android.util.Log
+import com.acme.snapgreen.Constants
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.google.firebase.auth.FirebaseAuth
 import io.realm.Realm
 import io.realm.Sort
 import io.realm.kotlin.where
+import org.json.JSONObject
 import java.text.DateFormat
 import java.util.*
 
@@ -112,6 +118,55 @@ class StatUtil private constructor() {
                 "Realm Database",
                 "Updating statistics associated with ${stats.today}"
             )
+
+            getTokenToUpdateScore(totalScore)
+        }
+
+        /**
+         * Aquires the user token for use with the back end and attempts to update the users score
+         */
+        private fun getTokenToUpdateScore(totalScore: TotalScore) {
+            val mUser = FirebaseAuth.getInstance().currentUser
+            mUser!!.getIdToken(true)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val idToken: String? = task.result?.token
+                        // Send token to your backend via HTTPS
+                        tryUpdateScore(idToken, totalScore.score)
+                    }
+                }
+        }
+
+        /** Updates user score on firebase */
+        private fun tryUpdateScore(idToken: String?, score: Int) {
+            val url = "${Constants.SERVER_URL}/users/score/$idToken"
+
+            try {
+                val jsonObj = JSONObject()
+                jsonObj.put("token", idToken)
+                jsonObj.put("score", score)
+
+                val jsonRequest = JsonObjectRequest(
+                    Request.Method.PUT,
+                    url, jsonObj,
+                    Response.Listener { response ->
+                        Log.i(
+                            "Firebase",
+                            response.getString("message")
+                        )
+                    },
+                    Response.ErrorListener {
+                        Log.e(
+                            "Firebase",
+                            "Failed to upload score to database!"
+                        )
+                    }
+                )
+                NetworkManager.getInstance()?.addToRequestQueue(jsonRequest)
+
+            } catch (e: Throwable) {
+                //TODO: Handle failed connection
+            }
         }
     }
 }
