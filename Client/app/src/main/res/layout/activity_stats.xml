@@ -18,19 +18,20 @@
 
 			<RelativeLayout
 				android:layout_width="match_parent"
-				android:layout_height="134dp"
-				android:layout_weight="0">
+				android:layout_height="153dp"
+				android:layout_weight="0"
+				android:background="#FFFFFF"
+				android:backgroundTint="@color/spring_green">
 
 				<TextView
 					android:id="@+id/stats_header"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:layout_alignParentBottom="true"
-					android:layout_marginLeft="10dp"
-					android:layout_marginBottom="43dp"
+					android:layout_alignParentBottom="false"
+					android:layout_marginLeft="16dp"
+					android:layout_marginTop="32dp"
 					android:text="Your Stats"
 					android:textAlignment="viewEnd"
-					android:textColor="#8BC34A"
 					android:textSize="50sp"
 					android:textStyle="bold" />
 
@@ -38,10 +39,10 @@
 					android:id="@+id/currentDate2"
 					android:layout_width="259dp"
 					android:layout_height="wrap_content"
-					android:layout_alignParentBottom="true"
-					android:layout_marginLeft="20dp"
+					android:layout_below="@id/stats_header"
+					android:layout_alignParentBottom="false"
+					android:layout_marginLeft="16dp"
 					android:text="TextView"
-					android:textColor="#8BC34A"
 					android:textSize="30dp"
 					android:textStyle="bold" />
 
@@ -49,13 +50,12 @@
 					android:id="@+id/statsToggle"
 					android:layout_width="105dp"
 					android:layout_height="wrap_content"
-					android:layout_marginLeft="10dp"
+					android:layout_alignParentBottom="true"
 					android:layout_marginTop="85dp"
-					android:layout_marginBottom="0dp"
 					android:layout_toRightOf="@id/currentDate2"
-					android:background="#8BC34A"
+					android:background="#1290CC"
 					android:text="ToggleButton"
-					android:textColor="#1290CC"
+					android:textColor="@color/spring_green"
 					android:textOff="Water"
 					android:textOn="Waste"
 					android:textSize="24sp"
@@ -97,7 +97,7 @@
 					android:layout_height="wrap_content"
 					android:layout_marginBottom="30dp"
 					android:text="Feedback"
-					android:textColor="#8BC34A"
+					android:textColor="@color/spring_green"
 					android:textSize="20sp" />
 
 				<TextView
@@ -126,7 +126,7 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:text="Feedback"
-					android:textColor="#8BC34A"
+					android:textColor="@color/spring_green"
 					android:textSize="20sp" />
 
 			</LinearLayout>

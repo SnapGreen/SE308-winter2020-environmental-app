@@ -80,11 +80,13 @@ class WeeklyStatsCalc() {
             var weeklyDSList: MutableList<DailyStatistic> =
                 StatUtil.getPastTwoWeeksStats().toMutableList()
             var percentChanges: PercentChangeData =
-                PercentChangeData("", "")
+                PercentChangeData("", "", "", "")
 
             if (weeklyDSList.size <= 7) {
                 percentChanges.galsChange = "N/A"
                 percentChanges.kgChange = "N/A"
+                percentChanges.galsColor = "#0099cc" // default to blue text
+                percentChanges.kgColor = "#0099cc"   // default to blue text
                 return percentChanges
             }
 
@@ -103,13 +105,17 @@ class WeeklyStatsCalc() {
 
             if (weeklyDataOld.numGals > weeklyDataNew.numGals) {
                 percentChanges.galsChange += "↓ "
+                percentChanges.galsColor = "#cc0000"  // red text
             } else if (weeklyDataOld.numGals < weeklyDataNew.numGals) {
                 percentChanges.galsChange += "↑ "
+                percentChanges.galsColor = "#0099cc"  // blue text
             }
             if (weeklyDataOld.numKgWaste > weeklyDataNew.numKgWaste) {
                 percentChanges.kgChange += "↓ "
+                percentChanges.kgColor = "#cc0000"  // red text
             } else if (weeklyDataOld.numKgWaste < weeklyDataNew.numKgWaste) {
                 percentChanges.kgChange += "↑ "
+                percentChanges.kgColor = "#0099cc"  // blue text
             }
 
             percentChanges.galsChange += "$changeGals%"
@@ -144,7 +150,9 @@ class WeeklyStatsCalc() {
          */
         class PercentChangeData(
             var galsChange: String,
-            var kgChange: String
+            var galsColor: String,
+            var kgChange: String,
+            var kgColor: String
         ) {
         }
     }

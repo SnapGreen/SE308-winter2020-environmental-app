@@ -174,6 +174,7 @@ class ExampleInstrumentedTest {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         Realm.init(appContext)
         var realm = Realm.getDefaultInstance()
+
         addDSToRealm(7, 10, 4, 1, 50, 0, 1, 3, 4)
         addDSToRealm(6, 2, 4, 1, 50, 5, 1, 3, 4)
         addDSToRealm(5, 1, 4, 1, 50, 3, 1, 3, 4)
@@ -181,5 +182,6 @@ class ExampleInstrumentedTest {
         addDSToRealm(3, 5, 4, 1, 50, 15, 1, 3, 4)
         addDSToRealm(2, 6, 4, 1, 50, 2, 1, 3, 4)
         addDSToRealm(1, 2, 4, 1, 50, 8, 1, 3, 4)
+
     }
 }
