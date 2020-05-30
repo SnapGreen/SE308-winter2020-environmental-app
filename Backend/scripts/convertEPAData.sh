@@ -264,10 +264,8 @@ function createJson(){
    printf "creating json...\n"
 
    echo "{" > $3
-   printf "\t\"safer_chems\": [\n" >> $3
    awk -f $1 $2 >> $3
    sed -i '$s/,$//' $3
-   printf "\t]\n" >> $3
    echo "}" >> $3
 
    if [ $debug == "false" ] ; then

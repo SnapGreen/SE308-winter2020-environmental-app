@@ -57,7 +57,7 @@ function removePreviousUploads(){
    # file and ensure that it and every file below it is deleted before uploading
    # although the function deletes files as it uploads, this ensures that the
    # files haven't shown up again (i.e., through testing).
-   upper=$(echo $LASTUPLOAD | grep -oP "(?=.json)[0-9]\{$SUFFIX_LEN\}")
+   upper=$(echo $LASTUPLOAD | grep -oP "[0-9]{$SUFFIX_LEN}(?=.json)")
    for num in $(seq -w 0000 $upper); do
       file="$FDADATADIR$SPLIT_PREFIX$num$OUTFILE_END"
       if [ -e $file ] ; then
@@ -81,13 +81,22 @@ function uploadFiles(){
    success=true
    lastupload=""
    failures=0
-   args=()
-   for i in $@
+   lastfiles=false
+
+   shopt -s nullglob
+
+   alljsons=($FDADATADIR$SPLIT_PREFIX*$OUTFILE_END)
+   numjsons=${#alljsons[@]}
+
+   if [ $numjsons -lt $1 ] ; then
+      lastfiles=true
+   fi
+
+   i=0
+
+   while [[ $i -lt $1 ]] ; 
    do
-      args+=($i)
-   done
-   for file in ${args[@]}
-   do
+      file=${alljsons[$i]}
       if [ $success == "true" ] ; then
          num=$(echo $file | grep -oP "[0-9]{$SUFFIX_LEN}(?=.json)")
          logfile="${UPLOADLOGDIR}/${num}.log"
@@ -118,20 +127,25 @@ function uploadFiles(){
                echo "failures this session: $failures"
                leftjsons=($FDADATADIR$SPLIT_PREFIX*$OUTFILE_END)
                lastjson=${leftjsons[-1]}
-               lastnum=$(echo $lastjson | grep -oP "[0-9]{$SUFFIX_LEN}")
-               lastnum=$((lastnum+1))
+               echo "last file in data::  $lastjson"
+               lastnum=$(echo $lastjson | grep -oP "[0-9]{$SUFFIX_LEN}(?=.json)")
+               echo "current last file num in data:  $lastnum"
+               lastnum=$((lastnum + 1))
                newlast="$FDADATADIR$SPLIT_PREFIX$lastnum$OUTFILE_END"
                mv $file $newlast
                echo "moving $file to $newlast"
-               thislast=${@:-1}
-               thislastnum=$(echo $thislast | grep -oP "[0-9]{$SUFFIX_LEN}")
-               thislastnum=$((thislastnum+1))
+               thislast=${args[-1]}
+               echo "current last file to upload: $thislast"
+               thislastnum=$(echo $thislast | grep -oP "[0-9]{$SUFFIX_LEN}(?=.json)")
+               echo "new last file num this session: $thislastnum"
+               thislastnum=$((thislastnum + 1))
                thisnewlast="$FDADATADIR$SPLIT_PREFIX$thislastnum$OUTFILE_END"
                echo "new last upload: $thisnewlast"
                args+=($thisnewlast)
             fi
          fi
          sleep $UPLOAD_SLEEP
+         i=$((i+1))
       fi
    done
    if [ -n "$lastupload" ] ; then
@@ -143,73 +157,15 @@ function uploadFiles(){
       sed -i "s@LASTUPLOAD: .*@LASTUPLOAD: $lastupload@g" $TEST_UPLOADTODB_SETTINGS
       sed -i "s@LASTUPLOAD: .*@LASTUPLOAD: $lastupload@g" $TEST_POPDB_SETTINGS
    fi
+   if [[ "$lastfiles" = "true" ]] ; then
+      resolveLastUpload $success
+   fi
 }
 
-function uploadLastFiles(){
-   # uploads a json every UPLOAD_SLEEP seconds
-   # will update settings file if all upload successfully
-   failures=0
-   lastupload=""
-   success=true
-   args=()
-   for i in $@
-   do
-      args+=($i)
-   done
-   for file in ${args[@]}
-   do
-      if [ $success == "true" ] ; then
-         num=$(echo $file | grep -oP "[0-9]{$SUFFIX_LEN}(?=.json)")
-         logfile="${UPLOADLOGDIR}/${num}.log"
-
-         #curl -vs -O --stderr $logfile $FULLPATH
-         curl --header "Content-Type: application/json"\
-            --request POST --data @$file http://localhost:8080/products
-
-         sed -i 's//\n/g' $logfile
-
-         result=$(cat $logfile | grep -o 'successful')
-         if [[ $result == "successful" ]] ; then
-            echo "$file was successfully uploaded"
-            lastupload=$file
-            rm $file
-         else
-            echo "$file upload was unsuccessful"
-            if [[ $file == ${@:-1} ]] ; then
-               success=false
-            elif [[ $failures -eq 3 ]] ; then
-               #this ensures we don't keep looping forever on the bad files 
-               #at the end
-               echo "$failures this session.  Aborting rest."
-               success=false
-            else
-               failures=$((failures+1))
-               echo "failures this session: $failures"
-               leftjsons=($FDADATADIR$SPLIT_PREFIX*$OUTFILE_END)
-               lastjson=${leftjsons[-1]}
-               lastnum=$(echo $lastjson | grep -oP "[0-9]{$SUFFIX_LEN}")
-               lastnum=$((lastnum+1))
-               newlast="$FDADATADIR$SPLIT_PREFIX$lastnum$OUTFILE_END"
-               mv $file $newlast
-               echo "moving $file to $newlast"
-               thislast=${@:-1}
-               thislastnum=$(echo $thislast | grep -oP "[0-9]{$SUFFIX_LEN}")
-               thislastnum=$((thislastnum+1))
-               thisnewlast="$FDADATADIR$SPLIT_PREFIX$thislastnum$OUTFILE_END"
-               echo "new last upload: $thisnewlast"
-               args+=($thisnewlast)
-            fi
-         fi
-         sleep $UPLOAD_SLEEP
-      fi
-   done
-   if [ -n $lastupload ] ; then
-      # note: you can replace sed's delimiter
-      # here I'm using @ instead of / because of the forward slashes in 
-      # $lastupload
-      sed -i "s@^LASTUPLOAD:.*@LASTUPLOAD:$lastupload@g" $SETTINGS
-   fi
-   if [ $success == "true" ] ; then
+function resolveLastUpload(){
+   # sets up the next queued files for uploading
+   if [ $1 == "true" ] ; then
+      echo "last file batch uploaded, resolving"
       if [ $SERVER_POPULATED == "false" ] ; then
          sed -i "s/^SERVER_POPULATED:.*/SERVER_POPULATED:true/g" $SETTINGS
          if [ -z $FDADATADIR*/ ] ; then
@@ -226,6 +182,8 @@ function uploadLastFiles(){
       else
          readyNextUpdate
       fi
+   else
+      echo "last file upload issue"
    fi
 }
 
@@ -264,18 +222,7 @@ if [ "$DONE_UPLOADING" != "true" ] ; then
       fi
       max_file_uploads=$((FB_WRITES_PER_DAY / PRODS_PER_JSON))
 
-      shopt -s nullglob
-
-      alljsons=($FDADATADIR$SPLIT_PREFIX*$OUTFILE_END)
-      numjsons=${#alljsons[@]}
-
-      if [ $numjsons -lt $max_file_uploads ] ; then
-         filesToUpload="${alljsons[@]}"
-         uploadLastFiles $filesToUpload
-      else
-         filesToUpload="${alljsons[@]:0:$max_file_uploads}"
-         uploadFiles $filesToUpload
-      fi
+      uploadFiles "$max_file_uploads"
 
    fi
 else

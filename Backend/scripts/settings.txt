@@ -26,6 +26,6 @@ UPLOAD_SLEEP:1
 SERVER_POPULATED:false
 DONE_UPLOADING:false
 LASTUPLOAD:/home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/data/FDA/branded_food_0532.json
-CURRENTLATEST:FoodData_Central_branded_food_csv_2020-04-29.zip,202005010423,74439754
+CURRENTLATEST:FoodData_Central_branded_food_csv_2020-04-29.zip,202005010424,74439754
 LASTLATEST:FoodData_Central_branded_food_csv_2020-04-29.zip,202005010424,74439754
 
