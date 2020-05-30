@@ -66,15 +66,14 @@ function removePreviousUploads(){
    done
 }
 
-#function readyNextUpdate(){
-#   # moves the next update into the upload folder
-#   update_arr=($FDADATADIR*/)
-#   if [ ${#update_arr[@]} -gt 0 ] ; then
-#      rm $FDADATADIR*.json $FDADATADIR*.csv
-#      mv ${update_arr[0]}*.* $FDADATADIR
-#      rm -r ${update_arr[0]}
-#   fi
-#}
+function readyNextUpdate(){
+   # moves the next update into the upload folder
+   update_arr=($FDADATADIR*/)
+   if [ ${#update_arr[@]} -gt 0 ] ; then
+      mv ${update_arr[0]}*.* $FDADATADIR
+      rm -r ${update_arr[0]}
+   fi
+}
 
 function uploadFiles(){
    # uploads a json every $UPLOAD_SLEEP seconds
@@ -82,19 +81,21 @@ function uploadFiles(){
    lastupload=""
    failures=0
    lastfiles=false
+   max_file_uploads=$((FB_WRITES_PER_DAY / PRODS_PER_JSON))
 
    shopt -s nullglob
 
    alljsons=($FDADATADIR$SPLIT_PREFIX*$OUTFILE_END)
    numjsons=${#alljsons[@]}
 
-   if [ $numjsons -lt $1 ] ; then
+   if [[ $numjsons -lt $max_file_uploads ]] ; then
       lastfiles=true
+      $max_file_uploads=$numjsons
    fi
 
    i=0
 
-   while [[ $i -lt $1 ]] ; 
+   while [[ $i -lt $max_file_uploads ]] ; 
    do
       file=${alljsons[$i]}
       if [ $success == "true" ] ; then
@@ -127,21 +128,18 @@ function uploadFiles(){
                echo "failures this session: $failures"
                leftjsons=($FDADATADIR$SPLIT_PREFIX*$OUTFILE_END)
                lastjson=${leftjsons[-1]}
-               echo "last file in data::  $lastjson"
                lastnum=$(echo $lastjson | grep -oP "[0-9]{$SUFFIX_LEN}(?=.json)")
-               echo "current last file num in data:  $lastnum"
                lastnum=$((lastnum + 1))
                newlast="$FDADATADIR$SPLIT_PREFIX$lastnum$OUTFILE_END"
                mv $file $newlast
                echo "moving $file to $newlast"
-               thislast=${args[-1]}
-               echo "current last file to upload: $thislast"
-               thislastnum=$(echo $thislast | grep -oP "[0-9]{$SUFFIX_LEN}(?=.json)")
-               echo "new last file num this session: $thislastnum"
-               thislastnum=$((thislastnum + 1))
-               thisnewlast="$FDADATADIR$SPLIT_PREFIX$thislastnum$OUTFILE_END"
-               echo "new last upload: $thisnewlast"
-               args+=($thisnewlast)
+
+               if [[ "$lastfiles" == "false" ]] ; 
+                  max_file_uploads=$((max_file_uploads + 1))
+                  if [[ $numjsons -lt $max_file_uploads ]] ; then
+                     lastfiles=true
+                  fi
+               fi
             fi
          fi
          sleep $UPLOAD_SLEEP
@@ -220,7 +218,6 @@ if [ "$DONE_UPLOADING" != "true" ] ; then
       if [ -n $LASTUPLOAD ] ; then
          removePreviousUploads
       fi
-      max_file_uploads=$((FB_WRITES_PER_DAY / PRODS_PER_JSON))
 
       uploadFiles "$max_file_uploads"
 
