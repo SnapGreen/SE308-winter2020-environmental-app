@@ -15,7 +15,7 @@ settings check:
 	UPLOAD_SLEEP: 1
 	LOGDIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/logs/
 	UPLOADLOGDIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/logs/uploads/
-	LASTUPLOAD: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/data/FDA/branded_food_0318.json
+	LASTUPLOAD: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/data/FDA/branded_food_0532.json
 	SERVER_POPULATED: false
 	DONE_UPLOADING: false
 	USAGE:
