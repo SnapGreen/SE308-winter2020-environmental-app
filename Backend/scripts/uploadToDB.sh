@@ -43,7 +43,7 @@ function checkSettings(){
    printf "\tUPLOAD_SLEEP: %s\n" "$UPLOAD_SLEEP"
    printf "\tLOGDIR: %s\n" "$LOGDIR"
    printf "\tUPLOADLOGDIR: %s\n" "$UPLOADLOGDIR"
-   printf "\tLASTUPLOAD: %s\n" "$LASTUPLOAD"
+   #printf "\tLASTUPLOAD: %s\n" "$LASTUPLOAD"
    printf "\tSERVER_POPULATED: %s\n" "$SERVER_POPULATED"
    printf "\tDONE_UPLOADING: %s\n" "$DONE_UPLOADING"
    printf "\tUSAGE:\n"
@@ -134,7 +134,7 @@ function uploadFiles(){
                mv $file $newlast
                echo "moving $file to $newlast"
 
-               if [[ "$lastfiles" == "false" ]] ; 
+               if [[ "$lastfiles" == "false" ]] ; then
                   max_file_uploads=$((max_file_uploads + 1))
                   if [[ $numjsons -lt $max_file_uploads ]] ; then
                      lastfiles=true
