@@ -142,16 +142,10 @@ app.get("/products/:id", async function (req, res) {
     console.log("No barcode provided");
   } else if (req.params.id) {
     try {
-      let id = req.params.id;
-      let len = id.length;
-      // pads the incoming id with zeros
-      while (len < 14){
-         id = "0" + id;
-         len++;
-      }
+      let id_14 = req.params.id.padStart(14, '0');
       // checks the database and then determines if the passwords match
       console.log("product lookup attempt");
-      let product = await FIREBASE.getProduct(id);
+      let product = await FIREBASE.getProduct(id_14);
 
       if (!product) {
         res.status(401).json({
