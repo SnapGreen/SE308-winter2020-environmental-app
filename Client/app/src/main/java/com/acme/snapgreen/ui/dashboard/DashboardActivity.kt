@@ -1,6 +1,7 @@
 package com.acme.snapgreen.ui.dashboard
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -79,8 +80,9 @@ class DashboardActivity : AppCompatActivity() {
 
         val percentChanges = WeeklyStatsCalc.calculatePercentChange()
         waterPercentText.text = percentChanges.galsChange
+        waterPercentText.setTextColor(Color.parseColor(percentChanges.galsColor))
         wastePercentText.text = percentChanges.kgChange
-
+        wastePercentText.setTextColor(Color.parseColor(percentChanges.kgColor))
     }
 
     public override fun onResume() {
