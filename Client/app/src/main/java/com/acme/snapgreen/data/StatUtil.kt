@@ -2,7 +2,6 @@ package com.acme.snapgreen.data
 
 import android.util.Log
 import io.realm.Realm
-import io.realm.RealmResults
 import io.realm.Sort
 import io.realm.kotlin.where
 import java.text.DateFormat
@@ -80,6 +79,10 @@ class StatUtil private constructor() {
             return realm.where<DailyStatistic>().sort("date", Sort.DESCENDING).limit(7).findAll()
         }
 
+        /**
+         * Return a list of DailyStatistics for the past 14 days (or less if there are less than 14
+         *  total entries in the database)
+         */
         fun getPastTwoWeeksStats(): List<DailyStatistic> {
             val realm = Realm.getDefaultInstance()
 

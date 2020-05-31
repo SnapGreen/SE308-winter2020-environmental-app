@@ -1,0 +1,17 @@
+settings check:
+	SETTINGS: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/settings.txt
+	SERVER_POPULATED: false
+<<<<<<< HEAD
+	LASTUPLOAD: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/data/FDA/branded_food_0451.json
+=======
+	LASTUPLOAD: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/data/FDA/branded_food_0318.json
+>>>>>>> 43c19a21d59c00a361798ea09412224ef9fc3c09
+	USAGE:
+		Usage: ./populateDB.sh [OPTION] (use option -h for help)
+	HELP:
+		This script will download the latest FDA database
+		and adjust the settings so that updates are stored,
+		then applied after the databse is fully populated.
+		Usage: ./populateDB.sh [OPTION] (use option -h for help)
+			-s: output settings only
+			-h: print help
