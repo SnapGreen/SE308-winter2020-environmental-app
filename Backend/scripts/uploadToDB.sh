@@ -81,7 +81,6 @@ function uploadFiles(){
    # uploads a json every $UPLOAD_SLEEP seconds
    success=true
    lastupload=""
-<<<<<<< HEAD
    failures=0
    lastfiles=false
    max_file_uploads=$((FB_WRITES_PER_DAY / PRODS_PER_JSON))
@@ -218,23 +217,11 @@ if [ "$DONE_UPLOADING" != "true" ] ; then
    fi
 
    if [ "$fin" == "false" ] ; then
-<<<<<<< HEAD
       if [ -n $LASTUPLOAD ] ; then
          removePreviousUploads
       fi
-=======
-      #if [ -n $LASTUPLOAD ] ; then
-      #   removePreviousUploads
-      #fi
-      max_file_uploads=$((FB_WRITES_PER_DAY / PRODS_PER_JSON))
 
-      shopt -s nullglob
-
-      alljsons=($FDADATADIR$SPLIT_PREFIX*$OUTFILE_END)
-      numjsons=${#alljsons[@]}
->>>>>>> master
-
-      uploadFiles "$max_file_uploads"
+      uploadFiles 
 
    fi
 else
