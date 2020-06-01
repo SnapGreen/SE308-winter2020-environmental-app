@@ -1,0 +1,36 @@
+settings check:
+	SETTINGS: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/settings.txt
+	DATADIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/data/
+	EPADIR: EPA/
+	OUTFILE_END: .json
+	NEWDATADIR: fakedir/
+	EPADATASOURCE: fakefile
+	NEWDATAPATH: fakedir/fakefile
+	AWKDIR: awk/
+	TMPDIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/
+	TMPFILE_END: .tmp
+	SAFER_PREFIX: 
+	SAFERCSVROUGH_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/_roughcsv.tmp
+	SAFERCSVPREPPED_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/_preppedcsv.tmp
+	SAFERSPLIT_PREFIX: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/
+	SAFEROLD_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/00
+	SAFERNEW_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/01
+	SAFEROLDTRIM_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/_oldtrim.tmp
+	SAFERNEWTRIM_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/_newtrim.tmp
+	SAFERJOINED_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/_joined.tmp
+	SAFERB4_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/_b4.tmp
+	SAFERCLEAN_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/_clean.tmp
+	SAFERSORTED_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/_sorted.tmp
+	SAFERUNIQUE_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/_unique.tmp
+	SAFER_JSON: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/data/EPA/.json
+	AWK_OLDEPA_TRIM: awk/epaoldtrim.awk
+	AWK_NEWEPA_TRIM: awk/epanewtrim.awk
+	AWK_EPA_JSON: awk/epatojson.awk
+	USAGE:
+		Usage: ./convertEPAData.sh [OPTION] (use option -h for help)
+	HELP:
+		Usage: ./convertEPAData.sh [OPTION] (use option -h for help)
+		**If no OPTION supplied, debug mode on (temp files remain)
+			-b: bypass debug mode
+			-s: output settings only
+			-h: print help
