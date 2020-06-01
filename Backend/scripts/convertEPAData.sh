@@ -14,8 +14,10 @@ SAFER_PREFIX=$(echo $EPADATASOURCE | grep -oP ".*(?=.xls)")
 SAFERCSVROUGH_TMP="${TMPDIR}${SAFER_PREFIX}_roughcsv${TMPFILE_END}"
 SAFERCSVPREPPED_TMP="${TMPDIR}${SAFER_PREFIX}_preppedcsv${TMPFILE_END}"
 SAFERSPLIT_PREFIX="${TMPDIR}${SAFER_PREFIX}"
-SAFEROLD_TMP="${TMPDIR}${SAFER_PREFIX}00"
-SAFERNEW_TMP="${TMPDIR}${SAFER_PREFIX}01"
+SAFEROLD="${TMPDIR}${SAFER_PREFIX}00"
+SAFERNEW="${TMPDIR}${SAFER_PREFIX}01"
+SAFEROLD_TMP="${SAFEROLD}${TMPFILE_END}"
+SAFERNEW_TMP="${SAFERNEW}${TMPFILE_END}"
 SAFEROLDTRIM_TMP="${TMPDIR}${SAFER_PREFIX}_oldtrim${TMPFILE_END}"
 SAFERNEWTRIM_TMP="${TMPDIR}${SAFER_PREFIX}_newtrim${TMPFILE_END}"
 SAFERJOINED_TMP="${TMPDIR}${SAFER_PREFIX}_joined${TMPFILE_END}"
@@ -53,6 +55,8 @@ function checkSettings(){
    printf "\tSAFERCSVROUGH_TMP: %s\n" "$SAFERCSVROUGH_TMP"
    printf "\tSAFERCSVPREPPED_TMP: %s\n" "$SAFERCSVPREPPED_TMP"
    printf "\tSAFERSPLIT_PREFIX: %s\n" "$SAFERSPLIT_PREFIX"
+   printf "\tSAFEROLD: %s\n" "$SAFEROLD"
+   printf "\tSAFERNEW: %s\n" "$SAFERNEW"
    printf "\tSAFEROLD_TMP: %s\n" "$SAFEROLD_TMP"
    printf "\tSAFERNEW_TMP: %s\n" "$SAFERNEW_TMP"
    printf "\tSAFEROLDTRIM_TMP: %s\n" "$SAFEROLDTRIM_TMP"
@@ -108,22 +112,26 @@ function prepForSplit(){
 function splitOldAndNew(){
    printf "splitting old and new items...\n"
    csplit -f "$SAFERSPLIT_PREFIX" "$1" '/^"cas.*/'
+   mv "$SAFEROLD" "$SAFEROLD_TMP"
+   mv "$SAFERNEW" "$SAFERNEW_TMP"
+   # this ensures that no files without .tmp are in temp
+   rm "$SAFEROLD" "$SAFERNEW"
 }
 
 function processNewData(){
    printf "processing new data...\n"
 
    #this removes the header line from the new split file
-   echo "$(tail -n +2 "$SAFERNEW_TMP")" > "$SAFERNEW_TMP"
+   echo "$(tail -n +2 "$SAFERNEW")" > "$SAFERNEW"
 
    printf "removing redundant data...\n"
    #this file is mainly a log of items that have been added
    #this removes those entries and leaves the ones that have/will be deleted
-   sed -i '/"gr[ea]y \[square\]"/!d' "$SAFERNEW_TMP"
+   sed -i '/"gr[ea]y \[square\]"/!d' "$SAFERNEW"
 
    #there is a column in the update portion that sometimes goes unused; in order
    #for awk to process the file correctly, "" needs to be added between ,,
-   sed -i 's/,,/,"",/g' "$SAFERNEW_TMP"
+   sed -i 's/,,/,"",/g' "$SAFERNEW"
 }
 
 
@@ -303,9 +311,9 @@ if [ "$fin" == "false" ] ; then
    convertToCsv "$NEWDATAPATH" "$SAFERCSVROUGH_TMP"
    prepForSplit "$SAFERCSVROUGH_TMP" "$SAFERCSVPREPPED_TMP"
    splitOldAndNew "$SAFERCSVPREPPED_TMP"
-   processNewData "$SAFERNEW_TMP"
-   extractRelevantOldData "$AWK_OLDEPA_TRIM" "$SAFEROLD_TMP" "$SAFEROLDTRIM_TMP"
-   extractRelevantNewData "$AWK_NEWEPA_TRIM" "$SAFERNEW_TMP" "$SAFERNEWTRIM_TMP"
+   processNewData "$SAFERNEW"
+   extractRelevantOldData "$AWK_OLDEPA_TRIM" "$SAFEROLD" "$SAFEROLDTRIM_TMP"
+   extractRelevantNewData "$AWK_NEWEPA_TRIM" "$SAFERNEW" "$SAFERNEWTRIM_TMP"
    joinOldAndNew "$SAFEROLDTRIM_TMP" "$SAFERNEWTRIM_TMP" "$SAFERJOINED_TMP"
    cleanChemicals "$EPA_PATTERNFILE" "$SAFERCLEAN_TMP"
    sortOnChem "$SAFERCLEAN_TMP" "$SAFERSORTED_TMP"
