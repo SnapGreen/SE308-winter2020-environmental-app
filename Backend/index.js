@@ -123,14 +123,14 @@ app.post("/friends", async function (req, res) {
 /**
  * Updates a score associated with the user
  */
-app.put("/users/score/:id", async function (req, res) {
+app.put("/users/score", async function (req, res) {
   if (!req.params || !req.params.id || !req.body) {
     res.status(401).json({
-      message: "No req.params.id or req.body present",
+      message: "No req.body present",
     });
   }
   try {
-    await FIREBASE.updateScore(req.params.id, req.body.score);
+    await FIREBASE.updateScore(req.body.token, req.body.score);
     res.json({
       message: `User score updated`,
     });

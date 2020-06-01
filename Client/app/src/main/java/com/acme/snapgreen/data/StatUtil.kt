@@ -145,7 +145,7 @@ class StatUtil private constructor() {
 
         /** Updates user score on firebase */
         private fun tryUpdateScore(idToken: String?, score: Int) {
-            val url = "${Constants.SERVER_URL}/users/score/$idToken"
+            val url = "${Constants.SERVER_URL}/users/score"
 
             try {
                 val jsonObj = JSONObject()
