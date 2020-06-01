@@ -124,9 +124,9 @@ app.post("/friends", async function (req, res) {
  * Updates a score associated with the user
  */
 app.put("/users/score", async function (req, res) {
-  if (!req.params || !req.params.id || !req.body) {
+  if (!req.body || !req.body.token || req.body.score) {
     res.status(401).json({
-      message: "No req.body present",
+      message: "No req.body, token, or score present",
     });
   }
   try {
