@@ -13,7 +13,7 @@ FDAOUTDIR="${DATADIR}${FDADIR}"
 FDAINFILE="${FDAINDIR}${FDADATASOURCE}"
 MAPFILE=$(grep -oP '(?<=^MAPFILE:).*' $SETTINGS)
 PRODS_PER_JSON=$(grep -oP '(?<=^PRODS_PER_JSON:).*' $SETTINGS)
-PATTERNFILE=$(grep -oP '(?<=^PATTERNFILE:).*' $SETTINGS)
+FDA_PATTERNFILE=$(grep -oP '(?<=^FDA_PATTERNFILE:).*' $SETTINGS)
 SPLIT_PREFIX=$(grep -oP '(?<=^SPLIT_PREFIX:).*' $SETTINGS)
 SUFFIX_LEN=$(grep -oP '(?<=^SUFFIX_LEN:).*' $SETTINGS)
 OUTFILE_END=$(grep -oP '(?<=^OUTFILE_END:).*' $SETTINGS)
@@ -90,7 +90,7 @@ function checkSettings(){
    printf "\tFDAINFILE: %s\n" "$FDAINFILE"
    printf "\tMAPFILE: %s\n" "$MAPFILE"
    printf "\tPRODS_PER_JSON: %s\n" "$PRODS_PER_JSON"
-   printf "\tPATTERNFILE: %s\n" "$PATTERNFILE"
+   printf "\tFDA_PATTERNFILE: %s\n" "$FDA_PATTERNFILE"
    printf "\tSPLIT_PREFIX: %s\n" "$SPLIT_PREFIX"
    printf "\tSUFFIX_LEN: %s\n" "$SUFFIX_LEN"
    printf "\tOUTFILE_END: %s\n" "$OUTFILE_END"
@@ -397,7 +397,7 @@ if [ "$fin" == "false" ] ; then
       createCleanTests $INGREDIENTSB4_TMP
    fi
 
-   cleanIngredients $PATTERNFILE $INGREDIENTS_TMP 
+   cleanIngredients $FDA_PATTERNFILE $INGREDIENTS_TMP 
 
    consolidateIngredients $AWK_SHRINK $INGREDIENTS_TMP $SET_INGREDIENTS_TMP 
 
