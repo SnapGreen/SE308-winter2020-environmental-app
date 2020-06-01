@@ -9,7 +9,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.acme.snapgreen.R
+import com.acme.snapgreen.data.DailyStatistic
 import com.acme.snapgreen.data.StatUtil
+import io.realm.Realm
+import io.realm.kotlin.where
 import java.text.DateFormat
 import java.util.*
 
@@ -68,17 +71,82 @@ class UsageInputActivity : AppCompatActivity() {
         val numPlasticUtensilsUsedField = findViewById<EditText>(R.id.numPlasticUtensilsUsed)
         numPlasticUtensilsUsedField.filters = arrayOf<InputFilter>(LengthFilter(maxLength))
 
+//        val dateStringList = DateFormat.getDateTimeInstance().format(Date()).split(",", " ")
+//        val dateString = dateStringList[0] + " " + dateStringList[1] + " " + dateStringList[3]
+//        val realm = Realm.getDefaultInstance()
+//        var stat = realm.where<DailyStatistic>().contains("today", dateString).findFirst()
+//        if (stat != null) {
+//            minutesShoweredField.setHint(stat.minutesShowered)
+//            timesFlushedField.setHint(stat.timesFlushed)
+//            timesDishwasherRunField.setHint(stat.timesDishwasherRun)
+//            minutesWashingMachineField.setHint(stat.minutesWashingMachine)
+//            numAlumCansUsedField.setHint(stat.numAlumCansUsed)
+//            numStyroContainersUsedField.setHint(stat.numStyroContainersUsed)
+//            numPlasticStrawsUsedField.setHint(stat.numPlasticStrawsUsed)
+//            numPlasticUtensilsUsedField.setHint(stat.numPlasticUtensilsUsed)
+//        }
+
         val editButton = findViewById<Button>(R.id.editButton)
         editButton.setOnClickListener {
+            var minutesShowered = if (minutesShoweredField.text.toString().isEmpty()) {
+                0
+            } else {
+                minutesShoweredField.text.toString().toInt()
+            }
+
+            var timesFlushed = if (timesFlushedField.text.toString().isEmpty()) {
+                0
+            } else {
+                timesFlushedField.text.toString().toInt()
+            }
+
+            var timesDishwasherRun = if (timesDishwasherRunField.text.toString().isEmpty()) {
+                0
+            } else {
+                timesDishwasherRunField.text.toString().toInt()
+            }
+
+            var minutesWashingMachine = if (minutesWashingMachineField.text.toString().isEmpty()) {
+                0
+            } else {
+                minutesWashingMachineField.text.toString().toInt()
+            }
+
+            var numAlumCansUsed = if (numAlumCansUsedField.text.toString().isEmpty()) {
+                0
+            } else {
+                numAlumCansUsedField.text.toString().toInt()
+            }
+
+            var numStyroContainersUsed =
+                if (numStyroContainersUsedField.text.toString().isEmpty()) {
+                    0
+                } else {
+                    numStyroContainersUsedField.text.toString().toInt()
+                }
+
+            var numPlasticStrawsUsed = if (numPlasticStrawsUsedField.text.toString().isEmpty()) {
+                0
+            } else {
+                numPlasticStrawsUsedField.text.toString().toInt()
+            }
+
+            var numPlasticUtensilsUsed =
+                if (numPlasticUtensilsUsedField.text.toString().isEmpty()) {
+                    0
+                } else {
+                    numPlasticUtensilsUsedField.text.toString().toInt()
+                }
+
             saveScore(
-                minutesShoweredField.text.toString().toInt(),
-                timesFlushedField.text.toString().toInt(),
-                timesDishwasherRunField.text.toString().toInt(),
-                minutesWashingMachineField.text.toString().toInt(),
-                numAlumCansUsedField.text.toString().toInt(),
-                numStyroContainersUsedField.text.toString().toInt(),
-                numPlasticStrawsUsedField.text.toString().toInt(),
-                numPlasticUtensilsUsedField.text.toString().toInt()
+                minutesShowered,
+                timesFlushed,
+                timesDishwasherRun,
+                minutesWashingMachine,
+                numAlumCansUsed,
+                numStyroContainersUsed,
+                numPlasticStrawsUsed,
+                numPlasticUtensilsUsed
             )
             finish()
         }

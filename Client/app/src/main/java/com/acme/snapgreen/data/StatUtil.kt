@@ -13,6 +13,7 @@ import org.json.JSONObject
 import java.text.DateFormat
 import java.util.*
 
+
 /**
  * A utility class to abstract the database component of updating daily usage.
  * Allows caller to get today's DailyStatistic and update its values
@@ -101,7 +102,12 @@ class StatUtil private constructor() {
          */
         fun setTodaysStats(stats: DailyStatistic) {
             val realm = Realm.getDefaultInstance()
-            var totalScore = getScore()
+            var totalScore = realm.where<TotalScore>().findFirst()
+
+            if (totalScore == null) {
+                totalScore = TotalScore()
+                realm.copyToRealm(totalScore)
+            }
 
             if (stats.hasBeenSaved) {
                 totalScore.score -= stats.score
@@ -166,6 +172,30 @@ class StatUtil private constructor() {
 
             } catch (e: Throwable) {
                 //TODO: Handle failed connection
+            }
+        }
+
+        private fun daysDifference(date1: Date, date2: Date): Int {
+            val MILLI_TO_DAY = 1000 * 60 * 60 * 24
+            return (date1.time - date2.time).toInt() / MILLI_TO_DAY
+        }
+
+        fun fillEmptyDays() {
+            val realm = Realm.getDefaultInstance()
+            var lastStats: DailyStatistic? =
+                realm.where<DailyStatistic>().sort("date", Sort.DESCENDING).findFirst() ?: return
+            var lastAddedDate = lastStats?.date ?: return
+            var today = Date()
+
+            var daysDifference = daysDifference(today, lastAddedDate)
+            if (daysDifference > 1) {
+                for (i in 0 until daysDifference) {
+                    var newStats = realm.copyFromRealm(lastStats)
+                    newStats.date =
+                        Date(lastAddedDate.time + (i * 24 * 60 * 60 * 1000))
+                    newStats.today = DateFormat.getDateTimeInstance().format(newStats.date)
+                    realm.copyToRealm(newStats)
+                }
             }
         }
     }
