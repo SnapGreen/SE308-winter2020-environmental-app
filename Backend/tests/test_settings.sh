@@ -61,9 +61,9 @@ if [[ -z "$1" ]]; then
       exit 8
    fi
 elif [[ "$1" == "-t" ]]; then
-   SETTINGS_NPM="~/Backend/scripts/settings_npm.txt"
+   SETTINGS_NPM="./Backend/scripts/settings_npm.txt"
    TESTDIR=$(grep -oP '(?<=^TESTDIR:).*' $SETTINGS_NPM)
-   TESTDIR="~/Backend/tests/settings/"
+   TESTDIR="./Backend/tests/settings/"
    ./Backend/scripts/convertToJson.sh -t > "${TESTDIR}convertToJson_npm_settings.out"
    ./Backend/scripts/getFDAUpdate.sh -t > "${TESTDIR}getFDAUpdate_npm_settings.out"
    ./Backend/scripts/downloadData.sh fakefile fakeurl -t > "${TESTDIR}downloadData_npm_settings.out"
