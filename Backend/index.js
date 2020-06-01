@@ -164,7 +164,7 @@ app.get("/products/:id", async function (req, res) {
     try {
       let id_14 = req.params.id.padStart(14, '0');
       // checks the database and then determines if the passwords match
-      console.log("product lookup attempt");
+      console.log("product " + id_14 + " lookup attempt");
       let product = await FIREBASE.getProduct(id_14);
 
       if (!product) {
@@ -173,14 +173,14 @@ app.get("/products/:id", async function (req, res) {
         });
         console.log("product not found");
       }
-
-      if (product.score === "-999999999") {
+      else if(product.score === "-999999999") {
          let score = getWeightedScore(product.ingredients);
          product.score = score;
       }
 
       // Returns a json of the product scanned
       res.json(product);
+      res.end();
 
       console.log("ok");
     } catch (err) {
