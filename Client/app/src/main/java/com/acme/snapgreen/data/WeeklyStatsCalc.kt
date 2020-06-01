@@ -105,17 +105,17 @@ class WeeklyStatsCalc() {
 
             if (weeklyDataOld.numGals > weeklyDataNew.numGals) {
                 percentChanges.galsChange += "↓ "
-                percentChanges.galsColor = "#cc0000"  // red text
+                percentChanges.galsColor = "#0099cc"  // blue text
             } else if (weeklyDataOld.numGals < weeklyDataNew.numGals) {
                 percentChanges.galsChange += "↑ "
-                percentChanges.galsColor = "#0099cc"  // blue text
+                percentChanges.galsColor = "#cc0000"  // red text
             }
             if (weeklyDataOld.numKgWaste > weeklyDataNew.numKgWaste) {
                 percentChanges.kgChange += "↓ "
-                percentChanges.kgColor = "#cc0000"  // red text
+                percentChanges.kgColor = "#0099cc"  // blue text
             } else if (weeklyDataOld.numKgWaste < weeklyDataNew.numKgWaste) {
                 percentChanges.kgChange += "↑ "
-                percentChanges.kgColor = "#0099cc"  // blue text
+                percentChanges.kgColor = "#cc0000"  // red text
             }
 
             percentChanges.galsChange += "$changeGals%"
