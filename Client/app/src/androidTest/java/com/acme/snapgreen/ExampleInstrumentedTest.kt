@@ -150,7 +150,6 @@ class ExampleInstrumentedTest {
         StatUtil.fillEmptyDays()
     }
 
-
     @Before
     public fun setupRealm() {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
