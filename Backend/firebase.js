@@ -82,7 +82,7 @@ class Firebase {
   async getProduct(id) {
     let productQuery = await this.db
       .collection("products")
-      .doc(`00${id}`)
+      .doc(`${id}`)
       .get();
 
     console.log(productQuery);
@@ -92,6 +92,16 @@ class Firebase {
     }
     // if a product exists, returns the document
     return productQuery.data();
+  }
+
+  /**
+   * Updates the score of the user based on the token provided
+   */
+  async updateScore(token, score) {
+    let id = await this.getUIDFromToken(token);
+    await this.db.collection("users").doc(id).update({
+      score: score,
+    });
   }
 
   // Updates a product in the database
