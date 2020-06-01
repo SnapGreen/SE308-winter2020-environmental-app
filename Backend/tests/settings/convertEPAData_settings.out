@@ -13,8 +13,10 @@ settings check:
 	SAFERCSVROUGH_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/_roughcsv.tmp
 	SAFERCSVPREPPED_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/_preppedcsv.tmp
 	SAFERSPLIT_PREFIX: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/
-	SAFEROLD_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/00
-	SAFERNEW_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/01
+	SAFEROLD: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/00
+	SAFERNEW: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/01
+	SAFEROLD_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/00.tmp
+	SAFERNEW_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/01.tmp
 	SAFEROLDTRIM_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/_oldtrim.tmp
 	SAFERNEWTRIM_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/_newtrim.tmp
 	SAFERJOINED_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/_joined.tmp
