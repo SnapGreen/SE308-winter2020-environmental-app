@@ -1,3 +1,4 @@
+settings check:
 	SETTINGS: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/settings.txt
 	FILENAME: fakefile
 	FULLPATH: fakeurl/fakefile

@@ -54,6 +54,51 @@ function checkSettings(){
    printf "$HELP"
 }
 
+function checkSettingsNPM(){
+   SETTINGS_NPM="./Backend/scripts/settings_npm.txt"
+   DATADIR=$(grep -oP "(?<=^DATADIR:).*" $SETTINGS_NPM)
+   FDADIR=$(grep -oP "(?<=^FDADIR:).*" $SETTINGS_NPM)
+   FDADATADIR="${DATADIR}${FDADIR}"
+   SUFFIX_LEN=$(grep -oP "(?<=^SUFFIX_LEN:).*" $SETTINGS_NPM)
+   PRODS_PER_JSON=$(grep -oP "(?<=^PRODS_PER_JSON:).*" $SETTINGS_NPM)
+   FB_WRITES_PER_DAY=$(grep -oP "(?<=^FB_WRITES_PER_DAY:).*" $SETTINGS_NPM)
+   TESTDIR=$(grep -oP "(?<=TESTDIR).*" $SETTINGS_NPM)
+   TESTSETTINGSDIR=$"${TESTDIR}settings/"
+   TEST_POPDB_SETTINGS="${TESTSETTINGSDIR}populateDB_settings.txt"
+   TEST_UPLOADTODB_SETTINGS="${TESTSETTINGSDIR}uploadToDB_settings.txt"
+   SPLIT_PREFIX=$(grep -oP "(?<=^SPLIT_PREFIX:).*" $SETTINGS_NPM)
+   OUTFILE_END=$(grep -oP "(?<=^OUTFILE_END:).*" $SETTINGS_NPM)
+   UPLOAD_SLEEP=$(grep -oP "(?<=^UPLOAD_SLEEP:).*" $SETTINGS_NPM)
+   LOGDIR=$(grep -oP "(?<=^LOGDIR:).*" $SETTINGS_NPM)
+   UPLOADLOGDIR="${LOGDIR}uploads/"
+   SERVER_POPULATED=$(grep -oP "(?<=^SERVER_POPULATED:).*" $SETTINGS_NPM)
+   DONE_UPLOADING=$(grep -oP "(?<=^DONE_UPLOADING:).*" $SETTINGS_NPM)
+
+   echo "settings check:"
+   printf "\tSETTINGS: %s\n" "$SETTINGS_NPM"
+   printf "\tDATADIR: %s\n" "$DATADIR"
+   printf "\tFDADIR: %s\n" "$FDADIR"
+   printf "\tFDADATADIR: %s\n" "$FDADATADIR"
+   printf "\tSUFFIX_LEN: %s\n" "$SUFFIX_LEN"
+   printf "\tPRODS_PER_JSON: %s\n" "$PRODS_PER_JSON"
+   printf "\tFB_WRITES_PER_DAY: %s\n" "$FB_WRITES_PER_DAY"
+   printf "\tTESTDIR: %s\n" "$TESTDIR"
+   printf "\tTESTSETTINGSDIR: %s\n" "$TESTSETTINGSDIR"
+   printf "\tTEST_POPDB_SETTINGS: %s\n" "$TEST_POPDB_SETTINGS"
+   printf "\tTEST_UPLOADTODB_SETTINGS: %s\n" "$TEST_UPLOADTODB_SETTINGS"
+   printf "\tSPLIT_PREFIX: %s\n" "$SPLIT_PREFIX"
+   printf "\tOUTFILE_END: %s\n" "$OUTFILE_END"
+   printf "\tUPLOAD_SLEEP: %s\n" "$UPLOAD_SLEEP"
+   printf "\tLOGDIR: %s\n" "$LOGDIR"
+   printf "\tUPLOADLOGDIR: %s\n" "$UPLOADLOGDIR"
+   printf "\tSERVER_POPULATED: %s\n" "$SERVER_POPULATED"
+   printf "\tDONE_UPLOADING: %s\n" "$DONE_UPLOADING"
+   printf "\tUSAGE:\n"
+   printf "$USAGE"
+   printf "\tHELP:\n"
+   printf "$HELP"
+}
+
 function removePreviousUploads(){
    # if the $LASTUPLOAD file exists, this function will get the last uploaded
    # file and ensure that it and every file below it is deleted before uploading
@@ -190,6 +235,10 @@ function resolveLastUpload(){
 if [ $# -ne 0 ] ; then
    if [ "$1" == "-s" ] ; then
       checkSettings
+      fin=true
+      prompt=false
+   elif [ "$1" == "-t" ] ; then
+      checkSettingsNPM
       fin=true
       prompt=false
    elif [ "$1" == "-b" ] ; then

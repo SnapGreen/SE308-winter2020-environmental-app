@@ -1,0 +1,19 @@
+settings check:
+	SETTINGS: ./Backend/scripts/settings.txt
+	CURRENTLATEST: FoodData_Central_branded_food_csv_2020-04-29.zip,202005010423,74439754
+	LASTLATEST: FoodData_Central_branded_food_csv_2020-04-29.zip,202005010424,74439754
+	SERVER_POPULATED: false
+	FDC_DIR_ADDRESS: https://fdc.nal.usda.gov/fdc-datasets
+	TMPDIR: ./Backend/temp/
+	TMPFILE_END: .tmp
+	TMPLINKSFILE: ./Backend/temp/links.tmp
+	TMPFILELIST: ./Backend/temp/available_data.tmp
+	USAGE:
+		Usage: ./getFDAUpdate.sh [OPTION] (use option -h for help)
+	HELP:
+		Usage: ./getFDAUpdate.sh [OPTION] (use option -h for help)
+		**If no OPTION supplied, debug mode on (temp files remain)
+			-b: bypass debug mode, download only if new
+			-f: force download
+			-s: output settings only
+			-h: print help

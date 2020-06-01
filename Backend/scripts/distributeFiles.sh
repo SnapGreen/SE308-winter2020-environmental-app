@@ -47,6 +47,42 @@ function checkSettings(){
    printf "$HELP"
 }
 
+function checkSettingsNPM(){
+   SETTINGS_NPM="./Backend/scripts/settings_npm.txt"
+   ZIPFILE="$1"
+   DATADIR=$(grep -oP '(?<=^DATADIR:).*' $SETTINGS_NPM)
+   RAWDATADIR=$(grep -oP '(?<=^RAWDATADIR:).*' $SETTINGS_NPM)
+   FDADIR=$(grep -oP '(?<=^FDADIR:).*' $SETTINGS_NPM)
+   FDADATASOURCE=$(grep -oP '(?<=^FDADATASOURCE:).*' $SETTINGS_NPM)
+   FDAUPDATESOURCE=$(grep -oP '(?<=^FDAUPDATESOURCE:).*' $SETTINGS_NPM)
+   SERVER_POPULATED=$(grep -oP '(?<=^SERVER_POPULATED:).*' $SETTINGS_NPM)
+   DONE_UPLOADING=$(grep -oP '(?<=^SERVER_POPULATED:).*' $SETTINGS_NPM)
+   LASTLATEST=$(grep -oP '(?<=^LASTLATEST:).*' $SETTINGS_NPM)
+   RAWDATADEST="${RAWDATADIR}${FDADIR}"
+   DATADEST="${DATADIR}${FDADIR}"
+   IFS=',' read -r -a lastarray <<< "$LASTLATEST"
+   RAWDATAUPDATEDEST="${RAWDATADEST}${lastarray[1]}/"
+   DATAUPDATEDEST="${DATADEST}${lastarray[1]}/"
+
+   echo "settings check:"
+   printf "\tSETTINGS: %s\n" "$SETTINGS_NPM"
+   printf "\tZIPFILE: %s\n" "$ZIPFILE"
+   printf "\tDATADIR: %s\n" "$DATADIR"
+   printf "\tRAWDATADIR: %s\n" "$RAWDATADIR"
+   printf "\tFDADIR: %s\n" "$FDADIR"
+   printf "\tFDADATASOURCE: %s\n" "$FDADATASOURCE"
+   printf "\tFDAUPDATESOURCE: %s\n" "$FDAUPDATESOURCE"
+   printf "\tLASTLATEST: %s\n" "$LASTLATEST"
+   printf "\tRAWDATADEST: %s\n" "$RAWDATADEST"
+   printf "\tDATADEST: %s\n" "$DATADEST"
+   printf "\tRAWDATAUPDATEDEST: %s\n" "$RAWDATAUPDATEDEST"
+   printf "\tDATAUPDATEDEST: %s\n" "$DATAUPDATEDEST"
+   printf "\tUSAGE:\n"
+   printf "$USAGE"
+   printf "\tHELP:\n"
+   printf "$HELP"
+}
+
 function expandArchive(){
    printf "unzipping %s...\n" "$1"
    unzip "$1"
@@ -74,6 +110,9 @@ if [[ $# -gt 1 ]] ; then
       debug=false
    elif [ "$2" == "-s" ] ; then
       checkSettings
+      fin=true
+   elif [ "$2" == "-t" ] ; then
+      checkSettingsNPM
       fin=true
    elif [ "$2" == "-h" ] ; then
       printf "$HELP"

@@ -37,6 +37,35 @@ function checkSettings(){
    printf "$HELP"
 }
 
+function checkSettingsNPM(){
+   SETTINGS_NPM="./Backend/scripts/settings_npm.txt"
+   EPA_DIR_ADDRESS=$(grep -oP '(?<=^EPA_DIR_ADDRESS:).*' $SETTINGS_NPM)
+   EPADATASOURCE=$(grep -oP '(?<=^EPADATASOURCE:).*' $SETTINGS_NPM)
+   EPA_DATA_URL="${EPA_DIR_ADDRESS}${EPADATASOURCE}"
+   RAWDATADIR=$(grep -oP '(?<=^RAWDATADIR:).*' $SETTINGS_NPM)
+   EPADIR=$(grep -oP '(?<=^EPADIR:).*' $SETTINGS_NPM)
+   RAWDATADEST="${RAWDATADIR}${EPADIR}"
+   LASTDATAPATH="${RAWDATADEST}${EPADATASOURCE}"
+   LOGDIR=$(grep -oP '(?<=^LOGDIR:).*' $SETTINGS_NPM)
+   DOWNLOADLOGDIR="${LOGDIR}downloads/"
+
+   echo "settings check:"
+   printf "\tSETTINGS: %s\n" $SETTINGS_NPM
+   printf "\tEPA_DIR_ADDRESS: %s\n" "$EPA_DIR_ADDRESS"
+   printf "\tEPADATASOURCE: %s\n" "$EPADATASOURCE"
+   printf "\tEPA_DATA_URL: %s\n" "$EPA_DATA_URL"
+   printf "\tRAWDATADIR: %s\n" "$RAWDATADIR"
+   printf "\tEPADIR: %s\n" "$EPADIR"
+   printf "\tRAWDATADEST: %s\n" "$RAWDATADEST"
+   printf "\tLASTDATAPATH: %s\n" "$LASTDATAPATH"
+   printf "\tLOGDIR: %s\n" "$LOGDIR"
+   printf "\tDOWNLOADLOGIR: %s\n" "$DOWNLOADLOGDIR"
+   printf "\tUSAGE:\n"
+   printf "$USAGE"
+   printf "\tHELP:\n"
+   printf "$HELP"
+}
+
 function getData(){
    printf "dowloading from %s\n" "$EPA_DATA_ADDRESS"
    timestamp=$(date +%s)
@@ -80,6 +109,9 @@ if [[ -n $1 ]] ; then
       silent=true
    elif [ "$1" == "-s" ] ; then
       checkSettings
+      fin=true
+   elif [ "$1" == "-t" ] ; then
+      checkSettingsNPM
       fin=true
    else
       printf "$USAGE"

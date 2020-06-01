@@ -76,6 +76,80 @@ function checkSettings(){
    printf "$HELP"
 }
 
+function checkSettingsNPM(){
+   SETTINGS_NPM="./Backend/server/scripts/settings_npm.txt"
+   DATADIR=$(grep -oP '(?<=^DATADIR:).*' $SETTINGS_NPM)
+   EPADIR=$(grep -oP '(?<=^EPADIR:).*' $SETTINGS_NPM)
+   OUTFILE_END=$(grep -oP '(?<=^OUTFILE_END:).*' $SETTINGS_NPM)
+   NEWDATADIR="$1"
+   EPADATASOURCE="$2"
+   EPA_PATTERNFILE=$(grep -oP '(?<=^EPA_PATTERNFILE:).*' $SETTINGS_NPM)
+   NEWDATAPATH="${NEWDATADIR}${EPADATASOURCE}"
+   AWKDIR=$(grep -oP '(?<=^AWKDIR:).*' $SETTINGS_NPM)
+   TMPDIR=$(grep -oP '(?<=^TMPDIR:).*' $SETTINGS_NPM)
+   TMPFILE_END=$(grep -oP '(?<=^TMPFILE_END:).*' $SETTINGS_NPM)
+   SAFER_PREFIX=$(echo $EPADATASOURCE | grep -oP ".*(?=.xls)")
+   SAFERCSVROUGH_TMP="${TMPDIR}${SAFER_PREFIX}_roughcsv${TMPFILE_END}"
+   SAFERCSVPREPPED_TMP="${TMPDIR}${SAFER_PREFIX}_preppedcsv${TMPFILE_END}"
+   SAFERSPLIT_PREFIX="${TMPDIR}${SAFER_PREFIX}"
+   SAFEROLD="${TMPDIR}${SAFER_PREFIX}00"
+   SAFERNEW="${TMPDIR}${SAFER_PREFIX}01"
+   SAFEROLD_TMP="${SAFEROLD}${TMPFILE_END}"
+   SAFERNEW_TMP="${SAFERNEW}${TMPFILE_END}"
+   SAFEROLDTRIM_TMP="${TMPDIR}${SAFER_PREFIX}_oldtrim${TMPFILE_END}"
+   SAFERNEWTRIM_TMP="${TMPDIR}${SAFER_PREFIX}_newtrim${TMPFILE_END}"
+   SAFERJOINED_TMP="${TMPDIR}${SAFER_PREFIX}_joined${TMPFILE_END}"
+   SAFERB4_TMP="${TMPDIR}${SAFER_PREFIX}_b4${TMPFILE_END}"
+   SAFERCLEAN_TMP="${TMPDIR}${SAFER_PREFIX}_clean${TMPFILE_END}"
+   SAFERSORTED_TMP="${TMPDIR}${SAFER_PREFIX}_sorted${TMPFILE_END}"
+   SAFERUNIQUE_TMP="${TMPDIR}${SAFER_PREFIX}_unique${TMPFILE_END}"
+   SAFER_JSON="${DATADIR}${EPADIR}${SAFER_PREFIX}${OUTFILE_END}"
+   AWK_OLDEPA_TRIM="${AWKDIR}epaoldtrim.awk"
+   AWK_NEWEPA_TRIM="${AWKDIR}epanewtrim.awk"
+   AWK_EPA_JSON="${AWKDIR}epatojson.awk"
+   USAGE="\t\tUsage: ./convertEPAData.sh [OPTION] (use option -h for help)\n"
+   HELP="${USAGE}\t\t**If no OPTION supplied, debug mode on (temp files remain)\n"
+   HELP="${HELP}\t\t\t-b: bypass debug mode\n"
+   HELP="${HELP}\t\t\t-s: output settings only\n"
+   HELP="${HELP}\t\t\t-h: print help\n"
+
+   echo "settings check:"
+   printf "\tSETTINGS: %s\n" $SETTINGS_NPM
+   printf "\tDATADIR: %s\n" "$DATADIR"
+   printf "\tEPADIR: %s\n" "$EPADIR"
+   printf "\tOUTFILE_END: %s\n" "$OUTFILE_END"
+   printf "\tNEWDATADIR: %s\n" "$NEWDATADIR"
+   printf "\tEPADATASOURCE: %s\n" "$EPADATASOURCE"
+   printf "\tNEWDATAPATH: %s\n" "$NEWDATAPATH"
+   printf "\tAWKDIR: %s\n" "$AWKDIR"
+   printf "\tTMPDIR: %s\n" "$TMPDIR"
+   printf "\tTMPFILE_END: %s\n" "$TMPFILE_END"
+   printf "\tSAFER_PREFIX: %s\n" "$SAFER_PREFIX"
+   printf "\tSAFERCSVROUGH_TMP: %s\n" "$SAFERCSVROUGH_TMP"
+   printf "\tSAFERCSVPREPPED_TMP: %s\n" "$SAFERCSVPREPPED_TMP"
+   printf "\tSAFERSPLIT_PREFIX: %s\n" "$SAFERSPLIT_PREFIX"
+   printf "\tSAFEROLD: %s\n" "$SAFEROLD"
+   printf "\tSAFERNEW: %s\n" "$SAFERNEW"
+   printf "\tSAFEROLD_TMP: %s\n" "$SAFEROLD_TMP"
+   printf "\tSAFERNEW_TMP: %s\n" "$SAFERNEW_TMP"
+   printf "\tSAFEROLDTRIM_TMP: %s\n" "$SAFEROLDTRIM_TMP"
+   printf "\tSAFERNEWTRIM_TMP: %s\n" "$SAFERNEWTRIM_TMP"
+   printf "\tSAFERJOINED_TMP: %s\n" "$SAFERJOINED_TMP"
+   printf "\tSAFERB4_TMP: %s\n" "$SAFERB4_TMP"
+   printf "\tSAFERCLEAN_TMP: %s\n" "$SAFERCLEAN_TMP"
+   printf "\tSAFERSORTED_TMP: %s\n" "$SAFERSORTED_TMP"
+   printf "\tSAFERUNIQUE_TMP: %s\n" "$SAFERUNIQUE_TMP"
+   printf "\tSAFER_JSON: %s\n" "$SAFER_JSON"
+   printf "\tAWK_OLDEPA_TRIM: %s\n" "$AWK_OLDEPA_TRIM"
+   printf "\tAWK_NEWEPA_TRIM: %s\n" "$AWK_NEWEPA_TRIM"
+   printf "\tAWK_EPA_JSON: %s\n" "$AWK_EPA_JSON"
+   printf "\tUSAGE:\n"
+   printf "$USAGE"
+   printf "\tHELP:\n"
+   printf "$HELP"
+}
+
+
 #https://stackoverflow.com/questions/17066250/create-timestamp-variable-in-bash-script
 function timestamp(){
    date +%s
@@ -292,6 +366,9 @@ if [[ $# -gt 2 ]] ; then
          fin=true
       elif [ "$3" == "-s" ] ; then
          checkSettings
+         fin=true
+      elif [ "$3" == "-t" ] ; then
+         checkSettingsNPM
          fin=true
       else
          printf "$USAGE"

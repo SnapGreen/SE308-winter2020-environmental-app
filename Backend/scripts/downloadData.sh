@@ -15,7 +15,30 @@ debug=true
 fin=false
 
 function checkSettings(){
+   echo "settings check:"
    printf "\tSETTINGS: %s\n" "$SETTINGS"
+   printf "\tFILENAME: %s\n" "$FILENAME"
+   printf "\tFULLPATH: %s\n" "$FULLPATH"
+   printf "\tLOGDIR: %s\n" "$LOGDIR"
+   printf "\tCURRENTLATEST: %s\n" "$CURRENTLATEST"
+   printf "\tDONE_UPLOADING: %s\n" $DONE_UPLOADING
+   printf "\tDOWNLOADLOGDIR: %s\n" "$DOWNLOADLOGDIR"
+   printf "\tUSAGE:\n"
+   printf "$USAGE"
+   printf "\tHELP:\n"
+   printf "$HELP"
+}
+
+function checkSettingsNPM(){
+   SETTINGS="./Backend/scripts/settings_npm.txt"
+   FILENAME="$1"
+   FULLPATH="${2}/${FILENAME}"
+   LOGDIR=$(grep -oP '(?<=^LOGDIR:).*' $SETTINGS_NPM)
+   CURRENTLATEST=$(grep -oP '(?<=^CURRENTLATEST:).*' $SETTINGS_NPM)
+   DONE_UPLOADING=$(grep -oP '(?<=^DONE_UPLOADING:).*' $SETTINGS_NPM)
+   DOWNLOADLOGDIR="${LOGDIR}downloads/"
+   echo "settings check:"
+   printf "\tSETTINGS: %s\n" "$SETTINGS_NPM"
    printf "\tFILENAME: %s\n" "$FILENAME"
    printf "\tFULLPATH: %s\n" "$FULLPATH"
    printf "\tLOGDIR: %s\n" "$LOGDIR"
@@ -50,6 +73,9 @@ if [[ $# -gt 2 ]] ; then
          fin=true
       elif [ "$3" == "-s" ] ; then
          checkSettings
+         fin=true
+      elif [ "$3" == "-t" ] ; then
+         checkSettingsNPM
          fin=true
       else
          printf "$USAGE"

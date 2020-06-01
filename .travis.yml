@@ -46,6 +46,6 @@ matrix:
       before_script:
         - curl -L "https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/shunit2/shunit2-2.1.6.tgz" | tar zx
       script:
-        - "./Backend/tests/test_settings.sh"
+        - "./Backend/tests/test_settings.sh -t"
       after_success:
         - bash <(curl -s https://codecov.io/bash) 

@@ -22,6 +22,19 @@ function checkSettings(){
    printf "$HELP"
 }
 
+function checkSettingsNPM(){
+   SETTINGS_NPM="./Backend/scripts/settings.txt"
+   SERVER_POPULATED=$(grep -oP '(?<=^SERVER_POPULATED:).*' $SETTINGS_NPM)
+   DONE_UPLOADING=$(grep -oP '(?<=^DONE_UPLOADING:).*' $SETTINGS_NPM)
+   echo "settings check:"
+   printf "\tSETTINGS: %s\n" $SETTINGS_NPM
+   printf "\tSERVER_POPULATED: %s\n" $SERVER_POPULATED
+   printf "\tUSAGE:\n"
+   printf "$USAGE"
+   printf "\tHELP:\n"
+   printf "$HELP"
+}
+
 if [ $# -eq 0 ] ; then
    sed -i 's/^SERVER_POPULATED:.*/SERVER_POPULATED:false/g' $SETTINGS
 
@@ -35,6 +48,8 @@ elif [ $# -eq 1 ] ; then
       printf "$HELP"
    elif [ $1 == "-s" ] ; then
       checkSettings
+   elif [ $1 == "-t" ] ; then
+      checkSettingsNPM
    else
       printf "$USAGE"
    fi

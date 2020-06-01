@@ -36,6 +36,33 @@ function checkSettings(){
    printf "$HELP"
 }
 
+function checkSettingsNPM(){
+   SETTINGS_NPM="./Backend/scripts/settings.txt"
+   CURRENTLATEST=$(grep -oP '(?<=^CURRENTLATEST:).*' $SETTINGS_NPM)
+   LASTLATEST=$(grep -oP '(?<=^LASTLATEST:).*' $SETTINGS_NPM)
+   SERVER_POPULATED=$(grep -oP '(?<=^SERVER_POPULATED:).*' $SETTINGS_NPM)
+   FDC_DIR_ADDRESS=$(grep -oP '(?<=^FDC_DIR_ADDRESS:).*' $SETTINGS_NPM)
+   TMPDIR=$(grep -oP '(?<=^TMPDIR:).*' $SETTINGS_NPM)
+   TMPFILE_END=$(grep -oP '(?<=^TMPFILE_END:).*' $SETTINGS_NPM)
+   TMPLINKSFILE="${TMPDIR}links${TMPFILE_END}"
+   TMPFILELIST="${TMPDIR}available_data${TMPFILE_END}"
+
+   echo "settings check:"
+   printf "\tSETTINGS: %s\n" $SETTINGS_NPM
+   printf "\tCURRENTLATEST: %s\n" $CURRENTLATEST
+   printf "\tLASTLATEST: %s\n" $LASTLATEST
+   printf "\tSERVER_POPULATED: %s\n" $SERVER_POPULATED
+   printf "\tFDC_DIR_ADDRESS: %s\n" $FDC_DIR_ADDRESS
+   printf "\tTMPDIR: %s\n" $TMPDIR
+   printf "\tTMPFILE_END: %s\n" $TMPFILE_END
+   printf "\tTMPLINKSFILE: %s\n" $TMPLINKSFILE
+   printf "\tTMPFILELIST: %s\n" $TMPFILELIST
+   printf "\tUSAGE:\n"
+   printf "$USAGE"
+   printf "\tHELP:\n"
+   printf "$HELP"
+}
+
 function convertMonthToDigits(){
    echo "converting months to digit format..."
    sed -i 's/-Jan-/01/; t;
@@ -136,6 +163,9 @@ if [[ -n $1 ]] ; then
       silent=true
    elif [ "$1" == "-s" ] ; then
       checkSettings
+      fin=true
+   elif [ "$1" == "-t" ] ; then
+      checkSettingsNPM
       fin=true
    else
       printf "$USAGE"
