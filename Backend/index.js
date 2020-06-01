@@ -70,6 +70,9 @@ app.post("/users", async function (req, res) {
   }
 });
 
+/**
+ * Returns a json of the friends list associated with the user token
+ */
 app.get("/friends/:id", async function (req, res) {
   if (!req.params || !req.params.id) {
     res.send("No ID provided");
@@ -84,7 +87,6 @@ app.get("/friends/:id", async function (req, res) {
       });
     }
 
-    // Returns a json of the friends list associated with the user
     res.json(friends);
   } catch (err) {
     console.log("Friends List Lookup Error");
@@ -95,6 +97,10 @@ app.get("/friends/:id", async function (req, res) {
   }
 });
 
+/**
+ * Searches for a user by email and adds that to the friends list of the provided
+ * id. Returns a JSON representing the friend.
+ */
 app.post("/friends", async function (req, res) {
   console.log("Attempting to add friend!");
   if (!req.body || !req.body.token || !req.body.friendUsername) {
@@ -122,6 +128,28 @@ app.post("/friends", async function (req, res) {
     console.log("Add Friend Error");
     res.status(401).json({
       message: "Add Friend Error",
+    });
+    console.log(err);
+  }
+});
+
+/**
+ * Updates a score associated with the user
+ */
+app.put("/users/score", async function (req, res) {
+  if (!req.body || !req.body.token || !req.body.score) {
+    res.status(401).json({
+      message: "No req.body, token, or score present",
+    });
+  }
+  try {
+    await FIREBASE.updateScore(req.body.token, req.body.score);
+    res.json({
+      message: `User score updated`,
+    });
+  } catch (err) {
+    res.status(401).json({
+      message: "Update score error",
     });
     console.log(err);
   }

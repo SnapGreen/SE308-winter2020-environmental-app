@@ -8,7 +8,9 @@ import com.acme.snapgreen.data.StatUtil
 import com.acme.snapgreen.data.WeeklyStatsCalc
 import io.realm.Realm
 import io.realm.RealmConfiguration
+import org.junit.After
 import org.junit.Assert.assertEquals
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.text.DateFormat
@@ -25,7 +27,6 @@ class ExampleInstrumentedTest {
 
     private fun addDSToRealm(
         daysAgo: Int,
-        testRealm: Realm,
         minsShowered: Int,
         timesFlushed: Int,
         timesDishwasher: Int,
@@ -35,6 +36,8 @@ class ExampleInstrumentedTest {
         numStraws: Int,
         numUtils: Int
     ): DailyStatistic {
+        val testRealm: Realm = Realm.getDefaultInstance()
+
         val testDS = DailyStatistic()
         testDS.date = Date(System.currentTimeMillis() - (daysAgo * 24) * 60 * 60 * 1000)
         testDS.today = DateFormat.getDateTimeInstance().format(testDS.date)
@@ -61,17 +64,9 @@ class ExampleInstrumentedTest {
     @Test
     fun testCalcDailyStatistics() {
         // Context of the app under test.
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.acme.snapgreen", appContext.packageName)
-
-        Realm.init(appContext)
-        val testConfig =
-            RealmConfiguration.Builder().inMemory().name("test-realm").build()
-        Realm.setDefaultConfiguration(testConfig)
-        val testRealm: Realm = Realm.getInstance(testConfig)
-
+        val testRealm = Realm.getDefaultInstance()
         for (i in 1..14) {
-            addDSToRealm(i, testRealm, 10, 4, 1, 50, 2, 1, 3, 4)
+            addDSToRealm(i, 10, 4, 1, 50, 2, 1, 3, 4)
         }
 
         val combinedWS = WeeklyStatsCalc.getWeeksCombinedStats()
@@ -84,21 +79,13 @@ class ExampleInstrumentedTest {
 
     @Test
     fun percentTest() {
-        // Context of the app under test.
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.acme.snapgreen", appContext.packageName)
-
-        Realm.init(appContext)
-        val testConfig =
-            RealmConfiguration.Builder().inMemory().name("test-realm").build()
-        Realm.setDefaultConfiguration(testConfig)
-        val testRealm: Realm = Realm.getInstance(testConfig)
+        val testRealm: Realm = Realm.getDefaultInstance()
 
         for (i in 1..7) {
-            addDSToRealm(i, testRealm, 10, 4, 1, 50, 1, 1, 2, 1)
+            addDSToRealm(i, 10, 4, 1, 50, 1, 1, 2, 1)
         }
         for (i in 8..14) {
-            addDSToRealm(i, testRealm, 15, 6, 2, 53, 1, 0, 1, 1)
+            addDSToRealm(i, 15, 6, 2, 53, 1, 0, 1, 1)
         }
 
         val percentChanges = WeeklyStatsCalc.calculatePercentChange()
@@ -109,13 +96,6 @@ class ExampleInstrumentedTest {
 
     @Test
     fun testSetInputData() {
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.acme.snapgreen", appContext.packageName)
-
-        Realm.init(appContext)
-        val testConfig =
-            RealmConfiguration.Builder().inMemory().name("test-realm").build()
-        Realm.setDefaultConfiguration(testConfig)
 
         val stats = StatUtil.getTodaysStats()
         stats.minutesShowered = 12
@@ -129,16 +109,9 @@ class ExampleInstrumentedTest {
         StatUtil.setTodaysStats(stats)
     }
 
+
     @Test
     fun testSetInputsTwiceToday() {
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.acme.snapgreen", appContext.packageName)
-
-        Realm.init(appContext)
-        val testConfig =
-            RealmConfiguration.Builder().inMemory().name("test-realm").build()
-        Realm.setDefaultConfiguration(testConfig)
-
 
         var stats = StatUtil.getTodaysStats()
         stats.date = Date(System.currentTimeMillis() - (0 * 24) * 60 * 60 * 1000);
@@ -153,7 +126,7 @@ class ExampleInstrumentedTest {
         stats.barcodeScore = 0
         stats.hasBeenSaved = false
         StatUtil.setTodaysStats(stats)
-        assertEquals(-5, StatUtil.getScore())
+        assertEquals(-5, StatUtil.getScore().score)
 
         stats = StatUtil.getTodaysStats()
         stats.minutesShowered = 5
@@ -165,28 +138,50 @@ class ExampleInstrumentedTest {
         stats.numPlasticStrawsUsed = 1
         stats.numPlasticUtensilsUsed = 0
         StatUtil.setTodaysStats(stats)
-        assertEquals(4, StatUtil.getScore())
+        assertEquals(4, StatUtil.getScore().score)
     }
 
     @Test
-    fun testGraphs1() {
+    fun fillOneEmptyDayTest() {
+        addDSToRealm(2, 10, 4, 1, 50, 0, 1, 3, 4)
+        addDSToRealm(3, 2, 4, 1, 50, 5, 1, 3, 4)
+        addDSToRealm(4, 1, 4, 1, 50, 3, 1, 3, 4)
+
+        StatUtil.fillEmptyDays()
+    }
+
+
+    @Before
+    public fun setupRealm() {
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+        assertEquals("com.acme.snapgreen", appContext.packageName)
+
+        Realm.init(appContext)
+        val testConfig =
+            RealmConfiguration.Builder().inMemory().name("test-realm").build()
+        Realm.setDefaultConfiguration(testConfig)
+    }
+
+    @After
+    public fun breakdownRealm() {
+        var realm = Realm.getDefaultInstance()
+        realm.beginTransaction()
+        realm.deleteAll()
+        realm.commitTransaction()
+    }
+
+    fun addWeeksData() {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         Realm.init(appContext)
         var realm = Realm.getDefaultInstance()
-        addDSToRealm(7, realm, 10, 4, 1, 0, 0, 1, 3, 4)
-        addDSToRealm(6, realm, 2, 4, 1, 0, 5, 1, 3, 4)
-        addDSToRealm(5, realm, 1, 4, 1, 0, 3, 1, 3, 4)
-        addDSToRealm(4, realm, 3, 4, 1, 0, 10, 1, 3, 4)
-        addDSToRealm(3, realm, 5, 4, 1, 0, 15, 1, 3, 4)
-        addDSToRealm(2, realm, 6, 4, 1, 0, 2, 1, 3, 4)
-        addDSToRealm(1, realm, 2, 4, 1, 0, 8, 1, 3, 4)
 
-        addDSToRealm(8, realm, 8, 2, 0, 10, 0, 0, 2, 3)
-        addDSToRealm(9, realm, 1, 2, 1, 10, 5, 1, 3, 4)
-        addDSToRealm(10, realm, 1, 2, 1, 10, 3, 1, 3, 4)
-        addDSToRealm(11, realm, 3, 2, 1, 10, 10, 1, 3, 4)
-        addDSToRealm(12, realm, 5, 2, 1, 10, 15, 1, 3, 4)
-        addDSToRealm(13, realm, 6, 2, 1, 10, 2, 1, 3, 4)
-        addDSToRealm(14, realm, 2, 2, 1, 10, 8, 1, 3, 4)
+        addDSToRealm(7, 10, 4, 1, 50, 0, 1, 3, 4)
+        addDSToRealm(6, 2, 4, 1, 50, 5, 1, 3, 4)
+        addDSToRealm(5, 1, 4, 1, 50, 3, 1, 3, 4)
+        addDSToRealm(4, 3, 4, 1, 50, 10, 1, 3, 4)
+        addDSToRealm(3, 5, 4, 1, 50, 15, 1, 3, 4)
+        addDSToRealm(2, 6, 4, 1, 50, 2, 1, 3, 4)
+        addDSToRealm(1, 2, 4, 1, 50, 8, 1, 3, 4)
+
     }
 }

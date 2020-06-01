@@ -1,11 +1,18 @@
 package com.acme.snapgreen.data
 
 import android.util.Log
+import com.acme.snapgreen.Constants
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.google.firebase.auth.FirebaseAuth
 import io.realm.Realm
 import io.realm.Sort
 import io.realm.kotlin.where
+import org.json.JSONObject
 import java.text.DateFormat
 import java.util.*
+
 
 /**
  * A utility class to abstract the database component of updating daily usage.
@@ -95,7 +102,12 @@ class StatUtil private constructor() {
          */
         fun setTodaysStats(stats: DailyStatistic) {
             val realm = Realm.getDefaultInstance()
-            var totalScore = getScore()
+            var totalScore = realm.where<TotalScore>().findFirst()
+
+            if (totalScore == null) {
+                totalScore = TotalScore()
+                realm.copyToRealm(totalScore)
+            }
 
             if (stats.hasBeenSaved) {
                 totalScore.score -= stats.score
@@ -112,6 +124,79 @@ class StatUtil private constructor() {
                 "Realm Database",
                 "Updating statistics associated with ${stats.today}"
             )
+
+            getTokenToUpdateScore(totalScore)
+        }
+
+        /**
+         * Aquires the user token for use with the back end and attempts to update the users score
+         */
+        private fun getTokenToUpdateScore(totalScore: TotalScore) {
+            val mUser = FirebaseAuth.getInstance().currentUser
+            mUser!!.getIdToken(true)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val idToken: String? = task.result?.token
+                        // Send token to your backend via HTTPS
+                        tryUpdateScore(idToken, totalScore.score)
+                    }
+                }
+        }
+
+        /** Updates user score on firebase */
+        private fun tryUpdateScore(idToken: String?, score: Int) {
+            val url = "${Constants.SERVER_URL}/users/score"
+
+            try {
+                val jsonObj = JSONObject()
+                jsonObj.put("token", idToken)
+                jsonObj.put("score", score)
+
+                val jsonRequest = JsonObjectRequest(
+                    Request.Method.PUT,
+                    url, jsonObj,
+                    Response.Listener { response ->
+                        Log.i(
+                            "Firebase",
+                            response.getString("message")
+                        )
+                    },
+                    Response.ErrorListener {
+                        Log.e(
+                            "Firebase",
+                            "Failed to upload score to database!"
+                        )
+                    }
+                )
+                NetworkManager.getInstance()?.addToRequestQueue(jsonRequest)
+
+            } catch (e: Throwable) {
+                //TODO: Handle failed connection
+            }
+        }
+
+        private fun daysDifference(date1: Date, date2: Date): Int {
+            val MILLI_TO_DAY = 1000 * 60 * 60 * 24
+            return (date1.time - date2.time).toInt() / MILLI_TO_DAY
+        }
+
+        fun fillEmptyDays() {
+            val realm = Realm.getDefaultInstance()
+            var lastStats: DailyStatistic? =
+                realm.where<DailyStatistic>().sort("date", Sort.DESCENDING).findFirst() ?: return
+            var lastAddedDate = lastStats?.date ?: return
+            var today = Date()
+
+            var daysDifference = daysDifference(today, lastAddedDate)
+            if (daysDifference > 1) {
+                for (i in 0 until daysDifference) {
+                    var newStats = realm.copyFromRealm(lastStats)
+                    newStats.date =
+                        Date(lastAddedDate.time + (i * 24 * 60 * 60 * 1000))
+                    newStats.today = DateFormat.getDateTimeInstance().format(newStats.date)
+                    realm.copyToRealm(newStats)
+                }
+            }
         }
     }
 }
