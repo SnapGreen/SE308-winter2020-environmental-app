@@ -14,7 +14,7 @@ https://www.figma.com/proto/bh5f84oIEU3nPKicuKOBUI/SnapGreen?node-id=1%3A10&scal
 # Analysis and Design Models
 
 ## Component Diagram
-![Annotation 2020-03-08 141438](https://user-images.githubusercontent.com/38018381/76172520-25f23980-6154-11ea-9d1f-c3ae9858771d.png)
+![Screen Shot 2020-06-01 at 2 31 37 PM](https://user-images.githubusercontent.com/38018381/83457144-e61ab580-a415-11ea-837f-5249a253b3e5.png)
 
 ## Use Case Diagram
 
