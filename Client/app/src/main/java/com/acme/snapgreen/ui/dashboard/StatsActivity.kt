@@ -81,7 +81,7 @@ class StatsActivity : AppCompatActivity() {
         stats: MutableList<WeeklyStatsCalc.Companion.CombinedDSData>,
         dailyFeedback: TextView
     ) {
-        if (stats[stats.size - 1].numGals > stats[stats.size - 2].numGals) {
+        if (stats.size > 1 && stats[stats.size - 1].numGals > stats[stats.size - 2].numGals) {
 
         }
     }
@@ -90,7 +90,7 @@ class StatsActivity : AppCompatActivity() {
         stats: MutableList<WeeklyStatsCalc.Companion.CombinedDSData>,
         dailyFeedback: TextView
     ) {
-        if (stats[stats.size - 1].numGals > stats[stats.size - 2].numGals) {
+        if (stats.size > 1 && stats[stats.size - 1].numGals > stats[stats.size - 2].numGals) {
 
         }
     }
