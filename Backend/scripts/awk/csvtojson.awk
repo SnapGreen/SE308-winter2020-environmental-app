@@ -1,4 +1,4 @@
-# tells awk to use "," as a delimiter
+# tells awk to use "|" as a delimiter
 BEGIN { FS = "|" } 
 
 # https://stackoverflow.com/questions/29613863/awk-split-a-column-of-delimited-text-in-a-row-into-lines

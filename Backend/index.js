@@ -1,20 +1,33 @@
-// https://jonathanmh.com/express-passport-json-web-token-jwt-authentication-beginners/
-const _ = require("lodash");
 const express = require("express");
 const bodyParser = require("body-parser");
-//const jwt = require("jsonwebtoken");
 const port = 8080;
+let schem_path = "/home/jtwedt/projSE308/SE308-winter2020-environmental-app/"
+schem_path = schem_path + "Backend/data/EPA/"
+schem_path = schem_path + "safer_chemical_ingredients_list.json"
+
+function getWeightedScore(ingredients){
+   num_ingreds = ingredients.length
+   ttl = 0
+   ingredients.forEach( ingredient => {
+      if(safer_chems[ingredient] === undefined){
+         ttl += 0
+      } else {
+         ttl += safer_chems[ingredient]
+      }
+   });
+   ttl = ttl / num_ingreds;
+   return ttl
+}
 
 const firebase = require("./firebase");
 let FIREBASE;
 
 const app = express();
 
-// this is what we will actually use
-// this will receive a "raw json" string from Android
-// it allows for around two 32-character (UTF8) fields, with their
-// corresponding json characters.
-// The limit is meant prevent an injection
+let safer_chems = require(schem_path);
+
+// The limit is just for protection--we don't want our server tied up
+// while someone sends it 50GB json files
 app.use(
   bodyParser.json({
     limit: "500kb",
@@ -121,15 +134,21 @@ app.get("/products/:id", async function (req, res) {
     console.log("No barcode provided");
   } else if (req.params.id) {
     try {
+      let id_14 = req.params.id.padStart(14, '0');
       // checks the database and then determines if the passwords match
       console.log("product lookup attempt");
-      let product = await FIREBASE.getProduct(req.params.id);
+      let product = await FIREBASE.getProduct(id_14);
 
       if (!product) {
         res.status(401).json({
           message: "Product Not Found",
         });
         console.log("product not found");
+      }
+
+      if (product.score === "-999999999") {
+         let score = getWeightedScore(product.ingredients);
+         product.score = score;
       }
 
       // Returns a json of the product scanned
@@ -145,7 +164,7 @@ app.get("/products/:id", async function (req, res) {
   }
 });
 
-// Batch write products to the server (max 500 products)
+// Batch write products to the server (max 250 products pre call)
 app.post("/products", async function (req, res) {
   if (!req.body || !req.body.products) {
     res.status(401).json({
