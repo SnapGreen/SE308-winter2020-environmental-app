@@ -15,7 +15,7 @@ function getWeightedScore(ingredients){
          ttl += safer_chems[ingredient]
       }
    });
-   ttl = ttl / num_ingreds;
+   ttl = Math.round(ttl / num_ingreds);
    return ttl
 }
 
