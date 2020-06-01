@@ -1,7 +1,8 @@
 #!/bin/bash
 SETTINGS="./Backend/scripts/settings.txt"
-TESTDIR=$(grep -oP '(?<=^TESTDIR:).*' $SETTINGS)
-TESTDIR="${TESTDIR}settings/"
+#TESTDIR=$(grep -oP '(?<=^TESTDIR:).*' $SETTINGS)
+#TESTDIR="${TESTDIR}settings/"
+TESTDIR="./Backend/tests/settings/"
 
 ./Backend/scripts/convertToJson.sh -s > "${TESTDIR}convertToJson_settings.out"
 ./Backend/scripts/getFDAUpdate.sh -s > "${TESTDIR}getFDAUpdate_settings.out"
