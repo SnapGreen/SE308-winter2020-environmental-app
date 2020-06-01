@@ -94,6 +94,16 @@ class Firebase {
     return productQuery.data();
   }
 
+  /**
+   * Updates the score of the user based on the token provided
+   */
+  async updateScore(token, score) {
+    let id = await this.getUIDFromToken(token);
+    await this.db.collection("users").doc(id).update({
+      score: score,
+    });
+  }
+
   // Updates a product in the database
   async updateProduct(id, product) {
     await this.db
