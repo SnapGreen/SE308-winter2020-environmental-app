@@ -15,7 +15,7 @@ function checkSettings(){
    echo "settings check:"
    printf "\tSETTINGS: %s\n" $SETTINGS
    printf "\tSERVER_POPULATED: %s\n" $SERVER_POPULATED
-   printf "\tLASTUPLOAD: %s\n" $LASTUPLOAD
+   #printf "\tLASTUPLOAD: %s\n" $LASTUPLOAD
    printf "\tUSAGE:\n"
    printf "$USAGE"
    printf "\tHELP:\n"
