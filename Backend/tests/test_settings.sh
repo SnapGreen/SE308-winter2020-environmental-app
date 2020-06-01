@@ -12,28 +12,28 @@ TESTDIR="${TESTDIR}settings/"
 ./../scripts/getEPAUpdate.sh -s > "${TESTDIR}getEPAUpdate_settings.out"
 ./../scripts/convertEPAData.sh fakedir/ fakefile -s > "${TESTDIR}convertEPAData_settings.out"
 
-echo "checking convertToJson.sh settings:"
+echo "checking convertToJson.sh settings..."
 diff "${TESTDIR}convertToJson_settings.out" "${TESTDIR}convertToJson_settings.txt" 
 
-echo "checking getFDAUpdate.sh settings:"
+echo "checking getFDAUpdate.sh settings..."
 diff "${TESTDIR}getFDAUpdate_settings.out" "${TESTDIR}getFDAUpdate_settings.txt"
 
-echo "checking downloadData.sh settings:"
+echo "checking downloadData.sh settings..."
 diff "${TESTDIR}downloadData_settings.out" "${TESTDIR}downloadData_settings.txt"
 
-echo "checking distributeFiles.sh settings:"
+echo "checking distributeFiles.sh settings..."
 diff "${TESTDIR}distributeFiles_settings.out" "${TESTDIR}distributeFiles_settings.txt"
 
-echo "checking uploadToDB.sh settings:"
+echo "checking uploadToDB.sh settings..."
 diff "${TESTDIR}uploadToDB_settings.out" "${TESTDIR}uploadToDB_settings.txt"
 
-echo "checking populateDB.sh settings:"
+echo "checking populateDB.sh settings..."
 diff "${TESTDIR}populateDB_settings.out" "${TESTDIR}populateDB_settings.txt"
 
-echo "checking getEPAUpdate.sh settings:"
+echo "checking getEPAUpdate.sh settings..."
 diff "${TESTDIR}getEPAUpdate_settings.out" "${TESTDIR}getEPAUpdate_settings.txt"
 
-echo "checking convertEPAData.sh settings:"
+echo "checking convertEPAData.sh settings..."
 diff "${TESTDIR}convertEPAData_settings.out" "${TESTDIR}convertEPAData_settings.txt"
 
 echo "If there is no output after each of the checks above, settings check passed"

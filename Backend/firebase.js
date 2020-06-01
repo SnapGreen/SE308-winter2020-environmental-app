@@ -27,7 +27,7 @@ class Firebase {
   }
 
   // Returns the user json object based on their UUID
-  async getUser(uuid) {
+  async getUserByUUID(uuid) {
     // Queries for the specified user
     let userDoc = await this.db.collection("users").doc(uuid).get();
 
@@ -36,6 +36,23 @@ class Firebase {
       return null;
     }
     return userDoc.data();
+  }
+
+  // Returns the user json object based on their UUID
+  async getUserByUsername(username) {
+    // Queries for the specified user
+    console.log(username);
+    let userDoc = await this.db
+      .collection("users")
+      .where("username", "==", username)
+      .get();
+
+    if (userDoc.empty) {
+      console.log("No such document!");
+      return null;
+    }
+    let user = userDoc.docs[0];
+    return { id: user.id, data: user.data() };
   }
 
   // Check to ensure username doesn't exist, then creates a user
@@ -63,7 +80,10 @@ class Firebase {
 
   // Queries and returns a product document
   async getProduct(id) {
-    let productQuery = await this.db.collection("products").doc(`${id}`).get();
+    let productQuery = await this.db
+      .collection("products")
+      .doc(`00${id}`)
+      .get();
 
     console.log(productQuery);
     if (productQuery.empty) {
@@ -112,12 +132,12 @@ class Firebase {
   async getFriends(idToken) {
     //list of UUIDs
     let id = await this.getUIDFromToken(idToken);
-    let user = await this.getUser(id);
+    let user = await this.getUserByUUID(id);
 
     let friendsListDetailed = [];
 
     for (let i = 0; i < user.friendsList.length; i++) {
-      let friendData = await this.getUser(user.friendsList[i]);
+      let friendData = await this.getUserByUUID(user.friendsList[i]);
       console.log(friendData);
       friendsListDetailed.push(friendData);
     }
@@ -126,6 +146,27 @@ class Firebase {
 
     // if a product exists, returns the document
     return friendsListDetailed;
+  }
+
+  async addFriend(idToken, friendUsername) {
+    let id = await this.getUIDFromToken(idToken);
+    let friend = await this.getUserByUsername(friendUsername);
+    if (!friend) {
+      return null;
+    }
+    try {
+      await this.db
+        .collection("users")
+        .doc(id)
+        .update({
+          friendsList: admin.firestore.FieldValue.arrayUnion(friend.id),
+        });
+      let { friendsList, ...data } = friend.data;
+      return data;
+    } catch (err) {
+      console.log(err);
+      return null;
+    }
   }
 }
 

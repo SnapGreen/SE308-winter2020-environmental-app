@@ -397,7 +397,6 @@ class PreviewActivity : AppCompatActivity(), CoroutineScope {
                     startActivity(intent)
                     closeCamera()
                     closeBackgroundThread()
-                    finish()
                 }
             }
 

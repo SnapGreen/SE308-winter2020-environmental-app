@@ -6,9 +6,10 @@ FDADATADIR="${DATADIR}${FDADIR}"
 SUFFIX_LEN=$(grep -oP "(?<=^SUFFIX_LEN:).*" $SETTINGS)
 PRODS_PER_JSON=$(grep -oP "(?<=^PRODS_PER_JSON:).*" $SETTINGS)
 FB_WRITES_PER_DAY=$(grep -oP "(?<=^FB_WRITES_PER_DAY:).*" $SETTINGS)
-TESTDIR=$(grep -oP "(?<=^TESTDIR:).*" "$SETTINGS")
-TEST_POPDB_SETTINGS="${TESTDIR}settings/populateDB_settings.txt"
-TEST_UPLOADTODB_SETTINGS="${TESTDIR}settings/uploadToDB_settings.txt"
+TESTDIR=$(grep -oP "(?<=TESTDIR).*" $SETTINGS)
+TESTSETTINGSDIR=$"${TESTDIR}settings/"
+TEST_POPDB_SETTINGS="${TESTSETTINGSDIR}populateDB_settings.txt"
+TEST_UPLOADTODB_SETTINGS="${TESTSETTINGSDIR}uploadToDB_settings.txt"
 SPLIT_PREFIX=$(grep -oP "(?<=^SPLIT_PREFIX:).*" $SETTINGS)
 OUTFILE_END=$(grep -oP "(?<=^OUTFILE_END:).*" $SETTINGS)
 UPLOAD_SLEEP=$(grep -oP "(?<=^UPLOAD_SLEEP:).*" $SETTINGS)
@@ -36,6 +37,7 @@ function checkSettings(){
    printf "\tPRODS_PER_JSON: %s\n" "$PRODS_PER_JSON"
    printf "\tFB_WRITES_PER_DAY: %s\n" "$FB_WRITES_PER_DAY"
    printf "\tTESTDIR: %s\n" "$TESTDIR"
+   printf "\tTESTSETTINGSDIR: %s\n" "$TESTSETTINGSDIR"
    printf "\tTEST_POPDB_SETTINGS: %s\n" "$TEST_POPDB_SETTINGS"
    printf "\tTEST_UPLOADTODB_SETTINGS: %s\n" "$TEST_UPLOADTODB_SETTINGS"
    printf "\tSPLIT_PREFIX: %s\n" "$SPLIT_PREFIX"
@@ -79,6 +81,7 @@ function uploadFiles(){
    # uploads a json every $UPLOAD_SLEEP seconds
    success=true
    lastupload=""
+<<<<<<< HEAD
    failures=0
    lastfiles=false
    max_file_uploads=$((FB_WRITES_PER_DAY / PRODS_PER_JSON))
@@ -100,7 +103,7 @@ function uploadFiles(){
       file=${alljsons[$i]}
       if [ $success == "true" ] ; then
          num=$(echo $file | grep -oP "[0-9]{$SUFFIX_LEN}(?=.json)")
-         logfile="${UPLOADLOGDIR}/${num}.log"
+         logfile="${UPLOADLOGDIR}${num}.log"
 
          curl --header "Content-Type: application/json"\
             --request POST --data @$file http://localhost:8080/products\
@@ -215,9 +218,21 @@ if [ "$DONE_UPLOADING" != "true" ] ; then
    fi
 
    if [ "$fin" == "false" ] ; then
+<<<<<<< HEAD
       if [ -n $LASTUPLOAD ] ; then
          removePreviousUploads
       fi
+=======
+      #if [ -n $LASTUPLOAD ] ; then
+      #   removePreviousUploads
+      #fi
+      max_file_uploads=$((FB_WRITES_PER_DAY / PRODS_PER_JSON))
+
+      shopt -s nullglob
+
+      alljsons=($FDADATADIR$SPLIT_PREFIX*$OUTFILE_END)
+      numjsons=${#alljsons[@]}
+>>>>>>> master
 
       uploadFiles "$max_file_uploads"
 

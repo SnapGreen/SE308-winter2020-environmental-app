@@ -49,7 +49,7 @@ app.post("/users", async function (req, res) {
   }
 
   let uid = await FIREBASE.getUIDFromToken(req.body.token);
-  let user = await FIREBASE.getUser(uid);
+  let user = await FIREBASE.getUserByUUID(uid);
 
   if (user) {
     res.json({
@@ -70,68 +70,60 @@ app.post("/users", async function (req, res) {
   }
 });
 
-// Used to verify login info is correct
-app.post("/login", async function (req, res) {
-  if (!req.body) {
-    res.status(401).json({
-      message: "No req.body present",
-    });
-  } else if (req.body.name && req.body.password) {
-    try {
-      // checks the database and then determines if the passwords match
-      console.log("user login attempt");
-      let user = await FIREBASE.getUser(req.body.name);
-
-      if (!user) {
-        res.status(401).json({
-          message: "username not found",
-        });
-        console.log("username not found");
-      }
-
-      if (user.password === req.body.password) {
-        res.json({
-          message: "ok",
-        });
-        console.log("ok");
-      } else {
-        res.status(401).json({
-          message: "passwords do not match",
-        });
-        console.log("passwords do not match");
-      }
-    } catch (err) {
-      res.status(401).json({
-        message: "Login Error",
-      });
-      console.log("Login Error");
-    }
-  }
-});
-
 app.get("/friends/:id", async function (req, res) {
   if (!req.params || !req.params.id) {
     res.send("No ID provided");
-  } else if (req.params.id) {
-    try {
-      // checks the database and then determines if the passwords match
-      let friends = await FIREBASE.getFriends(req.params.id);
-      if (!friends) {
-        console.log("Friends List Not Found");
-        res.status(401).json({
-          message: "Friends List Not Found",
-        });
-      }
-
-      // Returns a json of the friends list associated with the user
-      res.json(friends);
-    } catch (err) {
-      console.log("Friends List Lookup Error");
+    return;
+  }
+  try {
+    let friends = await FIREBASE.getFriends(req.params.id);
+    if (!friends) {
+      console.log("Friends List Not Found");
       res.status(401).json({
-        message: "Friends List Lookup Error",
+        message: "Friends List Not Found",
       });
-      console.log(err);
     }
+
+    // Returns a json of the friends list associated with the user
+    res.json(friends);
+  } catch (err) {
+    console.log("Friends List Lookup Error");
+    res.status(401).json({
+      message: "Friends List Lookup Error",
+    });
+    console.log(err);
+  }
+});
+
+app.post("/friends", async function (req, res) {
+  console.log("Attempting to add friend!");
+  if (!req.body || !req.body.token || !req.body.friendUsername) {
+    console.log(req.body.friendUsername);
+    res.send("No req.body, token or friend username provided");
+    return;
+  }
+  try {
+    console.log("JSON constructed properly for friend, adding now");
+    let friend = await FIREBASE.addFriend(
+      req.body.token,
+      req.body.friendUsername
+    );
+    if (!friend) {
+      console.log("Friend Not Found");
+      res.status(401).json({
+        message: "Friend Not Found",
+      });
+      return;
+    }
+
+    // Returns a json of the new friend added
+    res.json(friend);
+  } catch (err) {
+    console.log("Add Friend Error");
+    res.status(401).json({
+      message: "Add Friend Error",
+    });
+    console.log(err);
   }
 });
 

@@ -1,34 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:backgroundTint="@color/cotton_white">
+
+    <LinearLayout
+        android:layout_width="418dp"
+        android:layout_height="134dp"
+        android:background="@color/spring_green"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="450dp"
+        android:layout_height="131dp"
+        android:layout_marginBottom="100dp"
+        android:background="@color/spring_green"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.846"
+        app:layout_constraintStart_toStartOf="parent"></LinearLayout>
 
     <TextView
         android:id="@+id/score_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="170dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="182dp"
+        android:layout_marginBottom="8dp"
         android:gravity="center"
         android:text="Score"
         android:textAlignment="center"
         android:textSize="30sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/barcode_score"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.28"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/barcode_response" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/score_header2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="170dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="182dp"
         android:gravity="center"
         android:text="Ingredients"
@@ -36,7 +57,7 @@
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.442"
+        app:layout_constraintHorizontal_bias="0.436"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/barcodeResult" />
 
@@ -72,64 +93,53 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/barcode_response"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="170dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="182dp"
-        android:gravity="center"
-        android:text="No Ingredients Found"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.475"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/score_header2" />
-
-    <TextView
         android:id="@+id/barcode_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="170dp"
-        android:layout_marginTop="19dp"
-        android:layout_marginEnd="182dp"
+        android:layout_marginBottom="28dp"
         android:gravity="center"
         android:text="No Score Found"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/result_cancel_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.464"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/score_header" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/result_cancel_button"
         android:layout_width="215dp"
         android:layout_height="100dp"
-        android:layout_marginTop="64dp"
         android:background="@android:drawable/title_bar"
         android:backgroundTint="#FAA5A5"
         android:shadowColor="#FFFFFF"
         android:text="cancel"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/result_save_button"
-        app:layout_constraintTop_toBottomOf="@+id/barcode_score"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/result_save_button"
         android:layout_width="196dp"
         android:layout_height="100dp"
-        android:layout_marginTop="64dp"
         android:background="@android:drawable/title_bar"
-        android:backgroundTint="#91C861"
+        android:backgroundTint="#C9FB8E"
+        android:enabled="false"
         android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ingredients_recycle_view"
+        android:layout_width="330dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#00FFFFFF"
+        android:backgroundTint="#008EC891"
+        android:backgroundTintMode="add"
+        app:layout_constraintBottom_toTopOf="@+id/score_header"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/barcode_score"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/score_header2" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

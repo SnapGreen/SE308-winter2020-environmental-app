@@ -11,10 +11,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.TextUtils
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.acme.snapgreen.R
 import kotlinx.android.synthetic.main.user_display.*
@@ -22,49 +19,51 @@ import kotlinx.android.synthetic.main.user_display.*
 
 class ProfileActivity : AppCompatActivity() {
 
+    lateinit var mCancel: TextView
+    lateinit var mDone: TextView
     lateinit var mUserImage: ImageView
-    lateinit var mFirstName: EditText
-    lateinit var mLastName: EditText
+
+    //lateinit var mChangeImage: EditText
+    lateinit var mName: EditText
+    lateinit var mUserName: EditText
     lateinit var mPhoneNumber: EditText
     lateinit var mEmail: EditText
     lateinit var mPassword: EditText
-    lateinit var mUpdateButton: Button
 //    lateinit var mDataBase: DatabaseReference
 //    lateinit var mAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Toast.makeText(applicationContext, "Activity launched!", Toast.LENGTH_SHORT).show()
         setContentView(R.layout.activity_profile)
 
 
         mUserImage = findViewById(R.id.profilePicImageView)
-        mFirstName = findViewById(R.id.profileFirstName)
-        mLastName = findViewById(R.id.profileLastName)
+        mName = findViewById(R.id.profileFirstName)
+        mUserName = findViewById(R.id.profileUserName)
         mPhoneNumber = findViewById(R.id.profilePhone)
         mEmail = findViewById(R.id.profileEmail)
         mPassword = findViewById(R.id.profilePassword)
-        mUpdateButton = findViewById(R.id.profileUpdateButton)
-
+        mDone = findViewById(R.id.profileDone)
+        mCancel = findViewById(R.id.profileCancel)
 //        mAuth = FirebaseAuth.getInstance()
 //        val uid = mAuth.currentUser?.uid
 //
 //        mDataBase = FirebaseDatabase.getInstance().getReference("Users").child(uid) //.getReference("Users")?
 
-        mUpdateButton.setOnClickListener {
+        mDone.setOnClickListener {
 
-            val firstName = mFirstName.text.toString().trim()
-            val lastName = mLastName.text.toString().trim()
+            val firstName = mName.text.toString().trim()
+            val lastName = mUserName.text.toString().trim()
             val phoneNum = mPhoneNumber.text.toString().trim()
             val email = mEmail.text.toString().trim()
             val password = mPassword.text.toString().trim()
 
             if (TextUtils.isEmpty(firstName)) {
-                mFirstName.error = "Enter First Name"
+                mName.error = "Enter First Name"
                 return@setOnClickListener
             }
             if (TextUtils.isEmpty(lastName)) {
-                mLastName.error = "Enter Last Name"
+                mUserName.error = "Enter Last Name"
                 return@setOnClickListener
             }
             if (TextUtils.isEmpty(phoneNum)) {
@@ -167,9 +166,11 @@ class ProfileActivity : AppCompatActivity() {
         // if (task.isSuccessful) {
         val intent = Intent(applicationContext, DashboardActivity::class.java)
         startActivity(intent)
-        finish()
+
         //   }
     }
+
+
 }
 
 
