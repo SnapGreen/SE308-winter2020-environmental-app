@@ -30,7 +30,7 @@ function checkSettings(){
 }
 
 function checkSettingsNPM(){
-   SETTINGS="./Backend/scripts/settings_npm.txt"
+   SETTINGS_NPM="./Backend/scripts/settings_npm.txt"
    FILENAME="$1"
    FULLPATH="${2}/${FILENAME}"
    LOGDIR=$(grep -oP '(?<=^LOGDIR:).*' $SETTINGS_NPM)
