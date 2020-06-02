@@ -4,7 +4,7 @@ fin=false
 silent=false
 
 function checkSettingsNPM(){
-   SETTINGS_NPM="Backend/server/scripts/settings_npm.txt"
+   SETTINGS_NPM="Backend/scripts/settings_npm.txt"
    DATADIR=$(grep -oP '(?<=^DATADIR:).*' $SETTINGS_NPM)
    EPADIR=$(grep -oP '(?<=^EPADIR:).*' $SETTINGS_NPM)
    OUTFILE_END=$(grep -oP '(?<=^OUTFILE_END:).*' $SETTINGS_NPM)
