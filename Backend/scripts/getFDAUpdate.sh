@@ -4,7 +4,7 @@ fin=false
 silent=false
 
 function checkSettingsNPM(){
-   SETTINGS_NPM="./Backend/scripts/settings.txt"
+   SETTINGS_NPM="./Backend/scripts/settings_npm.txt"
    CURRENTLATEST=$(grep -oP '(?<=^CURRENTLATEST:).*' $SETTINGS_NPM)
    LASTLATEST=$(grep -oP '(?<=^LASTLATEST:).*' $SETTINGS_NPM)
    SERVER_POPULATED=$(grep -oP '(?<=^SERVER_POPULATED:).*' $SETTINGS_NPM)
