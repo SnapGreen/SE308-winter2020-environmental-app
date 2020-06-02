@@ -60,6 +60,7 @@ matrix:
         tar xzf master.tar.gz &&
         cd kcov-master &&
         mkdir build &&
+        cd build &&
         cmake .. &&
         make &&
         sudo make install &&
