@@ -2,6 +2,33 @@
 debug=true
 fin=false
 
+function checkSettingsNPM(){
+   SETTINGS_NPM="./Backend/scripts/settings_npm.txt"
+   FILENAME="$1"
+   FULLPATH="${2}/${FILENAME}"
+   LOGDIR=$(grep -oP '(?<=^LOGDIR:).*' $SETTINGS_NPM)
+   CURRENTLATEST=$(grep -oP '(?<=^CURRENTLATEST:).*' $SETTINGS_NPM)
+   DONE_UPLOADING=$(grep -oP '(?<=^DONE_UPLOADING:).*' $SETTINGS_NPM)
+   DOWNLOADLOGDIR="${LOGDIR}downloads/"
+   USAGE="\t\tUsage: ./downloadData.sh <filename> <url> [OPTION] (-h for help)\n"
+   HELP="${USAGE}\t\t\t-b: bypass debug (will skip settings check)\n"
+   HELP="${HELP}\t\t\t-s: output settings only\n"
+   HELP="${HELP}\t\t\t-h: print help\n"
+
+   echo "settings check:"
+   printf "\tSETTINGS: %s\n" "$SETTINGS_NPM"
+   printf "\tFILENAME: %s\n" "$FILENAME"
+   printf "\tFULLPATH: %s\n" "$FULLPATH"
+   printf "\tLOGDIR: %s\n" "$LOGDIR"
+   printf "\tCURRENTLATEST: %s\n" "$CURRENTLATEST"
+   printf "\tDONE_UPLOADING: %s\n" $DONE_UPLOADING
+   printf "\tDOWNLOADLOGDIR: %s\n" "$DOWNLOADLOGDIR"
+   printf "\tUSAGE:\n"
+   printf "$USAGE"
+   printf "\tHELP:\n"
+   printf "$HELP"
+}
+
 if [[ $# -gt 2 ]] ; then
    if [ -n $3 ] ; then
       if [ "$3" == "-t" ] ; then
@@ -26,33 +53,6 @@ HELP="${HELP}\t\t\t-h: print help\n"
 function checkSettings(){
    echo "settings check:"
    printf "\tSETTINGS: %s\n" "$SETTINGS"
-   printf "\tFILENAME: %s\n" "$FILENAME"
-   printf "\tFULLPATH: %s\n" "$FULLPATH"
-   printf "\tLOGDIR: %s\n" "$LOGDIR"
-   printf "\tCURRENTLATEST: %s\n" "$CURRENTLATEST"
-   printf "\tDONE_UPLOADING: %s\n" $DONE_UPLOADING
-   printf "\tDOWNLOADLOGDIR: %s\n" "$DOWNLOADLOGDIR"
-   printf "\tUSAGE:\n"
-   printf "$USAGE"
-   printf "\tHELP:\n"
-   printf "$HELP"
-}
-
-function checkSettingsNPM(){
-   SETTINGS_NPM="./Backend/scripts/settings_npm.txt"
-   FILENAME="$1"
-   FULLPATH="${2}/${FILENAME}"
-   LOGDIR=$(grep -oP '(?<=^LOGDIR:).*' $SETTINGS_NPM)
-   CURRENTLATEST=$(grep -oP '(?<=^CURRENTLATEST:).*' $SETTINGS_NPM)
-   DONE_UPLOADING=$(grep -oP '(?<=^DONE_UPLOADING:).*' $SETTINGS_NPM)
-   DOWNLOADLOGDIR="${LOGDIR}downloads/"
-   USAGE="\t\tUsage: ./downloadData.sh <filename> <url> [OPTION] (-h for help)\n"
-   HELP="${USAGE}\t\t\t-b: bypass debug (will skip settings check)\n"
-   HELP="${HELP}\t\t\t-s: output settings only\n"
-   HELP="${HELP}\t\t\t-h: print help\n"
-
-   echo "settings check:"
-   printf "\tSETTINGS: %s\n" "$SETTINGS_NPM"
    printf "\tFILENAME: %s\n" "$FILENAME"
    printf "\tFULLPATH: %s\n" "$FULLPATH"
    printf "\tLOGDIR: %s\n" "$LOGDIR"

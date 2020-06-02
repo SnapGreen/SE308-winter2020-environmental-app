@@ -3,6 +3,39 @@ debug=true
 fin=false
 silent=false
 
+function checkSettingsNPM(){
+   SETTINGS_NPM="./Backend/scripts/settings.txt"
+   CURRENTLATEST=$(grep -oP '(?<=^CURRENTLATEST:).*' $SETTINGS_NPM)
+   LASTLATEST=$(grep -oP '(?<=^LASTLATEST:).*' $SETTINGS_NPM)
+   SERVER_POPULATED=$(grep -oP '(?<=^SERVER_POPULATED:).*' $SETTINGS_NPM)
+   FDC_DIR_ADDRESS=$(grep -oP '(?<=^FDC_DIR_ADDRESS:).*' $SETTINGS_NPM)
+   TMPDIR=$(grep -oP '(?<=^TMPDIR:).*' $SETTINGS_NPM)
+   TMPFILE_END=$(grep -oP '(?<=^TMPFILE_END:).*' $SETTINGS_NPM)
+   TMPLINKSFILE="${TMPDIR}links${TMPFILE_END}"
+   TMPFILELIST="${TMPDIR}available_data${TMPFILE_END}"
+   USAGE="\t\tUsage: ./getFDAUpdate.sh [OPTION] (use option -h for help)\n"
+   HELP="${USAGE}\t\t**If no OPTION supplied, debug mode on (temp files remain)\n"
+   HELP="${HELP}\t\t\t-b: bypass debug mode, download only if new\n"
+   HELP="${HELP}\t\t\t-f: force download\n"
+   HELP="${HELP}\t\t\t-s: output settings only\n"
+   HELP="${HELP}\t\t\t-h: print help\n"
+
+   echo "settings check:"
+   printf "\tSETTINGS: %s\n" $SETTINGS_NPM
+   printf "\tCURRENTLATEST: %s\n" $CURRENTLATEST
+   printf "\tLASTLATEST: %s\n" $LASTLATEST
+   printf "\tSERVER_POPULATED: %s\n" $SERVER_POPULATED
+   printf "\tFDC_DIR_ADDRESS: %s\n" $FDC_DIR_ADDRESS
+   printf "\tTMPDIR: %s\n" $TMPDIR
+   printf "\tTMPFILE_END: %s\n" $TMPFILE_END
+   printf "\tTMPLINKSFILE: %s\n" $TMPLINKSFILE
+   printf "\tTMPFILELIST: %s\n" $TMPFILELIST
+   printf "\tUSAGE:\n"
+   printf "$USAGE"
+   printf "\tHELP:\n"
+   printf "$HELP"
+}
+
 if [[ -n $1 ]] ; then
    if [ "$1" == "-t" ] ; then
       checkSettingsNPM
@@ -29,39 +62,6 @@ HELP="${HELP}\t\t\t-h: print help\n"
 function checkSettings(){
    echo "settings check:"
    printf "\tSETTINGS: %s\n" $SETTINGS
-   printf "\tCURRENTLATEST: %s\n" $CURRENTLATEST
-   printf "\tLASTLATEST: %s\n" $LASTLATEST
-   printf "\tSERVER_POPULATED: %s\n" $SERVER_POPULATED
-   printf "\tFDC_DIR_ADDRESS: %s\n" $FDC_DIR_ADDRESS
-   printf "\tTMPDIR: %s\n" $TMPDIR
-   printf "\tTMPFILE_END: %s\n" $TMPFILE_END
-   printf "\tTMPLINKSFILE: %s\n" $TMPLINKSFILE
-   printf "\tTMPFILELIST: %s\n" $TMPFILELIST
-   printf "\tUSAGE:\n"
-   printf "$USAGE"
-   printf "\tHELP:\n"
-   printf "$HELP"
-}
-
-function checkSettingsNPM(){
-   SETTINGS_NPM="./Backend/scripts/settings.txt"
-   CURRENTLATEST=$(grep -oP '(?<=^CURRENTLATEST:).*' $SETTINGS_NPM)
-   LASTLATEST=$(grep -oP '(?<=^LASTLATEST:).*' $SETTINGS_NPM)
-   SERVER_POPULATED=$(grep -oP '(?<=^SERVER_POPULATED:).*' $SETTINGS_NPM)
-   FDC_DIR_ADDRESS=$(grep -oP '(?<=^FDC_DIR_ADDRESS:).*' $SETTINGS_NPM)
-   TMPDIR=$(grep -oP '(?<=^TMPDIR:).*' $SETTINGS_NPM)
-   TMPFILE_END=$(grep -oP '(?<=^TMPFILE_END:).*' $SETTINGS_NPM)
-   TMPLINKSFILE="${TMPDIR}links${TMPFILE_END}"
-   TMPFILELIST="${TMPDIR}available_data${TMPFILE_END}"
-   USAGE="\t\tUsage: ./getFDAUpdate.sh [OPTION] (use option -h for help)\n"
-   HELP="${USAGE}\t\t**If no OPTION supplied, debug mode on (temp files remain)\n"
-   HELP="${HELP}\t\t\t-b: bypass debug mode, download only if new\n"
-   HELP="${HELP}\t\t\t-f: force download\n"
-   HELP="${HELP}\t\t\t-s: output settings only\n"
-   HELP="${HELP}\t\t\t-h: print help\n"
-
-   echo "settings check:"
-   printf "\tSETTINGS: %s\n" $SETTINGS_NPM
    printf "\tCURRENTLATEST: %s\n" $CURRENTLATEST
    printf "\tLASTLATEST: %s\n" $LASTLATEST
    printf "\tSERVER_POPULATED: %s\n" $SERVER_POPULATED

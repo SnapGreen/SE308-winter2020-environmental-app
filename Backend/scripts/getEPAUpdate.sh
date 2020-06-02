@@ -3,6 +3,40 @@ debug=true
 fin=false
 silent=false
 
+function checkSettingsNPM(){
+   SETTINGS_NPM="./Backend/scripts/settings_npm.txt"
+   EPA_DIR_ADDRESS=$(grep -oP '(?<=^EPA_DIR_ADDRESS:).*' $SETTINGS_NPM)
+   EPADATASOURCE=$(grep -oP '(?<=^EPADATASOURCE:).*' $SETTINGS_NPM)
+   EPA_DATA_URL="${EPA_DIR_ADDRESS}${EPADATASOURCE}"
+   RAWDATADIR=$(grep -oP '(?<=^RAWDATADIR:).*' $SETTINGS_NPM)
+   EPADIR=$(grep -oP '(?<=^EPADIR:).*' $SETTINGS_NPM)
+   RAWDATADEST="${RAWDATADIR}${EPADIR}"
+   LASTDATAPATH="${RAWDATADEST}${EPADATASOURCE}"
+   LOGDIR=$(grep -oP '(?<=^LOGDIR:).*' $SETTINGS_NPM)
+   DOWNLOADLOGDIR="${LOGDIR}downloads/"
+   USAGE="\t\tUsage: ./getEPAUpdate.sh [OPTION] (use option -h for help)\n"
+   HELP="${USAGE}\t\t**If no OPTION supplied, debug mode on (temp files remain)\n"
+   HELP="${HELP}\t\t\t-b: bypass debug mode\n"
+   HELP="${HELP}\t\t\t-s: output settings only\n"
+   HELP="${HELP}\t\t\t-h: print help\n"
+
+   echo "settings check:"
+   printf "\tSETTINGS: %s\n" $SETTINGS_NPM
+   printf "\tEPA_DIR_ADDRESS: %s\n" "$EPA_DIR_ADDRESS"
+   printf "\tEPADATASOURCE: %s\n" "$EPADATASOURCE"
+   printf "\tEPA_DATA_URL: %s\n" "$EPA_DATA_URL"
+   printf "\tRAWDATADIR: %s\n" "$RAWDATADIR"
+   printf "\tEPADIR: %s\n" "$EPADIR"
+   printf "\tRAWDATADEST: %s\n" "$RAWDATADEST"
+   printf "\tLASTDATAPATH: %s\n" "$LASTDATAPATH"
+   printf "\tLOGDIR: %s\n" "$LOGDIR"
+   printf "\tDOWNLOADLOGIR: %s\n" "$DOWNLOADLOGDIR"
+   printf "\tUSAGE:\n"
+   printf "$USAGE"
+   printf "\tHELP:\n"
+   printf "$HELP"
+}
+
 if [[ -n $1 ]] ; then
    if [ "$1" == "-t" ] ; then
       checkSettingsNPM
@@ -29,40 +63,6 @@ HELP="${HELP}\t\t\t-h: print help\n"
 function checkSettings(){
    echo "settings check:"
    printf "\tSETTINGS: %s\n" $SETTINGS
-   printf "\tEPA_DIR_ADDRESS: %s\n" "$EPA_DIR_ADDRESS"
-   printf "\tEPADATASOURCE: %s\n" "$EPADATASOURCE"
-   printf "\tEPA_DATA_URL: %s\n" "$EPA_DATA_URL"
-   printf "\tRAWDATADIR: %s\n" "$RAWDATADIR"
-   printf "\tEPADIR: %s\n" "$EPADIR"
-   printf "\tRAWDATADEST: %s\n" "$RAWDATADEST"
-   printf "\tLASTDATAPATH: %s\n" "$LASTDATAPATH"
-   printf "\tLOGDIR: %s\n" "$LOGDIR"
-   printf "\tDOWNLOADLOGIR: %s\n" "$DOWNLOADLOGDIR"
-   printf "\tUSAGE:\n"
-   printf "$USAGE"
-   printf "\tHELP:\n"
-   printf "$HELP"
-}
-
-function checkSettingsNPM(){
-   SETTINGS_NPM="./Backend/scripts/settings_npm.txt"
-   EPA_DIR_ADDRESS=$(grep -oP '(?<=^EPA_DIR_ADDRESS:).*' $SETTINGS_NPM)
-   EPADATASOURCE=$(grep -oP '(?<=^EPADATASOURCE:).*' $SETTINGS_NPM)
-   EPA_DATA_URL="${EPA_DIR_ADDRESS}${EPADATASOURCE}"
-   RAWDATADIR=$(grep -oP '(?<=^RAWDATADIR:).*' $SETTINGS_NPM)
-   EPADIR=$(grep -oP '(?<=^EPADIR:).*' $SETTINGS_NPM)
-   RAWDATADEST="${RAWDATADIR}${EPADIR}"
-   LASTDATAPATH="${RAWDATADEST}${EPADATASOURCE}"
-   LOGDIR=$(grep -oP '(?<=^LOGDIR:).*' $SETTINGS_NPM)
-   DOWNLOADLOGDIR="${LOGDIR}downloads/"
-   USAGE="\t\tUsage: ./getEPAUpdate.sh [OPTION] (use option -h for help)\n"
-   HELP="${USAGE}\t\t**If no OPTION supplied, debug mode on (temp files remain)\n"
-   HELP="${HELP}\t\t\t-b: bypass debug mode\n"
-   HELP="${HELP}\t\t\t-s: output settings only\n"
-   HELP="${HELP}\t\t\t-h: print help\n"
-
-   echo "settings check:"
-   printf "\tSETTINGS: %s\n" $SETTINGS_NPM
    printf "\tEPA_DIR_ADDRESS: %s\n" "$EPA_DIR_ADDRESS"
    printf "\tEPADATASOURCE: %s\n" "$EPADATASOURCE"
    printf "\tEPA_DATA_URL: %s\n" "$EPA_DATA_URL"
