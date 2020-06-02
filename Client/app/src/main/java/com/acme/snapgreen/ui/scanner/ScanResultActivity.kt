@@ -95,6 +95,12 @@ class ScanResultActivity : AppCompatActivity() {
             NetworkManager.getInstance()?.addToRequestQueue(jsonRequest)
 
         } catch (e: Throwable) {
+            Toast.makeText(
+                applicationContext,
+                "Network request failed",
+                Toast.LENGTH_SHORT
+            )
+                .show()
         }
     }
 

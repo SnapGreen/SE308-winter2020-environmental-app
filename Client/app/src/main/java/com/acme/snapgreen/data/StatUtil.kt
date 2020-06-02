@@ -171,6 +171,7 @@ class StatUtil private constructor() {
                 NetworkManager.getInstance()?.addToRequestQueue(jsonRequest)
 
             } catch (e: Throwable) {
+                Log.e("StatUtil", "Connection request failed")
             }
         }
 
