@@ -44,7 +44,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/snapGreen"
         android:layout_width="322dp"
         android:layout_height="80dp"
         android:layout_marginTop="16dp"
@@ -108,7 +108,7 @@
         android:textIsSelectable="false"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/snapGreen"
         tools:layout_editor_absoluteX="-16dp" />
 
     <TextView
