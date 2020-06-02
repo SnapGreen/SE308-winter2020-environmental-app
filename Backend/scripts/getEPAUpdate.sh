@@ -1,4 +1,15 @@
 #!/bin/bash
+debug=true
+fin=false
+silent=false
+
+if [[ -n $1 ]] ; then
+   if [ "$1" == "-t" ] ; then
+      checkSettingsNPM
+      exit 0
+   fi
+fi
+
 SETTINGS="/home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/settings.txt"
 EPA_DIR_ADDRESS=$(grep -oP '(?<=^EPA_DIR_ADDRESS:).*' $SETTINGS)
 EPADATASOURCE=$(grep -oP '(?<=^EPADATASOURCE:).*' $SETTINGS)
@@ -14,10 +25,6 @@ HELP="${USAGE}\t\t**If no OPTION supplied, debug mode on (temp files remain)\n"
 HELP="${HELP}\t\t\t-b: bypass debug mode\n"
 HELP="${HELP}\t\t\t-s: output settings only\n"
 HELP="${HELP}\t\t\t-h: print help\n"
-
-debug=true
-fin=false
-silent=false
 
 function checkSettings(){
    echo "settings check:"
@@ -48,6 +55,11 @@ function checkSettingsNPM(){
    LASTDATAPATH="${RAWDATADEST}${EPADATASOURCE}"
    LOGDIR=$(grep -oP '(?<=^LOGDIR:).*' $SETTINGS_NPM)
    DOWNLOADLOGDIR="${LOGDIR}downloads/"
+   USAGE="\t\tUsage: ./getEPAUpdate.sh [OPTION] (use option -h for help)\n"
+   HELP="${USAGE}\t\t**If no OPTION supplied, debug mode on (temp files remain)\n"
+   HELP="${HELP}\t\t\t-b: bypass debug mode\n"
+   HELP="${HELP}\t\t\t-s: output settings only\n"
+   HELP="${HELP}\t\t\t-h: print help\n"
 
    echo "settings check:"
    printf "\tSETTINGS: %s\n" $SETTINGS_NPM
@@ -109,9 +121,6 @@ if [[ -n $1 ]] ; then
       silent=true
    elif [ "$1" == "-s" ] ; then
       checkSettings
-      fin=true
-   elif [ "$1" == "-t" ] ; then
-      checkSettingsNPM
       fin=true
    else
       printf "$USAGE"

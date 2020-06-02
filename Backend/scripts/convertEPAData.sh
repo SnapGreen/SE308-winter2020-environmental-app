@@ -1,4 +1,13 @@
 #!/bin/bash
+if [[ $# -gt 2 ]] 
+   if [ -n $3 ] ; then
+      if [ "$3" == "-t" ] ; then
+         checkSettingsNPM
+         exit 0
+      fi
+   fi
+fi
+
 SETTINGS="/home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/settings.txt"
 DATADIR=$(grep -oP '(?<=^DATADIR:).*' $SETTINGS)
 EPADIR=$(grep -oP '(?<=^EPADIR:).*' $SETTINGS)

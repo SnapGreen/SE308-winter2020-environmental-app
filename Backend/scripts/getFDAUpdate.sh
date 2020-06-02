@@ -1,4 +1,15 @@
 #!/bin/bash
+debug=true
+fin=false
+silent=false
+
+if [[ -n $1 ]] ; then
+   if [ "$1" == "-t" ] ; then
+      checkSettingsNPM
+      exit 0
+   fi
+fi
+
 SETTINGS="/home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/settings.txt"
 CURRENTLATEST=$(grep -oP '(?<=^CURRENTLATEST:).*' $SETTINGS)
 LASTLATEST=$(grep -oP '(?<=^LASTLATEST:).*' $SETTINGS)
@@ -14,10 +25,6 @@ HELP="${HELP}\t\t\t-b: bypass debug mode, download only if new\n"
 HELP="${HELP}\t\t\t-f: force download\n"
 HELP="${HELP}\t\t\t-s: output settings only\n"
 HELP="${HELP}\t\t\t-h: print help\n"
-
-debug=true
-fin=false
-silent=false
 
 function checkSettings(){
    echo "settings check:"
@@ -46,6 +53,12 @@ function checkSettingsNPM(){
    TMPFILE_END=$(grep -oP '(?<=^TMPFILE_END:).*' $SETTINGS_NPM)
    TMPLINKSFILE="${TMPDIR}links${TMPFILE_END}"
    TMPFILELIST="${TMPDIR}available_data${TMPFILE_END}"
+   USAGE="\t\tUsage: ./getFDAUpdate.sh [OPTION] (use option -h for help)\n"
+   HELP="${USAGE}\t\t**If no OPTION supplied, debug mode on (temp files remain)\n"
+   HELP="${HELP}\t\t\t-b: bypass debug mode, download only if new\n"
+   HELP="${HELP}\t\t\t-f: force download\n"
+   HELP="${HELP}\t\t\t-s: output settings only\n"
+   HELP="${HELP}\t\t\t-h: print help\n"
 
    echo "settings check:"
    printf "\tSETTINGS: %s\n" $SETTINGS_NPM

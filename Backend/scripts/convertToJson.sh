@@ -1,4 +1,14 @@
 #!/bin/bash
+debug="on"
+fin=false
+
+if [ $# != 0 ] ; then
+   if [ $1 == "-t" ] ; then
+      checkSettingsNPM
+      exit 0
+   fi
+fi
+
 SETTINGS="/home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/settings.txt"
 AWKDIR=$(grep -oP '(?<=^AWKDIR:).*' $SETTINGS)
 DATADIR=$(grep -oP '(?<=^DATADIR:).*' $SETTINGS)
@@ -45,8 +55,6 @@ HELP="${HELP}\t\t\t-h: print help\n"
 HELP="${HELP}\t\t**debug mode: leave temp files undeleted**\n"
 HELP="${HELP}\t\t**debug mode is ON if no OPTION specified\n"
 
-debug="on"
-fin=false
 
 #https://stackoverflow.com/questions/17066250/create-timestamp-variable-in-bash-script
 function timestamp(){
@@ -451,17 +459,14 @@ function createJsons(){
 
 if [ $# != 0 ] ; then
    if [ $1 == "-b" ] ; then
-      echo "debug mode off"
       debug="off"
+      echo "debug mode off"
    elif [ $1 == "-h" ] ; then
+      fin=true
       printf "$HELP"
-      fin=true
    elif [ $1 == "-s" ] ; then
+      fin=true
       checkSettings
-      fin=true
-   elif [ $1 == "-t" ] ; then
-      checkSettingsNPM
-      fin=true
    else
       printf "$USAGE"
       fin=true

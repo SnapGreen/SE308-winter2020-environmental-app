@@ -1,4 +1,14 @@
 #!/bin/bash
+fin=false
+prompt=true
+
+if [ $# -ne 0 ] ; then
+   if [ "$1" == "-t" ] ; then
+      checkSettingsNPM
+      exit 0
+   fi
+fi
+
 SETTINGS="/home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/settings.txt"
 DATADIR=$(grep -oP "(?<=^DATADIR:).*" $SETTINGS)
 FDADIR=$(grep -oP "(?<=^FDADIR:).*" $SETTINGS)
@@ -23,9 +33,6 @@ HELP="${USAGE}\t\tOPTIONS:\n"
 HELP="${HELP}\t\t\t-b: upload without prompt\n"
 HELP="${HELP}\t\t\t-s: print settings only\n"
 HELP="${HELP}\t\t\t-h: print help\n"
-
-fin=false
-prompt=true
 
 function checkSettings(){
    echo "settings check:"
@@ -73,6 +80,11 @@ function checkSettingsNPM(){
    UPLOADLOGDIR="${LOGDIR}uploads/"
    SERVER_POPULATED=$(grep -oP "(?<=^SERVER_POPULATED:).*" $SETTINGS_NPM)
    DONE_UPLOADING=$(grep -oP "(?<=^DONE_UPLOADING:).*" $SETTINGS_NPM)
+   USAGE="\t\tUsage: ./uploadToDB.sh [OPTIONS] (-h for help)\n"
+   HELP="${USAGE}\t\tOPTIONS:\n"
+   HELP="${HELP}\t\t\t-b: upload without prompt\n"
+   HELP="${HELP}\t\t\t-s: print settings only\n"
+   HELP="${HELP}\t\t\t-h: print help\n"
 
    echo "settings check:"
    printf "\tSETTINGS: %s\n" "$SETTINGS_NPM"

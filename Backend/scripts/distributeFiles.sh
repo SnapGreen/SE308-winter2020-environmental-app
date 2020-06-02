@@ -1,4 +1,12 @@
 #!/bin/bash
+
+if [[ $# -gt 1 ]] ; then
+   if [ "$2" == "-t" ] ; then
+      checkSettingsNPM
+      exit 0
+   fi
+fi
+
 SETTINGS="/home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/settings.txt"
 ZIPFILE="$1"
 DATADIR=$(grep -oP '(?<=^DATADIR:).*' $SETTINGS)
@@ -63,6 +71,15 @@ function checkSettingsNPM(){
    IFS=',' read -r -a lastarray <<< "$LASTLATEST"
    RAWDATAUPDATEDEST="${RAWDATADEST}${lastarray[1]}/"
    DATAUPDATEDEST="${DATADEST}${lastarray[1]}/"
+   HELP="\tThis script distributes the contents of the provided FDA zipfile to\n"
+   HELP="${HELP}\tthe proper directories.  If there are no uploads left, it\n"
+   HELP="${HELP}\tputs them in the upload directory.  Otherwise, it creates\n"
+   HELP="${HELP}\ta new directory in both data/ and dataraw/ for the update\n"
+   USAGE="\t\tUsage: ./distributeFiles.sh <zipfile> [OPTION] (use option -h for help)\n"
+   HELP="${HELP}${USAGE}"
+   HELP="${HELP}\t\t\t-b: bypass debug mode (don't keep temp files)\n"
+   HELP="${HELP}\t\t\t-s: output settings only\n"
+   HELP="${HELP}\t\t\t-h: print help\n"
 
    echo "settings check:"
    printf "\tSETTINGS: %s\n" "$SETTINGS_NPM"
@@ -110,9 +127,6 @@ if [[ $# -gt 1 ]] ; then
       debug=false
    elif [ "$2" == "-s" ] ; then
       checkSettings
-      fin=true
-   elif [ "$2" == "-t" ] ; then
-      checkSettingsNPM
       fin=true
    elif [ "$2" == "-h" ] ; then
       printf "$HELP"

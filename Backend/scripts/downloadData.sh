@@ -1,4 +1,16 @@
 #!/bin/bash
+debug=true
+fin=false
+
+if [[ $# -gt 2 ]] ; then
+   if [ -n $3 ] ; then
+      if [ "$3" == "-t" ] ; then
+         checkSettingsNPM
+         exit 0
+      fi
+   fi
+fi
+
 SETTINGS="/home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/settings.txt"
 FILENAME="$1"
 FULLPATH="${2}/${FILENAME}"
@@ -10,9 +22,6 @@ USAGE="\t\tUsage: ./downloadData.sh <filename> <url> [OPTION] (-h for help)\n"
 HELP="${USAGE}\t\t\t-b: bypass debug (will skip settings check)\n"
 HELP="${HELP}\t\t\t-s: output settings only\n"
 HELP="${HELP}\t\t\t-h: print help\n"
-
-debug=true
-fin=false
 
 function checkSettings(){
    echo "settings check:"
@@ -37,6 +46,11 @@ function checkSettingsNPM(){
    CURRENTLATEST=$(grep -oP '(?<=^CURRENTLATEST:).*' $SETTINGS_NPM)
    DONE_UPLOADING=$(grep -oP '(?<=^DONE_UPLOADING:).*' $SETTINGS_NPM)
    DOWNLOADLOGDIR="${LOGDIR}downloads/"
+   USAGE="\t\tUsage: ./downloadData.sh <filename> <url> [OPTION] (-h for help)\n"
+   HELP="${USAGE}\t\t\t-b: bypass debug (will skip settings check)\n"
+   HELP="${HELP}\t\t\t-s: output settings only\n"
+   HELP="${HELP}\t\t\t-h: print help\n"
+
    echo "settings check:"
    printf "\tSETTINGS: %s\n" "$SETTINGS_NPM"
    printf "\tFILENAME: %s\n" "$FILENAME"
@@ -73,9 +87,6 @@ if [[ $# -gt 2 ]] ; then
          fin=true
       elif [ "$3" == "-s" ] ; then
          checkSettings
-         fin=true
-      elif [ "$3" == "-t" ] ; then
-         checkSettingsNPM
          fin=true
       else
          printf "$USAGE"
