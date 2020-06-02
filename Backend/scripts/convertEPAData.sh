@@ -76,7 +76,7 @@ function checkSettingsNPM(){
    printf "$HELP"
 }
 
-if [[ $# -gt 2 ]] 
+if [[ $# -gt 2 ]] ; then
    if [ -n $3 ] ; then
       if [ "$3" == "-t" ] ; then
          checkSettingsNPM
