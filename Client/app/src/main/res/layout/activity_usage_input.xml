@@ -1,60 +1,316 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    layout_height="300dp"
-    layout_width="300dp"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/linearLayout3"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingTop="0dp">
+    android:orientation="vertical">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested_scroller"
+        layout_height="300dp"
+        layout_width="300dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:fillViewport="false">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="0dp">
 
 
-    <View
-        android:id="@+id/view6"
-        android:layout_width="0dp"
-        android:layout_height="153dp"
-        android:background="#FFFFFF"
-        android:backgroundTint="@color/spring_green"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <View
+                android:id="@+id/view6"
+                android:layout_width="0dp"
+                android:layout_height="153dp"
+                android:background="#FFFFFF"
+                android:backgroundTint="@color/spring_green"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/usageHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text=" Your Usage"
-        android:textAlignment="viewStart"
-        android:textSize="50dp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/usageHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text=" Your Usage"
+                android:textAlignment="viewStart"
+                android:textSize="50dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
-    <TextView
-        android:id="@+id/currentDate"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:text="TextView"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usageHeader" />
+            <TextView
+                android:id="@+id/currentDate"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="16dp"
+                android:text="TextView"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/usageHeader" />
 
+
+            <View
+                android:id="@+id/view7"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginTop="32dp"
+                android:background="#FFFFFF"
+                android:backgroundTint="@color/spring_green"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/water_input4" />
+
+            <TextView
+                android:id="@+id/waterHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Water"
+                android:textColor="@color/emerald"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view6" />
+
+            <EditText
+                android:id="@+id/minutesShowered"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:autofillHints="Number"
+                android:enabled="true"
+                android:hint="0"
+                android:inputType="number"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/waterHeader" />
+
+            <TextView
+                android:id="@+id/water_input2"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:paddingTop="5dp"
+                android:text="How many times did you flush the toilet today?"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/water_input1" />
+
+            <TextView
+                android:id="@+id/water_input4"
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:paddingTop="5dp"
+                android:text="How many minutes did you run the washing machine today?"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/water_input3" />
+
+            <TextView
+                android:id="@+id/water_input3"
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:paddingTop="5dp"
+                android:text="How many times did you run the dishwasher at home today?"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/water_input2" />
+
+            <EditText
+                android:id="@+id/timesDishwasherRun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:autofillHints="Number"
+                android:enabled="true"
+                android:hint="0"
+                android:inputType="number"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/timesFlushed" />
+
+            <TextView
+                android:id="@+id/wasterHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Waste"
+                android:textColor="@color/emerald"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view7" />
+
+            <EditText
+                android:id="@+id/numAlumCansUsed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:autofillHints="Number"
+                android:enabled="true"
+                android:hint="0"
+                android:inputType="number"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/wasterHeader" />
+
+            <TextView
+                android:id="@+id/waste_input5"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:paddingTop="5dp"
+                android:text="How many plastic utensils did you use today?"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/waste_input4" />
+
+            <EditText
+                android:id="@+id/numPlasticStrawsUsed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:autofillHints="Number"
+                android:enabled="true"
+                android:hint="0"
+                android:inputType="number"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/numStyroContainersUsed" />
+
+            <TextView
+                android:id="@+id/waste_input4"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:paddingTop="5dp"
+                android:text="How many plastic straws did you use today?"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/waste_input3" />
+
+            <EditText
+                android:id="@+id/numStyroContainersUsed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:autofillHints="Number"
+                android:enabled="true"
+                android:hint="0"
+                android:inputType="number"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/numAlumCansUsed" />
+
+            <TextView
+                android:id="@+id/waste_input3"
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:paddingTop="5dp"
+                android:text="How many styrofoam containers did you use today?"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/waste_input2" />
+
+            <TextView
+                android:id="@+id/waste_input2"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:paddingTop="5dp"
+                android:text="How many aluminum cans did you throw away today?"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/wasterHeader" />
+
+            <EditText
+                android:id="@+id/numPlasticUtensilsUsed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:layout_marginEnd="16dp"
+                android:autofillHints="Number"
+                android:enabled="true"
+                android:hint="0"
+                android:inputType="number"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/numPlasticStrawsUsed" />
+
+            <EditText
+                android:id="@+id/timesFlushed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:autofillHints="Number"
+                android:enabled="true"
+                android:hint="0"
+                android:inputType="number"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/minutesShowered" />
+
+            <EditText
+                android:id="@+id/minutesWashingMachine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:autofillHints="Number"
+                android:enabled="true"
+                android:hint="0"
+                android:inputType="number"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/timesDishwasherRun" />
+
+            <TextView
+                android:id="@+id/water_input1"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:paddingTop="5dp"
+                android:text="How many minutes did you shower today?"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/waterHeader" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
     <Button
         android:id="@+id/editButton"
-        android:layout_width="0dp"
-        android:layout_height="80dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginTop="32dp"
+        android:layout_weight="5"
         android:background="#FFFFFF"
         android:backgroundTint="@color/spring_green"
         android:fontFamily="sans-serif"
@@ -62,256 +318,5 @@
         android:textAllCaps="true"
         android:textColor="@color/emerald"
         android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/waste_input5"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <View
-        android:id="@+id/view7"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginTop="32dp"
-        android:background="#FFFFFF"
-        android:backgroundTint="@color/spring_green"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/water_input4" />
-
-    <TextView
-        android:id="@+id/waterHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Water"
-        android:textColor="@color/emerald"
-        android:textSize="25dp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view6" />
-
-    <EditText
-        android:id="@+id/minutesShowered"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:autofillHints="Number"
-        android:enabled="true"
-        android:hint="0"
-        android:inputType="number"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/waterHeader" />
-
-    <TextView
-        android:id="@+id/water_input2"
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:paddingTop="5dp"
-        android:text="How many times did you flush the toilet today?"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/water_input1" />
-
-    <TextView
-        android:id="@+id/water_input4"
-        android:layout_width="260dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:paddingTop="5dp"
-        android:text="How many minutes did you run the washing machine today?"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/water_input3" />
-
-    <TextView
-        android:id="@+id/water_input3"
-        android:layout_width="260dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:paddingTop="5dp"
-        android:text="How many times did you run the dishwasher at home today?"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/water_input2" />
-
-    <EditText
-        android:id="@+id/timesDishwasherRun"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:autofillHints="Number"
-        android:enabled="true"
-        android:hint="0"
-        android:inputType="number"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timesFlushed" />
-
-    <TextView
-        android:id="@+id/wasterHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Waste"
-        android:textColor="@color/emerald"
-        android:textSize="25dp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view7" />
-
-    <EditText
-        android:id="@+id/numAlumCansUsed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:autofillHints="Number"
-        android:enabled="true"
-        android:hint="0"
-        android:inputType="number"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wasterHeader" />
-
-    <TextView
-        android:id="@+id/waste_input5"
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:paddingTop="5dp"
-        android:text="How many plastic utensils did you use today?"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/waste_input4" />
-
-    <EditText
-        android:id="@+id/numPlasticStrawsUsed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:autofillHints="Number"
-        android:enabled="true"
-        android:hint="0"
-        android:inputType="number"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/numStyroContainersUsed" />
-
-    <TextView
-        android:id="@+id/waste_input4"
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:paddingTop="5dp"
-        android:text="How many plastic straws did you use today?"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/waste_input3" />
-
-    <EditText
-        android:id="@+id/numStyroContainersUsed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:autofillHints="Number"
-        android:enabled="true"
-        android:hint="0"
-        android:inputType="number"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/numAlumCansUsed" />
-
-    <TextView
-        android:id="@+id/waste_input3"
-        android:layout_width="260dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:paddingTop="5dp"
-        android:text="How many styrofoam containers did you use today?"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/waste_input2" />
-
-    <TextView
-        android:id="@+id/waste_input2"
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:paddingTop="5dp"
-        android:text="How many aluminum cans did you throw away today?"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wasterHeader" />
-
-    <EditText
-        android:id="@+id/numPlasticUtensilsUsed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="16dp"
-        android:autofillHints="Number"
-        android:enabled="true"
-        android:hint="0"
-        android:inputType="number"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/numPlasticStrawsUsed" />
-
-    <EditText
-        android:id="@+id/timesFlushed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:autofillHints="Number"
-        android:enabled="true"
-        android:hint="0"
-        android:inputType="number"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/minutesShowered" />
-
-    <EditText
-        android:id="@+id/minutesWashingMachine"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:autofillHints="Number"
-        android:enabled="true"
-        android:hint="0"
-        android:inputType="number"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timesDishwasherRun" />
-
-    <TextView
-        android:id="@+id/water_input1"
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:paddingTop="5dp"
-        android:text="How many minutes did you shower today?"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/waterHeader" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>
+        android:textStyle="bold" />
+</LinearLayout>

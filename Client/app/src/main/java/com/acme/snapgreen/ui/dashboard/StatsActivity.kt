@@ -82,7 +82,7 @@ class StatsActivity : AppCompatActivity() {
         dailyFeedback: TextView,
         dailyWaterAverage: Int
     ) {
-        if (stats[stats.size - 1].numGals > stats[stats.size - 2].numGals) {
+        if (stats.size > 1 && stats[stats.size - 1].numGals > stats[stats.size - 2].numGals) {
             if (stats[stats.size - 1].numGals > dailyWaterAverage) {
                 dailyFeedback.text =
                     "Your water usage was greater than yesterday and you did worse than the daily average of " +
@@ -93,7 +93,7 @@ class StatsActivity : AppCompatActivity() {
                             dailyWaterAverage.toString() + " gal.\nLet's see if you can beat yourself!"
             }
         } else {
-            if (stats[stats.size - 1].numGals > dailyWaterAverage) {
+            if (stats.size > 0 && stats[stats.size - 1].numGals > dailyWaterAverage) {
                 dailyFeedback.text =
                     "Your water usage was less than yesterday ,however, you did worse than the daily average of " +
                             dailyWaterAverage.toString() + " gal.\nLet's try to improving even more!"
@@ -110,7 +110,7 @@ class StatsActivity : AppCompatActivity() {
         dailyFeedback: TextView,
         dailyWasteAverage: Double
     ) {
-        if (stats[stats.size - 1].numKgWaste > stats[stats.size - 2].numKgWaste) {
+        if (stats.size > 1 && stats[stats.size - 1].numKgWaste > stats[stats.size - 2].numKgWaste) {
             if (stats[stats.size - 1].numKgWaste > dailyWasteAverage) {
                 dailyFeedback.text =
                     "Your waste output was greater than yesterday and you did worse than the daily average of " +
@@ -121,7 +121,7 @@ class StatsActivity : AppCompatActivity() {
                             dailyWasteAverage.toString() + " kg.\nLet's see if you can beat yourself!"
             }
         } else {
-            if (stats[stats.size - 1].numKgWaste > dailyWasteAverage) {
+            if (stats.size > 1 && stats[stats.size - 1].numKgWaste > dailyWasteAverage) {
                 dailyFeedback.text =
                     "Your waste output was less than yesterday ,however, you did worse than the daily average of " +
                             dailyWasteAverage.toString() + " kg.\nLet's try to improving even more!"
