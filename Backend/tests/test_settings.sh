@@ -4,12 +4,12 @@ if [[ "$1" == "-t" ]]; then
    TESTDIR="Backend/tests/settings/"
    ./Backend/scripts/convertToJson.sh -t > "${TESTDIR}convertToJson_npm_settings.out"
    ./Backend/scripts/getFDAUpdate.sh -t > "${TESTDIR}getFDAUpdate_npm_settings.out"
-   ./Backend/scripts/downloadData.sh fakefile fakeurl -t > "${TESTDIR}downloadData_npm_settings.out"
-   ./Backend/scripts/distributeFiles.sh fakefile.zip -t > "${TESTDIR}distributeFiles_npm_settings.out"
+   ./Backend/scripts/downloadData.sh "fakefile" "fakeurl" -t > "${TESTDIR}downloadData_npm_settings.out"
+   ./Backend/scripts/distributeFiles.sh "fakefile.zip" -t > "${TESTDIR}distributeFiles_npm_settings.out"
    ./Backend/scripts/uploadToDB.sh -t > "${TESTDIR}uploadToDB_npm_settings.out"
    ./Backend/scripts/populateDB.sh -t > "${TESTDIR}populateDB_npm_settings.out"
    ./Backend/scripts/getEPAUpdate.sh -t > "${TESTDIR}getEPAUpdate_npm_settings.out"
-   ./Backend/scripts/convertEPAData.sh fakedir/ fakefile.xls -t > "${TESTDIR}convertEPAData_npm_settings.out"
+   ./Backend/scripts/convertEPAData.sh "fakedir/" "fakefile.xls" -t > "${TESTDIR}convertEPAData_npm_settings.out"
 
    diff "${TESTDIR}convertToJson_npm_settings.out" "${TESTDIR}convertToJson_npm_settings.txt" 
    res=$?
