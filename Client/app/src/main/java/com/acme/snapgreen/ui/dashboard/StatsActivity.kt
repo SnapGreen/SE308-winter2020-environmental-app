@@ -29,6 +29,8 @@ class StatsActivity : AppCompatActivity() {
         val weeklyHeader: TextView = findViewById(R.id.weeklyHeader)
         val dailyFeedback: TextView = findViewById(R.id.dailyFeedback)
         val weeklyFeedback: TextView = findViewById(R.id.weeklyFeedback)
+        val weeklyWaterAverage = 219
+        val weeklyWasteAverage = 0.021
         if (stats.combinedDSDataList.isEmpty()) {
             dailyHeader.text = "No Data Available"
             weeklyHeader.text = "No Data Available"
@@ -38,22 +40,38 @@ class StatsActivity : AppCompatActivity() {
             waterCharts(stats.combinedDSDataList)
             val dailyFeedback: TextView = findViewById(R.id.dailyFeedback)
             val weeklyFeedback: TextView = findViewById(R.id.weeklyFeedback)
-            dailyWaterFeedback(stats.combinedDSDataList, dailyFeedback)
-            weeklyWaterFeedback(stats.combinedDSDataList, weeklyFeedback)
+            dailyWaterFeedback(stats.combinedDSDataList, dailyFeedback, weeklyWaterAverage / 7)
+            weeklyWaterFeedback(stats.numGals, weeklyFeedback, weeklyWaterAverage)
             val toggle: ToggleButton = findViewById(R.id.statsToggle)
             toggle.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
                     dailyHeader.text = "Today's Waste(kg)"
                     weeklyHeader.text = "This Week's Waste(kg)"
                     wasteCharts(stats.combinedDSDataList)
-                    dailyWasteFeedback(stats.combinedDSDataList, dailyFeedback)
-                    weeklyWasteFeedback(stats.combinedDSDataList, weeklyFeedback)
+                    dailyWasteFeedback(
+                        stats.combinedDSDataList,
+                        dailyFeedback,
+                        weeklyWasteAverage / 7
+                    )
+                    weeklyWasteFeedback(
+                        stats.numKgWaste,
+                        weeklyFeedback,
+                        weeklyWasteAverage
+                    )
                 } else {
                     dailyHeader.text = "Today's Water Usage(gal)"
                     weeklyHeader.text = "This Week's Water Usage(gal)"
                     waterCharts(stats.combinedDSDataList)
-                    dailyWaterFeedback(stats.combinedDSDataList, dailyFeedback)
-                    weeklyWaterFeedback(stats.combinedDSDataList, weeklyFeedback)
+                    dailyWaterFeedback(
+                        stats.combinedDSDataList,
+                        dailyFeedback,
+                        weeklyWaterAverage / 7
+                    )
+                    weeklyWaterFeedback(
+                        stats.numGals,
+                        weeklyFeedback,
+                        weeklyWaterAverage
+                    )
                 }
             }
         }
@@ -61,37 +79,85 @@ class StatsActivity : AppCompatActivity() {
 
     private fun dailyWaterFeedback(
         stats: MutableList<WeeklyStatsCalc.Companion.CombinedDSData>,
-        dailyFeedback: TextView
+        dailyFeedback: TextView,
+        dailyWaterAverage: Int
     ) {
-        if (stats.size > 1 && stats[stats.size - 1].numGals > stats[stats.size - 2].numGals) {
-
+        if (stats[stats.size - 1].numGals > stats[stats.size - 2].numGals) {
+            if (stats[stats.size - 1].numGals > dailyWaterAverage) {
+                dailyFeedback.text =
+                    "Your water usage was greater than yesterday and you did worse than the daily average of " +
+                            dailyWaterAverage.toString() + " gal.\nLet's try to improve!"
+            } else {
+                dailyFeedback.text =
+                    "Your water usage was greater than yesterday ,however, you did better than the daily average of " +
+                            dailyWaterAverage.toString() + " gal.\nLet's see if you can beat yourself!"
+            }
+        } else {
+            if (stats[stats.size - 1].numGals > dailyWaterAverage) {
+                dailyFeedback.text =
+                    "Your water usage was less than yesterday ,however, you did worse than the daily average of " +
+                            dailyWaterAverage.toString() + " gal.\nLet's try to improving even more!"
+            } else {
+                dailyFeedback.text =
+                    "Your water usage was less than yesterday and you did better than the daily average of " +
+                            dailyWaterAverage.toString() + " gal.\nGreat job!"
+            }
         }
     }
 
     private fun dailyWasteFeedback(
         stats: MutableList<WeeklyStatsCalc.Companion.CombinedDSData>,
-        dailyFeedback: TextView
+        dailyFeedback: TextView,
+        dailyWasteAverage: Double
     ) {
-        if (stats.size > 1 && stats[stats.size - 1].numGals > stats[stats.size - 2].numGals) {
-
+        if (stats[stats.size - 1].numKgWaste > stats[stats.size - 2].numKgWaste) {
+            if (stats[stats.size - 1].numKgWaste > dailyWasteAverage) {
+                dailyFeedback.text =
+                    "Your waste output was greater than yesterday and you did worse than the daily average of " +
+                            dailyWasteAverage.toString() + " kg.\nLet's try to improve!"
+            } else {
+                dailyFeedback.text =
+                    "Your waste output was greater than yesterday ,however, you did better than the daily average of " +
+                            dailyWasteAverage.toString() + " kg.\nLet's see if you can beat yourself!"
+            }
+        } else {
+            if (stats[stats.size - 1].numKgWaste > dailyWasteAverage) {
+                dailyFeedback.text =
+                    "Your waste output was less than yesterday ,however, you did worse than the daily average of " +
+                            dailyWasteAverage.toString() + " kg.\nLet's try to improving even more!"
+            } else {
+                dailyFeedback.text =
+                    "Your waste output was less than yesterday and you did better than the daily average of " +
+                            dailyWasteAverage.toString() + " kg.\nGreat job!"
+            }
         }
     }
 
     private fun weeklyWaterFeedback(
-        stats: MutableList<WeeklyStatsCalc.Companion.CombinedDSData>,
-        dailyFeedback: TextView
+        userGals: Double,
+        weeklyFeedback: TextView,
+        weeklyWaterAverage: Int
     ) {
-        if (stats.size > 1 && stats[stats.size - 1].numGals > stats[stats.size - 2].numGals) {
-
+        if (userGals > weeklyWaterAverage) {
+            weeklyFeedback.text = "Your weekly water usage was greater than the average of " +
+                    weeklyWaterAverage.toString() + " gal.\nLet's do better."
+        } else {
+            weeklyFeedback.text = "Your weekly water usage was less than the average of " +
+                    weeklyWaterAverage.toString() + " gal.\nLet's keep it up!"
         }
     }
 
     private fun weeklyWasteFeedback(
-        stats: MutableList<WeeklyStatsCalc.Companion.CombinedDSData>,
-        dailyFeedback: TextView
+        userKGs: Double,
+        weeklyFeedback: TextView,
+        weeklyWasteAverage: Double
     ) {
-        if (stats.size > 1 && stats[stats.size - 1].numGals > stats[stats.size - 2].numGals) {
-
+        if (userKGs > weeklyWasteAverage) {
+            weeklyFeedback.text = "Your weekly waste output was greater than the average of " +
+                    weeklyWasteAverage.toString() + " kg.\nLet's do better."
+        } else {
+            weeklyFeedback.text = "Your weekly waste output was less than the average of " +
+                    weeklyWasteAverage.toString() + " kg.\nLet's keep it up!"
         }
     }
 
