@@ -1,18 +1,20 @@
-# SE308-winter2020-environmental-app
+# SnapGreen | Cal Poly Software Engineering I & II 2020
 
 Competitive, gamified behavior tracker to encourage awareness and encourage sustainable practices. Ability to scan product bar codes to see their environmental impact.
 
 # Coding Style
-Kotlin Style Convention: https://kotlinlang.org/docs/reference/coding-conventions.html
+<a href="https://kotlinlang.org/docs/reference/coding-conventions.html">Kotlin Style Convention</a>
 
-Javascript Style Convention: ![Prettier](https://prettier.io/docs/en/)
+<a href="https://prettier.io/docs/en/">Javascript Style Convention: Prettier</a>
 
-# See UI Mockup Here:
-
-https://www.figma.com/proto/bh5f84oIEU3nPKicuKOBUI/SnapGreen?node-id=1%3A10&scaling=min-zoom
-
-# Analysis and Design Models
-
+<h1>Analysis and Design Models</h1>
+<details>
+  <summary>View Diagrams Here</summary>
+<br>
+ 
+ ## UI Prototypes
+ <a href="https://www.figma.com/proto/bh5f84oIEU3nPKicuKOBUI/SnapGreen?node-id=1%3A10&scaling=min-zoom">View Figma Mockup</a>
+ 
 ## Component Diagram
 ![Screen Shot 2020-06-01 at 2 31 37 PM](https://user-images.githubusercontent.com/38018381/83457144-e61ab580-a415-11ea-837f-5249a253b3e5.png)
 
@@ -39,6 +41,7 @@ This diagram is a rough draft that shows the interaction between the different m
 
 This diagram shows the interaction between the app, server, and database when a user tries to login. The app sends the login attempt information to the server and the server queries the database and recieves a response. The server then sends a response to the app based on whether the login attempt was valid, whether the user doesn't exist, or whether the password doesn't match.
 ![Annotation 2020-03-02 212312](https://user-images.githubusercontent.com/38018381/76172505-f80cf500-6153-11ea-8d9c-cf0885f0c9ec.png)
+</details>
 
 # Environmental App Server
 
