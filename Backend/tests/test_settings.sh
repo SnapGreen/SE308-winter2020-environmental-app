@@ -1,8 +1,6 @@
 #!/bin/bash
 
 if [[ "$1" == "-t" ]]; then
-   SETTINGS_NPM="./Backend/scripts/settings_npm.txt"
-   TESTDIR=$(grep -oP '(?<=^TESTDIR:).*' $SETTINGS_NPM)
    TESTDIR="./Backend/tests/settings/"
    ./Backend/scripts/convertToJson.sh -t > "${TESTDIR}convertToJson_npm_settings.out"
    ./Backend/scripts/getFDAUpdate.sh -t > "${TESTDIR}getFDAUpdate_npm_settings.out"
