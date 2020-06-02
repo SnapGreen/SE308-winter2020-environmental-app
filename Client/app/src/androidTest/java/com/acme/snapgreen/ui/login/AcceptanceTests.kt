@@ -14,8 +14,15 @@ import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.AndroidJUnit4
 import androidx.test.uiautomator.UiDevice
+import com.acme.snapgreen.Constants
 import com.acme.snapgreen.R
 import com.acme.snapgreen.RealmUsageDataUtil
+import com.acme.snapgreen.data.NetworkManager
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import junit.framework.Assert.assertEquals
+import junit.framework.Assert.assertTrue
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.TypeSafeMatcher
@@ -25,7 +32,7 @@ import org.junit.runner.RunWith
 
 
 /**
- * Tests that signing out properly brings you back to the splash screen
+ * Acceptance tests for all major app features. Uses UI and requires a device.
  */
 @LargeTest
 @RunWith(AndroidJUnit4::class)
@@ -35,9 +42,131 @@ class AcceptanceTests {
     @JvmField
     var mActivityTestRule = ActivityTestRule(LoginActivity::class.java)
 
+    /**
+     * Asserts that given an incorrect product ID, server returns an error
+     */
+    @Test
+    fun barcodeNegativeScanResultTest() {
+        NetworkManager.getInstance(getInstrumentation().targetContext)
+
+        val url = "${Constants.SERVER_URL}/products/900000014373"
+        var success = false
+
+        try {
+            val jsonRequest = JsonObjectRequest(
+                Request.Method.GET,
+                url, null,
+                Response.Listener { response ->
+                    // Set the ingredients and the score in the ui
+                },
+                Response.ErrorListener {
+                    success = true
+
+                }
+            )
+            NetworkManager.getInstance()?.addToRequestQueue(jsonRequest)
+
+        } catch (e: Throwable) {
+        }
+        Thread.sleep(2000)
+        assertTrue(success)
+    }
+
+    /**
+     * Asserts that given a valid product id,
+     * server returns a json with the correct score and ingredients
+     */
+    @Test
+    fun barcodePositiveScanResultTest() {
+        NetworkManager.getInstance(getInstrumentation().targetContext)
+
+        val url = "${Constants.SERVER_URL}/products/000000014373"
+        var success = false
+
+        try {
+            val jsonRequest = JsonObjectRequest(
+                Request.Method.GET,
+                url, null,
+                Response.Listener { response ->
+                    // Set the ingredients and the score in the ui
+                    assertEquals(response.get("score"), 0)
+                    val ingredients = response.getJSONArray("ingredients")
+                    assertEquals(ingredients[0], "refined olive oil")
+                    assertEquals(ingredients[1], "extra virgin olive oil")
+                    success = true
+                },
+                Response.ErrorListener {
+
+                }
+            )
+            NetworkManager.getInstance()?.addToRequestQueue(jsonRequest)
+
+        } catch (e: Throwable) {
+            //TODO: Handle failed connection
+        }
+        Thread.sleep(1500)
+        assertTrue(success)
+    }
+
+    /**
+     * Asserts that on a clean install, the dashboard can be reached and displays the correct values
+     */
+    @Test
+    fun cleanInstallDashboardTest() {
+        RealmUsageDataUtil.setupRealm()
+        loginWithTestUser()
+
+        val scoreText = onView(
+            allOf(
+                withId(R.id.dashboard_grade),
+                isDisplayed()
+            )
+        )
+        scoreText.check(matches(withText("0")))
+
+        val waterPercentText = onView(
+            allOf(
+                withId(
+                    R.id.dashboard_water_percent
+                ),
+                isDisplayed()
+            )
+        )
+        waterPercentText.check(matches(withText("N/A")))
+
+        val trashPercentText = onView(
+            allOf(
+                withId(R.id.dashboard_trash_percent),
+                isDisplayed()
+            )
+        )
+        trashPercentText.check(matches(withText("N/A")))
+
+        val dashboardTrashUsageText = onView(
+            allOf(
+                withId(R.id.dashboard_trash_usage),
+                isDisplayed()
+            )
+        )
+        dashboardTrashUsageText.check(matches(withText("0.0 kg")))
+
+        val dashboardWaterUsageText = onView(
+            allOf(
+                withId(R.id.dashboard_water_usage),
+                isDisplayed()
+            )
+        )
+        dashboardWaterUsageText.check(matches(withText("0.0 gal")))
+        RealmUsageDataUtil.breakdownRealm()
+    }
+
+    /**
+     * Asserts that on a clean install, the usage input page works properly and sets the dashboard
+     * statistics to the proper values.
+     */
     @Test
     fun inputUsageTest() {
-
+        RealmUsageDataUtil.setupRealm()
         loginWithTestUser()
         val appCompatButton4 = onView(
             allOf(withId(R.id.usage_input), withText("LOG USAGE"), isDisplayed())
@@ -101,8 +230,12 @@ class AcceptanceTests {
             allOf(withId(R.id.dashboard_water_usage), withText("31.3 gal"), isDisplayed())
         )
         textView2.check(matches(withText("31.3 gal")))
+        RealmUsageDataUtil.breakdownRealm()
     }
 
+    /**
+     * Asserts that the test users friend is properly retrieved from the server and loaded to the UI
+     */
     @Test
     fun populateFriendsListTest() {
         loginWithTestUser()
@@ -118,6 +251,9 @@ class AcceptanceTests {
 
     }
 
+    /**
+     * Asserts that the test user can add a new user and have them displayed to the UI
+     */
     @Test
     fun addUserFriendsListTest() {
         loginWithTestUser()
@@ -144,6 +280,9 @@ class AcceptanceTests {
         isToastMessageDisplayed("Added destin.estrela@gmail.com")
     }
 
+    /**
+     * Asserts that signing out brings you properly back to the splash screen
+     */
     @Test
     fun signOutTest() {
         loginWithTestUser()
@@ -164,6 +303,10 @@ class AcceptanceTests {
         button.check(matches(isDisplayed()))
     }
 
+    /**
+     * Asserts that given a weeks worth of specific usage input data, the feedback is properly
+     * displayed for both water and waste
+     */
     @Test
     fun statsPageTest() {
         loginWithTestUser()
