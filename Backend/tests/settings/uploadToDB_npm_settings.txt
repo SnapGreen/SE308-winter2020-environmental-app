@@ -1,20 +1,20 @@
 settings check:
-	SETTINGS: ./Backend/scripts/settings.txt
-	DATADIR: ./Backend/data/
+	SETTINGS: Backend/scripts/settings.txt
+	DATADIR: Backend/data/
 	FDADIR: FDA/
-	FDADATADIR: ./Backend/data/FDA/
+	FDADATADIR: Backend/data/FDA/
 	SUFFIX_LEN: 4
 	PRODS_PER_JSON: 250
 	FB_WRITES_PER_DAY: 16500
-	TESTDIR: :./Backend/tests/
-	TESTSETTINGSDIR: :./Backend/tests/settings/
-	TEST_POPDB_SETTINGS: :./Backend/tests/settings/populateDB_settings.txt
-	TEST_UPLOADTODB_SETTINGS: :./Backend/tests/settings/uploadToDB_settings.txt
+	TESTDIR: :Backend/tests/
+	TESTSETTINGSDIR: :Backend/tests/settings/
+	TEST_POPDB_SETTINGS: :Backend/tests/settings/populateDB_settings.txt
+	TEST_UPLOADTODB_SETTINGS: :Backend/tests/settings/uploadToDB_settings.txt
 	SPLIT_PREFIX: branded_food_
 	OUTFILE_END: .json
 	UPLOAD_SLEEP: 1
-	LOGDIR: ./Backend/logs/
-	UPLOADLOGDIR: ./Backend/logs/uploads/
+	LOGDIR: Backend/logs/
+	UPLOADLOGDIR: Backend/logs/uploads/
 	SERVER_POPULATED: false
 	DONE_UPLOADING: false
 	USAGE:

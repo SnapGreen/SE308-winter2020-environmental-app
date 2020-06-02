@@ -1,5 +1,5 @@
 settings check:
-	SETTINGS: ./Backend/scripts/settings.txt
+	SETTINGS: Backend/scripts/settings.txt
 	SERVER_POPULATED: false
 	USAGE:
 		Usage: ./populateDB.sh [OPTION] (use option -h for help)

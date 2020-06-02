@@ -1,16 +1,16 @@
 settings check:
-	SETTINGS: ./Backend/scripts/settings_npm.txt
+	SETTINGS: Backend/scripts/settings_npm.txt
 	AWKDIR: awk/
-	DATADIR: ./Backend/data/
+	DATADIR: Backend/data/
 	FDADIR: FDA/
-	FDAINDIR: ./Backend/dataraw/FDA/
-	FDAOUTDIR: ./Backend/data/FDA/
-	LOGDIR: ./Backend/logs/
-	RAWDATADIR: ./Backend/dataraw/
-	TMPDIR: ./Backend/temp/
-	TESTDIR: ./Backend/tests/
-	FDAINFILE: ./Backend/dataraw/FDA/branded_food.csv
-	MAPFILE: ./Backend/data/FDA/map_fdcid_gtin.csv
+	FDAINDIR: Backend/dataraw/FDA/
+	FDAOUTDIR: Backend/data/FDA/
+	LOGDIR: Backend/logs/
+	RAWDATADIR: Backend/dataraw/
+	TMPDIR: Backend/temp/
+	TESTDIR: Backend/tests/
+	FDAINFILE: Backend/dataraw/FDA/branded_food.csv
+	MAPFILE: Backend/data/FDA/map_fdcid_gtin.csv
 	PRODS_PER_JSON: 250
 	FDA_PATTERNFILE: fda_removalpatterns.txt
 	SPLIT_PREFIX: branded_food_
@@ -23,18 +23,18 @@ settings check:
 	AWK_TRIM: awk/trim.awk
 	AWK_RM_INGRDS: awk/removeIngreds.awk
 	AWK_MAP: awk/map_fdcid_gtin.awk
-	NOCATS_TMP: ./Backend/temp/nocats.tmp
-	PREPPED_TMP: ./Backend/temp/prepped.tmp
-	INGREDIENTS_TMP: ./Backend/temp/ingredients.tmp
-	INGREDIENTSB4_TMP: ./Backend/temp/ingredientsb4.tmp
-	NON_INGREDIENTS_TMP: ./Backend/temp/non_ingredients.tmp
-	SET_INGREDIENTS_TMP: ./Backend/temp/set_ingredients.tmp
-	RELEVANTDATA_TMP: ./Backend/temp/relevantdata.tmp
-	RELEVANTSORTED_TMP: ./Backend/temp/relevantsorted.tmp
-	RELEVANTTRIMMED_TMP: ./Backend/temp/relevanttrimmed.tmp
-	CLEANTEST_TMP: ./Backend/temp/longestlines.tmp
-	JOINED_TMP: ./Backend/temp/joined.tmp
-	SORTED_TMP: ./Backend/temp/sorted.tmp
+	NOCATS_TMP: Backend/temp/nocats.tmp
+	PREPPED_TMP: Backend/temp/prepped.tmp
+	INGREDIENTS_TMP: Backend/temp/ingredients.tmp
+	INGREDIENTSB4_TMP: Backend/temp/ingredientsb4.tmp
+	NON_INGREDIENTS_TMP: Backend/temp/non_ingredients.tmp
+	SET_INGREDIENTS_TMP: Backend/temp/set_ingredients.tmp
+	RELEVANTDATA_TMP: Backend/temp/relevantdata.tmp
+	RELEVANTSORTED_TMP: Backend/temp/relevantsorted.tmp
+	RELEVANTTRIMMED_TMP: Backend/temp/relevanttrimmed.tmp
+	CLEANTEST_TMP: Backend/temp/longestlines.tmp
+	JOINED_TMP: Backend/temp/joined.tmp
+	SORTED_TMP: Backend/temp/sorted.tmp
 	USAGE:
 		Usage: ./convertToJson.sh [OPTION] (-h for help)
 	HELP:
