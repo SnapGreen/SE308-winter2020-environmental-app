@@ -1,4 +1,9 @@
 # SnapGreen | Cal Poly Software Engineering I & II 2020
+[![Build Status](https://travis-ci.com/SnapGreen/SE308-winter2020-environmental-app.svg?branch=master)](https://travis-ci.com/SnapGreen/SE308-winter2020-environmental-app)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=SnapGreen_SE308-winter2020-environmental-app&metric=alert_status)](https://sonarcloud.io/dashboard?id=SnapGreen_SE308-winter2020-environmental-app)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=SnapGreen_SE308-winter2020-environmental-app&metric=sqale_index)](https://sonarcloud.io/dashboard?id=SnapGreen_SE308-winter2020-environmental-app)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=SnapGreen_SE308-winter2020-environmental-app&metric=code_smells)](https://sonarcloud.io/dashboard?id=SnapGreen_SE308-winter2020-environmental-app)
+
 
 Competitive, gamified behavior tracker to encourage awareness and encourage sustainable practices. Ability to scan product bar codes to see their environmental impact.
 
@@ -7,13 +12,16 @@ Competitive, gamified behavior tracker to encourage awareness and encourage sust
 
 <a href="https://prettier.io/docs/en/">Javascript Style Convention: Prettier</a>
 
-<h1>Analysis and Design Models</h1>
+# Static Code Analysis
+<a href="https://sonarcloud.io/dashboard?id=SnapGreen_SE308-winter2020-environmental-app">See SonarCloud Project Dashboard here</a>
+
+# Design Diagrams and Prototypes
 <details>
   <summary>View Diagrams Here</summary>
 <br>
  
- ## UI Prototypes
- <a href="https://www.figma.com/proto/bh5f84oIEU3nPKicuKOBUI/SnapGreen?node-id=1%3A10&scaling=min-zoom">View Figma Mockup</a>
+## UI Prototypes
+<a href="https://www.figma.com/proto/bh5f84oIEU3nPKicuKOBUI/SnapGreen?node-id=1%3A10&scaling=min-zoom">View Figma Mockup</a>
  
 ## Component Diagram
 ![Screen Shot 2020-06-01 at 2 31 37 PM](https://user-images.githubusercontent.com/38018381/83457144-e61ab580-a415-11ea-837f-5249a253b3e5.png)
