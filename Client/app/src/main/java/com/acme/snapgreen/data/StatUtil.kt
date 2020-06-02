@@ -171,7 +171,6 @@ class StatUtil private constructor() {
                 NetworkManager.getInstance()?.addToRequestQueue(jsonRequest)
 
             } catch (e: Throwable) {
-                //TODO: Handle failed connection
             }
         }
 

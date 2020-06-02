@@ -22,15 +22,11 @@ class ProfileActivity : AppCompatActivity() {
     lateinit var mCancel: TextView
     lateinit var mDone: TextView
     lateinit var mUserImage: ImageView
-
-    //lateinit var mChangeImage: EditText
     lateinit var mName: EditText
     lateinit var mUserName: EditText
     lateinit var mPhoneNumber: EditText
     lateinit var mEmail: EditText
     lateinit var mPassword: EditText
-//    lateinit var mDataBase: DatabaseReference
-//    lateinit var mAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,10 +41,6 @@ class ProfileActivity : AppCompatActivity() {
         mPassword = findViewById(R.id.profilePassword)
         mDone = findViewById(R.id.profileDone)
         mCancel = findViewById(R.id.profileCancel)
-//        mAuth = FirebaseAuth.getInstance()
-//        val uid = mAuth.currentUser?.uid
-//
-//        mDataBase = FirebaseDatabase.getInstance().getReference("Users").child(uid) //.getReference("Users")?
 
         mDone.setOnClickListener {
 

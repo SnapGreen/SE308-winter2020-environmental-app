@@ -95,7 +95,6 @@ class ScanResultActivity : AppCompatActivity() {
             NetworkManager.getInstance()?.addToRequestQueue(jsonRequest)
 
         } catch (e: Throwable) {
-            //TODO: Handle failed connection
         }
     }
 

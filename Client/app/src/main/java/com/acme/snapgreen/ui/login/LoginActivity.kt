@@ -106,7 +106,6 @@ class LoginActivity : AppCompatActivity() {
                     NetworkManager.getInstance()?.addToRequestQueue(jsonRequest)
 
                 } catch (e: Throwable) {
-                    //TODO: Handle failed connection
                 }
             } else {
                 // Handle error -> task.getException();
