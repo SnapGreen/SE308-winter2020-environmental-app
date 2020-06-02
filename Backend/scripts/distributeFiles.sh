@@ -48,7 +48,7 @@ function checkSettingsNPM(){
 
 if [[ $# -gt 1 ]] ; then
    if [ "$2" == "-t" ] ; then
-      checkSettingsNPM
+      checkSettingsNPM "$1"
       exit 0
    fi
 fi

@@ -1,5 +1,5 @@
 settings check:
-	SETTINGS: Backend/scripts/settings.txt
+	SETTINGS: Backend/scripts/settings_npm.txt
 	ZIPFILE: fakefile.zip
 	DATADIR: Backend/data/
 	RAWDATADIR: Backend/dataraw/
