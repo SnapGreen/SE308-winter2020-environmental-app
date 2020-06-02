@@ -13,7 +13,7 @@ class RealmUsageDataUtil {
 
     companion object {
 
-        public fun setupRealm() {
+        fun setupRealm() {
             val appContext = InstrumentationRegistry.getInstrumentation().targetContext
             Assert.assertEquals("com.acme.snapgreen", appContext.packageName)
 
@@ -23,7 +23,7 @@ class RealmUsageDataUtil {
             Realm.setDefaultConfiguration(testConfig)
         }
 
-        public fun breakdownRealm() {
+        fun breakdownRealm() {
             var realm = Realm.getDefaultInstance()
             realm.beginTransaction()
             realm.deleteAll()
@@ -33,7 +33,7 @@ class RealmUsageDataUtil {
         fun addWeeksData() {
             val appContext = InstrumentationRegistry.getInstrumentation().targetContext
             Realm.init(appContext)
-            var realm = Realm.getDefaultInstance()
+            Realm.getDefaultInstance()
 
             addDSToRealm(7, 10, 4, 1, 50, 0, 1, 3, 4)
             addDSToRealm(6, 2, 4, 1, 50, 5, 1, 3, 4)

@@ -25,7 +25,7 @@ class DailyStatisticsTests {
     @Test
     fun testCalcDailyStatistics() {
         // Context of the app under test.
-        val testRealm = Realm.getDefaultInstance()
+        Realm.getDefaultInstance()
         for (i in 1..14) {
             RealmUsageDataUtil.addDSToRealm(i, 10, 4, 1, 50, 2, 1, 3, 4)
         }
@@ -40,7 +40,7 @@ class DailyStatisticsTests {
 
     @Test
     fun percentTest() {
-        val testRealm: Realm = Realm.getDefaultInstance()
+        Realm.getDefaultInstance()
 
         for (i in 1..7) {
             RealmUsageDataUtil.addDSToRealm(i, 10, 4, 1, 50, 1, 1, 2, 1)
@@ -102,19 +102,9 @@ class DailyStatisticsTests {
         assertEquals(4, StatUtil.getScore().score)
     }
 
-    @Test
-    fun fillOneEmptyDayTest() {
-        RealmUsageDataUtil.addDSToRealm(2, 10, 4, 1, 50, 0, 1, 3, 4)
-        RealmUsageDataUtil.addDSToRealm(3, 2, 4, 1, 50, 5, 1, 3, 4)
-        RealmUsageDataUtil.addDSToRealm(4, 1, 4, 1, 50, 3, 1, 3, 4)
-
-        StatUtil.fillEmptyDays()
-    }
-
     @Before
-    public fun setupRealm() {
+    fun setupRealm() {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.acme.snapgreen", appContext.packageName)
 
         Realm.init(appContext)
         val testConfig =
@@ -123,8 +113,8 @@ class DailyStatisticsTests {
     }
 
     @After
-    public fun breakdownRealm() {
-        var realm = Realm.getDefaultInstance()
+    fun breakdownRealm() {
+        val realm = Realm.getDefaultInstance()
         realm.beginTransaction()
         realm.deleteAll()
         realm.commitTransaction()
