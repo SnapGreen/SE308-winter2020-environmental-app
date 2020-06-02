@@ -13,7 +13,10 @@ Competitive, gamified behavior tracker to encourage awareness and encourage sust
 <a href="https://prettier.io/docs/en/">Javascript Style Convention: Prettier</a>
 
 # Static Code Analysis
-<a href="https://sonarcloud.io/dashboard?id=SnapGreen_SE308-winter2020-environmental-app">See SonarCloud Project Dashboard here</a>
+<a href="https://sonarcloud.io/dashboard?id=SnapGreen_SE308-winter2020-environmental-app">View SonarCloud Project Dashboard</a>
+
+# Continuous Integration Software
+<a href="https://travis-ci.com/github/SnapGreen/SE308-winter2020-environmental-app">View Travis CI Dashboard</a>
 
 # Design Diagrams and Prototypes
 <details>
