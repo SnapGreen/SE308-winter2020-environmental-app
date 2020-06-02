@@ -106,7 +106,6 @@ class InviteActivity : AppCompatActivity() {
             NetworkManager.getInstance()?.addToRequestQueue(jsonRequest)
 
         } catch (e: Throwable) {
-            //TODO: Handle failed connection
         }
     }
 
@@ -152,7 +151,6 @@ class InviteActivity : AppCompatActivity() {
             NetworkManager.getInstance()?.addToRequestQueue(jsonRequest)
 
         } catch (e: Throwable) {
-            //TODO: Handle failed connection
         }
         return friendsList
     }
