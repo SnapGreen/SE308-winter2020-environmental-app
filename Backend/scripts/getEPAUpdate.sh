@@ -4,7 +4,7 @@ fin=false
 silent=false
 
 function checkSettingsNPM(){
-   SETTINGS_NPM="./Backend/scripts/settings_npm.txt"
+   SETTINGS_NPM="Backend/scripts/settings_npm.txt"
    EPA_DIR_ADDRESS=$(grep -oP '(?<=^EPA_DIR_ADDRESS:).*' $SETTINGS_NPM)
    EPADATASOURCE=$(grep -oP '(?<=^EPADATASOURCE:).*' $SETTINGS_NPM)
    EPA_DATA_URL="${EPA_DIR_ADDRESS}${EPADATASOURCE}"

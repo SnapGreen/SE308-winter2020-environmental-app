@@ -4,7 +4,7 @@ fin=false
 
 function checkSettingsNPM(){
    # function to verify settings are what we expect (for debugging)
-   SETTINGS_NPM="./Backend/scripts/settings_npm.txt"
+   SETTINGS_NPM="Backend/scripts/settings_npm.txt"
    AWKDIR=$(grep -oP '(?<=^AWKDIR:).*' $SETTINGS_NPM)
    DATADIR=$(grep -oP '(?<=^DATADIR:).*' $SETTINGS_NPM)
    FDADIR=$(grep -oP '(?<=^FDADIR:).*' $SETTINGS_NPM)

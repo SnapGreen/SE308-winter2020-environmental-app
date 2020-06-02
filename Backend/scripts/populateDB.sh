@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function checkSettingsNPM(){
-   SETTINGS_NPM="./Backend/scripts/settings.txt"
+   SETTINGS_NPM="Backend/scripts/settings.txt"
    SERVER_POPULATED=$(grep -oP '(?<=^SERVER_POPULATED:).*' $SETTINGS_NPM)
    DONE_UPLOADING=$(grep -oP '(?<=^DONE_UPLOADING:).*' $SETTINGS_NPM)
    USAGE="\t\tUsage: ./populateDB.sh [OPTION] (use option -h for help)\n"

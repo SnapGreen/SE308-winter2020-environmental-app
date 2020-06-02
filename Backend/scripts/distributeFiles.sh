@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function checkSettingsNPM(){
-   SETTINGS_NPM="./Backend/scripts/settings_npm.txt"
+   SETTINGS_NPM="Backend/scripts/settings_npm.txt"
    ZIPFILE="$1"
    DATADIR=$(grep -oP '(?<=^DATADIR:).*' $SETTINGS_NPM)
    RAWDATADIR=$(grep -oP '(?<=^RAWDATADIR:).*' $SETTINGS_NPM)

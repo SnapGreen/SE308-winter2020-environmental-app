@@ -3,7 +3,7 @@ fin=false
 prompt=true
 
 function checkSettingsNPM(){
-   SETTINGS_NPM="./Backend/scripts/settings_npm.txt"
+   SETTINGS_NPM="Backend/scripts/settings_npm.txt"
    DATADIR=$(grep -oP "(?<=^DATADIR:).*" $SETTINGS_NPM)
    FDADIR=$(grep -oP "(?<=^FDADIR:).*" $SETTINGS_NPM)
    FDADATADIR="${DATADIR}${FDADIR}"
