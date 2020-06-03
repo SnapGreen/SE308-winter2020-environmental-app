@@ -1,20 +1,33 @@
-# SE308-winter2020-environmental-app
+# SnapGreen | Cal Poly Software Engineering I & II 2020
+[![Build Status](https://travis-ci.com/SnapGreen/SE308-winter2020-environmental-app.svg?branch=master)](https://travis-ci.com/SnapGreen/SE308-winter2020-environmental-app)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=SnapGreen_SE308-winter2020-environmental-app&metric=alert_status)](https://sonarcloud.io/dashboard?id=SnapGreen_SE308-winter2020-environmental-app)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=SnapGreen_SE308-winter2020-environmental-app&metric=sqale_index)](https://sonarcloud.io/dashboard?id=SnapGreen_SE308-winter2020-environmental-app)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=SnapGreen_SE308-winter2020-environmental-app&metric=code_smells)](https://sonarcloud.io/dashboard?id=SnapGreen_SE308-winter2020-environmental-app)
+
 
 Competitive, gamified behavior tracker to encourage awareness and encourage sustainable practices. Ability to scan product bar codes to see their environmental impact.
 
 # Coding Style
-Kotlin Style Convention: https://kotlinlang.org/docs/reference/coding-conventions.html
+<a href="https://kotlinlang.org/docs/reference/coding-conventions.html">Kotlin Style Convention</a>
 
-Javascript Style Convention: ![Prettier](https://prettier.io/docs/en/)
+<a href="https://prettier.io/docs/en/">Javascript Style Convention: Prettier</a>
 
-# See UI Mockup Here:
+# Static Code Analysis
+<a href="https://sonarcloud.io/dashboard?id=SnapGreen_SE308-winter2020-environmental-app">View SonarCloud Project Dashboard</a>
 
-https://www.figma.com/proto/bh5f84oIEU3nPKicuKOBUI/SnapGreen?node-id=1%3A10&scaling=min-zoom
+# Continuous Integration Software
+<a href="https://travis-ci.com/github/SnapGreen/SE308-winter2020-environmental-app">View Travis CI Dashboard</a>
 
-# Analysis and Design Models
-
+# Design Diagrams and Prototypes
+<details>
+  <summary>View Diagrams Here</summary>
+<br>
+ 
+## UI Prototypes
+<a href="https://www.figma.com/proto/bh5f84oIEU3nPKicuKOBUI/SnapGreen?node-id=1%3A10&scaling=min-zoom">View Figma Mockup</a>
+ 
 ## Component Diagram
-![Annotation 2020-03-08 141438](https://user-images.githubusercontent.com/38018381/76172520-25f23980-6154-11ea-9d1f-c3ae9858771d.png)
+![Screen Shot 2020-06-01 at 2 31 37 PM](https://user-images.githubusercontent.com/38018381/83457144-e61ab580-a415-11ea-837f-5249a253b3e5.png)
 
 ## Use Case Diagram
 
@@ -39,6 +52,7 @@ This diagram is a rough draft that shows the interaction between the different m
 
 This diagram shows the interaction between the app, server, and database when a user tries to login. The app sends the login attempt information to the server and the server queries the database and recieves a response. The server then sends a response to the app based on whether the login attempt was valid, whether the user doesn't exist, or whether the password doesn't match.
 ![Annotation 2020-03-02 212312](https://user-images.githubusercontent.com/38018381/76172505-f80cf500-6153-11ea-8d9c-cf0885f0c9ec.png)
+</details>
 
 # Environmental App Server
 
