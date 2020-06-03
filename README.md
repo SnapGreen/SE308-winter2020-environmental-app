@@ -58,17 +58,22 @@ This diagram shows the interaction between the app, server, and database when a 
 # Testing
 Our team is utilizing Espresso and JUnit for Kotlin and Jest for JS testing.
 
+### Acceptance Tests:
+
 <a href="https://docs.google.com/document/d/127FFINRSePh865mnvbP_oG0q_9rLcbGXoqgU5NzB5AQ/edit?usp=sharing">View Acceptance Test Specification</a>
 
 <a href="https://github.com/SnapGreen/SE308-winter2020-environmental-app/blob/master/Client/app/src/androidTest/java/com/acme/snapgreen/ui/login/AcceptanceTests.kt">View Acceptance Test Code</a>
 
+### Unit / Integration Tests:
+
+<a href="https://github.com/SnapGreen/SE308-winter2020-environmental-app/blob/code-cleanup/Client/app/src/androidTest/java/com/acme/snapgreen/DailyStatisticsTests.kt">View Android Unit / Integration Test Code</a>
+
+<a href="https://github.com/SnapGreen/SE308-winter2020-environmental-app/tree/code-cleanup/Backend/tests">View Backend Unit Test Code</a>
+
+
+
 # Setting up the Developer Environment
 Our app utilizes Android Studio for front-end development and Node.js for the backend. View both 
-
-<details>
-  <summary>Fire Base Setup</summary>
-<br>
-  Contact a team member directly to get authorized to the FirebaseConsole 
 
 <details>
   <summary>Android Studio Setup</summary>
