@@ -68,6 +68,5 @@ matrix:
         cd ../.. &&
         rm -rf kcov-master &&
         mkdir -p coverage &&
-        kcov coverage Backend/tests/test_settings.sh -t &&
-        kcov coverage Backend/tests/test_epa_convert.sh -t &&
+        kcov coverage Backend/tests/unit_tests.sh -t &&
         bash <(curl -s https://codecov.io/bash) 
