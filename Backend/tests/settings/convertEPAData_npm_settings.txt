@@ -1,6 +1,6 @@
 settings check:
-   SETTINGS: Backend/scripts/settings_npm.txt
-   SCRIPTSDIR: Backend/scripts/
+	SETTINGS: Backend/scripts/settings.txt
+	SCRIPTSDIR: Backend/scripts/
 	DATADIR: Backend/data/
 	EPADIR: EPA/
 	OUTFILE_END: .json
