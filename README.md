@@ -69,8 +69,35 @@ Our app utilizes Android Studio for front-end development and Node.js for the ba
   <summary>Android Studio Setup</summary>
 <br>
   
-</details>
+  ### Installation:
+  
+  Install latest version of [Android Studio](https://developer.android.com/studio). 
+  
+  Navigate to Tools > SDK Manager
+  
+  Download and Install Android 9.0 (Pie)
+  
+  Navigate to SDK Tools
+  
+  Download and Install Google Play Services 
+  
+  Clone the repository
+  
+  Go to File > Open and select the "Client" folder from the repository.
+  
+  Wait for import and gradle sync to complete.
+  
+  If prompted, download and install the latest versions of both gradle and kotlin (may not be neccessary) 
+  
+  Connect an android phone with developer mode activated and USB debugging turned on
+  
+  OR Navigate to Tools > AVD Manager
+    Select Create Virtual Device 
+    Select Pixel 3 > Pie > Finish
+   
+  Click on the play button on the top of Android Studio to build and run the app!
 
+</details>
 <details>
   <summary>Node Server Setup</summary>
 <br>
