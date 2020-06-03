@@ -311,6 +311,9 @@ if [[ $# -gt 2 ]] ; then
       elif [ "$3" == "-s" ] ; then
          checkSettings
          fin=true
+      elif [ "$3" == "-t" ] ; then
+         checkSettingsNPM
+         fin=true
       else
          printf "$USAGE"
          fin=true

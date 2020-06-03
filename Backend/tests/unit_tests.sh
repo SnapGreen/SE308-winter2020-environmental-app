@@ -15,4 +15,3 @@ testEPAConvert(){
 testEquality
 testSettings "$1"
 testEPAConvert "$1"
-
