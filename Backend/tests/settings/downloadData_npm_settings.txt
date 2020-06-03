@@ -1,0 +1,15 @@
+settings check:
+	SETTINGS: Backend/scripts/settings_npm.txt
+	FILENAME: fakefile
+	FULLPATH: fakeurl/fakefile
+	LOGDIR: Backend/logs/
+	CURRENTLATEST: FoodData_Central_branded_food_csv_2020-04-29.zip,202005010424,74439754
+	DONE_UPLOADING: false
+	DOWNLOADLOGDIR: Backend/logs/downloads/
+	USAGE:
+		Usage: ./downloadData.sh <filename> <url> [OPTION] (-h for help)
+	HELP:
+		Usage: ./downloadData.sh <filename> <url> [OPTION] (-h for help)
+			-b: bypass debug (will skip settings check)
+			-s: output settings only
+			-h: print help

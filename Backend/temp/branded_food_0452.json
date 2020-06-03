@@ -1,0 +1,5848 @@
+{
+	"products": [
+		{
+			"id": "00049508250319",
+			"info": {
+				"ingredients": [
+					"apples"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049508250326",
+			"info": {
+				"ingredients": [
+					"apples",
+					"including strawberry",
+					"fruit",
+					"vegetable juice",
+					"citric acid"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-04-20"
+		},
+		{
+			"id": "00049508250333",
+			"info": {
+				"ingredients": [
+					"apples",
+					"cinnamon"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049508250357",
+			"info": {
+				"ingredients": [
+					"flour",
+					"niacin",
+					"reduced iron",
+					"thiamin mononitrate",
+					"riboflavin",
+					"folic acid",
+					"maltodextrin",
+					"sugar",
+					"dextrose",
+					"sea salt",
+					"garlic",
+					"onion",
+					"natural smoke flavor",
+					"yeast extract",
+					"spices",
+					"habanero pepper",
+					"natural extractives of paprika",
+					"silicon dioxide",
+					"canola oil",
+					"salt",
+					"malt syrup tapioca syrup",
+					"malt extract",
+					"soda"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049508250401",
+			"info": {
+				"ingredients": [
+					"flour",
+					"niacin",
+					"reduced iron",
+					"thiamin mononitrate",
+					"riboflavin",
+					"folic acid",
+					"sugar",
+					"salt",
+					"tapioca syrup",
+					"malt extract",
+					"soda"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-19"
+		},
+		{
+			"id": "00049508250463",
+			"info": {
+				"ingredients": [
+					"sugar",
+					"cocoa butter",
+					"milk",
+					"chocolate liquor",
+					"soy lecithin",
+					"vanilla",
+					"enriched wheat flour",
+					"flour",
+					"niacin",
+					"reduced iron",
+					"thiamin mononitrate",
+					"folic acid",
+					"salt",
+					"tapioca syrup",
+					"malt extract",
+					"soda"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049508250630",
+			"info": {
+				"ingredients": [
+					"wheat flour",
+					"niacin",
+					"reduced iron",
+					"thiamine mononitrate",
+					"riboflavin",
+					"folic acid",
+					"cane sugar",
+					"unsweetened chocolate",
+					"cocoa butter",
+					"soy lecithin",
+					"vanilla extract",
+					"organic evaporated cane syrup",
+					"palm oil",
+					"organic egg whites",
+					"sugar",
+					"alkali",
+					"corn starch",
+					"natural flavors",
+					"glucose syrup",
+					"salt",
+					"baking soda"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049508250647",
+			"info": {
+				"ingredients": [
+					"wheat flour",
+					"niacin",
+					"reduced iron",
+					"thiamine mononitrate",
+					"riboflavin",
+					"folic acid",
+					"organic evaporated cane syrup",
+					"cane sugar",
+					"unsweetened chocolate",
+					"cocoa butter",
+					"soy lecithin",
+					"vanilla extract",
+					"palm oil",
+					"organic egg whites",
+					"corn starch",
+					"salt",
+					"glucose syrup",
+					"natural flavors",
+					"baking soda"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-29"
+		},
+		{
+			"id": "00049508250760",
+			"info": {
+				"ingredients": [
+					"corn starch",
+					"potato starch",
+					"long grain white rice flour",
+					"corn fiber",
+					"palm oil",
+					"sugar",
+					"salt",
+					"cellulose gum",
+					"sunflower lecithin",
+					"yeast extract",
+					"baking soda",
+					"sodium acid pyrophosphate",
+					"citric acid",
+					"chicory root extract"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049508250777",
+			"info": {
+				"ingredients": [
+					"wheat flour",
+					"niacin",
+					"reduced iron",
+					"thiamine mononitrate",
+					"riboflavin",
+					"folic acid",
+					"organic evaporated cane syrup",
+					"palm oil",
+					"organic egg whites",
+					"natural flavors",
+					"corn starch",
+					"salt",
+					"glucose syrup",
+					"baking soda",
+					"soy lecithin"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-11-04"
+		},
+		{
+			"id": "00049508250821",
+			"info": {
+				"ingredients": [
+					"flour",
+					"niacin",
+					"reduced iron",
+					"thiamin mononitrate",
+					"riboflavin",
+					"folic acid",
+					"maltodextrin",
+					"sugar",
+					"dextrose",
+					"sea salt",
+					"garlic",
+					"onion",
+					"natural smoke",
+					"yeast extract",
+					"spices",
+					"habanero pepper",
+					"natural extractives of paprika",
+					"canola oil",
+					"salt",
+					"tapioca syrup",
+					"malt extract",
+					"soda"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-02-16"
+		},
+		{
+			"id": "00049508251088",
+			"info": {
+				"ingredients": [
+					"real dark chocolate",
+					"sugar",
+					"alkali",
+					"cocoa butter",
+					"milk fat",
+					"soy lecithin",
+					"natural vanilla flavor",
+					"enriched wheat flour",
+					"flour",
+					"niacin",
+					"reduced iron",
+					"thiamin mononitrate",
+					"riboflavin",
+					"folic acid",
+					"salt",
+					"tapioca syrup",
+					"malt extract",
+					"soda"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-10-13"
+		},
+		{
+			"id": "00049508251149",
+			"info": {
+				"ingredients": [
+					"apples"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-11-01"
+		},
+		{
+			"id": "00049508251194",
+			"info": {
+				"ingredients": [
+					"flour",
+					"niacin",
+					"reduced iron",
+					"thiamin mononitrate",
+					"riboflavin",
+					"folic acid",
+					"fructose",
+					"sugar",
+					"spice",
+					"natural flavor",
+					"soybean oil",
+					"salt",
+					"tapioca syrup",
+					"malt extract",
+					"soda"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-05-03"
+		},
+		{
+			"id": "00049508251217",
+			"info": {
+				"ingredients": [
+					"wheat flour",
+					"niacin",
+					"reduced iron",
+					"thiamin mononitrate",
+					"riboflavin",
+					"folic acid",
+					"sugar",
+					"salt",
+					"tapioca syrup",
+					"malt extract",
+					"durum sourdough culture",
+					"rosemary extract",
+					"soda"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-08-13"
+		},
+		{
+			"id": "00049508251255",
+			"info": {
+				"ingredients": [
+					"sugar",
+					"palm kernel oil",
+					"alkali",
+					"milk",
+					"palm oil",
+					"soy lecithin",
+					"salt",
+					"natural flavor",
+					"enriched wheat flour",
+					"flour",
+					"niacin",
+					"reduced iron",
+					"thiamin mononitrate",
+					"riboflavin",
+					"folic acid",
+					"tapioca syrup",
+					"malt extract",
+					"soda"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-11-01"
+		},
+		{
+			"id": "00049508251316",
+			"info": {
+				"ingredients": [
+					"corn starch",
+					"potato starch",
+					"rice flour",
+					"corn fiber",
+					"palm oil",
+					"sesame seeds",
+					"salt",
+					"poppy seeds",
+					"onion",
+					"garlic",
+					"caraway seeds",
+					"sugar",
+					"cellulose gum",
+					"sunflower lecithin",
+					"yeast extract",
+					"baking soda",
+					"sodium acid pyropho"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-18"
+		},
+		{
+			"id": "00049508251408",
+			"info": {
+				"ingredients": [
+					"enriched wheat flour",
+					"flour",
+					"niacin",
+					"reduced iron",
+					"thiamin mononitrate",
+					"riboflavin",
+					"folic acid",
+					"sugar",
+					"salt",
+					"tapioca syrup",
+					"malt extract",
+					"soda",
+					"palm kernel oil",
+					"alkali"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-23"
+		},
+		{
+			"id": "00049508251521",
+			"info": {
+				"ingredients": [
+					"flour",
+					"niacin",
+					"reduced iron",
+					"thiamin mononitrate",
+					"riboflavin",
+					"folic acid",
+					"sugar",
+					"tomato",
+					"maltodextrin",
+					"salt",
+					"spices",
+					"garlic",
+					"citric acid",
+					"onion",
+					"natural flavor",
+					"cauliflower",
+					"pumpkin",
+					"broccoli",
+					"basil",
+					"canola oil",
+					"tapioca syrup",
+					"malt extract",
+					"parsley",
+					"soda"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-09-24"
+		},
+		{
+			"id": "00049508600015",
+			"info": {
+				"ingredients": [
+					"wheat flour",
+					"sunflower oil",
+					"whole wheat flour",
+					"the following: yeast",
+					"sugar",
+					"salt",
+					"oat fiber",
+					"sea salt",
+					"canola oil",
+					"ascorbic acid",
+					"natural flavors"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-01-05"
+		},
+		{
+			"id": "00049508600022",
+			"info": {
+				"ingredients": [
+					"wheat flour",
+					"sunflower oil",
+					"whole wheat flour",
+					"the following: sugar",
+					"milk",
+					"cultures",
+					"salt",
+					"enzymes",
+					"oat fiber",
+					"natural flavors",
+					"maltodextrin",
+					"yeast",
+					"whey",
+					"modified food starch",
+					"olive oil",
+					"garlic extract",
+					"canola oil",
+					"ascorbic acid"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-03-31"
+		},
+		{
+			"id": "00049521000069",
+			"info": {
+				"ingredients": [
+					"pork liver",
+					"pork fat",
+					"water",
+					"potato starch",
+					"salt",
+					"dextrose",
+					"natural flavoring",
+					"sodium citrate",
+					"sodium diacetate",
+					"sodium erythorbate",
+					"sodium nitrite"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-06-14"
+		},
+		{
+			"id": "00049521000083",
+			"info": {
+				"ingredients": [
+					"beef",
+					"pork",
+					"water",
+					"salt",
+					"potato starch",
+					"dextrose",
+					"mustard",
+					"sodium citrate",
+					"natural flavoring",
+					"sodium diacetate",
+					"sodium erythorbate",
+					"garlic",
+					"sodium nitrite"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-02-02"
+		},
+		{
+			"id": "00049521100035",
+			"info": {
+				"ingredients": [
+					"beef",
+					"pork",
+					"water",
+					"salt",
+					"potato starch",
+					"dextrose",
+					"mustard",
+					"sodium citrate",
+					"natural flavoring",
+					"sodium diacetate",
+					"black pepper",
+					"sodium erythorbate",
+					"garlic",
+					"sodium nitrite casing colored"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-05-18"
+		},
+		{
+			"id": "00049521100103",
+			"info": {
+				"ingredients": [
+					"beef",
+					"pork",
+					"water",
+					"salt",
+					"potato starch",
+					"natural flavoring",
+					"dextrose",
+					"sodium citrate",
+					"sodium diacetate",
+					"sodium erythorbate",
+					"sodium nitrite",
+					"paprika"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-05-15"
+		},
+		{
+			"id": "00049521100127",
+			"info": {
+				"ingredients": [
+					"beef",
+					"pork",
+					"water",
+					"salt",
+					"potato starch",
+					"dextrose",
+					"natural flavoring",
+					"sodium citrate",
+					"sodium diacetate",
+					"sodium erythorbate",
+					"sodium nitrite encased in natural pork casing"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-02-02"
+		},
+		{
+			"id": "00049521100202",
+			"info": {
+				"ingredients": [
+					"beef",
+					"pork",
+					"water",
+					"salt",
+					"potato starch",
+					"dextrose",
+					"natural flavoring",
+					"red pepper",
+					"sodium citrate",
+					"black pepper",
+					"sodium diacetate",
+					"jalapeno pepper",
+					"sodium erythorbate",
+					"sodium nitrite encased in collagen casing"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-05-15"
+		},
+		{
+			"id": "00049521110003",
+			"info": {
+				"ingredients": [
+					"pork",
+					"water",
+					"salt",
+					"sodium citrate",
+					"sodium phosphate",
+					"brown sugar",
+					"sodium diacetate",
+					"sodium erythorbate",
+					"sodium nitrite"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-02-02"
+		},
+		{
+			"id": "00049521160152",
+			"info": {
+				"ingredients": [
+					"pork",
+					"water",
+					"salt",
+					"sodium citrate",
+					"sodium phosphate",
+					"brown sugar",
+					"sodium diacetate",
+					"sodium erythorbate",
+					"sodium nitrite"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-18"
+		},
+		{
+			"id": "00049521161128",
+			"info": {
+				"ingredients": [
+					"pork",
+					"water",
+					"salt",
+					"sugar",
+					"sodium nitrite",
+					"potato starch",
+					"sodium citrate",
+					"spices",
+					"dextrose",
+					"garlic",
+					"onion",
+					"sodium diacetate",
+					"sodium nitrite encased in natural casing"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049521161135",
+			"info": {
+				"ingredients": [
+					"beef",
+					"pork",
+					"water",
+					"salt",
+					"sugar",
+					"sodium nitrite",
+					"potato starch",
+					"natural flavoring",
+					"dextrose",
+					"sodium citrate",
+					"red pepper",
+					"black pepper",
+					"sodium diacetate",
+					"sodium erythorbate",
+					"paprika",
+					"encased in natural pork casing"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-05-03"
+		},
+		{
+			"id": "00049521161173",
+			"info": {
+				"ingredients": [
+					"water",
+					"salt",
+					"sodium citrate",
+					"sodium phosphate",
+					"brown sugar",
+					"sodium diacetate",
+					"sodium erythorbate",
+					"sodium nitrite"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049521161180",
+			"info": {
+				"ingredients": [
+					"water",
+					"salt",
+					"sodium citrate",
+					"sodium phosphate",
+					"brown sugar",
+					"sodium diacetate",
+					"sodium erythorbate",
+					"sodium nitrite"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049521161197",
+			"info": {
+				"ingredients": [
+					"cured with: water",
+					"honey",
+					"salt",
+					"sodium citrate",
+					"sodium phosphate",
+					"brown sugar",
+					"sodium diacetate",
+					"sodium erythorbate",
+					"sodium nitrite"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049521161234",
+			"info": {
+				"ingredients": [
+					"pork",
+					"beef",
+					"water",
+					"pork fat",
+					"salt",
+					"potato starch",
+					"dextrose",
+					"natural flavoring",
+					"sodium citrate",
+					"sodium diacetate",
+					"sodium erythorbate",
+					"sodium nitrite"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049521161241",
+			"info": {
+				"ingredients": [
+					"beef",
+					"pork",
+					"water",
+					"salt",
+					"potato starch",
+					"natural flavoring",
+					"dextrose",
+					"sodium citrate",
+					"sodium diacetate",
+					"sodium erythorbate",
+					"sodium nitrite casing colored"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049521161869",
+			"info": {
+				"ingredients": [
+					"water",
+					"salt",
+					"sodium citrate",
+					"brown sugar",
+					"sodium phosphate",
+					"sodium diacetate",
+					"sodium erythorbate",
+					"sodium nitrite"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049521161876",
+			"info": {
+				"ingredients": [
+					"hickory smoked",
+					"water",
+					"salt",
+					"sodium citrate",
+					"sodium phosphate",
+					"brown sugar",
+					"sodium diacetate",
+					"sodium erythorbate",
+					"sodium nitrite"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049521161883",
+			"info": {
+				"ingredients": [
+					"hickory smoked",
+					"water",
+					"honey",
+					"salt",
+					"sodium citrate",
+					"sodium phosphate",
+					"brown sugar",
+					"sodium diacetate",
+					"sodium erythorbate",
+					"sodium nitrite"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049521161999",
+			"info": {
+				"ingredients": [
+					"pork",
+					"beef",
+					"water",
+					"potato starch",
+					"natural flavoring",
+					"salt",
+					"dextrose",
+					"sodium citrate",
+					"sodium diacetate",
+					"sodium erythorbate",
+					"sodium nitrate",
+					"encased in natural casing"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049521162002",
+			"info": {
+				"ingredients": [
+					"pork",
+					"water",
+					"beef",
+					"potato starch",
+					"salt",
+					"natural flavoring",
+					"dextrose",
+					"sodium citrate",
+					"sodium diacetate",
+					"sodium erythorbate",
+					"sodium nitrite",
+					"encased in natural pork casing"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049521162019",
+			"info": {
+				"ingredients": [
+					"pork",
+					"water",
+					"beef",
+					"potato starch",
+					"salt",
+					"natural flavoring",
+					"dextrose",
+					"sodium citrate",
+					"sodium diacetate",
+					"sodium erythorbate",
+					"sodium nitrite"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-09-23"
+		},
+		{
+			"id": "00049521162095",
+			"info": {
+				"ingredients": [
+					"water",
+					"salt",
+					"sodium citrate",
+					"sodium phosphate",
+					"brown sugar",
+					"sodium diacetate",
+					"sodium erythorbate",
+					"sodium nitrite"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-05-20"
+		},
+		{
+			"id": "00049521162781",
+			"info": {
+				"ingredients": [
+					"water",
+					"honey",
+					"salt",
+					"sodium citrate",
+					"sodium phosphate",
+					"brown sugar",
+					"sodium diacetate",
+					"sodium erythorbate",
+					"sodium nitrite"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049521163061",
+			"info": {
+				"ingredients": [
+					"pork",
+					"water",
+					"salt",
+					"sodium citrate",
+					"sodium phosphate",
+					"brown sugar",
+					"sodium diacetate",
+					"sodium erythorbate",
+					"sodium nitrite"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049521163351",
+			"info": {
+				"ingredients": [
+					"pork",
+					"water",
+					"sea salt",
+					"vinegar",
+					"yeast extract",
+					"citrus extract",
+					"brown sugar",
+					"celery"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2020-02-03"
+		},
+		{
+			"id": "00049521163405",
+			"info": {
+				"ingredients": [
+					"pork",
+					"water",
+					"sea salt",
+					"vinegar",
+					"lemon juice",
+					"brown sugar",
+					"celery"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-06-14"
+		},
+		{
+			"id": "00049539064169",
+			"info": {
+				"ingredients": [
+					"water",
+					"tomato paste",
+					"tomatoes",
+					"onion",
+					"green bell pepper",
+					"sugar",
+					"canola oil",
+					"garlic",
+					"salt",
+					"olive oil",
+					"basil",
+					"spices"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-08-10"
+		},
+		{
+			"id": "00049539064183",
+			"info": {
+				"ingredients": [
+					"water",
+					"tomato paste",
+					"sugar",
+					"mushroom",
+					"onion",
+					"canola oil",
+					"olive oil",
+					"garlic",
+					"salt",
+					"basil",
+					"red pepper",
+					"spices"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-10-13"
+		},
+		{
+			"id": "00049539351894",
+			"info": {
+				"ingredients": [
+					"tomatoes",
+					"onions",
+					"garlic",
+					"oregano",
+					"olive oil",
+					"sea salt"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-10-13"
+		},
+		{
+			"id": "00049539900115",
+			"info": {
+				"ingredients": [
+					"tomatoes",
+					"water",
+					"tomato paste",
+					"distilled white vinegar",
+					"chili peppers",
+					"salt",
+					"onions",
+					"green pepper",
+					"garlic",
+					"cayenne pepper",
+					"xanthan gum"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-10-13"
+		},
+		{
+			"id": "00049539900122",
+			"info": {
+				"ingredients": [
+					"tomatoes",
+					"water",
+					"tomato paste",
+					"distilled white vinegar",
+					"chili peppers",
+					"salt",
+					"onions",
+					"green pepper",
+					"garlic",
+					"cayenne pepper",
+					"xanthan gum"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-10-13"
+		},
+		{
+			"id": "00049539900139",
+			"info": {
+				"ingredients": [
+					"nonfat milk",
+					"milkfat",
+					"whey protein",
+					"cheese culture",
+					"salt",
+					"whey",
+					"xanthan",
+					"carob bean",
+					"guar gums",
+					"sorbic acid",
+					"palmitate",
+					"water",
+					"tomato paste",
+					"citric acid",
+					"chile peppers",
+					"jalapeno peppers",
+					"onion",
+					"garlic",
+					"cumin",
+					"oregano",
+					"sodium benzoate",
+					"sodium phosphate"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-11-01"
+		},
+		{
+			"id": "00049539900146",
+			"info": {
+				"ingredients": [
+					"water",
+					"tomato paste",
+					"citric acid",
+					"milk",
+					"skim milk",
+					"buttermilk",
+					"whey",
+					"milkfat",
+					"salt",
+					"sodium phosphate",
+					"guar gum",
+					"xanthan gum",
+					"lactic acid",
+					"artificial color",
+					"enzymes",
+					"jalapeno peppers",
+					"green chile peppers",
+					"onion",
+					"oregano",
+					"cumin",
+					"sodium benzoate"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-07-15"
+		},
+		{
+			"id": "00049539900160",
+			"info": {
+				"ingredients": [
+					"chickpeas",
+					"jalapeno peppers",
+					"tahini",
+					"garlic",
+					"lemon juice",
+					"salt",
+					"citric acid",
+					"black pepper",
+					"garlic oil",
+					"olive oil",
+					"sodium benzoate",
+					"sodium phosphate"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-11-01"
+		},
+		{
+			"id": "00049568010168",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: canola oil",
+					"filtered water",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"soy protein",
+					"sea salt",
+					"mustard flour",
+					"lemon juice"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-02-16"
+		},
+		{
+			"id": "00049568010182",
+			"info": {
+				"ingredients": [
+					"canola oil",
+					"filtered water",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"soy protein",
+					"sea salt",
+					"mustard flour",
+					"lemon juice"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-08-13"
+		},
+		{
+			"id": "00049568010328",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: canola oil",
+					"filtered water",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"soy protein",
+					"sea salt",
+					"mustard flour",
+					"lemon juice"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-08-13"
+		},
+		{
+			"id": "00049568011288",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: canola oil",
+					"filtered water",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"soy protein",
+					"sea salt",
+					"mustard flour",
+					"lemon juice"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-08-13"
+		},
+		{
+			"id": "00049568016405",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: canola oil",
+					"filtered water",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"soy protein",
+					"sea salt",
+					"mustard flour",
+					"lemon juice"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-08-13"
+		},
+		{
+			"id": "00049568020167",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: grapeseed oil",
+					"filtered water",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"soy protein",
+					"sea salt",
+					"mustard flour",
+					"lemon juice"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-02-16"
+		},
+		{
+			"id": "00049568020327",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: grapeseed oil",
+					"filtered water",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"soy protein",
+					"sea salt",
+					"mustard flour",
+					"lemon juice"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-02-16"
+		},
+		{
+			"id": "00049568021287",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: grapeseed oil",
+					"filtered water",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"soy protein",
+					"sea salt",
+					"mustard flour",
+					"lemon juice"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-19"
+		},
+		{
+			"id": "00049568026404",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: grapeseed oil",
+					"filtered water",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"soy protein",
+					"sea salt",
+					"mustard flour",
+					"lemon juice"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-19"
+		},
+		{
+			"id": "00049568050126",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"canola oil",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"soy protein",
+					"sea salt",
+					"mustard flour",
+					"lemon juice",
+					"white wine vinegar",
+					"garlic",
+					"spices",
+					"xanthan gum"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568060163",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"soy-free",
+					"non-gmo: high-oleic safflower oil",
+					"filtered water",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"pea protein",
+					"sea salt",
+					"mustard flour",
+					"lemon juice"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-19"
+		},
+		{
+			"id": "00049568060323",
+			"info": {
+				"ingredients": [
+					"high-oleic safflower oil",
+					"filtered water",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"pea protein",
+					"sea salt",
+					"mustard flour",
+					"lemon juice"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-02-16"
+		},
+		{
+			"id": "00049568061283",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"soy-free",
+					"non-gmo: high-oleic safflower oil",
+					"filtered water",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"pea protein",
+					"sea salt",
+					"mustard flour",
+					"lemon juice"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-19"
+		},
+		{
+			"id": "00049568066400",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"soy-free",
+					"non-gmo: high-oleic safflower oil",
+					"filtered water",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"pea protein",
+					"sea salt",
+					"mustard flour",
+					"lemon juice"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-19"
+		},
+		{
+			"id": "00049568090122",
+			"info": {
+				"ingredients": [
+					"canola oil",
+					"filtered water",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"soy protein",
+					"sea salt",
+					"mustard flour",
+					"lemon juice",
+					"agave nectar",
+					"maple syrup",
+					"natural flavors",
+					"vinegar",
+					"water",
+					"mustard seeds",
+					"salt",
+					"turmeric",
+					"spices",
+					"white wine vinegar",
+					"organic apple cider vinegar",
+					"organic mustard seed",
+					"organic spices",
+					"onion",
+					"whole mustard seeds",
+					"xanthan gum"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-19"
+		},
+		{
+			"id": "00049568090320",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: vegenaise",
+					"canola oil",
+					"filtered water",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"soy protein",
+					"sea salt",
+					"mustard flour",
+					"lemon juice",
+					"agave nectar",
+					"maple syrup",
+					"natural flavors",
+					"vinegar",
+					"water",
+					"mustard seeds",
+					"salt",
+					"turmeric",
+					"spices",
+					"white wine vinegar",
+					"organic apple cider vinegar",
+					"organic mustard seed",
+					"organic spices",
+					"onion",
+					"whole mustard seeds",
+					"xanthan gum"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568091280",
+			"info": {
+				"ingredients": [
+					"canola oil",
+					"filtered water",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"soy protein",
+					"sea salt",
+					"mustard flour",
+					"lemon juice",
+					"agave nectar",
+					"maple syrup",
+					"natural flavors",
+					"vinegar",
+					"water",
+					"mustard seeds",
+					"salt",
+					"turmeric",
+					"spices",
+					"white wine vinegar",
+					"organic apple cider vinegar",
+					"organic mustard seed",
+					"organic spices",
+					"onion",
+					"whole mustard seeds",
+					"xanthan gum"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568100128",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: filtered water",
+					"canola oil",
+					"vinegar",
+					"water",
+					"mustard seeds",
+					"salt",
+					"turmeric",
+					"spices",
+					"natural flavors",
+					"lemon juice",
+					"sea salt",
+					"garlic",
+					"onion",
+					"xanthan gum",
+					"herbs",
+					"orange peel",
+					"lemon peel",
+					"green",
+					"red pepper",
+					"parsley",
+					"tomato",
+					"paprika"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568100326",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: filtered water",
+					"canola oil",
+					"vinegar",
+					"water",
+					"mustard seeds",
+					"salt",
+					"turmeric",
+					"spices",
+					"natural flavors",
+					"lemon juice",
+					"sea salt",
+					"garlic",
+					"onion",
+					"xanthan gum",
+					"herbs",
+					"orange peel",
+					"lemon peel",
+					"green",
+					"red pepper",
+					"parsley",
+					"tomato",
+					"paprika"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568101286",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: filtered water",
+					"canola oil",
+					"vinegar",
+					"water",
+					"mustard seeds",
+					"salt",
+					"turmeric",
+					"spices",
+					"natural flavors",
+					"lemon juice",
+					"sea salt",
+					"garlic",
+					"onion",
+					"xanthan gum",
+					"herbs",
+					"orange peel",
+					"lemon peel",
+					"green",
+					"red pepper",
+					"parsley",
+					"tomato",
+					"paprika"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568106403",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: filtered water",
+					"canola oil",
+					"vinegar",
+					"water",
+					"mustard seeds",
+					"salt",
+					"turmeric",
+					"spices",
+					"natural flavors",
+					"lemon juice",
+					"sea salt",
+					"garlic",
+					"onion",
+					"xanthan gum",
+					"herbs",
+					"orange peel",
+					"lemon peel",
+					"green",
+					"red pepper",
+					"parsley",
+					"tomato",
+					"paprika"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-19"
+		},
+		{
+			"id": "00049568110127",
+			"info": {
+				"ingredients": [
+					"gluten-free",
+					"non-gmo: organic buttermilk",
+					"filtered water",
+					"organic nonfat milk",
+					"cream",
+					"acidophilus",
+					"bifidus cultures",
+					"microbial enzyme",
+					"white wine vinegar",
+					"canola oil",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"soy protein",
+					"sea salt",
+					"mustard flour",
+					"lemon juice",
+					"tapioca maltodextrin",
+					"buttermilk solids",
+					"whey",
+					"salt",
+					"milk",
+					"culture",
+					"vegetable enzyme",
+					"xanthan gum",
+					"onion",
+					"garlic",
+					"spices",
+					"citric acid contains0.of high-oleic sunflower oil",
+					"carnauba wax as defoaming agents"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-05-04"
+		},
+		{
+			"id": "00049568170121",
+			"info": {
+				"ingredients": [
+					"canola oil",
+					"filtered water",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"soy protein",
+					"sea salt",
+					"mustard flour",
+					"lemon juice",
+					"cucumbers",
+					"fructose",
+					"distilled vinegar",
+					"salt",
+					"xanthan gum",
+					"orange oil",
+					"pimento oil",
+					"clove oil",
+					"cassia oil",
+					"tomato paste",
+					"organic apple cider vinegar",
+					"water",
+					"organic mustard seed",
+					"organic spices",
+					"garlic",
+					"molasses",
+					"onion",
+					"spices",
+					"red chili peppers"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568171289",
+			"info": {
+				"ingredients": [
+					"canola oil",
+					"filtered water",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"soy protein",
+					"sea salt",
+					"mustard flour",
+					"lemon juice",
+					"cucumbers",
+					"fructose",
+					"distilled vinegar",
+					"salt",
+					"xanthan gum",
+					"orange oil",
+					"pimento oil",
+					"clove oil",
+					"cassia oil",
+					"tomato paste",
+					"organic apple cider vinegar",
+					"water",
+					"organic mustard seed",
+					"organic spices",
+					"garlic",
+					"molasses",
+					"onion",
+					"spices",
+					"red chili peppers"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568180168",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: organic canola oil",
+					"filtered water",
+					"organic brown rice syrup",
+					"organic apple cider vinegar",
+					"organic soybeans",
+					"sea salt",
+					"organic mustard flour",
+					"organic lemon juice"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-19"
+		},
+		{
+			"id": "00049568180328",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: organic canola oil",
+					"filtered water",
+					"organic brown rice syrup",
+					"organic apple cider vinegar",
+					"organic soybeans",
+					"sea salt",
+					"organic mustard flour",
+					"organic lemon juice"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-19"
+		},
+		{
+			"id": "00049568181288",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: organic canola oil",
+					"filtered water",
+					"organic brown rice syrup",
+					"organic apple cider vinegar",
+					"organic soybeans",
+					"sea salt",
+					"organic mustard flour",
+					"organic lemon juice"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-19"
+		},
+		{
+			"id": "00049568186405",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: organic canola oil",
+					"filtered water",
+					"organic brown rice syrup",
+					"organic apple cider vinegar",
+					"organic soybeans",
+					"sea salt",
+					"organic mustard flour",
+					"organic lemon juice"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-19"
+		},
+		{
+			"id": "00049568200163",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: filtered water",
+					"high-oleic safflower oil",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"tapioca starch",
+					"olive oil",
+					"organic soybeans",
+					"sea salt",
+					"plant source",
+					"cold-pressed flaxseed oil",
+					"lemon juice",
+					"mustard flour",
+					"gum arabic",
+					"guar gum",
+					"xanthan gum"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-03-31"
+		},
+		{
+			"id": "00049568200187",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"high-oleic safflower oil",
+					"brown rice syrup",
+					"organic soybeans",
+					"apple cider vinegar",
+					"olive oil",
+					"rice starch",
+					"sea salt",
+					"plant source",
+					"lemon juice",
+					"cold-pressed flaxseed oil",
+					"mustard flour",
+					"gum arabic",
+					"guar gum",
+					"xanthan gum"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-08-23"
+		},
+		{
+			"id": "00049568200323",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"high-oleic safflower oil",
+					"brown rice syrup",
+					"organic soybeans",
+					"apple cider vinegar",
+					"olive oil",
+					"rice starch",
+					"sea salt",
+					"plant source",
+					"lemon juice",
+					"cold-pressed flaxseed oil",
+					"mustard flour",
+					"gum arabic",
+					"guar gum",
+					"xanthan gum"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-19"
+		},
+		{
+			"id": "00049568201283",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"high-oleic safflower oil",
+					"brown rice syrup",
+					"organic soybeans",
+					"apple cider vinegar",
+					"olive oil",
+					"rice starch",
+					"sea salt",
+					"plant source",
+					"lemon juice",
+					"cold-pressed flaxseed oil",
+					"mustard flour",
+					"gum arabic",
+					"guar gum",
+					"xanthan gum"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-19"
+		},
+		{
+			"id": "00049568206400",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"high-oleic safflower oil",
+					"brown rice syrup",
+					"organic soybeans",
+					"apple cider vinegar",
+					"olive oil",
+					"rice starch",
+					"sea salt",
+					"plant source",
+					"lemon juice",
+					"cold-pressed flaxseed oil",
+					"mustard flour",
+					"gum arabic",
+					"guar gum",
+					"xanthan gum"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-19"
+		},
+		{
+			"id": "00049568210018",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"coconut oil",
+					"modified food starch",
+					"potato starch",
+					"sea salt",
+					"plant sources",
+					"olive extract",
+					"beta carotene for color "
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-07-07"
+		},
+		{
+			"id": "00049568210179",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo",
+					"soy-free: filtered water",
+					"coconut oil",
+					"modified food starch",
+					"potato starch",
+					"sea salt",
+					"plant sources",
+					"olive extract",
+					"beta carotene for color"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-19"
+		},
+		{
+			"id": "00049568210278",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"coconut oil",
+					"modified potato",
+					"corn starches",
+					"potato starch",
+					"sea salt",
+					"plant sources",
+					"olive extract",
+					"beta carotene for color"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-11-29"
+		},
+		{
+			"id": "00049568220017",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo",
+					"soy-free: filtered water",
+					"coconut oil",
+					"modified food starch",
+					"potato starch",
+					"sea salt",
+					"plant sources",
+					"olive extract",
+					"paprika extract",
+					"beta carotene for color"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-03-11"
+		},
+		{
+			"id": "00049568220178",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"coconut oil",
+					"modified food starch",
+					"potato starch",
+					"sea salt",
+					"plant sources",
+					"olive extract",
+					"paprika extract",
+					"beta carotene for color"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-02-14"
+		},
+		{
+			"id": "00049568220277",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"coconut oil",
+					"modified food starch",
+					"potato starch",
+					"sea salt",
+					"plant sources",
+					"olive extract",
+					"paprika extract",
+					"beta carotene for color"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-04"
+		},
+		{
+			"id": "00049568230177",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo",
+					"soy-free: filtered water",
+					"coconut oil",
+					"modified food starch",
+					"potato starch",
+					"sea salt",
+					"plant sources",
+					"olive extract",
+					"beta carotene for color"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568230276",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo",
+					"soy-free: filtered water",
+					"coconut oil",
+					"modified food starch",
+					"potato starch",
+					"sea salt",
+					"plant sources",
+					"olive extract",
+					"beta carotene for color"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049568240176",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo",
+					"soy-free: filtered water",
+					"coconut oil",
+					"modified food starch",
+					"potato starch",
+					"sea salt",
+					"thyme",
+					"oregano",
+					"plant sources",
+					"olive extract",
+					"beta carotene for color"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568240275",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"coconut oil",
+					"modified potato",
+					"corn starches",
+					"potato starch",
+					"sea salt",
+					"thyme",
+					"oregano",
+					"plant sources",
+					"olive extract",
+					"beta carotene for color"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-05-24"
+		},
+		{
+			"id": "00049568270173",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"coconut oil",
+					"modified food starch",
+					"potato starch",
+					"sea salt",
+					"green jalapeno peppers",
+					"red bell peppers",
+					"plant sources",
+					"olive extract"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-19"
+		},
+		{
+			"id": "00049568270272",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"coconut oil",
+					"modified potato",
+					"corn starches",
+					"potato starch",
+					"sea salt",
+					"green",
+					"red jalapeno peppers",
+					"plant sources",
+					"olive extract"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-05-24"
+		},
+		{
+			"id": "00049568290171",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"coconut oil",
+					"modified food starch",
+					"potato starch",
+					"sea salt",
+					"plant sources",
+					"olive extract",
+					"beta carotene for color"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-19"
+		},
+		{
+			"id": "00049568290270",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"coconut oil",
+					"modified potato",
+					"corn starches",
+					"potato starch",
+					"sea salt",
+					"plant sources",
+					"olive extract",
+					"beta carotene for color"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-11-29"
+		},
+		{
+			"id": "00049568300122",
+			"info": {
+				"ingredients": [
+					"canola oil",
+					"organic vegan cane sugar",
+					"balsamic vinegar",
+					"filtered water",
+					"red wine vinegar",
+					"garlic",
+					"distilled vinegar",
+					"water",
+					"mustard seed",
+					"salt",
+					"turmeric",
+					"spices",
+					"natural flavor",
+					"sea salt",
+					"onion",
+					"xanthan gum"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568301280",
+			"info": {
+				"ingredients": [
+					"canola oil",
+					"organic vegan cane sugar",
+					"balsamic vinegar",
+					"filtered water",
+					"red wine vinegar",
+					"garlic",
+					"distilled vinegar",
+					"water",
+					"mustard seed",
+					"salt",
+					"turmeric",
+					"spices",
+					"natural flavor",
+					"sea salt",
+					"onion",
+					"xanthan gum"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568310121",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: filtered water",
+					"canola oil",
+					"organic vegan cane sugar",
+					"balsamic vinegar",
+					"red wine vinegar",
+					"garlic",
+					"distilled vinegar",
+					"water",
+					"mustard seed",
+					"salt",
+					"turmeric",
+					"spices",
+					"natural flavor",
+					"sea salt",
+					"onion",
+					"xanthan gum",
+					"organic celery seed"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568310329",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: filtered water",
+					"canola oil",
+					"organic vegan cane sugar",
+					"balsamic vinegar",
+					"red wine vinegar",
+					"garlic",
+					"distilled vinegar",
+					"water",
+					"mustard seed",
+					"salt",
+					"turmeric",
+					"spices",
+					"natural flavor",
+					"sea salt",
+					"onion",
+					"xanthan gum",
+					"organic celery seed"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568311289",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"canola oil",
+					"organic vegan cane sugar",
+					"balsamic vinegar",
+					"red wine vinegar",
+					"garlic",
+					"distilled vinegar",
+					"water",
+					"mustard seed",
+					"salt",
+					"turmeric",
+					"spices",
+					"natural flavor",
+					"sea salt",
+					"onion",
+					"xanthan gum",
+					"organic celery seed"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568330129",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"tomato paste",
+					"canola oil",
+					"organic vegan cane sugar",
+					"balsamic vinegar",
+					"red wine vinegar",
+					"natural smoke flavor",
+					"garlic",
+					"distilled vinegar",
+					"water",
+					"mustard seed",
+					"salt",
+					"turmeric",
+					"spices",
+					"natural flavor",
+					"molasses",
+					"sea salt",
+					"onion",
+					"xanthan gum"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568331287",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"tomato paste",
+					"canola oil",
+					"organic vegan cane sugar",
+					"balsamic vinegar",
+					"red wine vinegar",
+					"natural smoke flavor",
+					"garlic",
+					"distilled vinegar",
+					"water",
+					"mustard seed",
+					"salt",
+					"turmeric",
+					"spices",
+					"natural flavor",
+					"molasses",
+					"sea salt",
+					"onion",
+					"xanthan gum"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568350011",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"organic coconut cream",
+					"inulin",
+					"less than of:ed cellulose",
+					"glucono delta lactone",
+					"pectin",
+					"calcium phosphate",
+					"natural flavors",
+					"magnesium citrate",
+					"organic dextrose",
+					"lactic acid",
+					"sea salt",
+					"calcium lactate",
+					"live cultures: bacillus coagulans gbi-30 6086",
+					"L. acidophilus",
+					"L. casei",
+					"L. rhamnosus",
+					"bifidobacterium"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-04-17"
+		},
+		{
+			"id": "00049568350028",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"organic coconut cream",
+					"vegan cane sugar",
+					"inulin",
+					"less than of: vanilla beans",
+					"powdered cellulose",
+					"glucono delta lactone",
+					"pectin",
+					"calcium phosphate",
+					"natural flavors",
+					"magnesium citrate",
+					"organic dextrose",
+					"lactic acid",
+					"sea salt",
+					"calcium lactate",
+					"vanilla extract",
+					"locust bean gum",
+					"calcium chloride",
+					"citric acid",
+					"live cultures: bacillus coagulans gbi-30 6086",
+					"L. acidophilus",
+					"L. casei",
+					"L. rhamnosus",
+					"bifidobacterium"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-05-15"
+		},
+		{
+			"id": "00049568350035",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"organic coconut cream",
+					"vegan cane sugar",
+					"strawberries",
+					"inulin",
+					"less than of:ed cellulose",
+					"glucono delta lactone",
+					"pectin",
+					"calcium phosphate",
+					"natural flavors",
+					"magnesium citrate",
+					"organic dextrose",
+					"lactic acid",
+					"sea salt",
+					"calcium lactate",
+					"locust bean gum",
+					"carrot",
+					"black currant juice for color",
+					"citric acid",
+					"calcium citrate",
+					"live cultures: bacillus coagulans gbi-30 6086",
+					"L. acidophilus",
+					"L. casei",
+					"L. rhamnosus",
+					"bifidobacterium"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-05-15"
+		},
+		{
+			"id": "00049568350042",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"organic coconut cream",
+					"vegan cane sugar",
+					"peaches",
+					"ascorbic acid",
+					"citric acid",
+					"and malic acid",
+					"inulin",
+					"less than of:ed cellulose",
+					"rice starch",
+					"glucono delta lactone",
+					"pectin",
+					"calcium phosphate",
+					"magnesium citrate",
+					"organic dextrose",
+					"natural flavors",
+					"lactic acid",
+					"sea salt",
+					"calcium lactate",
+					"lemon juice",
+					"annatto extract for color",
+					"live cultures: bacillus coagulans gbi-30 6086",
+					"L. acidophilus",
+					"L. casei",
+					"L. rhamnosus",
+					"bifidobacterium"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-07-11"
+		},
+		{
+			"id": "00049568350059",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"organic coconut cream",
+					"vegan cane sugar",
+					"red cherries",
+					"inulin",
+					"less than of:ed cellulose",
+					"glucono delta lactone",
+					"natural flavors",
+					"pectin",
+					"tapioca starch",
+					"calcium phosphate",
+					"magnesium citrate",
+					"organic dextrose",
+					"lactic acid",
+					"sea salt",
+					"calcium lactate",
+					"lemon juice",
+					"carrot",
+					"black currant juice for color",
+					"live cultures: bacillus coagulans gbi-30 6086",
+					"L. acidophilus",
+					"L. casei",
+					"L. rhamnosus",
+					"bifidobacterium"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-05-15"
+		},
+		{
+			"id": "00049568350066",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"organic coconut cream",
+					"vegan cane sugar",
+					"raspberries",
+					"inulin",
+					"less than of:ed cellulose",
+					"glucono delta lactone",
+					"natural flavors",
+					"pectin",
+					"tapioca starch",
+					"calcium phosphate",
+					"magnesium citrate",
+					"organic dextrose",
+					"lactic acid",
+					"sea salt",
+					"calcium lactate",
+					"lemon juice",
+					"carrot",
+					"blueberry juice for color",
+					"live cultures: bacillus coagulans gbi-30 6086",
+					"L. acidophilus",
+					"L. casei",
+					"L. rhamnosus",
+					"bifidobacterium"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-05-15"
+		},
+		{
+			"id": "00049568350097",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"organic coconut cream",
+					"vegan cane sugar",
+					"inulin",
+					"less than of: key lime juice",
+					"powdered cellulose",
+					"glucono delta lactone",
+					"pectin",
+					"calcium phosphate",
+					"tapioca starch",
+					"rice starch",
+					"magnesium citrate",
+					"organic dextrose",
+					"citric acid",
+					"natural flavor",
+					"lactic acid",
+					"sea salt",
+					"calcium lactate",
+					"spirulina extract",
+					"turmeric extract for color",
+					"live cultures: bacillus coagulans gbi-30 6086",
+					"L. acidophilus",
+					"L. casei",
+					"L. rhamnosus",
+					"bifidobacterium"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-05-15"
+		},
+		{
+			"id": "00049568350103",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"organic coconut cream",
+					"vegan cane sugar",
+					"blueberries",
+					"inulin",
+					"less than of:ed cellulose",
+					"glucono delta lactone",
+					"pectin",
+					"calcium phosphate",
+					"natural flavors",
+					"magnesium citrate",
+					"organic dextrose",
+					"locust bean gum",
+					"lactic acid",
+					"sea salt",
+					"calcium lactate",
+					"sodium citrate",
+					"carrot",
+					"blueberry for color",
+					"calcium chloride",
+					"live cultures: bacillus coagulans gbi-30 6086",
+					"L. acidophilus",
+					"L. casei",
+					"L. rhamnosus",
+					"bifidobacterium"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-05-15"
+		},
+		{
+			"id": "00049568400129",
+			"info": {
+				"ingredients": [
+					"canola oil",
+					"filtered water",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"soy protein",
+					"sea salt",
+					"mustard flour",
+					"lemon juice",
+					"olive oil",
+					"shelled hemp seeds",
+					"flaxseed oil",
+					"cold-pressed hemp seed oil",
+					"spices",
+					"xanthan gum",
+					"garlic"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568400327",
+			"info": {
+				"ingredients": [
+					"canola oil",
+					"filtered water",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"soy protein",
+					"sea salt",
+					"mustard flour",
+					"lemon juice",
+					"olive oil",
+					"shelled hemp seeds",
+					"flaxseed oil",
+					"cold-pressed hemp seed oil",
+					"spices",
+					"xanthan gum",
+					"garlic"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568401287",
+			"info": {
+				"ingredients": [
+					"canola oil",
+					"filtered water",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"soy protein",
+					"sea salt",
+					"mustard flour",
+					"lemon juice",
+					"olive oil",
+					"shelled hemp seeds",
+					"flaxseed oil",
+					"cold-pressed hemp seed oil",
+					"spices",
+					"xanthan gum",
+					"garlic"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568406404",
+			"info": {
+				"ingredients": [
+					"canola oil",
+					"filtered water",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"soy protein",
+					"sea salt",
+					"mustard flour",
+					"lemon juice",
+					"olive oil",
+					"shelled hemp seeds",
+					"flaxseed oil",
+					"cold-pressed hemp seed oil",
+					"spices",
+					"xanthan gum",
+					"garlic"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-19"
+		},
+		{
+			"id": "00049568420127",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: vegenaise",
+					"canola oil",
+					"filtered water",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"soy protein",
+					"sea salt",
+					"mustard flour",
+					"lemon juice",
+					"cold-pressed flaxseed oil",
+					"cold-pressed hemp seed oil",
+					"spices",
+					"xanthan gum",
+					"natural flavor",
+					"garlic"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568420325",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: vegenaise",
+					"canola oil",
+					"filtered water",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"soy protein",
+					"sea salt",
+					"mustard flour",
+					"lemon juice",
+					"cold-pressed flaxseed oil",
+					"cold-pressed hemp seed oil",
+					"spices",
+					"xanthan gum",
+					"natural flavor",
+					"garlic"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568421285",
+			"info": {
+				"ingredients": [
+					"canola oil",
+					"filtered water",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"soy protein",
+					"sea salt",
+					"mustard flour",
+					"lemon juice",
+					"cold-pressed flaxseed oil",
+					"cold-pressed hemp seed oil",
+					"spices",
+					"xanthan gum",
+					"natural flavor",
+					"garlic"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568426402",
+			"info": {
+				"ingredients": [
+					"canola oil",
+					"filtered water",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"soy protein",
+					"sea salt",
+					"mustard flour",
+					"lemon juice",
+					"cold-pressed flaxseed oil",
+					"cold-pressed hemp seed oil",
+					"spices",
+					"xanthan gum",
+					"natural flavor",
+					"garlic"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568430126",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: filtered water",
+					"high-oleic safflower oil",
+					"apple cider vinegar",
+					"olive oil",
+					"brown rice syrup",
+					"organic soybeans",
+					"rice starch",
+					"sea salt",
+					"cold-pressed flaxseed oil",
+					"shelled hemp seeds",
+					"plant source",
+					"lemon juice",
+					"onion",
+					"mustard flour",
+					"cold-pressed hemp seed oil",
+					"spices",
+					"xanthan gum",
+					"garlic"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568430324",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: filtered water",
+					"high-oleic safflower oil",
+					"apple cider vinegar",
+					"olive oil",
+					"brown rice syrup",
+					"organic soybeans",
+					"rice starch",
+					"sea salt",
+					"cold-pressed flaxseed oil",
+					"shelled hemp seeds",
+					"plant source",
+					"lemon juice",
+					"onion",
+					"mustard flour",
+					"cold-pressed hemp seed oil",
+					"spices",
+					"xanthan gum",
+					"garlic"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-19"
+		},
+		{
+			"id": "00049568431284",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: filtered water",
+					"high-oleic safflower oil",
+					"apple cider vinegar",
+					"olive oil",
+					"brown rice syrup",
+					"organic soybeans",
+					"rice starch",
+					"sea salt",
+					"cold-pressed flaxseed oil",
+					"shelled hemp seeds",
+					"plant source",
+					"lemon juice",
+					"onion",
+					"mustard flour",
+					"cold-pressed hemp seed oil",
+					"spices",
+					"xanthan gum",
+					"garlic"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-08-23"
+		},
+		{
+			"id": "00049568436401",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"high-oleic safflower oil",
+					"apple cider vinegar",
+					"olive oil",
+					"brown rice syrup",
+					"organic soybeans",
+					"rice starch",
+					"sea salt",
+					"cold-pressed flaxseed oil",
+					"shelled hemp seeds",
+					"plant source",
+					"lemon juice",
+					"onion",
+					"mustard flour",
+					"cold-pressed hemp seed oil",
+					"spices",
+					"xanthan gum",
+					"garlic"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568440125",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: filtered water",
+					"high-oleic safflower oil",
+					"apple cider vinegar",
+					"green chili peppers",
+					"citric acid",
+					"olive oil",
+					"brown rice syrup",
+					"organic soybeans",
+					"rice starch",
+					"sea salt",
+					"cold-pressed flaxseed oil",
+					"shelled hemp seeds",
+					"plant source",
+					"lemon juice",
+					"onion",
+					"mustard flour",
+					"spices",
+					"cold-pressed hemp seed oil",
+					"xanthan gum",
+					"garlic",
+					"chili pepper",
+					"salt",
+					"and garlic",
+					"organic spices"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568440323",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"high-oleic safflower oil",
+					"apple cider vinegar",
+					"green chili peppers",
+					"citric acid",
+					"olive oil",
+					"brown rice syrup",
+					"organic soybeans",
+					"rice starch",
+					"sea salt",
+					"cold-pressed flaxseed oil",
+					"shelled hemp seeds",
+					"plant source",
+					"lemon juice",
+					"onion",
+					"mustard flour",
+					"spices",
+					"cold-pressed hemp seed oil",
+					"xanthan gum",
+					"garlic",
+					"chili pepper",
+					"salt",
+					"and garlic",
+					"organic spices"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568441283",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: filtered water",
+					"high-oleic safflower oil",
+					"apple cider vinegar",
+					"green chili peppers",
+					"citric acid",
+					"olive oil",
+					"brown rice syrup",
+					"organic soybeans",
+					"rice starch",
+					"sea salt",
+					"cold-pressed flaxseed oil",
+					"shelled hemp seeds",
+					"plant source",
+					"lemon juice",
+					"onion",
+					"mustard flour",
+					"spices",
+					"cold-pressed hemp seed oil",
+					"xanthan gum",
+					"garlic",
+					"chili pepper",
+					"salt",
+					"and garlic",
+					"organic spices"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568446400",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: filtered water",
+					"high-oleic safflower oil",
+					"apple cider vinegar",
+					"green chili peppers",
+					"citric acid",
+					"olive oil",
+					"brown rice syrup",
+					"organic soybeans",
+					"rice starch",
+					"sea salt",
+					"cold-pressed flaxseed oil",
+					"shelled hemp seeds",
+					"plant source",
+					"lemon juice",
+					"onion",
+					"mustard flour",
+					"spices",
+					"cold-pressed hemp seed oil",
+					"xanthan gum",
+					"garlic",
+					"chili pepper",
+					"salt",
+					"and garlic",
+					"organic spices"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568460024",
+			"info": {
+				"ingredients": [
+					"whole algal flour",
+					"whole algal protein",
+					"modified cellulose",
+					"cellulose",
+					"gellan gum",
+					"plant source",
+					"carrageenan",
+					"nutritional yeast",
+					"black salt"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-19"
+		},
+		{
+			"id": "00049568500102",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: filtered water",
+					"organic soybean oil",
+					"organic soybeans",
+					"contains autolyzed yeast",
+					"chicory root extract",
+					"agar-agar",
+					"sea salt",
+					"organic soy protein",
+					"vegetable source"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-02-16"
+		},
+		{
+			"id": "00049568500645",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"organic soybean oil",
+					"organic soybeans",
+					"contains autolyzed yeast",
+					"chicory root extract",
+					"agar-agar",
+					"sea salt",
+					"organic soy protein",
+					"vegetable source"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-19"
+		},
+		{
+			"id": "00049568510101",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: filtered water",
+					"organic soybean oil",
+					"organic soybeans",
+					"contains autolyzed yeast",
+					"jalapeno peppers",
+					"water",
+					"vinegar",
+					"salt",
+					"chicory root extract",
+					"agar agar",
+					"sea salt",
+					"nutritional yeast",
+					"organic onion",
+					"organic soy protein",
+					"organic spices",
+					"vegetable source",
+					"red bell peppers",
+					"organic garlic",
+					"annatto"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568510644",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"organic soybean oil",
+					"organic soybeans",
+					"contains autolyzed yeast",
+					"jalapeno peppers",
+					"water",
+					"vinegar",
+					"salt",
+					"chicory root extract",
+					"agar agar",
+					"sea salt",
+					"nutritional yeast",
+					"organic onion",
+					"organic soy protein",
+					"organic spices",
+					"vegetable source",
+					"red bell peppers",
+					"organic garlic",
+					"annatto"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568520100",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: filtered water",
+					"organic soybean oil",
+					"organic soybeans",
+					"plant sources",
+					"chicory root extract",
+					"agar agar",
+					"sea salt",
+					"organic soy protein",
+					"vegetable source"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-08-23"
+		},
+		{
+			"id": "00049568520643",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"organic soybean oil",
+					"organic soybeans",
+					"plant sources",
+					"chicory root extract",
+					"agar agar",
+					"sea salt",
+					"organic soy protein",
+					"vegetable source"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568530109",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"organic soybean oil",
+					"organic soybeans",
+					"contains autolyzed yeast",
+					"chicory root extract",
+					"agar-agar",
+					"nutritional yeast",
+					"sea salt",
+					"organic soy protein",
+					"annatto",
+					"vegetable source"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568530642",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: filtered water",
+					"organic soybean oil",
+					"organic soybeans",
+					"contains autolyzed yeast",
+					"chicory root extract",
+					"agar-agar",
+					"nutritional yeast",
+					"sea salt",
+					"organic soy protein",
+					"annatto",
+					"vegetable source"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568540085",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: filtered water",
+					"palm fruit oil",
+					"soybean oil",
+					"chicory root extract",
+					"soybeans",
+					"soy protein",
+					"agave syrup",
+					"sea salt",
+					"plant extracts",
+					"rice starch",
+					"lemon juice",
+					"plant sources",
+					"locust bean gum",
+					"xanthan gum"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-02-16"
+		},
+		{
+			"id": "00049568550169",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"soybean oil",
+					"chicory root extract",
+					"palm fruit oil",
+					"soybeans",
+					"rice starch",
+					"soy protein",
+					"plant source",
+					"carrageenan",
+					"agave syrup",
+					"lemon juice",
+					"plant sources",
+					"guar gum",
+					"sea salt",
+					"locust bean gum"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-19"
+		},
+		{
+			"id": "00049568560809",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"organic palm fruit oil+",
+					"modified corn",
+					"potato starches",
+					"plant sources",
+					"less than of: pea fiber",
+					"pea starch",
+					"bamboo fiber",
+					"calcium phosphate",
+					"rice flour",
+					"organic vegetable glycerin",
+					"cellulose",
+					"sunflower lecithin",
+					"sea salt",
+					"vegetable source",
+					"calcium sulfate",
+					"citric acid",
+					"xanthan gum",
+					"disodium phosphate",
+					"sodium citrate"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-19"
+		},
+		{
+			"id": "00049568570808",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo",
+					"soy-free: filtered water",
+					"organic palm fruit oil+",
+					"modified corn",
+					"potato starches",
+					"plant sources",
+					"less than of: bamboo fiber",
+					"organic vegetable glycerin",
+					"nutritional yeast",
+					"cellulose",
+					"calcium phosphate",
+					"rice flour",
+					"sea salt",
+					"vegetable source",
+					"pea fiber",
+					"pea starch",
+					"sunflower lecithin",
+					"calcium sulfate",
+					"citric acid",
+					"annatto",
+					"xanthan gum",
+					"disodium phosphate",
+					"sodium citrate"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-19"
+		},
+		{
+			"id": "00049568580807",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"organic palm fruit oil+",
+					"modified food starch",
+					"plant sources",
+					"less than of: pea fiber",
+					"pea starch",
+					"bamboo fiber",
+					"nutritional yeast",
+					"jalapeno peppers",
+					"red bell peppers",
+					"calcium phosphate",
+					"rice flour",
+					"vegetable glycerin",
+					"sunflower lecithin",
+					"sea salt",
+					"sunflower oil",
+					"vegetable source",
+					"calcium sulfate",
+					"citric acid",
+					"microbial enzymes",
+					"annatto",
+					"xanthan gum",
+					"disodium phosphate",
+					"sodium citrate"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-19"
+		},
+		{
+			"id": "00049568600048",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"organic palm fruit oilâ€ ",
+					"modified potato starch",
+					"canola oil",
+					"plant sources",
+					"contains autolyzed yeast",
+					"organic vegetable glycerin",
+					"less than of: sea salt",
+					"calcium phosphate",
+					"bamboo fiber",
+					"sodium phosphate",
+					"carrageenan",
+					"vegetable source",
+					"nutritional yeast",
+					"organic handmade rice koji",
+					"organic whole chickpeas",
+					"sea salt",
+					"water",
+					"koji spores",
+					"sunflower lecithin",
+					"citric acid",
+					"annatto"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568600055",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo",
+					"soy-free: modified food starch",
+					"filtered water",
+					"organic palm fruit oil+",
+					"canola oil",
+					"plant sources",
+					"contains autolyzed yeast",
+					"vegetable glycerin",
+					"less than of: sea salt",
+					"bamboo fiber",
+					"nutritional yeast",
+					"calcium phosphate",
+					"carrageenan",
+					"sodium phosphate",
+					"sunflower lecithin",
+					"citric acid",
+					"annatto"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-07-22"
+		},
+		{
+			"id": "00049568600208",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo",
+					"soy-free: filtered water",
+					"organic palm fruit oil†",
+					"modified food starch",
+					"canola oil",
+					"plant sources",
+					"contains autolyzed yeast",
+					"vegetable glycerin",
+					"less than of: lactic acid",
+					"vegetable source",
+					"sea salt",
+					"sodium phosphate",
+					"carrageenan",
+					"bamboo fiber",
+					"nutritional yeast",
+					"calcium phosphate",
+					"organic handmade rice koji",
+					"organic whole chickpeas",
+					"water",
+					"koji spores",
+					"sunflower lecithin",
+					"citric acid",
+					"annatto"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-19"
+		},
+		{
+			"id": "00049568600802",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo",
+					"soy-free: filtered water",
+					"organic palm oil†",
+					"modified food starch",
+					"canola oil",
+					"plant sources",
+					"contains autolyzed yeast",
+					"vegetable glycerin",
+					"less than of: lactic acid",
+					"vegetable source",
+					"sea salt",
+					"sodium phosphate",
+					"carrageenan",
+					"bamboo fiber",
+					"nutritional yeast",
+					"calcium phosphate",
+					"organic handmade rice koji",
+					"organic whole chickpeas",
+					"water",
+					"koji spores",
+					"sunflower lecithin",
+					"citric acid",
+					"annatto"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-19"
+		},
+		{
+			"id": "00049568608006",
+			"info": {
+				"ingredients": [
+					"modified potato starch",
+					"organic palm fruit oil†",
+					"filtered water",
+					"canola oil",
+					"cellulose",
+					"maltodextrin",
+					"plant sources",
+					"contains autolyzed yeast",
+					"less than of: organic vegetable glycerin",
+					"sea salt",
+					"citric acid",
+					"nutritional yeast",
+					"calcium phosphate",
+					"bamboo fiber",
+					"sodium phosphate",
+					"carrageenan",
+					"organic handmade rice koji",
+					"organic whole chickpeas",
+					"water",
+					"koji spores",
+					"sunflower lecithin",
+					"annatto"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-19"
+		},
+		{
+			"id": "00049568610122",
+			"info": {
+				"ingredients": [
+					"soybean oil",
+					"filtered water",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"soy protein",
+					"sea salt",
+					"mustard flour",
+					"lemon juice",
+					"buttermilk",
+					"milk",
+					"salt",
+					"enzymes",
+					"white vinegar",
+					"nonfat milk",
+					"cream",
+					"acidophilus & bifidus cultures",
+					"microbial enzyme",
+					"spices",
+					"natural flavor",
+					"garlic",
+					"xanthan gum",
+					"onion"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-05-02"
+		},
+		{
+			"id": "00049568610801",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"organic palm fruit oil+",
+					"modified corn",
+					"potato starches",
+					"plant sources",
+					"less than of: pea fiber",
+					"pea starch",
+					"bamboo fiber",
+					"calcium phosphate",
+					"rice flour",
+					"organic vegetable glycerin",
+					"cellulose",
+					"sunflower lecithin",
+					"sea salt",
+					"vegetable source",
+					"calcium sulfate",
+					"citric acid",
+					"xanthan gum",
+					"disodium phosphate",
+					"sodium citrate",
+					"modified potato starch",
+					"canola oil",
+					"contains autolyzed yeast",
+					"less than of: lactic acid",
+					"sodium phosphate",
+					"carrageenan",
+					"nutritional yeast",
+					"organic handmade rice koji",
+					"organic whole chickpeas",
+					"water",
+					"koji spores",
+					"annatto"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-09-14"
+		},
+		{
+			"id": "00049568610856",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo",
+					"soy-free: dairy-free mozzarella",
+					"filtered water",
+					"organic palm fruit oil+",
+					"modified corn",
+					"potato starches",
+					"plant sources",
+					"less than of: pea fiber",
+					"pea starch",
+					"bamboo fiber",
+					"calcium phosphate",
+					"rice flour",
+					"organic vegetable glycerin",
+					"cellulose",
+					"sunflower lecithin",
+					"sea salt",
+					"vegetable source",
+					"calcium sulfate",
+					"citric acid",
+					"xanthan gum",
+					"disodium phosphate",
+					"sodium citrate",
+					"canola oil",
+					"contains autolyzed yeast",
+					"less than of: lactic acid",
+					"sodium phosphate",
+					"carrageenan",
+					"nutritional yeast",
+					"organic handmade rice koji",
+					"organic whole chickpeas",
+					"water",
+					"koji spores",
+					"annatto"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-09-12"
+		},
+		{
+			"id": "00049568630168",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"coconut cream",
+					"high-oleic safflower oil",
+					"organic coconut oil",
+					"organic tapioca maltodextrin",
+					"less than of: tapioca starch",
+					"pectin",
+					"plant source",
+					"gellan gum",
+					"organic lemon juice",
+					"calcium phosphate",
+					"organic locust bean gum",
+					"plant sources",
+					"guar gum",
+					"sea salt",
+					"sodium alginate"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-12-07"
+		},
+		{
+			"id": "00049568640129",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"balsamic vinegar",
+					"canola oil",
+					"vegan cane sugar",
+					"sea salt",
+					"spices",
+					"garlic",
+					"xanthan gum",
+					"onion"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-19"
+		},
+		{
+			"id": "00049568640327",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"balsamic vinegar",
+					"canola oil",
+					"vegan cane sugar",
+					"sea salt",
+					"spices",
+					"garlic",
+					"xanthan gum",
+					"onion"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568641287",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"balsamic vinegar",
+					"canola oil",
+					"vegan cane sugar",
+					"sea salt",
+					"spices",
+					"garlic",
+					"xanthan gum",
+					"onion049568641287"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568650128",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"extra virgin olive oil",
+					"canola oil",
+					"apple cider vinegar",
+					"vegan cane sugar",
+					"sea salt",
+					"spices",
+					"garlic",
+					"xanthan gum",
+					"red bell peppers"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-19"
+		},
+		{
+			"id": "00049568651286",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: filtered water",
+					"extra virgin olive oil",
+					"canola oil",
+					"apple cider vinegar",
+					"vegan cane sugar",
+					"sea salt",
+					"spices",
+					"garlic",
+					"xanthan gum",
+					"red bell peppers"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-07-14"
+		},
+		{
+			"id": "00049568660127",
+			"info": {
+				"ingredients": [
+					"gluten-free",
+					"non-gmo: vegenaise",
+					"soybean oil",
+					"filtered water",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"soy protein",
+					"sea salt",
+					"mustard flour",
+					"lemon juice",
+					"culture buttermilk",
+					"white vinegar",
+					"nonfat milk",
+					"cream",
+					"acidophilus",
+					"bifidus cultures",
+					"microbial enzyme",
+					"garlic",
+					"xanthan gum",
+					"onion",
+					"spices",
+					"natural flavor"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-04-30"
+		},
+		{
+			"id": "00049568670089",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"canola oil",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"soybeans",
+					"sea salt",
+					"mustard flour",
+					"lemon juice",
+					"water",
+					"rice",
+					"aspergillus oryzae",
+					"ginger",
+					"cane sugar",
+					"rice wine vinegar",
+					"toasted sesame oil",
+					"salt",
+					"alcohol",
+					"garlic",
+					"sesame seeds",
+					"xanthan gum",
+					"chives"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-12-07"
+		},
+		{
+			"id": "00049568670126",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"canola oil",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"soybeans",
+					"sea salt",
+					"mustard flour",
+					"lemon juice"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": ";red miso (water;soybeans;rice;sea salt;koji starter [aspergillus oryzae]);candied ginger "
+		},
+		{
+			"id": "00049568670324",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"canola oil",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"soybeans",
+					"sea salt",
+					"mustard flour",
+					"lemon juice"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": ";red miso (water;soybeans;rice;sea salt;koji starter [aspergillus oryzae]"
+		},
+		{
+			"id": "00049568671284",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"canola oil",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"soybeans",
+					"sea salt",
+					"mustard flour",
+					"lemon juice",
+					"water",
+					"rice",
+					"aspergillus oryzae",
+					"ginger",
+					"cane sugar",
+					"rice wine vinegar",
+					"toasted sesame oil",
+					"salt",
+					"alcohol",
+					"garlic",
+					"sesame seeds",
+					"xanthan gum",
+					"chives"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568676401",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"canola oil",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"soybeans",
+					"sea salt",
+					"mustard flour",
+					"lemon juice"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": ";red miso (water;soybeans;rice;sea salt;koji starter [aspergillus oryzae]);candied ginger "
+		},
+		{
+			"id": "00049568680088",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"canola oil",
+					"apple cider vinegar",
+					"molasses",
+					"water",
+					"soybeans",
+					"salt",
+					"alcohol",
+					"agave syrup",
+					"onion",
+					"tamarind paste",
+					"sea salt",
+					"garlic",
+					"cayenne pepper",
+					"brown rice syrup",
+					"mustard flour",
+					"lemon juice",
+					"white vinegar",
+					"black pepper",
+					"mustard seed",
+					"spices",
+					"xanthan gum"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-12-07"
+		},
+		{
+			"id": "00049568680125",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: filtered water",
+					"canola oil",
+					"apple cider vinegar",
+					"filtered water",
+					"molasses",
+					"water",
+					"soybeans",
+					"salt",
+					"alcohol",
+					"agave syrup",
+					"onion",
+					"tamarind paste",
+					"sea salt",
+					"garlic",
+					"cayenne pepper",
+					"brown rice syrup",
+					"mustard flour",
+					"lemon juice",
+					"white vinegar",
+					"black pepper",
+					"mustard seed",
+					"spices",
+					"xanthan gum"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568680323",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"canola oil",
+					"apple cider vinegar",
+					"molasses",
+					"water",
+					"soybeans",
+					"salt",
+					"alcohol",
+					"agave syrup",
+					"onion",
+					"tamarind paste",
+					"sea salt",
+					"garlic",
+					"cayenne pepper",
+					"brown rice syrup",
+					"mustard flour",
+					"lemon juice",
+					"white vinegar",
+					"black pepper",
+					"mustard seed",
+					"spices",
+					"xanthan gum"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-08-22"
+		},
+		{
+			"id": "00049568681283",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: filtered water",
+					"canola oil",
+					"apple cider vinegar",
+					"filtered water",
+					"molasses",
+					"water",
+					"soybeans",
+					"salt",
+					"alcohol",
+					"agave syrup",
+					"onion",
+					"tamarind paste",
+					"sea salt",
+					"garlic",
+					"cayenne pepper",
+					"brown rice syrup",
+					"mustard flour",
+					"lemon juice",
+					"white vinegar",
+					"black pepper",
+					"mustard seed",
+					"spices",
+					"xanthan gum"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568686400",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"non-gmo: filtered water",
+					"canola oil",
+					"apple cider vinegar",
+					"filtered water",
+					"molasses",
+					"water",
+					"soybeans",
+					"salt",
+					"alcohol",
+					"agave syrup",
+					"onion",
+					"tamarind paste",
+					"sea salt",
+					"garlic",
+					"cayenne pepper",
+					"brown rice syrup",
+					"mustard flour",
+					"lemon juice",
+					"white vinegar",
+					"black pepper",
+					"mustard seed",
+					"spices",
+					"xanthan gum"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-09-07"
+		},
+		{
+			"id": "00049568690124",
+			"info": {
+				"ingredients": [
+					"canola oil",
+					"filtered water",
+					"brown rice syrup",
+					"apple cider vinegar",
+					"soybeans",
+					"sea salt",
+					"lemon juice",
+					"mustard flour",
+					"vegan cane sugar",
+					"white vinegar",
+					"spices",
+					"poppy seeds",
+					"xanthan gum"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-10-04"
+		},
+		{
+			"id": "00049568700120",
+			"info": {
+				"ingredients": [
+					"canola oil",
+					"filtered water",
+					"brown rice syrup",
+					"garlic",
+					"white wine vinegar",
+					"pea protein",
+					"sea salt",
+					"mustard flour",
+					"natural flavor",
+					"lemon juice"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568710129",
+			"info": {
+				"ingredients": [
+					"canola oil",
+					"filtered water",
+					"tomato paste",
+					"organic vegan cane sugar",
+					"balsamic vinegar",
+					"natural smoke flavor",
+					"rice starch",
+					"red wine vinegar",
+					"pea protein",
+					"sea salt",
+					"garlic",
+					"distilled vinegar",
+					"water",
+					"mustard seed",
+					"salt",
+					"turmeric",
+					"spices",
+					"natural flavor",
+					"molasses",
+					"onion",
+					"cayenne pepper",
+					"paprika extract",
+					"xanthan gum"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568711287",
+			"info": {
+				"ingredients": [
+					"canola oil",
+					"filtered water",
+					"tomato paste",
+					"organic vegan cane sugar",
+					"balsamic vinegar",
+					"natural smoke flavor",
+					"rice starch",
+					"red wine vinegar",
+					"pea protein",
+					"sea salt",
+					"garlic",
+					"distilled vinegar",
+					"water",
+					"mustard seed",
+					"salt",
+					"turmeric",
+					"spices",
+					"natural flavor",
+					"molasses",
+					"onion",
+					"cayenne pepper",
+					"paprika extract",
+					"xanthan gum"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568720128",
+			"info": {
+				"ingredients": [
+					"canola oil",
+					"filtered water",
+					"water",
+					"chipotle chiles",
+					"garlic",
+					"brown rice syrup",
+					"white wine vinegar",
+					"pea protein",
+					"sea salt",
+					"mustard flour",
+					"natural smoke flavor",
+					"lemon juice",
+					"xanthan gum",
+					"paprika extract"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568726403",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"soy-free",
+					"non-gmo: canda oil",
+					"filtered water",
+					"water",
+					"chipotle chiles garlic",
+					"brown rice syrup",
+					"white wine vinegar",
+					"pea protein",
+					"sea salt",
+					"mustard flour",
+					"natural smoke flavor",
+					"lemon juice",
+					"xanthan gum",
+					"paprika extract"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-19"
+		},
+		{
+			"id": "00049568730127",
+			"info": {
+				"ingredients": [
+					"canola oil",
+					"filtered water",
+					"basil",
+					"brown rice syrup",
+					"white wine vinegar",
+					"pea protein",
+					"sea salt",
+					"garlic",
+					"lemon juice",
+					"mustard flour",
+					"xanthan gum"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568736402",
+			"info": {
+				"ingredients": [
+					"canola oil",
+					"filtered water",
+					"basil",
+					"brown rice syrup",
+					"white wine vinegar",
+					"pea protein",
+					"sea salt",
+					"garlic",
+					"lemon juice",
+					"mustard flour",
+					"xanthan gum"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-08-13"
+		},
+		{
+			"id": "00049568740089",
+			"info": {
+				"ingredients": [
+					"canola oil",
+					"filtered water",
+					"brown rice syrup",
+					"white wine vinegar",
+					"pea protein",
+					"sea salt",
+					"mustard flour",
+					"lemon juice",
+					"horseradish root",
+					"white vinegar",
+					"salt",
+					"mustard oil",
+					"sunflower oil",
+					"other plant-derived sources",
+					"black pepper",
+					"xanthan gum"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-02-16"
+		},
+		{
+			"id": "00049568750088",
+			"info": {
+				"ingredients": [
+					"canola oil",
+					"filtered water",
+					"brown rice syrup",
+					"white wine vinegar",
+					"pea protein",
+					"sea salt",
+					"mustard flour",
+					"lemon juice",
+					"cucumbers",
+					"fructose",
+					"orange oil",
+					"pimento oil",
+					"clove oil",
+					"cassia oil",
+					"yellow onion",
+					"citric acid",
+					"apple cider vinegar",
+					"molasses",
+					"onion",
+					"garlic",
+					"cayenne pepper",
+					"black pepper",
+					"xanthan gum "
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-08-15"
+		},
+		{
+			"id": "00049568760124",
+			"info": {
+				"ingredients": [
+					"canola oil",
+					"red jalapeno",
+					"filtered water",
+					"white wine vinegar",
+					"organic vegan cane sugar",
+					"garlic",
+					"brown rice syrup",
+					"pea protein",
+					"sea salt",
+					"mustard flour",
+					"lemon juice"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568760186",
+			"info": {
+				"ingredients": [
+					"canola oil",
+					"red jalapeno",
+					"filtered water",
+					"white wine vinegar",
+					"organic vegan cane sugar",
+					"garlic",
+					"brown rice syrup",
+					"pea protein",
+					"sea salt",
+					"mustard flour",
+					"lemon juice"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2019-03-05"
+		},
+		{
+			"id": "00049568770161",
+			"info": {
+				"ingredients": [
+					"organic canola oil",
+					"filtered water",
+					"organic garlic",
+					"water",
+					"organic brown rice syrup",
+					"organic apple cider vinegar",
+					"organic soybeans",
+					"sea salt",
+					"organic lemon juice",
+					"organic mustard flour"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-12-12"
+		},
+		{
+			"id": "00049568860091",
+			"info": {
+				"ingredients": [
+					"filtered water",
+					"potato starch",
+					"tapioca starch",
+					"chickpea flour",
+					"rice flour",
+					"high-oleic safflower oil",
+					"vegetable glycerin",
+					"less than of: dextrose",
+					"salt",
+					"cellulose gum",
+					"xanthan gum",
+					"citric acid",
+					"distilled monoglycerides",
+					"vegan cane sugar",
+					"sodium bicarbonate",
+					"enzymes"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-09-10"
+		},
+		{
+			"id": "00049568880365",
+			"info": {
+				"ingredients": [
+					"vegan",
+					"gluten-free",
+					"dairy-free",
+					"soy-free",
+					"non-gmo: organic vegan cane sugar",
+					"filtered water",
+					"brown rice flour",
+					"organic vegan cane sugar",
+					"organic chocolate liquor",
+					"organic cocoa butter",
+					"organic vanilla",
+					"canola oil",
+					"apples",
+					"water",
+					"ascorbic acid",
+					"potato starch",
+					"organic palm fruit oil",
+					"sweet rice flour",
+					"alkali",
+					"tapioca starch",
+					"sea salt",
+					"alcohol",
+					"vanilla bean extractives",
+					"xanthan gum"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-19"
+		},
+		{
+			"id": "00049568880488",
+			"info": {
+				"ingredients": [
+					"organic vegan cane sugar",
+					"filtered water",
+					"brown rice flour",
+					"organic chocolate liquor",
+					"organic cocoa butter",
+					"organic vanilla",
+					"canola oil",
+					"apples",
+					"water",
+					"ascorbic acid",
+					"potato starch",
+					"organic palm fruit oil",
+					"sweet rice flour",
+					"alkali",
+					"tapioca starch",
+					"sea salt",
+					"xanthan gum"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-19"
+		},
+		{
+			"id": "00049573536660",
+			"info": {
+				"ingredients": [
+					"pork",
+					"meat from feral swine",
+					"water",
+					"cranberries",
+					"sugar",
+					"sunflower oil",
+					"dry apples",
+					"red burgundy wine",
+					"onion",
+					"garlic",
+					"salt",
+					"sage",
+					"pepper",
+					"rosemary marjoram",
+					"nutmeg",
+					"coriander",
+					"caraway",
+					"allspice",
+					"natural pork or lamb casing"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-07"
+		},
+		{
+			"id": "00049573539951",
+			"info": {
+				"ingredients": [
+					"lamb",
+					"water",
+					"paprika",
+					"salt",
+					"olive oil",
+					"coriander",
+					"marjoram",
+					"nutmeg",
+					"caraway",
+					"allspice",
+					"cayenne pepper",
+					"granulated garlic",
+					"pepper encased in natural lamb casing"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2020-02-01"
+		},
+		{
+			"id": "00049576000168",
+			"info": {
+				"ingredients": [
+					"milk",
+					"cane sugar",
+					"cocoa",
+					"modified food starch",
+					"salt",
+					"carrageenan",
+					"an artificial flavor"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-09-06"
+		},
+		{
+			"id": "00049576000991",
+			"info": {
+				"ingredients": [
+					"milk",
+					"cream",
+					"nonfat dry milk",
+					"sugar",
+					"egg yolks",
+					"nutmeg",
+					"natural flavors",
+					"artificial flavors",
+					"potassium sorbate",
+					"salt",
+					"annatto",
+					"vegetable colors",
+					"cellulose gum",
+					"guar gum",
+					"carrageenan"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049578041572",
+			"info": {
+				"ingredients": [
+					"sugar",
+					"unbleached",
+					"enriched with thiamine mononitrate",
+					"riboflavin",
+					"folic acid",
+					"cashew nuts",
+					"palm oil",
+					"water",
+					"corn syrup",
+					"partially hydrogenated palm oil",
+					"cocoa",
+					"milk",
+					"soy lecithin",
+					"sorbitan monostearate",
+					"polysorbate 60",
+					"vanilla",
+					"salt",
+					"honey",
+					"natural & artificial vanilla flavors",
+					"cinnamon"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-06-25"
+		},
+		{
+			"id": "00049578763252",
+			"info": {
+				"ingredients": [
+					"raisins",
+					"gluten free rolled oats",
+					"brown sugar",
+					"palm fruit oil",
+					"soybean oil",
+					"olive oil",
+					"water",
+					"salt",
+					"monoglycerides",
+					"diglycerides",
+					"soy lecithin",
+					"potassium sorbate",
+					"as a preservative",
+					"natural flavor",
+					"palmitate",
+					"beta carotene color",
+					"eggs",
+					"sugar",
+					"brown rice flour",
+					"gluten-free whole oat flour",
+					"palm oil",
+					"potato starch",
+					"tapioca starch",
+					"invert sugar",
+					"modified corn starch",
+					"xanthan gum",
+					"natural vanilla flavor",
+					"cinnamon",
+					"baking soda",
+					"sodium acid pyrophosphate",
+					"corn starch",
+					"mono calcium phosphate"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049578763306",
+			"info": {
+				"ingredients": [
+					"sugar",
+					"eggs",
+					"soybean oil",
+					"cocoa",
+					"chocolate liquor",
+					"cocoa butter",
+					"soy lecithin",
+					"vanillin",
+					"brown rice flour",
+					"gluten-free whole oat flour",
+					"potato starch",
+					"tapioca starch",
+					"invert sugar",
+					"natural vanilla flavor",
+					"salt",
+					"xanthan gum",
+					"baking soda"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049578763313",
+			"info": {
+				"ingredients": [
+					"gluten free rolled oats",
+					"cranberries",
+					"sugar",
+					"sunflower oil",
+					"brown sugar",
+					"palm fruit oil",
+					"soybean oil",
+					"olive oil water",
+					"salt",
+					"monoglycerides",
+					"diglycerides",
+					"soy lecithin",
+					"potassium sorbate as a preservative",
+					"natural flavor",
+					"palmitate",
+					"beta carotene color",
+					"eggs",
+					"brown rice flour",
+					"gluten-free whole oat flour",
+					"palm oil",
+					"potato starch",
+					"tapioca starch",
+					"invert sugar",
+					"modified corn starch",
+					"xanthan gum",
+					"baking soda",
+					"sodium acid pyrophosphate",
+					"corn starch",
+					"mono calcium phosphate",
+					"natural vanilla flavor",
+					"cinnamon",
+					"orange oil"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049600000034",
+			"info": {
+				"ingredients": [
+					"semolina",
+					"niacin",
+					"ferrous sulfate",
+					"thiamin mononitrate",
+					"riboflavin",
+					"folic acid"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-07-20"
+		},
+		{
+			"id": "00049600000041",
+			"info": {
+				"ingredients": [
+					"semolina",
+					"niacin",
+					"ferrous sulfate",
+					"thiamin mononitrate",
+					"riboflavin",
+					"folic acid"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-03-05"
+		},
+		{
+			"id": "00049600000133",
+			"info": {
+				"ingredients": [
+					"semolina",
+					"niacin",
+					"ferrous sulfate",
+					"thiamine mononitrate",
+					"riboflavin",
+					"folic acid"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-07-20"
+		},
+		{
+			"id": "00049600000188",
+			"info": {
+				"ingredients": [
+					"semolina",
+					"niacin",
+					"ferrous sulfate",
+					"thiamin mononitrate",
+					"riboflavin",
+					"folic acid"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-11-01"
+		},
+		{
+			"id": "00049600000195",
+			"info": {
+				"ingredients": [
+					"semolina",
+					"durum flour",
+					"niacin",
+					"ferrous sulfate",
+					"thiamin mononitrate",
+					"riboflavin",
+					"folic acid"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-03-11"
+		},
+		{
+			"id": "00049600000232",
+			"info": {
+				"ingredients": [
+					"semolina",
+					"niacin",
+					"ferrous sulfate",
+					"thiamin mononitrate",
+					"riboflavin",
+					"folic acid"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-02-03"
+		},
+		{
+			"id": "00049600000287",
+			"info": {
+				"ingredients": [
+					"semolina",
+					"niacin",
+					"ferrous sulfate",
+					"thiamin mononitrate",
+					"riboflavin",
+					"folic acid"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-07-20"
+		},
+		{
+			"id": "00049600000294",
+			"info": {
+				"ingredients": [
+					"semolina",
+					"niacin",
+					"ferrous sulfate",
+					"thiamin mononitrate",
+					"riboflavin",
+					"folic acid"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-07-20"
+		},
+		{
+			"id": "00049600000423",
+			"info": {
+				"ingredients": [
+					"semolina",
+					"niacin",
+					"ferrous sulfate",
+					"thiamin mononitrate",
+					"riboflavin",
+					"folic acid"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-07-20"
+		},
+		{
+			"id": "00049600000492",
+			"info": {
+				"ingredients": [
+					"semolina",
+					"durum flour",
+					"niacin",
+					"ferrous sulfate",
+					"thiamin mononitrate",
+					"riboflavin",
+					"folic acid"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-07-20"
+		},
+		{
+			"id": "00049600000515",
+			"info": {
+				"ingredients": [
+					"semolina",
+					"niacin",
+					"ferrous sulfate",
+					"thiamin mononitrate",
+					"riboflavin",
+					"folic acid"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-19"
+		},
+		{
+			"id": "00049600000607",
+			"info": {
+				"ingredients": [
+					"whole durum wheat flour"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-07-20"
+		},
+		{
+			"id": "00049600000621",
+			"info": {
+				"ingredients": [
+					"whole durum wheat flour"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-07-20"
+		},
+		{
+			"id": "00049600700293",
+			"info": {
+				"ingredients": [
+					"durum semolina",
+					"niacin",
+					"ferrous sulfate",
+					"thiamine mononitrate",
+					"riboflavin",
+					"folic acid"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049600700309",
+			"info": {
+				"ingredients": [
+					"semolina",
+					"niacin",
+					"ferrous sulfate",
+					"thiamin mononitrate",
+					"riboflavin",
+					"folic acid "
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-08-09"
+		},
+		{
+			"id": "00049600700330",
+			"info": {
+				"ingredients": [
+					"semolina",
+					"niacin",
+					"ferrous sulfate",
+					"thiamin mononitrate",
+					"riboflavin",
+					"folic acid"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-07-20"
+		},
+		{
+			"id": "00049600700347",
+			"info": {
+				"ingredients": [
+					"semolina",
+					"niacin",
+					"ferrous sulfate",
+					"thiamin mononitrate",
+					"riboflavin",
+					"folic acid"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-07-31"
+		},
+		{
+			"id": "00049600700361",
+			"info": {
+				"ingredients": [
+					"semolina",
+					"niacin",
+					"ferrous sulfate",
+					"thiamin mononitrate",
+					"riboflavin folic acid "
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-07-20"
+		},
+		{
+			"id": "00049600903557",
+			"info": {
+				"ingredients": [
+					"semolina",
+					"durum flour",
+					"egg yolks",
+					"niacin",
+					"ferrous sulfate",
+					"thiamin mononitrate",
+					"riboflavin",
+					"folic acid"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-07-20"
+		},
+		{
+			"id": "00049600903625",
+			"info": {
+				"ingredients": [
+					"semolina",
+					"niacin",
+					"ferrous sulfate",
+					"thiamin mononitrate",
+					"riboflavin",
+					"folic acid"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-07-20"
+		},
+		{
+			"id": "00049600903632",
+			"info": {
+				"ingredients": [
+					"semolina",
+					"niacin",
+					"ferrous sulfate",
+					"thiamin mononitrate",
+					"riboflavin",
+					"folic acid"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-07-20"
+		},
+		{
+			"id": "00049643008912",
+			"info": {
+				"ingredients": [
+					"white corn",
+					"soybean",
+					"cottonseed oil",
+					"salt",
+					"purple 1",
+					"green 1",
+					"yellow 5",
+					"calcium hydroxide",
+					"tbhq"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049643009094",
+			"info": {
+				"ingredients": [
+					"white corn",
+					"soybean",
+					"cottonseed oil",
+					"salt",
+					"green dye",
+					"blue dye",
+					"calcium hydroxide",
+					"tbhq"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049646100910",
+			"info": {
+				"ingredients": [
+					"product of usa",
+					"sesame sticks",
+					"almonds",
+					"product of thailand",
+					"product of malaysia",
+					"peanut oil",
+					"unbleached wheat flour",
+					"soybean oil",
+					"sesame seeds",
+					"bulgur wheat",
+					"sea salt",
+					"beet",
+					"turmeric",
+					"glutinous",
+					"rice",
+					"water",
+					"soybean",
+					"wheat",
+					"salt",
+					"sugar",
+					"seaweed",
+					"chili",
+					"palm oil",
+					"fd&c yellow #6 & #6",
+					"and blue #1"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-11-04"
+		},
+		{
+			"id": "00049646100972",
+			"info": {
+				"ingredients": [
+					"corn syrup",
+					"sugar",
+					"gelatin",
+					"citric acid",
+					"sorbitol",
+					"natural flavors",
+					"artificial flavors",
+					"lactic acid",
+					"titanium dioxide",
+					"fd&c yellow #5",
+					"red #40"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049646100989",
+			"info": {
+				"ingredients": [
+					"corn syrup",
+					"sugar",
+					"gelatin",
+					"citric acid",
+					"sorbitol",
+					"natural flavors",
+					"artificial flavors",
+					"lactic acid",
+					"titanium dioxide",
+					"fd&c yellow #5",
+					"yellow #6"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049646101405",
+			"info": {
+				"ingredients": [
+					"brown sugar",
+					"butter-cream",
+					"salt",
+					"contains milk",
+					"corn syrup",
+					"sweetened condensed milk",
+					"milk",
+					"sugar",
+					"cream of tartar",
+					"and vanilla-",
+					"cocoa butter",
+					"whole milk",
+					"chocolate liquor",
+					"soy lecithin- an emulsifier",
+					"tree nut"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-08-06"
+		},
+		{
+			"id": "00049646101429",
+			"info": {
+				"ingredients": [
+					"brown sugar",
+					"butter-cream",
+					"salt",
+					"contains milk",
+					"corn syrup",
+					"sweetened condensed milk",
+					"milk",
+					"sugar",
+					"cream of tartar",
+					"and coffee",
+					"cocoa butter",
+					"whole milk",
+					"chocolate liquor",
+					"soy lecithin-an emulsifier",
+					"and vanillin-an artificial flavor",
+					"chocolate liquor-alkali",
+					"and vanilla pecans",
+					"tree nut"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2020-02-05"
+		},
+		{
+			"id": "00049646101436",
+			"info": {
+				"ingredients": [
+					"peanuts",
+					"peanut oil",
+					"sugar",
+					"cocoa butter",
+					"whole milk",
+					"chocolate liquor",
+					"soy lecithin-an emulsifier",
+					"and vanillin-an artificial flavor",
+					"sea salt"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049646101443",
+			"info": {
+				"ingredients": [
+					"sugar",
+					"cocoa butter",
+					"whole milk",
+					"chocolate liquor",
+					"soy lecithin-an emulsifier",
+					"and vanillin-an artificial flavor",
+					"tree nut",
+					"water",
+					"gelatin",
+					"vanilla-an artificial flavor",
+					"cream of tartar",
+					"salt"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-08-06"
+		},
+		{
+			"id": "00049646101467",
+			"info": {
+				"ingredients": [
+					"peanuts",
+					"sugar",
+					"contains or less of: molasses",
+					"rapeseed",
+					"soybean",
+					"monoglycerides",
+					"diglycerides",
+					"salt",
+					"powdered sugar",
+					"cream",
+					"vanilla-an artificial flavor",
+					"cocoa butter",
+					"whole milk",
+					"chocolate liquor",
+					"soy lecithin-an emulsifier",
+					"and vanilla-an artificial flavor",
+					"tree nut"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-01-11"
+		},
+		{
+			"id": "00049646101498",
+			"info": {
+				"ingredients": [
+					"brown sugar",
+					"butter-cream",
+					"salt",
+					"contains milk",
+					"corn syrup",
+					"sweetened condensed milk",
+					"milk",
+					"sucrose",
+					"cream of tartar",
+					"and vanilla-",
+					"sugar",
+					"cocoa butter",
+					"whole milk",
+					"chocolate liquor",
+					"soy lecithin-an emulsifier",
+					"and vanillin-an artificial flavor",
+					"sea salt"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-10-05"
+		},
+		{
+			"id": "00049646101511",
+			"info": {
+				"ingredients": [
+					"peanut butter",
+					"sugar",
+					"molasses",
+					"fully hydrogenated vegetable oil",
+					"rapeseed",
+					"soybean- monoglycerides",
+					"diglycerides",
+					"salt",
+					"powdered sugar",
+					"cream",
+					"food starch modified",
+					"vanilla-an artificial flavor",
+					"cocoa butter",
+					"whole milk",
+					"chocolate liquor",
+					"soy lecithin-an emulsifier",
+					"and vanillin-an artificial flavor"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-08-06"
+		},
+		{
+			"id": "00049646101924",
+			"info": {
+				"ingredients": [
+					"corn syrup",
+					"sugar",
+					"water",
+					"gelatin",
+					"maple flavor",
+					"salt",
+					"unbleached enriched flour",
+					"wheat flour",
+					"niacin",
+					"reduced iron",
+					"folic acid",
+					"whole grain wheat flour",
+					"soybean oil",
+					"honey",
+					"baking soda or calcium phosphate",
+					"soy lecithin",
+					"artificial flavor",
+					"cocoa butter",
+					"whole milk",
+					"chocolate liquor",
+					"soy lecithin-an emulsifier",
+					"and vanillin-an artificial favor",
+					"peanuts",
+					"molasses",
+					"fully hydrogenated vegetable oil-rapeseed",
+					"soybean monoglycerides",
+					"glycerides"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2020-02-15"
+		},
+		{
+			"id": "00049646110094",
+			"info": {
+				"ingredients": [
+					"corn syrup",
+					"sugar",
+					"gelatin",
+					"citric acid",
+					"sodium citrate",
+					"natural flavors",
+					"artificial flavors",
+					"mineral oil",
+					"carnauba wax",
+					"yellow 5",
+					"yellow 6",
+					"blue 1",
+					"red 40"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049646110414",
+			"info": {
+				"ingredients": [
+					"corn syrup",
+					"sugar",
+					"gelatin",
+					"citric acid",
+					"sorbitol",
+					"natural flavors",
+					"artificial flavors",
+					"fd&c yellow #5",
+					"yellow #6",
+					"blue #1",
+					"red #40",
+					"coconut",
+					"used for anti sticking"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-10-28"
+		},
+		{
+			"id": "00049646120048",
+			"info": {
+				"ingredients": [
+					"cucumbers",
+					"onions",
+					"sugar",
+					"vinegar",
+					"salt",
+					"spices",
+					"and hot peppers"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049646120413",
+			"info": {
+				"ingredients": [
+					"sugar",
+					"seedless red raspberries",
+					"water",
+					"jalapeno peppers",
+					"pectin",
+					"chipotle pepper",
+					"habanero pepper"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-09-06"
+		},
+		{
+			"id": "00049646121601",
+			"info": {
+				"ingredients": [
+					"garlic",
+					"vinegar",
+					"water",
+					"sugar",
+					"salt",
+					"peppers",
+					"lactic acid",
+					"trace amount of sodium benzoate"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049646123025",
+			"info": {
+				"ingredients": [
+					"beets",
+					"sugar",
+					"water",
+					"vinegar",
+					"salt",
+					"spices"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049646141159",
+			"info": {
+				"ingredients": [
+					"peaches",
+					"sugar",
+					"water"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049646144808",
+			"info": {
+				"ingredients": [
+					"tomatoes",
+					"tomato juice",
+					"sea salt",
+					"citric acid",
+					"calcium chloride",
+					"bell peppers",
+					"onions",
+					"distilled white vinegar",
+					"filtered water",
+					"natural apple cider flavoring",
+					"sugar",
+					"salt",
+					"garlic",
+					"jalapeno peppers",
+					"oregano",
+					"spices"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049646144815",
+			"info": {
+				"ingredients": [
+					"tomatoes",
+					"tomato juice",
+					"sea salt",
+					"citric acid",
+					"calcium chloride",
+					"bell peppers",
+					"onions",
+					"jalapeno peppers",
+					"distilled white vinegar",
+					"filtered water",
+					"natural apple cider flavoring",
+					"sugar",
+					"salt",
+					"garlic",
+					"oregano",
+					"spices"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049646144839",
+			"info": {
+				"ingredients": [
+					"tomatoes",
+					"tomato juice",
+					"sea salt",
+					"citric acid",
+					"calcium chloride",
+					"peaches",
+					"bell peppers",
+					"onions",
+					"distilled white vinegar",
+					"filtered water",
+					"natural apple cider flavoring",
+					"sugar",
+					"salt",
+					"garlic",
+					"jalapeno peppers",
+					"peach",
+					"oregano",
+					"spices",
+					"natural flavorings"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049646144853",
+			"info": {
+				"ingredients": [
+					"tomatoes",
+					"tomato juice",
+					"sea salt",
+					"citric acid",
+					"calcium chloride",
+					"black beans",
+					"bell peppers",
+					"onions",
+					"corn",
+					"distilled white vinegar",
+					"filtered water",
+					"natural apple cider flavoring",
+					"sugar",
+					"jalapeno peppers",
+					"salt",
+					"garlic",
+					"oregano",
+					"spices"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049646144860",
+			"info": {
+				"ingredients": [
+					"tomatoes",
+					"tomato juice",
+					"sea salt",
+					"citric acid",
+					"calcium chloride",
+					"bell peppers",
+					"onions",
+					"distilled white vinegar",
+					"filtered water",
+					"natural apple cider flavoring",
+					"jalapeno peppers",
+					"sugar",
+					"salt",
+					"garlic",
+					"oregano",
+					"spices"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049646500086",
+			"info": {
+				"ingredients": [
+					"sugar",
+					"blueberries",
+					"water",
+					"pectin",
+					"citric acid"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2018-03-05"
+		},
+		{
+			"id": "00049646500178",
+			"info": {
+				"ingredients": [
+					"sugar",
+					"red raspberries",
+					"pectin",
+					"water",
+					"citric acid"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049646500246",
+			"info": {
+				"ingredients": [
+					"sugar",
+					"cherries",
+					"pectin",
+					"water",
+					"citric acid"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049646500338",
+			"info": {
+				"ingredients": [
+					"sugar",
+					"elderberry juice from",
+					"water",
+					"pectin",
+					"citric acid"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-11-01"
+		},
+		{
+			"id": "00049646505166",
+			"info": {
+				"ingredients": [
+					"sugar",
+					"red raspberries",
+					"orange peel",
+					"figs",
+					"water",
+					"pectin",
+					"citric acid",
+					"ginger"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049646505227",
+			"info": {
+				"ingredients": [
+					"sugar",
+					"water",
+					"peaches",
+					"strawberries",
+					"pectin",
+					"red raspberries",
+					"cherries",
+					"cranberries",
+					"citric acid"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-11-01"
+		},
+		{
+			"id": "00049646530205",
+			"info": {
+				"ingredients": [
+					"goat milk",
+					"salt",
+					"cheese culture",
+					"rennet"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-07-14"
+		},
+		{
+			"id": "00049646530502",
+			"info": {
+				"ingredients": [
+					"milk",
+					"cream",
+					"salt",
+					"xanthan",
+					"carob bean",
+					"guar gums"
+				],
+				"score": "-999999999"
+			},
+			"dateModified": "2017-10-13"
+		}
+	]
+}

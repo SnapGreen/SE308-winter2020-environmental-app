@@ -1,13 +1,29 @@
 #!/bin/bash
+debug=true
+fin=false
+silent=false
+
 SETTINGS="/home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/settings.txt"
+
+if [[ $# -gt 2 ]] ; then
+   if [ -n $3 ] ; then
+      if [ "$3" == "-t" ] || [ "$3" == "-n" ] ; then
+         SETTINGS="Backend/scripts/settings_npm.txt"
+      fi
+   fi
+fi
+
+SCRIPTSDIR=$(grep -oP '(?<=^SCRIPTSDIR:).*' $SETTINGS)
 DATADIR=$(grep -oP '(?<=^DATADIR:).*' $SETTINGS)
 EPADIR=$(grep -oP '(?<=^EPADIR:).*' $SETTINGS)
 OUTFILE_END=$(grep -oP '(?<=^OUTFILE_END:).*' $SETTINGS)
 NEWDATADIR="$1"
 EPADATASOURCE="$2"
 EPA_PATTERNFILE=$(grep -oP '(?<=^EPA_PATTERNFILE:).*' $SETTINGS)
+EPA_PATTERN_PATH="${SCRIPTSDIR}${EPA_PATTERNFILE}"
 NEWDATAPATH="${NEWDATADIR}${EPADATASOURCE}"
 AWKDIR=$(grep -oP '(?<=^AWKDIR:).*' $SETTINGS)
+AWKDIR="${SCRIPTSDIR}${AWKDIR}"
 TMPDIR=$(grep -oP '(?<=^TMPDIR:).*' $SETTINGS)
 TMPFILE_END=$(grep -oP '(?<=^TMPFILE_END:).*' $SETTINGS)
 SAFER_PREFIX=$(echo $EPADATASOURCE | grep -oP ".*(?=.xls)")
@@ -35,18 +51,17 @@ HELP="${HELP}\t\t\t-b: bypass debug mode\n"
 HELP="${HELP}\t\t\t-s: output settings only\n"
 HELP="${HELP}\t\t\t-h: print help\n"
 
-debug=true
-fin=false
-silent=false
-
 function checkSettings(){
    echo "settings check:"
    printf "\tSETTINGS: %s\n" $SETTINGS
+   printf "\tSCRIPTSDIR: %s\n" $SCRIPTSDIR
    printf "\tDATADIR: %s\n" "$DATADIR"
    printf "\tEPADIR: %s\n" "$EPADIR"
    printf "\tOUTFILE_END: %s\n" "$OUTFILE_END"
    printf "\tNEWDATADIR: %s\n" "$NEWDATADIR"
    printf "\tEPADATASOURCE: %s\n" "$EPADATASOURCE"
+   printf "\tEPA_PATTERNFILE: %s\n" "$EPA_PATTERNFILE"
+   printf "\tEPA_PATTERN_PATH: %s\n" "$EPA_PATTERN_PATH"
    printf "\tNEWDATAPATH: %s\n" "$NEWDATAPATH"
    printf "\tAWKDIR: %s\n" "$AWKDIR"
    printf "\tTMPDIR: %s\n" "$TMPDIR"
@@ -76,6 +91,15 @@ function checkSettings(){
    printf "$HELP"
 }
 
+if [[ $# -gt 2 ]] ; then
+   if [ -n $3 ] ; then
+      if [ "$3" == "-t" ] ; then
+         checkSettings
+         exit 0
+      fi
+   fi
+fi
+
 #https://stackoverflow.com/questions/17066250/create-timestamp-variable-in-bash-script
 function timestamp(){
    date +%s
@@ -88,10 +112,6 @@ function convertToCsv(){
 
    #printf "prepping data...\n"
    #dos2unix $2
-
-   if [ $debug == "false" ] ; then
-      rm $1
-   fi
 }
 
 function prepForSplit(){
@@ -115,23 +135,22 @@ function splitOldAndNew(){
    mv "$SAFEROLD" "$SAFEROLD_TMP"
    mv "$SAFERNEW" "$SAFERNEW_TMP"
    # this ensures that no files without .tmp are in temp
-   rm "$SAFEROLD" "$SAFERNEW"
 }
 
 function processNewData(){
    printf "processing new data...\n"
 
    #this removes the header line from the new split file
-   echo "$(tail -n +2 "$SAFERNEW")" > "$SAFERNEW"
+   echo "$(tail -n +2 "$1")" > "$1"
 
    printf "removing redundant data...\n"
    #this file is mainly a log of items that have been added
    #this removes those entries and leaves the ones that have/will be deleted
-   sed -i '/"gr[ea]y \[square\]"/!d' "$SAFERNEW"
+   sed -i '/"gr[ea]y \[square\]"/!d' "$1"
 
    #there is a column in the update portion that sometimes goes unused; in order
    #for awk to process the file correctly, "" needs to be added between ,,
-   sed -i 's/,,/,"",/g' "$SAFERNEW"
+   sed -i 's/,,/,"",/g' "$1"
 }
 
 
@@ -282,7 +301,6 @@ function createJson(){
 }
 
 
-
 if [[ $# -gt 2 ]] ; then
    if [ -n $3 ] ; then
       if [ "$3" == "-b" ] ; then
@@ -311,11 +329,11 @@ if [ "$fin" == "false" ] ; then
    convertToCsv "$NEWDATAPATH" "$SAFERCSVROUGH_TMP"
    prepForSplit "$SAFERCSVROUGH_TMP" "$SAFERCSVPREPPED_TMP"
    splitOldAndNew "$SAFERCSVPREPPED_TMP"
-   processNewData "$SAFERNEW"
-   extractRelevantOldData "$AWK_OLDEPA_TRIM" "$SAFEROLD" "$SAFEROLDTRIM_TMP"
-   extractRelevantNewData "$AWK_NEWEPA_TRIM" "$SAFERNEW" "$SAFERNEWTRIM_TMP"
+   processNewData "$SAFERNEW_TMP"
+   extractRelevantOldData "$AWK_OLDEPA_TRIM" "$SAFEROLD_TMP" "$SAFEROLDTRIM_TMP"
+   extractRelevantNewData "$AWK_NEWEPA_TRIM" "$SAFERNEW_TMP" "$SAFERNEWTRIM_TMP"
    joinOldAndNew "$SAFEROLDTRIM_TMP" "$SAFERNEWTRIM_TMP" "$SAFERJOINED_TMP"
-   cleanChemicals "$EPA_PATTERNFILE" "$SAFERCLEAN_TMP"
+   cleanChemicals "$EPA_PATTERN_PATH" "$SAFERCLEAN_TMP"
    sortOnChem "$SAFERCLEAN_TMP" "$SAFERSORTED_TMP"
    decideScores "$SAFERSORTED_TMP" 
    removeDuplicates "$SAFERSORTED_TMP" "$SAFERUNIQUE_TMP"

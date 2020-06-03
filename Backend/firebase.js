@@ -82,7 +82,7 @@ class Firebase {
   async getProduct(id) {
     let productQuery = await this.db
       .collection("products")
-      .doc(`00${id}`)
+      .doc(`${id}`)
       .get();
 
     console.log(productQuery);

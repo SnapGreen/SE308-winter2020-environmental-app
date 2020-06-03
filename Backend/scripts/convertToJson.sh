@@ -1,4 +1,105 @@
 #!/bin/bash
+debug="on"
+fin=false
+
+function checkSettingsNPM(){
+   # function to verify settings are what we expect (for debugging)
+   SETTINGS_NPM="Backend/scripts/settings_npm.txt"
+   AWKDIR=$(grep -oP '(?<=^AWKDIR:).*' $SETTINGS_NPM)
+   DATADIR=$(grep -oP '(?<=^DATADIR:).*' $SETTINGS_NPM)
+   FDADIR=$(grep -oP '(?<=^FDADIR:).*' $SETTINGS_NPM)
+   LOGDIR=$(grep -oP '(?<=^LOGDIR:).*' $SETTINGS_NPM)
+   RAWDATADIR=$(grep -oP '(?<=^RAWDATADIR:).*' $SETTINGS_NPM)
+   TESTDIR=$(grep -oP '(?<=^TESTDIR:).*' $SETTINGS_NPM)
+   TMPDIR=$(grep -oP '(?<=^TMPDIR:).*' $SETTINGS_NPM)
+   FDADATASOURCE=$(grep -oP '(?<=^FDADATASOURCE:).*' $SETTINGS_NPM)
+   FDAINDIR="${RAWDATADIR}${FDADIR}"
+   FDAOUTDIR="${DATADIR}${FDADIR}"
+   FDAINFILE="${FDAINDIR}${FDADATASOURCE}"
+   MAPFILE=$(grep -oP '(?<=^MAPFILE:).*' $SETTINGS_NPM)
+   PRODS_PER_JSON=$(grep -oP '(?<=^PRODS_PER_JSON:).*' $SETTINGS_NPM)
+   FDA_PATTERNFILE=$(grep -oP '(?<=^FDA_PATTERNFILE:).*' $SETTINGS_NPM)
+   SPLIT_PREFIX=$(grep -oP '(?<=^SPLIT_PREFIX:).*' $SETTINGS_NPM)
+   SUFFIX_LEN=$(grep -oP '(?<=^SUFFIX_LEN:).*' $SETTINGS_NPM)
+   OUTFILE_END=$(grep -oP '(?<=^OUTFILE_END:).*' $SETTINGS_NPM)
+   TMPFILE_END=$(grep -oP '(?<=^TMPFILE_END:).*' $SETTINGS_NPM)
+   NUM_CLEAN_TESTS=$(grep -oP '(?<=^NUM_CLEAN_TESTS:).*' $SETTINGS_NPM)
+   AWK_FORMAT="${AWKDIR}csvtojson.awk"
+   AWK_SHRINK="${AWKDIR}consolidateIngreds.awk"
+   AWK_TRIM="${AWKDIR}trim.awk"
+   AWK_RM_INGRDS="${AWKDIR}removeIngreds.awk"
+   AWK_MAP="${AWKDIR}map_fdcid_gtin.awk"
+   NOCATS_TMP="${TMPDIR}nocats.tmp"
+   PREPPED_TMP="${TMPDIR}prepped.tmp"
+   INGREDIENTS_TMP="${TMPDIR}ingredients.tmp"
+   INGREDIENTSB4_TMP="${TMPDIR}ingredientsb4.tmp"
+   NON_INGREDIENTS_TMP="${TMPDIR}non_ingredients.tmp"
+   SET_INGREDIENTS_TMP="${TMPDIR}set_ingredients.tmp"
+   RELEVANTDATA_TMP="${TMPDIR}relevantdata.tmp"
+   RELEVANTSORTED_TMP="${TMPDIR}relevantsorted.tmp"
+   RELEVANTTRIMMED_TMP="${TMPDIR}relevanttrimmed.tmp"
+   RELEVANTDATASORTED_TMP="${TMPDIR}relevantdatasorted.tmp"
+   CLEANTEST_TMP="${TMPDIR}longestlines.tmp"
+   JOINED_TMP="${TMPDIR}joined.tmp"
+   SORTED_TMP="${TMPDIR}sorted.tmp"
+   USAGE="\t\tUsage: ./convertToJson.sh [OPTION] (-h for help)\n"
+   HELP="${USAGE}\t\tOPTIONS:\n"
+   HELP="${HELP}\t\t\t-b: bypass debug mode\n"
+   HELP="${HELP}\t\t\t-s: print settings only\n"
+   HELP="${HELP}\t\t\t-h: print help\n"
+   HELP="${HELP}\t\t**debug mode: leave temp files undeleted**\n"
+   HELP="${HELP}\t\t**debug mode is ON if no OPTION specified\n"
+
+   echo "settings check:"
+   printf "\tSETTINGS: %s\n" "$SETTINGS_NPM"
+   printf "\tAWKDIR: %s\n" "$AWKDIR"
+   printf "\tDATADIR: %s\n" "$DATADIR"
+   printf "\tFDADIR: %s\n" "$FDADIR"
+   printf "\tFDAINDIR: %s\n" "$FDAINDIR"
+   printf "\tFDAOUTDIR: %s\n" "$FDAOUTDIR"
+   printf "\tLOGDIR: %s\n" "$LOGDIR"
+   printf "\tRAWDATADIR: %s\n" "$RAWDATADIR"
+   printf "\tTMPDIR: %s\n" "$TMPDIR"
+   printf "\tTESTDIR: %s\n" "$TESTDIR"
+   printf "\tFDAINFILE: %s\n" "$FDAINFILE"
+   printf "\tMAPFILE: %s\n" "$MAPFILE"
+   printf "\tPRODS_PER_JSON: %s\n" "$PRODS_PER_JSON"
+   printf "\tFDA_PATTERNFILE: %s\n" "$FDA_PATTERNFILE"
+   printf "\tSPLIT_PREFIX: %s\n" "$SPLIT_PREFIX"
+   printf "\tSUFFIX_LEN: %s\n" "$SUFFIX_LEN"
+   printf "\tOUTFILE_END: %s\n" "$OUTFILE_END"
+   printf "\tTMPFILE_END: %s\n" "$TMPFILE_END"
+   printf "\tNUM_CLEAN_TESTS: %s\n" "$NUM_CLEAN_TESTS"
+	printf "\tAWK_FORMAT: %s\n" "$AWK_FORMAT"
+	printf "\tAWK_SHRINK: %s\n" "$AWK_SHRINK"
+	printf "\tAWK_TRIM: %s\n" "$AWK_TRIM"
+	printf "\tAWK_RM_INGRDS: %s\n" "$AWK_RM_INGRDS"
+	printf "\tAWK_MAP: %s\n" "$AWK_MAP"
+	printf "\tNOCATS_TMP: %s\n" "$NOCATS_TMP"
+	printf "\tPREPPED_TMP: %s\n" "$PREPPED_TMP"
+	printf "\tINGREDIENTS_TMP: %s\n" "$INGREDIENTS_TMP"
+	printf "\tINGREDIENTSB4_TMP: %s\n" $INGREDIENTSB4_TMP
+	printf "\tNON_INGREDIENTS_TMP: %s\n" "$NON_INGREDIENTS_TMP"
+	printf "\tSET_INGREDIENTS_TMP: %s\n" "$SET_INGREDIENTS_TMP"
+	printf "\tRELEVANTDATA_TMP: %s\n" "$RELEVANTDATA_TMP"
+	printf "\tRELEVANTSORTED_TMP: %s\n" "$RELEVANTSORTED_TMP"
+	printf "\tRELEVANTTRIMMED_TMP: %s\n" "$RELEVANTTRIMMED_TMP"
+	printf "\tCLEANTEST_TMP: %s\n" "$CLEANTEST_TMP"
+	printf "\tJOINED_TMP: %s\n" "$JOINED_TMP"
+	printf "\tSORTED_TMP: %s\n" "$SORTED_TMP"
+	printf "\tUSAGE:\n" 
+	printf "$USAGE" 
+	printf "\tHELP:\n" 
+	printf "$HELP" 
+}
+
+if [ $# != 0 ] ; then
+   if [ $1 == "-t" ] ; then
+      checkSettingsNPM
+      exit 0
+   fi
+fi
+
 SETTINGS="/home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/settings.txt"
 AWKDIR=$(grep -oP '(?<=^AWKDIR:).*' $SETTINGS)
 DATADIR=$(grep -oP '(?<=^DATADIR:).*' $SETTINGS)
@@ -45,8 +146,6 @@ HELP="${HELP}\t\t\t-h: print help\n"
 HELP="${HELP}\t\t**debug mode: leave temp files undeleted**\n"
 HELP="${HELP}\t\t**debug mode is ON if no OPTION specified\n"
 
-debug="on"
-fin=false
 
 #https://stackoverflow.com/questions/17066250/create-timestamp-variable-in-bash-script
 function timestamp(){
@@ -360,14 +459,14 @@ function createJsons(){
 
 if [ $# != 0 ] ; then
    if [ $1 == "-b" ] ; then
-      echo "debug mode off"
       debug="off"
+      echo "debug mode off"
    elif [ $1 == "-h" ] ; then
+      fin=true
       printf "$HELP"
-      fin=true
    elif [ $1 == "-s" ] ; then
-      checkSettings
       fin=true
+      checkSettings
    else
       printf "$USAGE"
       fin=true

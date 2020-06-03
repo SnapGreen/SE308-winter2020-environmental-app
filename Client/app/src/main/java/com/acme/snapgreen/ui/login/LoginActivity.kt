@@ -17,7 +17,6 @@ import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import io.realm.Realm
 import org.json.JSONObject
 
 class LoginActivity : AppCompatActivity() {
@@ -28,7 +27,6 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         // set context for Valley calls for the remainder of the app
         NetworkManager.getInstance(applicationContext)
-        Realm.init(applicationContext)
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 

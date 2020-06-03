@@ -50,6 +50,12 @@ It is important to note that there are many tutorials to do this, some of them f
 
 In my first attempts, I tried to use one of my existing gmail accounts.  As I did not want to set up 2-FA on an account that I logged into multiple times daily, I attempted to set up Postfix using that email's login info, which did not work (but was supposed to).  By starting a new email account and setting up 2-fa, I was able to generate a separate password for this purpose (the process is described in the linked article)
 
+# Testing, Debugging, and Logging
+
+Tests can be found in tests/ and can be carried out at will, scheduled through cron, and are automatically appllied whenever code is pushed to the repository (along with coverage measurements).  Most testing is done via diff comparisons, although shunit2 is being integrated.  They are largely component tests, as the scripts are run in debug mode by default and errors both logged and emailed.  The intention is to refactor most of the functions into POSIX C programs, then more properly integrate unit testing.  However, this code will likely never achieve full coverage, as many of the scripts either draw data from, or send data to, third parties.  Automating tests for this on a large scale would likely result in a loss of access on our end.
+
+As mentioned, debugging mode is applied whenever the more complicated scripts are run without flags.  This leaves the intermediary artifacts of each operation in temp/ for inspection.  Scripts are also verbose, with their output captured and logged if being run in automation mode--if a function fails in a script, the log will capture where it happened and the script can be re-run in debug mode to inspect where the error lies.
+
 # Troubleshooting
 
 Depending on the host operating system, you may run into a variety of issues.  For instance, if you are running a server from the wsl (Windows Subsystem for Linux), you might come across errors mentioning "\r" in line xx.  If that is the

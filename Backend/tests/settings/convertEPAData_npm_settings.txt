@@ -1,0 +1,41 @@
+settings check:
+	SETTINGS: Backend/scripts/settings_npm.txt
+	SCRIPTSDIR: Backend/scripts/
+	DATADIR: Backend/data/
+	EPADIR: EPA/
+	OUTFILE_END: .json
+	NEWDATADIR: fakedir/
+	EPADATASOURCE: fakefile.xls
+	EPA_PATTERNFILE: epa_removalpatterns.txt
+	EPA_PATTERN_PATH: Backend/scripts/epa_removalpatterns.txt
+	NEWDATAPATH: fakedir/fakefile.xls
+	AWKDIR: Backend/scripts/awk/
+	TMPDIR: Backend/temp/
+	TMPFILE_END: .tmp
+	SAFER_PREFIX: fakefile
+	SAFERCSVROUGH_TMP: Backend/temp/fakefile_roughcsv.tmp
+	SAFERCSVPREPPED_TMP: Backend/temp/fakefile_preppedcsv.tmp
+	SAFERSPLIT_PREFIX: Backend/temp/fakefile
+	SAFEROLD: Backend/temp/fakefile00
+	SAFERNEW: Backend/temp/fakefile01
+	SAFEROLD_TMP: Backend/temp/fakefile00.tmp
+	SAFERNEW_TMP: Backend/temp/fakefile01.tmp
+	SAFEROLDTRIM_TMP: Backend/temp/fakefile_oldtrim.tmp
+	SAFERNEWTRIM_TMP: Backend/temp/fakefile_newtrim.tmp
+	SAFERJOINED_TMP: Backend/temp/fakefile_joined.tmp
+	SAFERB4_TMP: Backend/temp/fakefile_b4.tmp
+	SAFERCLEAN_TMP: Backend/temp/fakefile_clean.tmp
+	SAFERSORTED_TMP: Backend/temp/fakefile_sorted.tmp
+	SAFERUNIQUE_TMP: Backend/temp/fakefile_unique.tmp
+	SAFER_JSON: Backend/data/EPA/fakefile.json
+	AWK_OLDEPA_TRIM: Backend/scripts/awk/epaoldtrim.awk
+	AWK_NEWEPA_TRIM: Backend/scripts/awk/epanewtrim.awk
+	AWK_EPA_JSON: Backend/scripts/awk/epatojson.awk
+	USAGE:
+		Usage: ./convertEPAData.sh [OPTION] (use option -h for help)
+	HELP:
+		Usage: ./convertEPAData.sh [OPTION] (use option -h for help)
+		**If no OPTION supplied, debug mode on (temp files remain)
+			-b: bypass debug mode
+			-s: output settings only
+			-h: print help
