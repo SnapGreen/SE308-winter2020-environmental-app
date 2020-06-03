@@ -66,6 +66,11 @@ Our team is utilizing Espresso and JUnit for Kotlin and Jest for JS testing.
 Our app utilizes Android Studio for front-end development and Node.js for the backend. View both 
 
 <details>
+  <summary>Fire Base Setup</summary>
+<br>
+  Contact a team member directly to get authorized to the FirebaseConsole 
+
+<details>
   <summary>Android Studio Setup</summary>
 <br>
   
@@ -88,6 +93,10 @@ Our app utilizes Android Studio for front-end development and Node.js for the ba
   Wait for import and gradle sync to complete.
   
   If prompted, download and install the latest versions of both gradle and kotlin (may not be neccessary) 
+  
+  Download the GoogleServices.json from the Firebase console.
+  
+  Place the JSON in the "app" directory 
   
   Connect an android phone with developer mode activated and USB debugging turned on
   
