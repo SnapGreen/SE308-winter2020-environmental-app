@@ -71,21 +71,6 @@ class UsageInputActivity : AppCompatActivity() {
         val numPlasticUtensilsUsedField = findViewById<EditText>(R.id.numPlasticUtensilsUsed)
         numPlasticUtensilsUsedField.filters = arrayOf<InputFilter>(LengthFilter(maxLength))
 
-//        val dateStringList = DateFormat.getDateTimeInstance().format(Date()).split(",", " ")
-//        val dateString = dateStringList[0] + " " + dateStringList[1] + " " + dateStringList[3]
-//        val realm = Realm.getDefaultInstance()
-//        var stat = realm.where<DailyStatistic>().contains("today", dateString).findFirst()
-//        if (stat != null) {
-//            minutesShoweredField.setHint(stat.minutesShowered)
-//            timesFlushedField.setHint(stat.timesFlushed)
-//            timesDishwasherRunField.setHint(stat.timesDishwasherRun)
-//            minutesWashingMachineField.setHint(stat.minutesWashingMachine)
-//            numAlumCansUsedField.setHint(stat.numAlumCansUsed)
-//            numStyroContainersUsedField.setHint(stat.numStyroContainersUsed)
-//            numPlasticStrawsUsedField.setHint(stat.numPlasticStrawsUsed)
-//            numPlasticUtensilsUsedField.setHint(stat.numPlasticUtensilsUsed)
-//        }
-
         val editButton = findViewById<Button>(R.id.editButton)
         editButton.setOnClickListener {
             var minutesShowered = if (minutesShoweredField.text.toString().isEmpty()) {

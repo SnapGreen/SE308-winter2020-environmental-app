@@ -4,8 +4,9 @@
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=SnapGreen_SE308-winter2020-environmental-app&metric=sqale_index)](https://sonarcloud.io/dashboard?id=SnapGreen_SE308-winter2020-environmental-app)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=SnapGreen_SE308-winter2020-environmental-app&metric=code_smells)](https://sonarcloud.io/dashboard?id=SnapGreen_SE308-winter2020-environmental-app)
 
+<em>Providing users with a measurable awareness of their environmental impact. Users can track daily habits and scan products to increase and improve their environmental score.</em>
 
-Competitive, gamified behavior tracker to encourage awareness and encourage sustainable practices. Ability to scan product bar codes to see their environmental impact.
+<a href="https://github.com/SnapGreen/SE308-winter2020-environmental-app/tree/master/Backend">Understanding Our Backend</a>
 
 # Coding Style
 <a href="https://kotlinlang.org/docs/reference/coding-conventions.html">Kotlin Style Convention</a>
@@ -54,111 +55,172 @@ This diagram shows the interaction between the app, server, and database when a 
 ![Annotation 2020-03-02 212312](https://user-images.githubusercontent.com/38018381/76172505-f80cf500-6153-11ea-8d9c-cf0885f0c9ec.png)
 </details>
 
-# Environmental App Server
+# Testing
+Our team is utilizing Espresso and JUnit for Kotlin and Jest for JS testing.
 
-## Requirements
+<a href=https://codecov.io/gh/SnapGreen/SE308-winter2020-environmental-app">View Code Coverage</a>
 
-### Installation:
+### Acceptance Tests:
 
-#### Windows
+<a href="https://docs.google.com/document/d/127FFINRSePh865mnvbP_oG0q_9rLcbGXoqgU5NzB5AQ/edit?usp=sharing">View Acceptance Test Specification</a>
 
-We recommend enabling WSL (Windows Subsystem for Linux) first--while it is
-possible to install these programs on Windows without doing so, the server will
-ultimately be hosted in a Linux environment and therefore will be expressed with
-Linux commands. When choosing a "flavor" of Linux to install, choose "Ubuntu
-18.04 LTS" from the Microsoft store--certain commands vary depending on which
-variety of Linux you choose, and for this we are going with Ubuntu (for now).
+<a href="https://github.com/SnapGreen/SE308-winter2020-environmental-app/blob/master/Client/app/src/androidTest/java/com/acme/snapgreen/ui/login/AcceptanceTests.kt">View Acceptance Test Code</a>
 
-[How to install/enable WSL on Windows 10](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
+### Unit / Integration Tests:
 
-Once WSL has been installed/enabled, you can start it by going to any folder in
-explorer, clicking in the box showing your location (e.g. "This PC > Local Disk
-(C:) > Users...," just above the folder contents), then typing "wsl" and hitting
-_enter_. That will put you into the Linux command line.
+<a href="https://github.com/SnapGreen/SE308-winter2020-environmental-app/blob/code-cleanup/Client/app/src/androidTest/java/com/acme/snapgreen/DailyStatisticsTests.kt">View Android Unit / Integration Test Code</a>
 
-#### Linux
+<a href="https://github.com/SnapGreen/SE308-winter2020-environmental-app/tree/code-cleanup/Backend/tests">View Backend Unit Test Code</a>
 
-##### Installing node.js (from the command line)
 
-> `sudo apt update`
+# Setting up the Developer Environment
+Our app utilizes Android Studio for front-end development and Node.js for the backend. View both 
 
-> `sudo apt install nodejs`
+<details>
+  <summary>Android Studio Setup</summary>
+<br>
+  
+  ### Installation:
+  <ol>
+  <li>Install latest version of [Android Studio](https://developer.android.com/studio).</li>
+  
+  <li>Navigate to Tools > SDK Manager</li>
+  
+  <li>Download and Install Android 9.0 (Pie)</li>
+  
+  <li>Navigate to SDK Tools</li>
+  
+  <li>Download and Install Google Play Services</li>
+  
+  <li>Clone the repository</li>
+  
+  <li>Go to File > Open and select the "Client" folder from the repository.</li>
+  
+  <li>Wait for import and gradle sync to complete.</li>
+  
+  <li>If prompted, download and install the latest versions of both gradle and kotlin (may not be neccessary)</li>
+  
+  <li>Download the GoogleServices.json from the Firebase console.</li>
+  
+  <li>Place the JSON in the "app" directory</li>
+  
+  <li>Connect an android phone with developer mode activated and USB debugging turned on
+  
+  OR Navigate to Tools > AVD Manager
+    Select Create Virtual Device 
+    Select Pixel 3 > Pie > Finish</li>
+   
+  <li>Click on the play button on the top of Android Studio to build and run the app!</li>
+</ol>
+</details>
+<details>
+  <summary>Node Server Setup</summary>
+<br>
+  
+  ### Installation:
 
-> `nodejs -v`
+  #### Windows
 
-##### Installing npm (node package manager)
+  We recommend enabling WSL (Windows Subsystem for Linux) first--while it is
+  possible to install these programs on Windows without doing so, the server will
+  ultimately be hosted in a Linux environment and therefore will be expressed with
+  Linux commands. When choosing a "flavor" of Linux to install, choose "Ubuntu
+  18.04 LTS" from the Microsoft store--certain commands vary depending on which
+  variety of Linux you choose, and for this we are going with Ubuntu (for now).
 
-> `sudo apt install npm`
+  [How to install/enable WSL on Windows 10](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
 
-> `npm -v`
+  Once WSL has been installed/enabled, you can start it by going to any folder in
+  explorer, clicking in the box showing your location (e.g. "This PC > Local Disk
+  (C:) > Users...," just above the folder contents), then typing "wsl" and hitting
+  _enter_. That will put you into the Linux command line.
 
-##### Installing express.js
+  #### Linux
 
-> `npm install express`
+  ##### Installing node.js (from the command line)
 
-#### Mac
+  > `sudo apt update`
 
-First, you need to install XCode (from the Apple App Store), and Homebrew
-(Apple's package manager for Mac). All following commands should be entered
-into the terminal:
+  > `sudo apt install nodejs`
 
-##### Installing Homebrew
+  > `nodejs -v`
 
-> `ruby -e "$(curl -fsSl https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+  ##### Installing npm (node package manager)
 
-##### Installing node and npm
+  > `sudo apt install npm`
 
-> `brew install node`
+  > `npm -v`
 
-> `node -v`
+  ##### Installing express.js
 
-> `npm -v`
+  > `npm install express`
 
-##### updating node and npm
+  #### Mac
 
-> `brew upgrade`
+  First, you need to install XCode (from the Apple App Store), and Homebrew
+  (Apple's package manager for Mac). All following commands should be entered
+  into the terminal:
 
-> `brew upgrade node`
+  ##### Installing Homebrew
 
-> `node -v`
+  > `ruby -e "$(curl -fsSl https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 
-> `npm -v`
+  ##### Installing node and npm
 
-### Uninstall:
+  > `brew install node`
 
-#### Windows
+  > `node -v`
 
-If you've installed via WSL, follow the Linux instructions below from the linux
-command line. Otherwise, uninstall programs as you normally would.
+  > `npm -v`
 
-#### Linux
+  ##### updating node and npm
 
-> `sudo apt remove nodejs`
+  > `brew upgrade`
 
-> `sudo apt purge nodejs`
+  > `brew upgrade node`
 
-> `sudo apt autoremove`
+  > `node -v`
 
-#### Mac
+  > `npm -v`
 
-> `brew uninstall node`
+  ### Uninstall:
 
-## Key Dependencies
+  #### Windows
 
-### Dev Dependencies
+  If you've installed via WSL, follow the Linux instructions below from the linux
+  command line. Otherwise, uninstall programs as you normally would.
 
-nodemon: Utilized to have the server refresh automatically with every change
+  #### Linux
 
-## Running the Server
+  > `sudo apt remove nodejs`
 
-Running the server is as simple as two commands
+  > `sudo apt purge nodejs`
 
-> `npm install`
+  > `sudo apt autoremove`
 
-> `npm run serve`
+  #### Mac
 
-You may get a warning from your firewall--go ahead and let it slide.
-Your terminal should announce that the server is running. Open up a browser
-window, and go to "localhost:8080". You should see a blank page with a button
-at the bottom; you should also see a message in the terminal that states "user
-connected." Try clicking on the button--you will see repeated messages.
+  > `brew uninstall node`
+
+  ### Some Important Dev Dependencies
+
+  husky: Allows for pre-commits hooks (Used to run prettier styling for every JS commit)
+  jest: Testing framework for JS
+  nodemon: Utilized to have the server refresh automatically with every change
+  prettier: Automatic code formatting for every JS commit
+
+  ## Running the Server
+
+  Running the server is as simple as two commands
+
+  > `npm install`
+
+  > `npm run serve`
+
+  You may get a warning from your firewall--go ahead and let it slide.
+  Your terminal should announce that the server is running. Open up a browser
+  window, and go to "localhost:8080". You should see a blank page with a button
+  at the bottom; you should also see a message in the terminal that states "user
+  connected." Try clicking on the button--you will see repeated messages.
+
+ </details>

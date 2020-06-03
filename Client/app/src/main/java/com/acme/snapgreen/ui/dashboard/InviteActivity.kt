@@ -106,7 +106,12 @@ class InviteActivity : AppCompatActivity() {
             NetworkManager.getInstance()?.addToRequestQueue(jsonRequest)
 
         } catch (e: Throwable) {
-            //TODO: Handle failed connection
+            Toast.makeText(
+                applicationContext,
+                "Network request failed",
+                Toast.LENGTH_SHORT
+            )
+                .show()
         }
     }
 
@@ -152,7 +157,12 @@ class InviteActivity : AppCompatActivity() {
             NetworkManager.getInstance()?.addToRequestQueue(jsonRequest)
 
         } catch (e: Throwable) {
-            //TODO: Handle failed connection
+            Toast.makeText(
+                applicationContext,
+                "Network request failed",
+                Toast.LENGTH_SHORT
+            )
+                .show()
         }
         return friendsList
     }

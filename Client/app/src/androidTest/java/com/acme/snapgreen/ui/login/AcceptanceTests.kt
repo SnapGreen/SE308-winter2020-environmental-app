@@ -2,6 +2,7 @@ package com.acme.snapgreen.ui.login
 
 
 import android.os.IBinder
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import androidx.test.espresso.Espresso.onView
@@ -67,6 +68,7 @@ class AcceptanceTests {
             NetworkManager.getInstance()?.addToRequestQueue(jsonRequest)
 
         } catch (e: Throwable) {
+            Log.e("AcceptanceTests", "Connection request failed")
         }
         Thread.sleep(2000)
         assertTrue(success)
@@ -102,7 +104,7 @@ class AcceptanceTests {
             NetworkManager.getInstance()?.addToRequestQueue(jsonRequest)
 
         } catch (e: Throwable) {
-            //TODO: Handle failed connection
+            Log.e("AcceptanceTests", "Connection request failed")
         }
         Thread.sleep(1500)
         assertTrue(success)
