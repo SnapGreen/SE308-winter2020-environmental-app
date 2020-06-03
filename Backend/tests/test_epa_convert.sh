@@ -22,6 +22,10 @@ EPA_DATA_FORMATTED="${EPA_DATA_PREFIX}${OUTFILE_END}"
 EPA_DATA_FORMATTED_PATH="${EPA_DATA_DIR}${EPA_DATA_FORMATTED}"
 EPA_TESTFILE_PATH="${TESTDIR}${EPA_DATA_FORMATTED}"
 
+# make the directory if it doesn't exist on the remote server
+if [[ ! -d "$TESTDIR" ]] ; then
+   mkdir "$TESTDIR"
+fi
 # copy the original file to the test directory
 cp "$EPA_DATA_FORMATTED_PATH" "$EPA_TESTFILE_PATH"
 
