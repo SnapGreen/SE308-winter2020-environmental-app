@@ -58,6 +58,8 @@ This diagram shows the interaction between the app, server, and database when a 
 # Testing
 Our team is utilizing Espresso and JUnit for Kotlin and Jest for JS testing.
 
+<a href=https://codecov.io/gh/SnapGreen/SE308-winter2020-environmental-app">View Code Coverage</a>
+
 ### Acceptance Tests:
 
 <a href="https://docs.google.com/document/d/127FFINRSePh865mnvbP_oG0q_9rLcbGXoqgU5NzB5AQ/edit?usp=sharing">View Acceptance Test Specification</a>
@@ -71,7 +73,6 @@ Our team is utilizing Espresso and JUnit for Kotlin and Jest for JS testing.
 <a href="https://github.com/SnapGreen/SE308-winter2020-environmental-app/tree/code-cleanup/Backend/tests">View Backend Unit Test Code</a>
 
 
-
 # Setting up the Developer Environment
 Our app utilizes Android Studio for front-end development and Node.js for the backend. View both 
 
@@ -80,37 +81,37 @@ Our app utilizes Android Studio for front-end development and Node.js for the ba
 <br>
   
   ### Installation:
+  <ol>
+  <li>Install latest version of [Android Studio](https://developer.android.com/studio).</li>
   
-  Install latest version of [Android Studio](https://developer.android.com/studio). 
+  <li>Navigate to Tools > SDK Manager</li>
   
-  Navigate to Tools > SDK Manager
+  <li>Download and Install Android 9.0 (Pie)</li>
   
-  Download and Install Android 9.0 (Pie)
+  <li>Navigate to SDK Tools</li>
   
-  Navigate to SDK Tools
+  <li>Download and Install Google Play Services</li>
   
-  Download and Install Google Play Services 
+  <li>Clone the repository</li>
   
-  Clone the repository
+  <li>Go to File > Open and select the "Client" folder from the repository.</li>
   
-  Go to File > Open and select the "Client" folder from the repository.
+  <li>Wait for import and gradle sync to complete.</li>
   
-  Wait for import and gradle sync to complete.
+  <li>If prompted, download and install the latest versions of both gradle and kotlin (may not be neccessary)</li>
   
-  If prompted, download and install the latest versions of both gradle and kotlin (may not be neccessary) 
+  <li>Download the GoogleServices.json from the Firebase console.</li>
   
-  Download the GoogleServices.json from the Firebase console.
+  <li>Place the JSON in the "app" directory</li>
   
-  Place the JSON in the "app" directory 
-  
-  Connect an android phone with developer mode activated and USB debugging turned on
+  <li>Connect an android phone with developer mode activated and USB debugging turned on
   
   OR Navigate to Tools > AVD Manager
     Select Create Virtual Device 
-    Select Pixel 3 > Pie > Finish
+    Select Pixel 3 > Pie > Finish</li>
    
-  Click on the play button on the top of Android Studio to build and run the app!
-
+  <li>Click on the play button on the top of Android Studio to build and run the app!</li>
+</ol>
 </details>
 <details>
   <summary>Node Server Setup</summary>
