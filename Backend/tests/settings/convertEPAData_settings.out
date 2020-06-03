@@ -5,29 +5,29 @@ settings check:
 	EPADIR: EPA/
 	OUTFILE_END: .json
 	NEWDATADIR: fakedir/
-	EPADATASOURCE: fakefile.xls
+	EPADATASOURCE: fakefile
 	EPA_PATTERNFILE: epa_removalpatterns.txt
 	EPA_PATTERN_PATH: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/epa_removalpatterns.txt
-	NEWDATAPATH: fakedir/fakefile.xls
+	NEWDATAPATH: fakedir/fakefile
 	AWKDIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/awk/
 	TMPDIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/
 	TMPFILE_END: .tmp
-	SAFER_PREFIX: fakefile
-	SAFERCSVROUGH_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/fakefile_roughcsv.tmp
-	SAFERCSVPREPPED_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/fakefile_preppedcsv.tmp
-	SAFERSPLIT_PREFIX: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/fakefile
-	SAFEROLD: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/fakefile00
-	SAFERNEW: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/fakefile01
-	SAFEROLD_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/fakefile00.tmp
-	SAFERNEW_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/fakefile01.tmp
-	SAFEROLDTRIM_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/fakefile_oldtrim.tmp
-	SAFERNEWTRIM_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/fakefile_newtrim.tmp
-	SAFERJOINED_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/fakefile_joined.tmp
-	SAFERB4_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/fakefile_b4.tmp
-	SAFERCLEAN_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/fakefile_clean.tmp
-	SAFERSORTED_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/fakefile_sorted.tmp
-	SAFERUNIQUE_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/fakefile_unique.tmp
-	SAFER_JSON: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/data/EPA/fakefile.json
+	SAFER_PREFIX: 
+	SAFERCSVROUGH_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/_roughcsv.tmp
+	SAFERCSVPREPPED_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/_preppedcsv.tmp
+	SAFERSPLIT_PREFIX: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/
+	SAFEROLD: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/00
+	SAFERNEW: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/01
+	SAFEROLD_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/00.tmp
+	SAFERNEW_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/01.tmp
+	SAFEROLDTRIM_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/_oldtrim.tmp
+	SAFERNEWTRIM_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/_newtrim.tmp
+	SAFERJOINED_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/_joined.tmp
+	SAFERB4_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/_b4.tmp
+	SAFERCLEAN_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/_clean.tmp
+	SAFERSORTED_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/_sorted.tmp
+	SAFERUNIQUE_TMP: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/_unique.tmp
+	SAFER_JSON: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/data/EPA/.json
 	AWK_OLDEPA_TRIM: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/awk/epaoldtrim.awk
 	AWK_NEWEPA_TRIM: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/awk/epanewtrim.awk
 	AWK_EPA_JSON: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/awk/epatojson.awk
