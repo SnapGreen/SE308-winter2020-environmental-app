@@ -1,10 +1,13 @@
 settings check:
 	SETTINGS: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/settings.txt
+	SCRIPTDIR: 
 	DATADIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/data/
 	EPADIR: EPA/
 	OUTFILE_END: .json
 	NEWDATADIR: fakedir/
 	EPADATASOURCE: fakefile.xls
+	EPA_PATTERNFILE: epa_removalpatterns.txt
+	EPA_PATTERN_PATH: epa_removalpatterns.txt
 	NEWDATAPATH: fakedir/fakefile.xls
 	AWKDIR: awk/
 	TMPDIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/
