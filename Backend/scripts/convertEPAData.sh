@@ -3,50 +3,65 @@ debug=true
 fin=false
 silent=false
 
-function checkSettingsNPM(){
-   SETTINGS_NPM="Backend/scripts/settings_npm.txt"
-   DATADIR=$(grep -oP '(?<=^DATADIR:).*' $SETTINGS_NPM)
-   EPADIR=$(grep -oP '(?<=^EPADIR:).*' $SETTINGS_NPM)
-   OUTFILE_END=$(grep -oP '(?<=^OUTFILE_END:).*' $SETTINGS_NPM)
-   NEWDATADIR="$1"
-   EPADATASOURCE="$2"
-   EPA_PATTERNFILE=$(grep -oP '(?<=^EPA_PATTERNFILE:).*' $SETTINGS_NPM)
-   NEWDATAPATH="${NEWDATADIR}${EPADATASOURCE}"
-   AWKDIR=$(grep -oP '(?<=^AWKDIR:).*' $SETTINGS_NPM)
-   TMPDIR=$(grep -oP '(?<=^TMPDIR:).*' $SETTINGS_NPM)
-   TMPFILE_END=$(grep -oP '(?<=^TMPFILE_END:).*' $SETTINGS_NPM)
-   SAFER_PREFIX=$(echo $EPADATASOURCE | grep -oP ".*(?=.xls)")
-   SAFERCSVROUGH_TMP="${TMPDIR}${SAFER_PREFIX}_roughcsv${TMPFILE_END}"
-   SAFERCSVPREPPED_TMP="${TMPDIR}${SAFER_PREFIX}_preppedcsv${TMPFILE_END}"
-   SAFERSPLIT_PREFIX="${TMPDIR}${SAFER_PREFIX}"
-   SAFEROLD="${TMPDIR}${SAFER_PREFIX}00"
-   SAFERNEW="${TMPDIR}${SAFER_PREFIX}01"
-   SAFEROLD_TMP="${SAFEROLD}${TMPFILE_END}"
-   SAFERNEW_TMP="${SAFERNEW}${TMPFILE_END}"
-   SAFEROLDTRIM_TMP="${TMPDIR}${SAFER_PREFIX}_oldtrim${TMPFILE_END}"
-   SAFERNEWTRIM_TMP="${TMPDIR}${SAFER_PREFIX}_newtrim${TMPFILE_END}"
-   SAFERJOINED_TMP="${TMPDIR}${SAFER_PREFIX}_joined${TMPFILE_END}"
-   SAFERB4_TMP="${TMPDIR}${SAFER_PREFIX}_b4${TMPFILE_END}"
-   SAFERCLEAN_TMP="${TMPDIR}${SAFER_PREFIX}_clean${TMPFILE_END}"
-   SAFERSORTED_TMP="${TMPDIR}${SAFER_PREFIX}_sorted${TMPFILE_END}"
-   SAFERUNIQUE_TMP="${TMPDIR}${SAFER_PREFIX}_unique${TMPFILE_END}"
-   SAFER_JSON="${DATADIR}${EPADIR}${SAFER_PREFIX}${OUTFILE_END}"
-   AWK_OLDEPA_TRIM="${AWKDIR}epaoldtrim.awk"
-   AWK_NEWEPA_TRIM="${AWKDIR}epanewtrim.awk"
-   AWK_EPA_JSON="${AWKDIR}epatojson.awk"
-   USAGE="\t\tUsage: ./convertEPAData.sh [OPTION] (use option -h for help)\n"
-   HELP="${USAGE}\t\t**If no OPTION supplied, debug mode on (temp files remain)\n"
-   HELP="${HELP}\t\t\t-b: bypass debug mode\n"
-   HELP="${HELP}\t\t\t-s: output settings only\n"
-   HELP="${HELP}\t\t\t-h: print help\n"
+SETTINGS="/home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/settings.txt"
 
+if [[ $# -gt 2 ]] ; then
+   if [ -n $3 ] ; then
+      if [ "$3" == "-t" ] || [ "$3" == "-n" ] ; then
+         SETTINGS="Backend/scripts/settings_npm.txt"
+      fi
+   fi
+fi
+
+SCRIPTSDIR=$(grep -oP '(?<=^SCRIPTSDIR:).*' $SETTINGS)
+DATADIR=$(grep -oP '(?<=^DATADIR:).*' $SETTINGS)
+EPADIR=$(grep -oP '(?<=^EPADIR:).*' $SETTINGS)
+OUTFILE_END=$(grep -oP '(?<=^OUTFILE_END:).*' $SETTINGS)
+NEWDATADIR="$1"
+EPADATASOURCE="$2"
+EPA_PATTERNFILE=$(grep -oP '(?<=^EPA_PATTERNFILE:).*' $SETTINGS)
+EPA_PATTERN_PATH="${SCRIPTSDIR}${EPA_PATTERNFILE}"
+NEWDATAPATH="${NEWDATADIR}${EPADATASOURCE}"
+AWKDIR=$(grep -oP '(?<=^AWKDIR:).*' $SETTINGS)
+AWKDIR="${SCRIPTSDIR}${AWKDIR}"
+TMPDIR=$(grep -oP '(?<=^TMPDIR:).*' $SETTINGS)
+TMPFILE_END=$(grep -oP '(?<=^TMPFILE_END:).*' $SETTINGS)
+SAFER_PREFIX=$(echo $EPADATASOURCE | grep -oP ".*(?=.xls)")
+SAFERCSVROUGH_TMP="${TMPDIR}${SAFER_PREFIX}_roughcsv${TMPFILE_END}"
+SAFERCSVPREPPED_TMP="${TMPDIR}${SAFER_PREFIX}_preppedcsv${TMPFILE_END}"
+SAFERSPLIT_PREFIX="${TMPDIR}${SAFER_PREFIX}"
+SAFEROLD="${TMPDIR}${SAFER_PREFIX}00"
+SAFERNEW="${TMPDIR}${SAFER_PREFIX}01"
+SAFEROLD_TMP="${SAFEROLD}${TMPFILE_END}"
+SAFERNEW_TMP="${SAFERNEW}${TMPFILE_END}"
+SAFEROLDTRIM_TMP="${TMPDIR}${SAFER_PREFIX}_oldtrim${TMPFILE_END}"
+SAFERNEWTRIM_TMP="${TMPDIR}${SAFER_PREFIX}_newtrim${TMPFILE_END}"
+SAFERJOINED_TMP="${TMPDIR}${SAFER_PREFIX}_joined${TMPFILE_END}"
+SAFERB4_TMP="${TMPDIR}${SAFER_PREFIX}_b4${TMPFILE_END}"
+SAFERCLEAN_TMP="${TMPDIR}${SAFER_PREFIX}_clean${TMPFILE_END}"
+SAFERSORTED_TMP="${TMPDIR}${SAFER_PREFIX}_sorted${TMPFILE_END}"
+SAFERUNIQUE_TMP="${TMPDIR}${SAFER_PREFIX}_unique${TMPFILE_END}"
+SAFER_JSON="${DATADIR}${EPADIR}${SAFER_PREFIX}${OUTFILE_END}"
+AWK_OLDEPA_TRIM="${AWKDIR}epaoldtrim.awk"
+AWK_NEWEPA_TRIM="${AWKDIR}epanewtrim.awk"
+AWK_EPA_JSON="${AWKDIR}epatojson.awk"
+USAGE="\t\tUsage: ./convertEPAData.sh [OPTION] (use option -h for help)\n"
+HELP="${USAGE}\t\t**If no OPTION supplied, debug mode on (temp files remain)\n"
+HELP="${HELP}\t\t\t-b: bypass debug mode\n"
+HELP="${HELP}\t\t\t-s: output settings only\n"
+HELP="${HELP}\t\t\t-h: print help\n"
+
+function checkSettings(){
    echo "settings check:"
-   printf "\tSETTINGS: %s\n" $SETTINGS_NPM
+   printf "\tSETTINGS: %s\n" $SETTINGS
+   printf "\tSCRIPTSDIR: %s\n" $SCRIPTSDIR
    printf "\tDATADIR: %s\n" "$DATADIR"
    printf "\tEPADIR: %s\n" "$EPADIR"
    printf "\tOUTFILE_END: %s\n" "$OUTFILE_END"
    printf "\tNEWDATADIR: %s\n" "$NEWDATADIR"
    printf "\tEPADATASOURCE: %s\n" "$EPADATASOURCE"
+   printf "\tEPA_PATTERNFILE: %s\n" "$EPA_PATTERNFILE"
+   printf "\tEPA_PATTERN_PATH: %s\n" "$EPA_PATTERN_PATH"
    printf "\tNEWDATAPATH: %s\n" "$NEWDATAPATH"
    printf "\tAWKDIR: %s\n" "$AWKDIR"
    printf "\tTMPDIR: %s\n" "$TMPDIR"
@@ -79,86 +94,11 @@ function checkSettingsNPM(){
 if [[ $# -gt 2 ]] ; then
    if [ -n $3 ] ; then
       if [ "$3" == "-t" ] ; then
-         checkSettingsNPM "$1" "$2"
+         checkSettings
          exit 0
       fi
    fi
 fi
-
-SETTINGS="/home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/settings.txt"
-DATADIR=$(grep -oP '(?<=^DATADIR:).*' $SETTINGS)
-EPADIR=$(grep -oP '(?<=^EPADIR:).*' $SETTINGS)
-OUTFILE_END=$(grep -oP '(?<=^OUTFILE_END:).*' $SETTINGS)
-NEWDATADIR="$1"
-EPADATASOURCE="$2"
-EPA_PATTERNFILE=$(grep -oP '(?<=^EPA_PATTERNFILE:).*' $SETTINGS)
-NEWDATAPATH="${NEWDATADIR}${EPADATASOURCE}"
-AWKDIR=$(grep -oP '(?<=^AWKDIR:).*' $SETTINGS)
-TMPDIR=$(grep -oP '(?<=^TMPDIR:).*' $SETTINGS)
-TMPFILE_END=$(grep -oP '(?<=^TMPFILE_END:).*' $SETTINGS)
-SAFER_PREFIX=$(echo $EPADATASOURCE | grep -oP ".*(?=.xls)")
-SAFERCSVROUGH_TMP="${TMPDIR}${SAFER_PREFIX}_roughcsv${TMPFILE_END}"
-SAFERCSVPREPPED_TMP="${TMPDIR}${SAFER_PREFIX}_preppedcsv${TMPFILE_END}"
-SAFERSPLIT_PREFIX="${TMPDIR}${SAFER_PREFIX}"
-SAFEROLD="${TMPDIR}${SAFER_PREFIX}00"
-SAFERNEW="${TMPDIR}${SAFER_PREFIX}01"
-SAFEROLD_TMP="${SAFEROLD}${TMPFILE_END}"
-SAFERNEW_TMP="${SAFERNEW}${TMPFILE_END}"
-SAFEROLDTRIM_TMP="${TMPDIR}${SAFER_PREFIX}_oldtrim${TMPFILE_END}"
-SAFERNEWTRIM_TMP="${TMPDIR}${SAFER_PREFIX}_newtrim${TMPFILE_END}"
-SAFERJOINED_TMP="${TMPDIR}${SAFER_PREFIX}_joined${TMPFILE_END}"
-SAFERB4_TMP="${TMPDIR}${SAFER_PREFIX}_b4${TMPFILE_END}"
-SAFERCLEAN_TMP="${TMPDIR}${SAFER_PREFIX}_clean${TMPFILE_END}"
-SAFERSORTED_TMP="${TMPDIR}${SAFER_PREFIX}_sorted${TMPFILE_END}"
-SAFERUNIQUE_TMP="${TMPDIR}${SAFER_PREFIX}_unique${TMPFILE_END}"
-SAFER_JSON="${DATADIR}${EPADIR}${SAFER_PREFIX}${OUTFILE_END}"
-AWK_OLDEPA_TRIM="${AWKDIR}epaoldtrim.awk"
-AWK_NEWEPA_TRIM="${AWKDIR}epanewtrim.awk"
-AWK_EPA_JSON="${AWKDIR}epatojson.awk"
-USAGE="\t\tUsage: ./convertEPAData.sh [OPTION] (use option -h for help)\n"
-HELP="${USAGE}\t\t**If no OPTION supplied, debug mode on (temp files remain)\n"
-HELP="${HELP}\t\t\t-b: bypass debug mode\n"
-HELP="${HELP}\t\t\t-s: output settings only\n"
-HELP="${HELP}\t\t\t-h: print help\n"
-
-function checkSettings(){
-   echo "settings check:"
-   printf "\tSETTINGS: %s\n" $SETTINGS
-   printf "\tDATADIR: %s\n" "$DATADIR"
-   printf "\tEPADIR: %s\n" "$EPADIR"
-   printf "\tOUTFILE_END: %s\n" "$OUTFILE_END"
-   printf "\tNEWDATADIR: %s\n" "$NEWDATADIR"
-   printf "\tEPADATASOURCE: %s\n" "$EPADATASOURCE"
-   printf "\tNEWDATAPATH: %s\n" "$NEWDATAPATH"
-   printf "\tAWKDIR: %s\n" "$AWKDIR"
-   printf "\tTMPDIR: %s\n" "$TMPDIR"
-   printf "\tTMPFILE_END: %s\n" "$TMPFILE_END"
-   printf "\tSAFER_PREFIX: %s\n" "$SAFER_PREFIX"
-   printf "\tSAFERCSVROUGH_TMP: %s\n" "$SAFERCSVROUGH_TMP"
-   printf "\tSAFERCSVPREPPED_TMP: %s\n" "$SAFERCSVPREPPED_TMP"
-   printf "\tSAFERSPLIT_PREFIX: %s\n" "$SAFERSPLIT_PREFIX"
-   printf "\tSAFEROLD: %s\n" "$SAFEROLD"
-   printf "\tSAFERNEW: %s\n" "$SAFERNEW"
-   printf "\tSAFEROLD_TMP: %s\n" "$SAFEROLD_TMP"
-   printf "\tSAFERNEW_TMP: %s\n" "$SAFERNEW_TMP"
-   printf "\tSAFEROLDTRIM_TMP: %s\n" "$SAFEROLDTRIM_TMP"
-   printf "\tSAFERNEWTRIM_TMP: %s\n" "$SAFERNEWTRIM_TMP"
-   printf "\tSAFERJOINED_TMP: %s\n" "$SAFERJOINED_TMP"
-   printf "\tSAFERB4_TMP: %s\n" "$SAFERB4_TMP"
-   printf "\tSAFERCLEAN_TMP: %s\n" "$SAFERCLEAN_TMP"
-   printf "\tSAFERSORTED_TMP: %s\n" "$SAFERSORTED_TMP"
-   printf "\tSAFERUNIQUE_TMP: %s\n" "$SAFERUNIQUE_TMP"
-   printf "\tSAFER_JSON: %s\n" "$SAFER_JSON"
-   printf "\tAWK_OLDEPA_TRIM: %s\n" "$AWK_OLDEPA_TRIM"
-   printf "\tAWK_NEWEPA_TRIM: %s\n" "$AWK_NEWEPA_TRIM"
-   printf "\tAWK_EPA_JSON: %s\n" "$AWK_EPA_JSON"
-   printf "\tUSAGE:\n"
-   printf "$USAGE"
-   printf "\tHELP:\n"
-   printf "$HELP"
-}
-
-
 
 #https://stackoverflow.com/questions/17066250/create-timestamp-variable-in-bash-script
 function timestamp(){
@@ -172,10 +112,6 @@ function convertToCsv(){
 
    #printf "prepping data...\n"
    #dos2unix $2
-
-   if [ $debug == "false" ] ; then
-      rm $1
-   fi
 }
 
 function prepForSplit(){
@@ -199,23 +135,22 @@ function splitOldAndNew(){
    mv "$SAFEROLD" "$SAFEROLD_TMP"
    mv "$SAFERNEW" "$SAFERNEW_TMP"
    # this ensures that no files without .tmp are in temp
-   rm "$SAFEROLD" "$SAFERNEW"
 }
 
 function processNewData(){
    printf "processing new data...\n"
 
    #this removes the header line from the new split file
-   echo "$(tail -n +2 "$SAFERNEW")" > "$SAFERNEW"
+   echo "$(tail -n +2 "$1")" > "$1"
 
    printf "removing redundant data...\n"
    #this file is mainly a log of items that have been added
    #this removes those entries and leaves the ones that have/will be deleted
-   sed -i '/"gr[ea]y \[square\]"/!d' "$SAFERNEW"
+   sed -i '/"gr[ea]y \[square\]"/!d' "$1"
 
    #there is a column in the update portion that sometimes goes unused; in order
    #for awk to process the file correctly, "" needs to be added between ,,
-   sed -i 's/,,/,"",/g' "$SAFERNEW"
+   sed -i 's/,,/,"",/g' "$1"
 }
 
 
@@ -366,7 +301,6 @@ function createJson(){
 }
 
 
-
 if [[ $# -gt 2 ]] ; then
    if [ -n $3 ] ; then
       if [ "$3" == "-b" ] ; then
@@ -398,11 +332,11 @@ if [ "$fin" == "false" ] ; then
    convertToCsv "$NEWDATAPATH" "$SAFERCSVROUGH_TMP"
    prepForSplit "$SAFERCSVROUGH_TMP" "$SAFERCSVPREPPED_TMP"
    splitOldAndNew "$SAFERCSVPREPPED_TMP"
-   processNewData "$SAFERNEW"
-   extractRelevantOldData "$AWK_OLDEPA_TRIM" "$SAFEROLD" "$SAFEROLDTRIM_TMP"
-   extractRelevantNewData "$AWK_NEWEPA_TRIM" "$SAFERNEW" "$SAFERNEWTRIM_TMP"
+   processNewData "$SAFERNEW_TMP"
+   extractRelevantOldData "$AWK_OLDEPA_TRIM" "$SAFEROLD_TMP" "$SAFEROLDTRIM_TMP"
+   extractRelevantNewData "$AWK_NEWEPA_TRIM" "$SAFERNEW_TMP" "$SAFERNEWTRIM_TMP"
    joinOldAndNew "$SAFEROLDTRIM_TMP" "$SAFERNEWTRIM_TMP" "$SAFERJOINED_TMP"
-   cleanChemicals "$EPA_PATTERNFILE" "$SAFERCLEAN_TMP"
+   cleanChemicals "$EPA_PATTERN_PATH" "$SAFERCLEAN_TMP"
    sortOnChem "$SAFERCLEAN_TMP" "$SAFERSORTED_TMP"
    decideScores "$SAFERSORTED_TMP" 
    removeDuplicates "$SAFERSORTED_TMP" "$SAFERUNIQUE_TMP"
