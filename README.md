@@ -4,8 +4,9 @@
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=SnapGreen_SE308-winter2020-environmental-app&metric=sqale_index)](https://sonarcloud.io/dashboard?id=SnapGreen_SE308-winter2020-environmental-app)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=SnapGreen_SE308-winter2020-environmental-app&metric=code_smells)](https://sonarcloud.io/dashboard?id=SnapGreen_SE308-winter2020-environmental-app)
 
+<em>Providing users with a measurable awareness of their environmental impact. Users can track daily habits and scan products to increase and improve their environmental score.</em>
 
-Competitive, gamified behavior tracker to encourage awareness and encourage sustainable practices. Ability to scan product bar codes to see their environmental impact.
+<a href="https://github.com/SnapGreen/SE308-winter2020-environmental-app/tree/master/Backend">Understanding Our Backend</a>
 
 # Coding Style
 <a href="https://kotlinlang.org/docs/reference/coding-conventions.html">Kotlin Style Convention</a>
@@ -54,111 +55,130 @@ This diagram shows the interaction between the app, server, and database when a 
 ![Annotation 2020-03-02 212312](https://user-images.githubusercontent.com/38018381/76172505-f80cf500-6153-11ea-8d9c-cf0885f0c9ec.png)
 </details>
 
-# Environmental App Server
+# Testing
+Our team is utilizing Espresso and JUnit for Kotlin and Jest for JS testing.
 
-## Requirements
+<a href="https://docs.google.com/document/d/127FFINRSePh865mnvbP_oG0q_9rLcbGXoqgU5NzB5AQ/edit?usp=sharing">View Acceptance Test Specification</a>
 
-### Installation:
+<a href="https://github.com/SnapGreen/SE308-winter2020-environmental-app/blob/master/Client/app/src/androidTest/java/com/acme/snapgreen/ui/login/AcceptanceTests.kt">View Acceptance Test Code</a>
 
-#### Windows
+# Setting up the Developer Environment
+Our app utilizes Android Studio for front-end development and Node.js for the backend. View both 
 
-We recommend enabling WSL (Windows Subsystem for Linux) first--while it is
-possible to install these programs on Windows without doing so, the server will
-ultimately be hosted in a Linux environment and therefore will be expressed with
-Linux commands. When choosing a "flavor" of Linux to install, choose "Ubuntu
-18.04 LTS" from the Microsoft store--certain commands vary depending on which
-variety of Linux you choose, and for this we are going with Ubuntu (for now).
+<details>
+  <summary>Android Studio Setup</summary>
+<br>
+  
+</details>
 
-[How to install/enable WSL on Windows 10](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
+<details>
+  <summary>Node Server Setup</summary>
+<br>
+  
+  ### Installation:
 
-Once WSL has been installed/enabled, you can start it by going to any folder in
-explorer, clicking in the box showing your location (e.g. "This PC > Local Disk
-(C:) > Users...," just above the folder contents), then typing "wsl" and hitting
-_enter_. That will put you into the Linux command line.
+  #### Windows
 
-#### Linux
+  We recommend enabling WSL (Windows Subsystem for Linux) first--while it is
+  possible to install these programs on Windows without doing so, the server will
+  ultimately be hosted in a Linux environment and therefore will be expressed with
+  Linux commands. When choosing a "flavor" of Linux to install, choose "Ubuntu
+  18.04 LTS" from the Microsoft store--certain commands vary depending on which
+  variety of Linux you choose, and for this we are going with Ubuntu (for now).
 
-##### Installing node.js (from the command line)
+  [How to install/enable WSL on Windows 10](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
 
-> `sudo apt update`
+  Once WSL has been installed/enabled, you can start it by going to any folder in
+  explorer, clicking in the box showing your location (e.g. "This PC > Local Disk
+  (C:) > Users...," just above the folder contents), then typing "wsl" and hitting
+  _enter_. That will put you into the Linux command line.
 
-> `sudo apt install nodejs`
+  #### Linux
 
-> `nodejs -v`
+  ##### Installing node.js (from the command line)
 
-##### Installing npm (node package manager)
+  > `sudo apt update`
 
-> `sudo apt install npm`
+  > `sudo apt install nodejs`
 
-> `npm -v`
+  > `nodejs -v`
 
-##### Installing express.js
+  ##### Installing npm (node package manager)
 
-> `npm install express`
+  > `sudo apt install npm`
 
-#### Mac
+  > `npm -v`
 
-First, you need to install XCode (from the Apple App Store), and Homebrew
-(Apple's package manager for Mac). All following commands should be entered
-into the terminal:
+  ##### Installing express.js
 
-##### Installing Homebrew
+  > `npm install express`
 
-> `ruby -e "$(curl -fsSl https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+  #### Mac
 
-##### Installing node and npm
+  First, you need to install XCode (from the Apple App Store), and Homebrew
+  (Apple's package manager for Mac). All following commands should be entered
+  into the terminal:
 
-> `brew install node`
+  ##### Installing Homebrew
 
-> `node -v`
+  > `ruby -e "$(curl -fsSl https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 
-> `npm -v`
+  ##### Installing node and npm
 
-##### updating node and npm
+  > `brew install node`
 
-> `brew upgrade`
+  > `node -v`
 
-> `brew upgrade node`
+  > `npm -v`
 
-> `node -v`
+  ##### updating node and npm
 
-> `npm -v`
+  > `brew upgrade`
 
-### Uninstall:
+  > `brew upgrade node`
 
-#### Windows
+  > `node -v`
 
-If you've installed via WSL, follow the Linux instructions below from the linux
-command line. Otherwise, uninstall programs as you normally would.
+  > `npm -v`
 
-#### Linux
+  ### Uninstall:
 
-> `sudo apt remove nodejs`
+  #### Windows
 
-> `sudo apt purge nodejs`
+  If you've installed via WSL, follow the Linux instructions below from the linux
+  command line. Otherwise, uninstall programs as you normally would.
 
-> `sudo apt autoremove`
+  #### Linux
 
-#### Mac
+  > `sudo apt remove nodejs`
 
-> `brew uninstall node`
+  > `sudo apt purge nodejs`
 
-## Key Dependencies
+  > `sudo apt autoremove`
 
-### Dev Dependencies
+  #### Mac
 
-nodemon: Utilized to have the server refresh automatically with every change
+  > `brew uninstall node`
 
-## Running the Server
+  ### Some Important Dev Dependencies
 
-Running the server is as simple as two commands
+  husky: Allows for pre-commits hooks (Used to run prettier styling for every JS commit)
+  jest: Testing framework for JS
+  nodemon: Utilized to have the server refresh automatically with every change
+  prettier: Automatic code formatting for every JS commit
 
-> `npm install`
+  ## Running the Server
 
-> `npm run serve`
+  Running the server is as simple as two commands
 
-You may get a warning from your firewall--go ahead and let it slide.
-Your terminal should announce that the server is running. Open up a browser
-window, and go to "localhost:8080". You should see a blank page with a button
-at the bottom; you should also see a message in the terminal that states "user
-connected." Try clicking on the button--you will see repeated messages.
+  > `npm install`
+
+  > `npm run serve`
+
+  You may get a warning from your firewall--go ahead and let it slide.
+  Your terminal should announce that the server is running. Open up a browser
+  window, and go to "localhost:8080". You should see a blank page with a button
+  at the bottom; you should also see a message in the terminal that states "user
+  connected." Try clicking on the button--you will see repeated messages.
+
+ </details>
