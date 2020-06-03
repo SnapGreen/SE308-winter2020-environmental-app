@@ -1,12 +1,15 @@
 settings check:
 	SETTINGS: Backend/scripts/settings_npm.txt
+	SCRIPTSDIR: Backend/scripts/
 	DATADIR: Backend/data/
 	EPADIR: EPA/
 	OUTFILE_END: .json
 	NEWDATADIR: fakedir/
 	EPADATASOURCE: fakefile.xls
+	EPA_PATTERNFILE: epa_removalpatterns.txt
+	EPA_PATTERN_PATH: Backend/scripts/epa_removalpatterns.txt
 	NEWDATAPATH: fakedir/fakefile.xls
-	AWKDIR: awk/
+	AWKDIR: Backend/scripts/awk/
 	TMPDIR: Backend/temp/
 	TMPFILE_END: .tmp
 	SAFER_PREFIX: fakefile
@@ -25,9 +28,9 @@ settings check:
 	SAFERSORTED_TMP: Backend/temp/fakefile_sorted.tmp
 	SAFERUNIQUE_TMP: Backend/temp/fakefile_unique.tmp
 	SAFER_JSON: Backend/data/EPA/fakefile.json
-	AWK_OLDEPA_TRIM: awk/epaoldtrim.awk
-	AWK_NEWEPA_TRIM: awk/epanewtrim.awk
-	AWK_EPA_JSON: awk/epatojson.awk
+	AWK_OLDEPA_TRIM: Backend/scripts/awk/epaoldtrim.awk
+	AWK_NEWEPA_TRIM: Backend/scripts/awk/epanewtrim.awk
+	AWK_EPA_JSON: Backend/scripts/awk/epatojson.awk
 	USAGE:
 		Usage: ./convertEPAData.sh [OPTION] (use option -h for help)
 	HELP:

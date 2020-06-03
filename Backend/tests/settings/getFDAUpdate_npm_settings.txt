@@ -1,6 +1,6 @@
 settings check:
 	SETTINGS: Backend/scripts/settings_npm.txt
-	CURRENTLATEST: FoodData_Central_branded_food_csv_2020-04-29.zip,202005010423,74439754
+	CURRENTLATEST: FoodData_Central_branded_food_csv_2020-04-29.zip,202005010424,74439754
 	LASTLATEST: FoodData_Central_branded_food_csv_2020-04-29.zip,202005010424,74439754
 	SERVER_POPULATED: false
 	FDC_DIR_ADDRESS: https://fdc.nal.usda.gov/fdc-datasets

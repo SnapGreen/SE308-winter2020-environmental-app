@@ -5,7 +5,13 @@ testEquality(){
 }
 
 testSettings(){
-   ./Backend/tests/test_settings.sh
+   ./Backend/tests/test_settings.sh "$1"
 }
 
-. shunit2
+testEPAConvert(){
+   ./Backend/tests/test_epa_convert.sh "$1"
+}
+
+testEquality
+testSettings "$1"
+testEPAConvert "$1"
