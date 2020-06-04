@@ -62,7 +62,7 @@ function checkSettings(){
 }
 
 if [[ $# -gt 1 ]] ; then
-   if [ "$2" == "-s" ] || [ "$2" == "ns"] ; then
+   if [ "$2" == "-s" ] || [ "$2" == "ns" ] ; then
       checkSettings
       exit 0
    fi

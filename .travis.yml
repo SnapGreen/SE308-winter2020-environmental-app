@@ -51,6 +51,7 @@ matrix:
                - libelf-dev
                - libdw-dev
                - cmake
+               - catdoc
       script:
         - "./Backend/tests/test_settings.sh -ns"
         - "./Backend/tests/test_epa_convert.sh -n"
