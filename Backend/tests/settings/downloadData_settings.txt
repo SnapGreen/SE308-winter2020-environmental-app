@@ -3,7 +3,7 @@ settings check:
 	FILENAME: fakefile
 	FULLPATH: fakeurl/fakefile
 	LOGDIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/logs/
-	CURRENTLATEST: FoodData_Central_branded_food_csv_2020-04-29.zip,202005010424,74439754
+	CURRENTLATEST: FoodData_Central_branded_food_csv_2020-04-29.zip,202005010423,74439754
 	DONE_UPLOADING: false
 	DOWNLOADLOGDIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/logs/downloads/
 	USAGE:
@@ -11,5 +11,8 @@ settings check:
 	HELP:
 		Usage: ./downloadData.sh <filename> <url> [OPTION] (-h for help)
 			-b: bypass debug (will skip settings check)
+			-n: test with settings relative to repo root
+			-ns: output settings relative to repo root only
 			-s: output settings only
+			-t: test mode (silent)
 			-h: print help

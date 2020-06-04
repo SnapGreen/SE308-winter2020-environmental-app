@@ -171,7 +171,7 @@ class StatUtil private constructor() {
                 NetworkManager.getInstance()?.addToRequestQueue(jsonRequest)
 
             } catch (e: Throwable) {
-                //TODO: Handle failed connection
+                Log.e("StatUtil", "Connection request failed")
             }
         }
 
@@ -182,6 +182,7 @@ class StatUtil private constructor() {
 
         fun fillEmptyDays() {
             val realm = Realm.getDefaultInstance()
+            realm.beginTransaction()
             var lastStats: DailyStatistic? =
                 realm.where<DailyStatistic>().sort("date", Sort.DESCENDING).findFirst() ?: return
             var lastAddedDate = lastStats?.date ?: return
@@ -190,13 +191,14 @@ class StatUtil private constructor() {
             var daysDifference = daysDifference(today, lastAddedDate)
             if (daysDifference > 1) {
                 for (i in 0 until daysDifference) {
-                    var newStats = realm.copyFromRealm(lastStats)
+                    val newStats = realm.copyFromRealm(lastStats)
                     newStats.date =
                         Date(lastAddedDate.time + (i * 24 * 60 * 60 * 1000))
                     newStats.today = DateFormat.getDateTimeInstance().format(newStats.date)
                     realm.copyToRealm(newStats)
                 }
             }
+            realm.commitTransaction()
         }
     }
 }

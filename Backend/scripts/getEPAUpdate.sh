@@ -1,17 +1,20 @@
 #!/bin/bash
 
+debug=true
+silent=false
+fin=false
+
 THISPATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)"
 SETTINGS="${THISPATH}/settings.txt"
 
 if [[ -n $1 ]] ; then
-   if [ "$1" == "-t" ] || [ "$1" == "-n" ] ; then
-      SETTINGS="${THISPATH}/settings_npm.txt"
+   if [ "$1" == "-t" ] || [ "$1" == "-n" ] || [ "$1" == "-ns" ] ; then
+      silent=true
+      if [ "$1" == "-t" ] || [ "$1" == "-n" ] ; then
+         SETTINGS="${THISPATH}/settings_npm.txt"
+      fi
    fi
 fi
-
-debug=true
-fin=false
-silent=false
 
 EPA_DIR_ADDRESS=$(grep -oP '(?<=^EPA_DIR_ADDRESS:).*' $SETTINGS)
 EPADATASOURCE=$(grep -oP '(?<=^EPADATASOURCE:).*' $SETTINGS)
@@ -25,7 +28,10 @@ DOWNLOADLOGDIR="${LOGDIR}downloads/"
 USAGE="\t\tUsage: ./getEPAUpdate.sh [OPTION] (use option -h for help)\n"
 HELP="${USAGE}\t\t**If no OPTION supplied, debug mode on (temp files remain)\n"
 HELP="${HELP}\t\t\t-b: bypass debug mode\n"
+HELP="${HELP}\t\t\t-n: test with settings relative to repo root\n"
+HELP="${HELP}\t\t\t-ns: output settings relative to repo root only\n"
 HELP="${HELP}\t\t\t-s: output settings only\n"
+HELP="${HELP}\t\t\t-t: test mode (silent)\n"
 HELP="${HELP}\t\t\t-h: print help\n"
 
 function checkSettings(){
@@ -47,7 +53,7 @@ function checkSettings(){
 }
 
 if [[ -n $1 ]] ; then
-   if [ "$1" == "-t" ] ; then
+   if [ "$1" == "-ns" ] || [ "$1" == "-s" ] ; then
       checkSettings
       exit 0
    fi
@@ -90,28 +96,25 @@ function checkIfUpdated(){
 if [[ -n $1 ]] ; then
    if [ "$1" == "-h" ] ; then
       printf "$HELP"
-      fin=true
-   elif [ "$1" == "-f" ] || [ "$1" == "-b" ] ; then
+      exit 0
+   elif [ "$1" == "-b" ] ; then
       debug=false
-      silent=true
-   elif [ "$1" == "-s" ] ; then
-      checkSettings
-      fin=true
+      if [[ "$silent" == "false" ]] ; then
+         echo "debugging off"
+      fi
    else
       printf "$USAGE"
-      fin=true
+      exit 1
    fi
 fi
 
+if [ "$silent" == "false" ] ; then
+   checkSettings
+fi
+
+getData
+
 if [ "$fin" == "false" ] ; then
-   if [ "$silent" == "false" ] ; then
-      checkSettings
-   fi
-
-   getData
-
-   if [ "$fin" == "false" ] ; then
-      ./convertEPAData.sh "$RAWDATADEST" "$EPADATASOURCE"
-   fi
+   ./convertEPAData.sh "$RAWDATADEST" "$EPADATASOURCE"
 fi
 

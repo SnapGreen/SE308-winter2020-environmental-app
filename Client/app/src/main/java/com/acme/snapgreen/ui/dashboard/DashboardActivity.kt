@@ -10,6 +10,7 @@ import com.acme.snapgreen.R
 import com.acme.snapgreen.data.StatUtil
 import com.acme.snapgreen.data.WeeklyStatsCalc
 import com.acme.snapgreen.ui.scanner.PreviewActivity
+import io.realm.Realm
 
 const val EXTRA_MESSAGE = "com.acme.snapgreen.MESSAGE"
 
@@ -23,6 +24,7 @@ class DashboardActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Realm.init(applicationContext)
 
         setContentView(R.layout.activity_dashboard)
 

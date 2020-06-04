@@ -15,5 +15,8 @@ settings check:
 		**If no OPTION supplied, debug mode on (temp files remain)
 			-b: bypass debug mode, download only if new
 			-f: force download
+			-n: test relative to repo root
+			-ns: output settings relative to repo root
 			-s: output settings only
+			-t: test mode (silent)
 			-h: print help

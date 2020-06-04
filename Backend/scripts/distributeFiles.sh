@@ -1,11 +1,17 @@
 #!/bin/bash
 
+debug=true
+silent=false
+
 THISPATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)"
 SETTINGS="${THISPATH}/settings.txt"
 
 if [[ $# -gt 1 ]] ; then
-   if [ "$2" == "-t" ] || [ "$2" == "-n" ] ; then
-      SETTINGS="${THISPATH}/settings_npm.txt"
+   if [ "$2" == "-t" ] || [ "$2" == "-n" ] || [ "$2" == "ns" ] ; then
+      silent=true
+      if [ "$2" == "-n" ] || [ "$2" == "ns" ] ; then
+         SETTINGS="${THISPATH}/settings_npm.txt"
+      fi
    fi
 fi
 
@@ -30,11 +36,10 @@ HELP="${HELP}\ta new directory in both data/ and dataraw/ for the update\n"
 USAGE="\t\tUsage: ./distributeFiles.sh <zipfile> [OPTION] (use option -h for help)\n"
 HELP="${HELP}${USAGE}"
 HELP="${HELP}\t\t\t-b: bypass debug mode (don't keep temp files)\n"
+HELP="${HELP}\t\t\t-ns: output settings relative to repo root only\n"
 HELP="${HELP}\t\t\t-s: output settings only\n"
+HELP="${HELP}\t\t\t-t: test mode (silent)\n"
 HELP="${HELP}\t\t\t-h: print help\n"
-
-debug=true
-fin=false
 
 function checkSettings(){
    echo "settings check:"
@@ -57,19 +62,25 @@ function checkSettings(){
 }
 
 if [[ $# -gt 1 ]] ; then
-   if [ "$2" == "-t" ] ; then
+   if [ "$2" == "-s" ] || [ "$2" == "ns"] ; then
       checkSettings
       exit 0
    fi
 fi
 
 function expandArchive(){
-   printf "unzipping %s...\n" "$1"
+   if [[ "$silent" == "false" ]] ; then
+      printf "unzipping %s...\n" "$1"
+   fi
+
    unzip "$1"
 }
 
 function deleteUnneededFiles(){
-   printf "removing unneeded files...\n"
+   if [[ "$silent" == "false" ]] ; then
+      printf "removing unneeded files...\n"
+   fi
+
    rm food.csv
    rm food_attribute.csv
    rm food_nutrient.csv
@@ -79,7 +90,10 @@ function deleteUnneededFiles(){
 }
 
 function moveToRawFDADir(){
-   printf "moving files to $3...\n"
+   if [[ "$silent" == "false" ]] ; then
+      printf "moving files to $3...\n"
+   fi
+
    mv "$1" "$3"
    mv "$2" "$3"
 }
@@ -88,48 +102,42 @@ function moveToRawFDADir(){
 if [[ $# -gt 1 ]] ; then
    if [ "$2" == "-b" ] ; then
       debug=false
-   elif [ "$2" == "-s" ] ; then
-      checkSettings
-      fin=true
+      if [[ "$silent" == "false" ]] ; then
+         echo "debugging off"
+      fi
    elif [ "$2" == "-h" ] ; then
       printf "$HELP"
-      fin=true
+      exit 0
    else
       printf "$USAGE"
-      fin=true
+      exit 1
    fi
 elif [[ $# -lt 1 ]] ; then
    printf "$USAGE"
-   fin=true
-else
-   if [ "$1" == "-h" ] ; then
-      printf "$HELP"
-      fin=true
-   elif [ "$1" == "-s" ] ; then
-      checkSettings
-      fin=true
-   fi
+   exit 1
+elif [ "$1" == "-h" ] ; then
+   printf "$HELP"
+   exit 0
 fi
 
-if [ "$fin" == "false" ] ; then
-   if [ "$debug" == "true" ] ; then
-      checkSettings
-   fi
 
-   expandArchive $ZIPFILE
+if [ "$debug" == "true" ] ; then
+   checkSettings
+fi
 
-   if [ "$debug" == "false" ] ; then
-      deleteUnneededFiles $ZIPFILE
-   fi
+expandArchive $ZIPFILE
 
-   if [ $SERVER_POPULATED == "true" ] ; then
-      moveToRawFDADir $FDADATASOURCE $FDAUPDATESOURCE $RAWDATADEST
-   elif [ "$DONE_UPLOADING" == "true" ] ; then
-      moveToRawFDADir $FDADATASOURCE $FDAUPDATESOURCE $RAWDATADEST
-   else
-      mkdir $RAWDATAUPDATEDEST
-      mkdir $DATAUPDATEDEST
-      moveToRawFDADir $FDADATASOURCE $FDAUPDATESOURCE $RAWDATAUPDATEDEST
-   fi
+if [ "$debug" == "false" ] ; then
+   deleteUnneededFiles $ZIPFILE
+fi
+
+if [ $SERVER_POPULATED == "true" ] ; then
+   moveToRawFDADir $FDADATASOURCE $FDAUPDATESOURCE $RAWDATADEST
+elif [ "$DONE_UPLOADING" == "true" ] ; then
+   moveToRawFDADir $FDADATASOURCE $FDAUPDATESOURCE $RAWDATADEST
+else
+   mkdir $RAWDATAUPDATEDEST
+   mkdir $DATAUPDATEDEST
+   moveToRawFDADir $FDADATASOURCE $FDAUPDATESOURCE $RAWDATAUPDATEDEST
 fi
 

@@ -1,6 +1,6 @@
 settings check:
 	SETTINGS: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/settings.txt
-	CURRENTLATEST: FoodData_Central_branded_food_csv_2020-04-29.zip,202005010424,74439754
+	CURRENTLATEST: FoodData_Central_branded_food_csv_2020-04-29.zip,202005010423,74439754
 	LASTLATEST: FoodData_Central_branded_food_csv_2020-04-29.zip,202005010424,74439754
 	SERVER_POPULATED: false
 	FDC_DIR_ADDRESS: https://fdc.nal.usda.gov/fdc-datasets
@@ -15,5 +15,8 @@ settings check:
 		**If no OPTION supplied, debug mode on (temp files remain)
 			-b: bypass debug mode, download only if new
 			-f: force download
+			-n: test relative to repo root
+			-ns: output settings relative to repo root
 			-s: output settings only
+			-t: test mode (silent)
 			-h: print help

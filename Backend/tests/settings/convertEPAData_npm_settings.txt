@@ -1,5 +1,5 @@
 settings check:
-	SETTINGS: Backend/scripts/settings_npm.txt
+	SETTINGS: Backend/scripts/settings.txt
 	SCRIPTSDIR: Backend/scripts/
 	DATADIR: Backend/data/
 	EPADIR: EPA/
@@ -37,5 +37,7 @@ settings check:
 		Usage: ./convertEPAData.sh [OPTION] (use option -h for help)
 		**If no OPTION supplied, debug mode on (temp files remain)
 			-b: bypass debug mode
+			-ns: output settings relative to repo root
 			-s: output settings only
+			-t: test mode (silent)
 			-h: print help

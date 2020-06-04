@@ -1,0 +1,80 @@
+matrix:
+  include:
+    - language: android
+      sudo: required
+      dist: trusty
+      env:
+        global:
+          - ANDROID_API_LEVEL=28
+          - ANDROID_BUILD_TOOLS_VERSION=28.0.3
+          - ANDROID_ABI=armeabi-v7a
+      android:
+        components:
+          - tools
+          - platform-tools
+          - tools
+          - extra-android-m2repository
+        licenses:
+          - android-sdk-preview-license-52d11cd2
+          - android-sdk-license-.+
+          - google-gdk-license-.+
+      before_install:
+        - touch $HOME/.android/repositories.cfg
+        - yes | sdkmanager "platforms;android-28"
+        - yes | sdkmanager "build-tools;28.0.3"
+        - openssl aes-256-cbc -K $encrypted_244650427dda_key -iv $encrypted_244650427dda_iv -in google-services.json.enc -out Client/app/google-services.json -d
+      before_cache:
+        - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+        - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+      cache:
+        directories:
+          - "$HOME/.gradle/caches/"
+          - "$HOME/.gradle/wrapper/"
+          - "$HOME/.android/build-cache"
+      before_script:
+        - cd Client
+        - chmod +x gradlew
+      script:
+        - "./gradlew clean build"
+        - "./gradlew test"
+    - language: node_js
+      node_js:
+        - 13.13.0
+      script:
+        - npm run testjs
+    - language: bash
+      sudo: required
+      addons:
+         apt:
+            packages:
+               - libcurl4-openssl-dev
+               - libelf-dev
+               - libdw-dev
+               - cmake
+      before_script:
+        - curl -L "https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/shunit2/shunit2-2.1.6.tgz" | tar zx
+      script:
+<<<<<<< HEAD
+        - "./Backend/tests/unit_tests_npm.sh"
+=======
+        - "./Backend/tests/test_settings.sh -t"
+        - "./Backend/tests/test_epa_convert.sh -t"
+>>>>>>> origin/master
+      after_success: |
+        wget https://github.com/SimonKagstrom/kcov/archive/master.tar.gz &&
+        tar xzf master.tar.gz &&
+        cd kcov-master &&
+        mkdir build &&
+        cd build &&
+        cmake .. &&
+        make &&
+        sudo make install &&
+        cd ../.. &&
+        rm -rf kcov-master &&
+        mkdir -p coverage &&
+<<<<<<< HEAD
+        kcov coverage Backend/tests/unit_tests_npm.sh &&
+=======
+        kcov coverage Backend/tests/unit_tests.sh -t &&
+>>>>>>> origin/master
+        bash <(curl -s https://codecov.io/bash) 

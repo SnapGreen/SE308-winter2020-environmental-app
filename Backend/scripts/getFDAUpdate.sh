@@ -1,17 +1,19 @@
 #!/bin/bash
 
+debug=true
+silent=false
+
 THISPATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)"
 SETTINGS="${THISPATH}/settings.txt"
 
 if [[ -n $1 ]] ; then
-   if [ "$1" == "-t" ] || [ "$1" == "-n" ] ; then
-      SETTINGS="${THISPATH}/settings_npm.txt"
+   if [ "$1" == "-t" ] || [ "$1" == "-n" ] || [ "$1" == "-ns" ] || [ "$1" == "-f" ] ; then
+      silent=true
+      if [ "$1" == "-n" ] || [ "$1" == "-ns" ] ; then
+         SETTINGS="${THISPATH}/settings_npm.txt"
+      fi
    fi
 fi
-
-debug=true
-fin=false
-silent=false
 
 CURRENTLATEST=$(grep -oP '(?<=^CURRENTLATEST:).*' $SETTINGS)
 LASTLATEST=$(grep -oP '(?<=^LASTLATEST:).*' $SETTINGS)
@@ -25,7 +27,10 @@ USAGE="\t\tUsage: ./getFDAUpdate.sh [OPTION] (use option -h for help)\n"
 HELP="${USAGE}\t\t**If no OPTION supplied, debug mode on (temp files remain)\n"
 HELP="${HELP}\t\t\t-b: bypass debug mode, download only if new\n"
 HELP="${HELP}\t\t\t-f: force download\n"
+HELP="${HELP}\t\t\t-n: test relative to repo root\n"
+HELP="${HELP}\t\t\t-ns: output settings relative to repo root\n"
 HELP="${HELP}\t\t\t-s: output settings only\n"
+HELP="${HELP}\t\t\t-t: test mode (silent)\n"
 HELP="${HELP}\t\t\t-h: print help\n"
 
 function checkSettings(){
@@ -46,7 +51,7 @@ function checkSettings(){
 }
 
 if [[ -n $1 ]] ; then
-   if [ "$1" == "-t" ] ; then
+   if [ "$1" == "-s" ] || [ "$1" == "ns" ]; then
       checkSettings
       exit 0
    fi
@@ -54,7 +59,9 @@ fi
 
 
 function convertMonthToDigits(){
-   echo "converting months to digit format..."
+   if [[ "$silent" == "false" ]] ; then
+      echo "converting months to digit format..."
+   fi
    sed -i 's/-Jan-/01/; t;
            s/-Feb-/02/; t;
            s/-Mar-/03/; t;
@@ -70,7 +77,9 @@ function convertMonthToDigits(){
 }
 
 function rearrangeDate(){
-   echo "rearranging date..."
+   if [[ "$silent" == "false" ]] ; then
+      echo "rearranging date..."
+   fi
    a='s/,\([0-9]\{2\}\)\([0-9]\{2\}\)\([0-9]\{4\}\)'
    b=' \([0-9]\{2\}\):\([0-9]\{2\}\),/,\3\2\1\4\5,/g' 
    pattern="${a}${b}"
@@ -78,7 +87,9 @@ function rearrangeDate(){
 }   
 
 function isolateData(){
-   echo "isolating required data..."
+   if [[ "$silent" == "false" ]] ; then
+      echo "isolating required data..."
+   fi
    # eliminates the lines we don't need
    sed '/branded_food/!d' $1 > $2
    # eliminates the first unneeded parts of the lines left 
@@ -94,14 +105,18 @@ function isolateData(){
 }
 
 function getDirectoryFromWeb(){
-   echo "getting available file list from web..."
+   if [[ "$silent" == "false" ]] ; then
+      echo "getting available file list from web..."
+   fi
    > $1
    #gets the html file showing the directory structure
    wget -O $1 -np $2
 }
 
 function storeNewestEntry(){
-   echo "storing newest file name and date..."
+   if [[ "$silent" == "false" ]] ; then
+      echo "storing newest file name and date..."
+   fi
    # https://unix.stackexchange.com/questions/170204/find-the-max-value-of-column-1-and-print-respective-record-from-column-2-from-fill
    newest=$(sort -t ',' -nrk2,2 $1 | head -1)
    sed -i "s/^CURRENTLATEST:.*/CURRENTLATEST:$newest/g" "$SETTINGS"
@@ -113,16 +128,20 @@ function storeNewestEntry(){
 }
 
 function getFDAData(){
-   echo "downloading data..."
+   if [[ "$silent" == "false" ]] ; then
+      echo "downloading data..."
+   fi
    ./downloadData.sh $1 $2 -b
 }
 
 function getUpdateIfNew(){
-   echo "checking if new data is available..."
+   if [[ "$silent" == "false" ]] ; then
+      echo "checking if new data is available..."
+   fi
    datediff=$(($3 - $4))
 
    if [[ $datediff -gt 0 ]] ; then
-      if [ "$1" == "-b" ] ; then
+      if [ "$1" == "-b" ] || [ "$silent" == "true" ] ; then
          getFDAData $1 $2 
       else
          printf "\tAn update is available:\n"
@@ -133,7 +152,7 @@ function getUpdateIfNew(){
          printf "\tdownload new file? (Y/n): "
          read reply
          if [ "$reply" == "y" ] || [ "$reply" == "Y" ] ; then
-            getFDAData $1 $2 
+            getFDAData "$1" "$2" 
          else
             printf "reply was %s, goodbye!\n" $reply
          fi
@@ -147,45 +166,40 @@ function getUpdateIfNew(){
 if [[ -n $1 ]] ; then
    if [ "$1" == "-h" ] ; then
       printf "$HELP"
-      fin=true
-   elif [ "$1" == "-f" ] || [ "$1" == "-b" ] ; then
+      exit 0
+   elif [ "$1" == "-b" ] || [ "$1" == "-f" ] ; then
       debug=false
-      silent=true
-   elif [ "$1" == "-s" ] ; then
-      checkSettings
-      fin=true
-   elif [ "$1" == "-t" ] ; then
-      checkSettingsNPM
-      fin=true
+      if [[ "$silent" == "false" ]] ; then
+         echo "debugging off"
+      fi
    else
       printf "$USAGE"
-      fin=true
+      exit 1
    fi
 fi
 
-if [ "$fin" == "false" ] ; then
-   if [ "$silent" == "false" ] ; then
-      checkSettings
-   fi
 
-   getDirectoryFromWeb $TMPLINKSFILE $FDC_DIR_ADDRESS
-   isolateData $TMPLINKSFILE $TMPFILELIST
-   convertMonthToDigits $TMPFILELIST
-   rearrangeDate $TMPFILELIST
-   storeNewestEntry $TMPFILELIST
+if [ "$silent" == "false" ] ; then
+   checkSettings
+fi
 
-   IFS=',' read -r -a currarray <<< "$CURRENTLATEST"
-   IFS=',' read -r -a lastarray <<< "$LASTLATEST"
+getDirectoryFromWeb $TMPLINKSFILE $FDC_DIR_ADDRESS
+isolateData $TMPLINKSFILE $TMPFILELIST
+convertMonthToDigits $TMPFILELIST
+rearrangeDate $TMPFILELIST
+storeNewestEntry $TMPFILELIST
 
-   currfile=${currarray[0]}
-   currdate=${currarray[1]}
-   currsize=${currarray[2]}
-   lastdate=${lastarray[1]}
+IFS=',' read -r -a currarray <<< "$CURRENTLATEST"
+IFS=',' read -r -a lastarray <<< "$LASTLATEST"
 
-   if [ "$1" == '-f' ] ; then
-      getFDAData $currfile $FDC_DIR_ADDRESS 
-   elif [ "$SERVER_POPULATED" == "false" ] ; then
-      getUpdateIfNew $currfile $FDC_DIR_ADDRESS $currdate $lastdate $currsize
-   fi
+currfile=${currarray[0]}
+currdate=${currarray[1]}
+currsize=${currarray[2]}
+lastdate=${lastarray[1]}
+
+if [ "$1" == '-f' ] ; then
+   getFDAData $currfile $FDC_DIR_ADDRESS 
+elif [ "$SERVER_POPULATED" == "false" ] ; then
+   getUpdateIfNew $currfile $FDC_DIR_ADDRESS $currdate $lastdate $currsize
 fi
 

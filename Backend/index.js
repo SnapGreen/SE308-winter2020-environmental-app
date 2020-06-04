@@ -1,22 +1,22 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const port = 8080;
-let schem_path = "/home/jtwedt/projSE308/SE308-winter2020-environmental-app/"
-schem_path = schem_path + "Backend/data/EPA/"
-schem_path = schem_path + "safer_chemical_ingredients_list.json"
+let schem_path = "/home/jtwedt/projSE308/SE308-winter2020-environmental-app/";
+schem_path = schem_path + "Backend/data/EPA/";
+schem_path = schem_path + "safer_chemical_ingredients_list.json";
 
-function getWeightedScore(ingredients){
-   num_ingreds = ingredients.length
-   ttl = 0
-   ingredients.forEach( ingredient => {
-      if(safer_chems[ingredient] === undefined){
-         ttl += 0
-      } else {
-         ttl += safer_chems[ingredient]
-      }
-   });
-   ttl = Math.round(ttl / num_ingreds);
-   return ttl
+function getWeightedScore(ingredients) {
+  let num_ingreds = ingredients.length;
+  let ttl = 0;
+  ingredients.forEach((ingredient) => {
+    if (safer_chems[ingredient] === undefined) {
+      ttl += 0;
+    } else {
+      ttl += safer_chems[ingredient];
+    }
+  });
+  ttl = Math.round(ttl / num_ingreds);
+  return ttl;
 }
 
 const firebase = require("./firebase");
@@ -162,7 +162,7 @@ app.get("/products/:id", async function (req, res) {
     console.log("No barcode provided");
   } else if (req.params.id) {
     try {
-      let id_14 = req.params.id.padStart(14, '0');
+      let id_14 = req.params.id.padStart(14, "0");
       // checks the database and then determines if the passwords match
       console.log("product " + id_14 + " lookup attempt");
       let product = await FIREBASE.getProduct(id_14);
@@ -172,10 +172,9 @@ app.get("/products/:id", async function (req, res) {
           message: "Product Not Found",
         });
         console.log("product not found");
-      }
-      else if(product.score === "-999999999") {
-         let score = getWeightedScore(product.ingredients);
-         product.score = score;
+      } else if (product.score === "-999999999") {
+        let score = getWeightedScore(product.ingredients);
+        product.score = score;
       }
 
       // Returns a json of the product scanned

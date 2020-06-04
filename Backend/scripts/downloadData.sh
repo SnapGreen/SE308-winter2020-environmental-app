@@ -1,18 +1,21 @@
 #!/bin/bash
 
+debug=true
+silent=false
+
 THISPATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)"
 SETTINGS="${THISPATH}/settings.txt"
 
 if [[ $# -gt 2 ]] ; then
    if [ -n $3 ] ; then
-      if [ "$3" == "-t" ] || [ "$3" == "-n" ] ; then
-         SETTINGS="${THISPATH}/settings_npm.txt"
+      if [ "$3" == "-t" ] || [ "$3" == "-n" ] || [ "$3" == "-ns" ] ; then
+         silent=true
+         if [ "$3" == "-n" ] || [ "$3" == "-ns" ] ; then
+            SETTINGS="${THISPATH}/settings_npm.txt"
+         fi
       fi
    fi
 fi
-
-debug=true
-fin=false
 
 FILENAME="$1"
 FULLPATH="${2}/${FILENAME}"
@@ -22,7 +25,10 @@ DONE_UPLOADING=$(grep -oP '(?<=^DONE_UPLOADING:).*' $SETTINGS)
 DOWNLOADLOGDIR="${LOGDIR}downloads/"
 USAGE="\t\tUsage: ./downloadData.sh <filename> <url> [OPTION] (-h for help)\n"
 HELP="${USAGE}\t\t\t-b: bypass debug (will skip settings check)\n"
+HELP="${HELP}\t\t\t-n: test with settings relative to repo root\n"
+HELP="${HELP}\t\t\t-ns: output settings relative to repo root only\n"
 HELP="${HELP}\t\t\t-s: output settings only\n"
+HELP="${HELP}\t\t\t-t: test mode (silent)\n"
 HELP="${HELP}\t\t\t-h: print help\n"
 
 function checkSettings(){
@@ -42,7 +48,7 @@ function checkSettings(){
 
 if [[ $# -gt 2 ]] ; then
    if [ -n $3 ] ; then
-      if [ "$3" == "-t" ] ; then
+      if [ "$3" == "-ns" ] || [ "$3" == "-s" ] ; then
          checkSettings
          exit 0
       fi
@@ -68,18 +74,15 @@ if [[ $# -gt 2 ]] ; then
          debug=false
       elif [ "$3" == "-h" ] ; then
          printf "$HELP"
-         fin=true
-      elif [ "$3" == "-s" ] ; then
-         checkSettings
-         fin=true
+         exit 0
       else
          printf "$USAGE"
-         fin=true
+         exit 1
       fi
    fi
 elif [[ $# -lt 2 ]] ; then
    printf "$USAGE"
-   fin=true
+   exit 1
 fi
    
 if [ "$fin" == "false" ] ; then

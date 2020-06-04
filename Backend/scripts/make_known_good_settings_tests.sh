@@ -1,9 +1,11 @@
 #!/bin/bash
-./convertEPAData.sh fakedir/ fakefile.xls -s > ../tests/settings/convertEPAData_settings.txt
-./convertToJson.sh -s > ../tests/settings/convertToJson_settings.txt
-./distributeFiles.sh fakefile.zip -s > ../tests/settings/distributeFiles_settings.txt
-./downloadData.sh fakefile fakeurl -s > ../tests/settings/downloadData_settings.txt
-./getFDAUpdate.sh -s > ../tests/settings/getFDAUpdate_settings.txt
-./getEPAUpdate.sh -s > ../tests/settings/getEPAUpdate_settings.txt
-./populateDB.sh -s > ../tests/settings/populateDB_settings.txt
-./uploadToDB.sh -s > ../tests/settings/uploadToDB_settings.txt
+THISPATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)"
+TESTDIR="${THISPATH}/../tests/settings"
+${THISPATH}/convertEPAData.sh fakedir/ fakefile.xls -s > ${TESTDIR}/convertEPAData_settings.txt
+${THISPATH}/convertToJson.sh -s > ${TESTDIR}/convertToJson_settings.txt
+${THISPATH}/distributeFiles.sh fakefile.zip -s > ${TESTDIR}/distributeFiles_settings.txt
+${THISPATH}/downloadData.sh fakefile fakeurl -s > ${TESTDIR}/downloadData_settings.txt
+${THISPATH}/getFDAUpdate.sh -s > ${TESTDIR}/getFDAUpdate_settings.txt
+${THISPATH}/getEPAUpdate.sh -s > ${TESTDIR}/getEPAUpdate_settings.txt
+${THISPATH}/populateDB.sh -s > ${TESTDIR}/populateDB_settings.txt
+${THISPATH}/uploadToDB.sh -s > ${TESTDIR}/uploadToDB_settings.txt
