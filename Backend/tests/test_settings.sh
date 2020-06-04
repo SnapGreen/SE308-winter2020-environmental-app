@@ -18,6 +18,8 @@ elif [[ "$1" == "-h" ]] ; then
    printf "$HELP"
    exit 0
 elif [[ "$1" == "-ns" ]] ; then
+   TESTDIR="Backend/tests/settings"
+   SCRIPTDIR="Backend/scripts"
    SUFFIX_OUT="_npm${SUFFIX_OUT}"
    SUFFIX_EXP="_npm${SUFFIX_EXP}"
 elif [[ "$1" != "-s" ]] ; then
