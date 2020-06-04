@@ -10,7 +10,8 @@ if [ $# -ne 0 ] ; then
    if [ "$1" == "-t" ] || [ "$1" == "-n" ] || [ "$1" == "-ns" ] ; then
       silent=true
       if [ "$1" == "-n" ] || [ "$1" == "-ns" ] ; then
-         SETTINGS="${THISPATH}/settings_npm.txt"
+         #SETTINGS="${THISPATH}/settings_npm.txt"
+         SETTINGS="Backend/scripts/settings_npm.txt"
       fi
    fi
 fi
