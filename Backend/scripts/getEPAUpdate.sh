@@ -1,15 +1,17 @@
 #!/bin/bash
-debug=true
-fin=false
-silent=false
 
-SETTINGS="/home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/settings.txt"
+THISPATH=$(pwd)
+SETTINGS="${THISPATH}/settings.txt"
 
 if [[ -n $1 ]] ; then
    if [ "$1" == "-t" ] || [ "$1" == "-n" ] ; then
-      SETTINGS="Backend/scripts/settings_npm.txt"
+      SETTINGS="${THISPATH}/settings_npm.txt"
    fi
 fi
+
+debug=true
+fin=false
+silent=false
 
 EPA_DIR_ADDRESS=$(grep -oP '(?<=^EPA_DIR_ADDRESS:).*' $SETTINGS)
 EPADATASOURCE=$(grep -oP '(?<=^EPADATASOURCE:).*' $SETTINGS)
