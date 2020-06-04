@@ -52,7 +52,7 @@ function checkSettings(){
 }
 
 if [[ -n $1 ]] ; then
-   if [ "$1" == "-s" ] || [ "$1" == "ns" ]; then
+   if [ "$1" == "-s" ] || [ "$1" == "-ns" ]; then
       checkSettings
       exit 0
    fi
