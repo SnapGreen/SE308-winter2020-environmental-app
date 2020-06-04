@@ -1,13 +1,13 @@
 settings check:
-	SETTINGS: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/tests/settings.txt
-	CURRENTLATEST: 
-	LASTLATEST: 
-	SERVER_POPULATED: 
-	FDC_DIR_ADDRESS: 
-	TMPDIR: 
-	TMPFILE_END: 
-	TMPLINKSFILE: links
-	TMPFILELIST: available_data
+	SETTINGS: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/settings.txt
+	CURRENTLATEST: FoodData_Central_branded_food_csv_2020-04-29.zip,202005010424,74439754
+	LASTLATEST: FoodData_Central_branded_food_csv_2020-04-29.zip,202005010424,74439754
+	SERVER_POPULATED: false
+	FDC_DIR_ADDRESS: https://fdc.nal.usda.gov/fdc-datasets
+	TMPDIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/
+	TMPFILE_END: .tmp
+	TMPLINKSFILE: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/links.tmp
+	TMPFILELIST: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/temp/available_data.tmp
 	USAGE:
 		Usage: ./getFDAUpdate.sh [OPTION] (use option -h for help)
 	HELP:

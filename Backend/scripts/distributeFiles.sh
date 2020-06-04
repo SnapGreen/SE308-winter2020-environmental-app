@@ -1,6 +1,6 @@
 #!/bin/bash
 
-THISPATH="$( cd "$( dirname "$(BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)"
+THISPATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)"
 SETTINGS="${THISPATH}/settings.txt"
 
 if [[ $# -gt 1 ]] ; then

@@ -1,22 +1,22 @@
 settings check:
-	SETTINGS: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/tests/settings.txt
-	DATADIR: 
-	FDADIR: 
-	FDADATADIR: 
-	SUFFIX_LEN: 
-	PRODS_PER_JSON: 
-	FB_WRITES_PER_DAY: 
-	TESTDIR: 
-	TESTSETTINGSDIR: settings/
-	TEST_POPDB_SETTINGS: settings/populateDB_settings.txt
-	TEST_UPLOADTODB_SETTINGS: settings/uploadToDB_settings.txt
-	SPLIT_PREFIX: 
-	OUTFILE_END: 
-	UPLOAD_SLEEP: 
-	LOGDIR: 
-	UPLOADLOGDIR: uploads/
-	SERVER_POPULATED: 
-	DONE_UPLOADING: 
+	SETTINGS: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/settings.txt
+	DATADIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/data/
+	FDADIR: FDA/
+	FDADATADIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/data/FDA/
+	SUFFIX_LEN: 4
+	PRODS_PER_JSON: 250
+	FB_WRITES_PER_DAY: 16500
+	TESTDIR: :/home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/tests/
+	TESTSETTINGSDIR: :/home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/tests/settings/
+	TEST_POPDB_SETTINGS: :/home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/tests/settings/populateDB_settings.txt
+	TEST_UPLOADTODB_SETTINGS: :/home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/tests/settings/uploadToDB_settings.txt
+	SPLIT_PREFIX: branded_food_
+	OUTFILE_END: .json
+	UPLOAD_SLEEP: 1
+	LOGDIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/logs/
+	UPLOADLOGDIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/logs/uploads/
+	SERVER_POPULATED: false
+	DONE_UPLOADING: false
 	USAGE:
 		Usage: ./uploadToDB.sh [OPTIONS] (-h for help)
 	HELP:

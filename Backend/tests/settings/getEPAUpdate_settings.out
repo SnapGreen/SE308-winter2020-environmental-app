@@ -1,14 +1,14 @@
 settings check:
-	SETTINGS: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/tests/settings.txt
-	EPA_DIR_ADDRESS: 
-	EPADATASOURCE: 
-	EPA_DATA_URL: 
-	RAWDATADIR: 
-	EPADIR: 
-	RAWDATADEST: 
-	LASTDATAPATH: 
-	LOGDIR: 
-	DOWNLOADLOGIR: downloads/
+	SETTINGS: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/settings.txt
+	EPA_DIR_ADDRESS: https://www.epa.gov/sites/production/files/2015-09/
+	EPADATASOURCE: safer_chemical_ingredients_list.xls
+	EPA_DATA_URL: https://www.epa.gov/sites/production/files/2015-09/safer_chemical_ingredients_list.xls
+	RAWDATADIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/dataraw/
+	EPADIR: EPA/
+	RAWDATADEST: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/dataraw/EPA/
+	LASTDATAPATH: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/dataraw/EPA/safer_chemical_ingredients_list.xls
+	LOGDIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/logs/
+	DOWNLOADLOGIR: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/logs/downloads/
 	USAGE:
 		Usage: ./getEPAUpdate.sh [OPTION] (use option -h for help)
 	HELP:

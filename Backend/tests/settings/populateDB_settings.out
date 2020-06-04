@@ -1,6 +1,6 @@
 settings check:
-	SETTINGS: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/tests/settings.txt
-	SERVER_POPULATED: 
+	SETTINGS: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/settings.txt
+	SERVER_POPULATED: false
 	USAGE:
 		Usage: ./populateDB.sh [OPTION] (use option -h for help)
 	HELP:
