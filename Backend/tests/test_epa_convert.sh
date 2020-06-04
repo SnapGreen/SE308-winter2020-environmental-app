@@ -5,7 +5,7 @@ THISDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )"  >/dev/null 2>&1 && pwd)"
 SETTINGS="${THISDIR}/../scripts/settings.txt"
 
 if [[ "$1" == "-n" ]]; then
-   SETTINGS="${THISDIR}/../scripts/settings_npm.txt"
+   SETTINGS="Backend/scripts/settings_npm.txt"
 fi
 
 SCRIPTSDIR=$(grep -oP "(?<=^SCRIPTSDIR:).*" "$SETTINGS")

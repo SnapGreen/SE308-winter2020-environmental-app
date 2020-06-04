@@ -1,0 +1,18 @@
+settings check:
+	SETTINGS: Backend/scripts/settings_npm.txt
+	FILENAME: fakefile
+	FULLPATH: fakeurl/fakefile
+	LOGDIR: 
+	CURRENTLATEST: 
+	DONE_UPLOADING: 
+	DOWNLOADLOGDIR: downloads/
+	USAGE:
+		Usage: ./downloadData.sh <filename> <url> [OPTION] (-h for help)
+	HELP:
+		Usage: ./downloadData.sh <filename> <url> [OPTION] (-h for help)
+			-b: bypass debug (will skip settings check)
+			-n: test with settings relative to repo root
+			-ns: output settings relative to repo root only
+			-s: output settings only
+			-t: test mode (silent)
+			-h: print help

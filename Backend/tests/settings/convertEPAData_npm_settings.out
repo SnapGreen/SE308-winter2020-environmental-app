@@ -1,0 +1,43 @@
+settings check:
+	SETTINGS: Backend/scripts/settings_npm.txt
+	SCRIPTSDIR: 
+	DATADIR: 
+	EPADIR: 
+	OUTFILE_END: 
+	NEWDATADIR: fakedir/
+	EPADATASOURCE: fakefile.xls
+	EPA_PATTERNFILE: 
+	EPA_PATTERN_PATH: 
+	NEWDATAPATH: fakedir/fakefile.xls
+	AWKDIR: 
+	TMPDIR: 
+	TMPFILE_END: 
+	SAFER_PREFIX: fakefile
+	SAFERCSVROUGH_TMP: fakefile_roughcsv
+	SAFERCSVPREPPED_TMP: fakefile_preppedcsv
+	SAFERSPLIT_PREFIX: fakefile
+	SAFEROLD: fakefile00
+	SAFERNEW: fakefile01
+	SAFEROLD_TMP: fakefile00
+	SAFERNEW_TMP: fakefile01
+	SAFEROLDTRIM_TMP: fakefile_oldtrim
+	SAFERNEWTRIM_TMP: fakefile_newtrim
+	SAFERJOINED_TMP: fakefile_joined
+	SAFERB4_TMP: fakefile_b4
+	SAFERCLEAN_TMP: fakefile_clean
+	SAFERSORTED_TMP: fakefile_sorted
+	SAFERUNIQUE_TMP: fakefile_unique
+	SAFER_JSON: fakefile
+	AWK_OLDEPA_TRIM: epaoldtrim.awk
+	AWK_NEWEPA_TRIM: epanewtrim.awk
+	AWK_EPA_JSON: epatojson.awk
+	USAGE:
+		Usage: ./convertEPAData.sh [OPTION] (use option -h for help)
+	HELP:
+		Usage: ./convertEPAData.sh [OPTION] (use option -h for help)
+		**If no OPTION supplied, debug mode on (temp files remain)
+			-b: bypass debug mode
+			-ns: output settings relative to repo root
+			-s: output settings only
+			-t: test mode (silent)
+			-h: print help

@@ -1,0 +1,50 @@
+settings check:
+	SETTINGS: Backend/scripts/settings_npm.txt
+	AWKDIR: 
+	DATADIR: 
+	FDADIR: 
+	FDAINDIR: 
+	FDAOUTDIR: 
+	LOGDIR: 
+	RAWDATADIR: 
+	TMPDIR: 
+	TESTDIR: 
+	FDAINFILE: 
+	MAPFILE: 
+	PRODS_PER_JSON: 
+	FDA_PATTERNFILE: 
+	SPLIT_PREFIX: 
+	SUFFIX_LEN: 
+	OUTFILE_END: 
+	TMPFILE_END: 
+	NUM_CLEAN_TESTS: 
+	AWK_FORMAT: csvtojson.awk
+	AWK_SHRINK: consolidateIngreds.awk
+	AWK_TRIM: trim.awk
+	AWK_RM_INGRDS: removeIngreds.awk
+	AWK_MAP: map_fdcid_gtin.awk
+	NOCATS_TMP: nocats.tmp
+	PREPPED_TMP: prepped.tmp
+	INGREDIENTS_TMP: ingredients.tmp
+	INGREDIENTSB4_TMP: ingredientsb4.tmp
+	NON_INGREDIENTS_TMP: non_ingredients.tmp
+	SET_INGREDIENTS_TMP: set_ingredients.tmp
+	RELEVANTDATA_TMP: relevantdata.tmp
+	RELEVANTSORTED_TMP: relevantsorted.tmp
+	RELEVANTTRIMMED_TMP: relevanttrimmed.tmp
+	CLEANTEST_TMP: longestlines.tmp
+	JOINED_TMP: joined.tmp
+	SORTED_TMP: sorted.tmp
+	USAGE:
+		Usage: ./convertToJson.sh [OPTION] (-h for help)
+	HELP:
+		Usage: ./convertToJson.sh [OPTION] (-h for help)
+		OPTIONS:
+			-b: bypass debug mode
+			-n: run with settings relative to repo root
+			-ns: print settings relative to repo root only
+			-s: print settings only
+			-t: test mode (silent)
+			-h: print help
+		**debug mode: leave temp files undeleted**
+		**debug mode is ON if no OPTION specified

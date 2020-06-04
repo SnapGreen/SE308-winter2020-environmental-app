@@ -1,0 +1,30 @@
+settings check:
+	SETTINGS: Backend/scripts/settings_npm.txt
+	DATADIR: 
+	FDADIR: 
+	FDADATADIR: 
+	SUFFIX_LEN: 
+	PRODS_PER_JSON: 
+	FB_WRITES_PER_DAY: 
+	TESTDIR: 
+	TESTSETTINGSDIR: settings/
+	TEST_POPDB_SETTINGS: settings/populateDB_settings.txt
+	TEST_UPLOADTODB_SETTINGS: settings/uploadToDB_settings.txt
+	SPLIT_PREFIX: 
+	OUTFILE_END: 
+	UPLOAD_SLEEP: 
+	LOGDIR: 
+	UPLOADLOGDIR: uploads/
+	SERVER_POPULATED: 
+	DONE_UPLOADING: 
+	USAGE:
+		Usage: ./uploadToDB.sh [OPTIONS] (-h for help)
+	HELP:
+		Usage: ./uploadToDB.sh [OPTIONS] (-h for help)
+		OPTIONS:
+			-b: upload without prompt
+			-n: test with settings relative to repo root
+			-ns: print settings relative to repo root only
+			-s: print settings only
+			-t: test mode (silent)
+			-h: print help
