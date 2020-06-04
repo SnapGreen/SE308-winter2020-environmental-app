@@ -42,6 +42,7 @@ settings check:
 		OPTIONS:
 			-b: bypass debug mode
 			-s: print settings only
+			-n: run with settings relative to repo root
 			-h: print help
 		**debug mode: leave temp files undeleted**
 		**debug mode is ON if no OPTION specified
