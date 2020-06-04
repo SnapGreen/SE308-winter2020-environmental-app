@@ -1,18 +1,17 @@
 #!/bin/bash
 
+THISDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)"
+
 testEquality(){
    assertEquals 1 1
 }
 
 testSettings(){
-   ./Backend/tests/test_settings.sh "$1"
+   ${THISDIR}/test_settings.sh 
 }
 
 testEPAConvert(){
-   ./Backend/tests/test_epa_convert.sh "$1"
+   ${THISDIR}/test_epa_convert.sh 
 }
 
-testEquality
-testSettings "$1"
-testEPAConvert "$1"
-
+. shunit2

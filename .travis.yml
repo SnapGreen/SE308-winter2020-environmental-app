@@ -54,8 +54,7 @@ matrix:
       before_script:
         - curl -L "https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/shunit2/shunit2-2.1.6.tgz" | tar zx
       script:
-        - "./Backend/tests/test_settings.sh -t"
-        - "./Backend/tests/test_epa_convert.sh -t"
+        - "./Backend/tests/unit_tests_npm.sh"
       after_success: |
         wget https://github.com/SimonKagstrom/kcov/archive/master.tar.gz &&
         tar xzf master.tar.gz &&
@@ -68,5 +67,5 @@ matrix:
         cd ../.. &&
         rm -rf kcov-master &&
         mkdir -p coverage &&
-        kcov coverage Backend/tests/unit_tests.sh -t &&
+        kcov coverage Backend/tests/unit_tests_npm.sh &&
         bash <(curl -s https://codecov.io/bash) 
