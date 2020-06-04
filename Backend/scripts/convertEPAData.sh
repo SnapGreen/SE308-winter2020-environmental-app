@@ -144,10 +144,10 @@ function splitOldAndNew(){
    if [[ "$silent" == "false" ]] ; then
       printf "splitting old and new items...\n"
    fi
-   csplit -f "$SAFERSPLIT_PREFIX" "$1" '/^"cas.*/'
+   csplit -s -f "$SAFERSPLIT_PREFIX" "$1" '/^"cas.*/'
+   # this ensures that no files without .tmp are in temp
    mv "$SAFEROLD" "$SAFEROLD_TMP"
    mv "$SAFERNEW" "$SAFERNEW_TMP"
-   # this ensures that no files without .tmp are in temp
 }
 
 function processNewData(){
@@ -211,10 +211,9 @@ function joinOldAndNew(){
    if [ $debug == "false" ] ; then
       rm "$1"
       rm "$2"
-   else
-      #this gives us a "before" file to look at
-      cat $3 > "$SAFERB4_TMP"
    fi
+   #this gives us a "before" file to look at
+   cat $3 > "$SAFERB4_TMP"
 }
 
 function cleanChemicals(){
@@ -344,7 +343,7 @@ if [[ $# -gt 2 ]] ; then
       elif [ "$3" == "-h" ] ; then
          printf "$HELP"
          exit 0
-      else
+      elif [ "$3" != "-n" ] && [ "$3" != "-t" ] ; then
          printf "$USAGE"
          exit 1
       fi
@@ -355,7 +354,9 @@ elif [[ $# -lt 2 ]] ; then
 fi
 
 if [[ "$debug" == "true" ]] ; then
-   checkSettings
+   if [[ "$silent" == "false" ]] ; then
+      checkSettings
+   fi
 fi
 
 convertToCsv "$NEWDATAPATH" "$SAFERCSVROUGH_TMP"

@@ -3,7 +3,7 @@ settings check:
 	FILENAME: fakefile
 	FULLPATH: fakeurl/fakefile
 	LOGDIR: Backend/logs/
-	CURRENTLATEST: FoodData_Central_branded_food_csv_2020-04-29.zip,202005010424,74439754
+	CURRENTLATEST: FoodData_Central_branded_food_csv_2020-04-29.zip,202005010423,74439754
 	DONE_UPLOADING: false
 	DOWNLOADLOGDIR: Backend/logs/downloads/
 	USAGE:

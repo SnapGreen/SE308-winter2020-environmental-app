@@ -6,11 +6,11 @@ settings check:
 	FDADIR: FDA/
 	FDADATASOURCE: branded_food.csv
 	FDAUPDATESOURCE: food_update_log_entry.csv
-	LASTLATEST: FoodData_Central_branded_food_csv_2020-04-29.zip,202005010424,74439754
+	LASTLATEST: FoodData_Central_branded_food_csv_2020-04-29.zip,202005010423,74439754
 	RAWDATADEST: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/dataraw/FDA/
 	DATADEST: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/data/FDA/
-	RAWDATAUPDATEDEST: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/dataraw/FDA/202005010424/
-	DATAUPDATEDEST: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/data/FDA/202005010424/
+	RAWDATAUPDATEDEST: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/dataraw/FDA/202005010423/
+	DATAUPDATEDEST: /home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/data/FDA/202005010423/
 	USAGE:
 		Usage: ./distributeFiles.sh <zipfile> [OPTION] (use option -h for help)
 	HELP:
