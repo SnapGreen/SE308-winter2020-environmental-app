@@ -7,9 +7,9 @@ THISPATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)"
 SETTINGS="${THISPATH}/settings.txt"
 
 if [[ $# -gt 1 ]] ; then
-   if [ "$2" == "-t" ] || [ "$2" == "-n" ] || [ "$2" == "ns" ] ; then
+   if [ "$2" == "-t" ] || [ "$2" == "-n" ] || [ "$2" == "-ns" ] ; then
       silent=true
-      if [ "$2" == "-n" ] || [ "$2" == "ns" ] ; then
+      if [ "$2" == "-n" ] || [ "$2" == "-ns" ] ; then
          #SETTINGS="${THISPATH}/settings_npm.txt"
          SETTINGS="Backend/scripts/settings_npm.txt"
       fi
@@ -63,7 +63,7 @@ function checkSettings(){
 }
 
 if [[ $# -gt 1 ]] ; then
-   if [ "$2" == "-s" ] || [ "$2" == "ns" ] ; then
+   if [ "$2" == "-s" ] || [ "$2" == "-ns" ] ; then
       checkSettings
       exit 0
    fi
