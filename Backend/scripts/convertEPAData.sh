@@ -148,6 +148,7 @@ function splitOldAndNew(){
    # this ensures that no files without .tmp are in temp
    mv "$SAFEROLD" "$SAFEROLD_TMP"
    mv "$SAFERNEW" "$SAFERNEW_TMP"
+   # this ensures that no files without .tmp are in temp
 }
 
 function processNewData(){

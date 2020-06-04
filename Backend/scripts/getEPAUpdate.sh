@@ -1,5 +1,4 @@
 #!/bin/bash
-
 debug=true
 silent=false
 fin=false
