@@ -270,7 +270,7 @@ function sortOnChem(){
    if [[ "$silent" == "false" ]] ; then
       printf "sorting...\n"
    fi
-   sort "$1" > "$2"
+   bash sort "$1" > "$2"
 
    if [ $debug == "false" ] ; then
       rm $1
