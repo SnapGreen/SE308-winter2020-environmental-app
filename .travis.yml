@@ -43,6 +43,7 @@ matrix:
       script:
         - npm run testjs
     - language: bash
+      dist: bionic
       sudo: required
       addons:
          apt:
