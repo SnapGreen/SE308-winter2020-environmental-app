@@ -58,7 +58,7 @@ This diagram shows the interaction between the app, server, and database when a 
 # Testing
 Our team is utilizing Espresso and JUnit for Kotlin and Jest for JS testing.
 
-<a href=https://codecov.io/gh/SnapGreen/SE308-winter2020-environmental-app">View Code Coverage</a>
+<a href="https://codecov.io/gh/SnapGreen/SE308-winter2020-environmental-app">View Code Coverage</a>
 
 ### Acceptance Tests:
 
