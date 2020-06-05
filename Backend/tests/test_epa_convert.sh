@@ -42,6 +42,7 @@ if [[ $res -ne 0 ]]; then
    mv "$EPA_DATA_FORMATTED_PATH" .
    mv "$EPA_TESTFILE_PATH" "$EPA_DATA_FORMATTED_PATH"
    mv "$EPA_DATA_FORMATTED" "$EPA_TESTFILE_PATH"
+   cat "$EPA_TESTFILE_PATH"
    exit 1
 else
    # if the result is identical to the original, the original is removed
