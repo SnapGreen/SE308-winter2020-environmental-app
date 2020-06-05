@@ -1,9 +1,10 @@
 #!/bin/bash
 
 # test on the conversion of the existing EPA data to .json
-SETTINGS="/home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/settings.txt"
+THISDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )"  >/dev/null 2>&1 && pwd)"
+SETTINGS="${THISDIR}/../scripts/settings.txt"
 
-if [[ "$1" == "-t" ]]; then
+if [[ "$1" == "-n" ]]; then
    SETTINGS="Backend/scripts/settings_npm.txt"
 fi
 
@@ -29,11 +30,7 @@ fi
 # copy the original file to the test directory
 cp "$EPA_DATA_FORMATTED_PATH" "$EPA_TESTFILE_PATH"
 
-if [[ "$1" == "-t" ]]; then
-   bash "$SCRIPTSDIR"convertEPAData.sh "$EPARAWDATADIR" "$EPADATASOURCE" -n 
-else
-   bash "$SCRIPTSDIR"convertEPAData.sh "$EPARAWDATADIR" "$EPADATASOURCE"  
-fi
+bash "$SCRIPTSDIR"convertEPAData.sh "$EPARAWDATADIR" "$EPADATASOURCE" "$1"
 
 
 diff "$EPA_DATA_FORMATTED_PATH" "$EPA_TESTFILE_PATH"
@@ -45,6 +42,7 @@ if [[ $res -ne 0 ]]; then
    mv "$EPA_DATA_FORMATTED_PATH" .
    mv "$EPA_TESTFILE_PATH" "$EPA_DATA_FORMATTED_PATH"
    mv "$EPA_DATA_FORMATTED" "$EPA_TESTFILE_PATH"
+   cat "$EPA_TESTFILE_PATH"
    exit 1
 else
    # if the result is identical to the original, the original is removed

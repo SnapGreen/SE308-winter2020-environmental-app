@@ -23,5 +23,8 @@ settings check:
 		Usage: ./uploadToDB.sh [OPTIONS] (-h for help)
 		OPTIONS:
 			-b: upload without prompt
+			-n: test with settings relative to repo root
+			-ns: print settings relative to repo root only
 			-s: print settings only
+			-t: test mode (silent)
 			-h: print help

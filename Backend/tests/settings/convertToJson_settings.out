@@ -41,7 +41,10 @@ settings check:
 		Usage: ./convertToJson.sh [OPTION] (-h for help)
 		OPTIONS:
 			-b: bypass debug mode
+			-n: run with settings relative to repo root
+			-ns: print settings relative to repo root only
 			-s: print settings only
+			-t: test mode (silent)
 			-h: print help
 		**debug mode: leave temp files undeleted**
 		**debug mode is ON if no OPTION specified

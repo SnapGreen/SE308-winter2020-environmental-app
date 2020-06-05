@@ -11,5 +11,8 @@ settings check:
 	HELP:
 		Usage: ./downloadData.sh <filename> <url> [OPTION] (-h for help)
 			-b: bypass debug (will skip settings check)
+			-n: test with settings relative to repo root
+			-ns: output settings relative to repo root only
 			-s: output settings only
+			-t: test mode (silent)
 			-h: print help

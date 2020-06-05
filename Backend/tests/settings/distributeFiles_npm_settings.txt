@@ -6,11 +6,11 @@ settings check:
 	FDADIR: FDA/
 	FDADATASOURCE: branded_food.csv
 	FDAUPDATESOURCE: food_update_log_entry.csv
-	LASTLATEST: FoodData_Central_branded_food_csv_2020-04-29.zip,202005010424,74439754
+	LASTLATEST: FoodData_Central_branded_food_csv_2020-04-29.zip,202005010423,74439754
 	RAWDATADEST: Backend/dataraw/FDA/
 	DATADEST: Backend/data/FDA/
-	RAWDATAUPDATEDEST: Backend/dataraw/FDA/202005010424/
-	DATAUPDATEDEST: Backend/data/FDA/202005010424/
+	RAWDATAUPDATEDEST: Backend/dataraw/FDA/202005010423/
+	DATAUPDATEDEST: Backend/data/FDA/202005010423/
 	USAGE:
 		Usage: ./distributeFiles.sh <zipfile> [OPTION] (use option -h for help)
 	HELP:
@@ -20,5 +20,7 @@ settings check:
 	a new directory in both data/ and dataraw/ for the update
 		Usage: ./distributeFiles.sh <zipfile> [OPTION] (use option -h for help)
 			-b: bypass debug mode (don't keep temp files)
+			-ns: output settings relative to repo root only
 			-s: output settings only
+			-t: test mode (silent)
 			-h: print help

@@ -7,11 +7,11 @@ testEquality(){
 }
 
 testSettings(){
-   ${THISDIR}/test_settings.sh -s
+   ${THISDIR}/test_settings.sh -ns
 }
 
 testEPAConvert(){
-   ${THISDIR}/test_epa_convert.sh -t 
+   ${THISDIR}/test_epa_convert.sh -n
 }
 
-. shunit2
+. shunit2-2.1.6/src/shunit2

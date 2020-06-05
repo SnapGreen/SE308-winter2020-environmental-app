@@ -1,44 +1,23 @@
 #!/bin/bash
+
 debug=true
-fin=false
+silent=false
 
-function checkSettingsNPM(){
-   SETTINGS_NPM="Backend/scripts/settings_npm.txt"
-   FILENAME="$1"
-   FULLPATH="${2}/${FILENAME}"
-   LOGDIR=$(grep -oP '(?<=^LOGDIR:).*' $SETTINGS_NPM)
-   CURRENTLATEST=$(grep -oP '(?<=^CURRENTLATEST:).*' $SETTINGS_NPM)
-   DONE_UPLOADING=$(grep -oP '(?<=^DONE_UPLOADING:).*' $SETTINGS_NPM)
-   DOWNLOADLOGDIR="${LOGDIR}downloads/"
-   USAGE="\t\tUsage: ./downloadData.sh <filename> <url> [OPTION] (-h for help)\n"
-   HELP="${USAGE}\t\t\t-b: bypass debug (will skip settings check)\n"
-   HELP="${HELP}\t\t\t-s: output settings only\n"
-   HELP="${HELP}\t\t\t-h: print help\n"
-
-   echo "settings check:"
-   printf "\tSETTINGS: %s\n" "$SETTINGS_NPM"
-   printf "\tFILENAME: %s\n" "$FILENAME"
-   printf "\tFULLPATH: %s\n" "$FULLPATH"
-   printf "\tLOGDIR: %s\n" "$LOGDIR"
-   printf "\tCURRENTLATEST: %s\n" "$CURRENTLATEST"
-   printf "\tDONE_UPLOADING: %s\n" $DONE_UPLOADING
-   printf "\tDOWNLOADLOGDIR: %s\n" "$DOWNLOADLOGDIR"
-   printf "\tUSAGE:\n"
-   printf "$USAGE"
-   printf "\tHELP:\n"
-   printf "$HELP"
-}
+THISPATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)"
+SETTINGS="${THISPATH}/settings.txt"
 
 if [[ $# -gt 2 ]] ; then
    if [ -n $3 ] ; then
-      if [ "$3" == "-t" ] ; then
-         checkSettingsNPM "$1" "$2"
-         exit 0
+      if [ "$3" == "-t" ] || [ "$3" == "-n" ] || [ "$3" == "-ns" ] ; then
+         silent=true
+         if [ "$3" == "-n" ] || [ "$3" == "-ns" ] ; then
+            #SETTINGS="${THISPATH}/settings_npm.txt"
+            SETTINGS="Backend/scripts/settings_npm.txt"
+         fi
       fi
    fi
 fi
 
-SETTINGS="/home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/settings.txt"
 FILENAME="$1"
 FULLPATH="${2}/${FILENAME}"
 LOGDIR=$(grep -oP '(?<=^LOGDIR:).*' $SETTINGS)
@@ -47,7 +26,10 @@ DONE_UPLOADING=$(grep -oP '(?<=^DONE_UPLOADING:).*' $SETTINGS)
 DOWNLOADLOGDIR="${LOGDIR}downloads/"
 USAGE="\t\tUsage: ./downloadData.sh <filename> <url> [OPTION] (-h for help)\n"
 HELP="${USAGE}\t\t\t-b: bypass debug (will skip settings check)\n"
+HELP="${HELP}\t\t\t-n: test with settings relative to repo root\n"
+HELP="${HELP}\t\t\t-ns: output settings relative to repo root only\n"
 HELP="${HELP}\t\t\t-s: output settings only\n"
+HELP="${HELP}\t\t\t-t: test mode (silent)\n"
 HELP="${HELP}\t\t\t-h: print help\n"
 
 function checkSettings(){
@@ -64,6 +46,15 @@ function checkSettings(){
    printf "\tHELP:\n"
    printf "$HELP"
 }
+
+if [[ $# -gt 2 ]] ; then
+   if [ -n $3 ] ; then
+      if [ "$3" == "-ns" ] || [ "$3" == "-s" ] ; then
+         checkSettings
+         exit 0
+      fi
+   fi
+fi
 
 function getData(){
    printf "dowloading from %s\n" "$1"
@@ -84,18 +75,15 @@ if [[ $# -gt 2 ]] ; then
          debug=false
       elif [ "$3" == "-h" ] ; then
          printf "$HELP"
-         fin=true
-      elif [ "$3" == "-s" ] ; then
-         checkSettings
-         fin=true
+         exit 0
       else
          printf "$USAGE"
-         fin=true
+         exit 1
       fi
    fi
 elif [[ $# -lt 2 ]] ; then
    printf "$USAGE"
-   fin=true
+   exit 1
 fi
    
 if [ "$fin" == "false" ] ; then

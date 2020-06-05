@@ -1,0 +1,15 @@
+settings check:
+	SETTINGS: Backend/scripts/settings_npm.txt
+	SERVER_POPULATED: 
+	USAGE:
+		Usage: ./populateDB.sh [OPTION] (use option -h for help)
+	HELP:
+		This script will download the latest FDA database
+		and adjust the settings so that updates are stored,
+		then applied after the databse is fully populated.
+		Usage: ./populateDB.sh [OPTION] (use option -h for help)
+			-n: test relative to repo root
+			-ns: output settings relative to repo root only
+			-s: output settings only
+			-t: test mode (silent)
+			-h: print help

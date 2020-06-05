@@ -37,5 +37,8 @@ settings check:
 		Usage: ./convertEPAData.sh [OPTION] (use option -h for help)
 		**If no OPTION supplied, debug mode on (temp files remain)
 			-b: bypass debug mode
+			-n: test with settings relative to repo root
+			-ns: output settings relative to repo root
 			-s: output settings only
+			-t: test mode (silent)
 			-h: print help

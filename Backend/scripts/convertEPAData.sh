@@ -1,14 +1,18 @@
 #!/bin/bash
-debug=true
-fin=false
-silent=false
+debug="true"
+silent="false"
 
-SETTINGS="/home/jtwedt/projSE308/SE308-winter2020-environmental-app/Backend/scripts/settings.txt"
+THISPATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)"
+SETTINGS="${THISPATH}/settings.txt"
 
 if [[ $# -gt 2 ]] ; then
    if [ -n $3 ] ; then
-      if [ "$3" == "-t" ] || [ "$3" == "-n" ] ; then
-         SETTINGS="Backend/scripts/settings_npm.txt"
+      if [ "$3" == "-ns" ] || [ "$3" == "-n" ] || [ "$3" == "-t" ] ; then
+         silent="true"
+         if [ "$3" != "-t" ] ; then
+            #SETTINGS="${THISPATH}/settings_npm.txt"
+            SETTINGS="Backend/scripts/settings_npm.txt"
+         fi
       fi
    fi
 fi
@@ -48,7 +52,10 @@ AWK_EPA_JSON="${AWKDIR}epatojson.awk"
 USAGE="\t\tUsage: ./convertEPAData.sh [OPTION] (use option -h for help)\n"
 HELP="${USAGE}\t\t**If no OPTION supplied, debug mode on (temp files remain)\n"
 HELP="${HELP}\t\t\t-b: bypass debug mode\n"
+HELP="${HELP}\t\t\t-n: test with settings relative to repo root\n"
+HELP="${HELP}\t\t\t-ns: output settings relative to repo root\n"
 HELP="${HELP}\t\t\t-s: output settings only\n"
+HELP="${HELP}\t\t\t-t: test mode (silent)\n"
 HELP="${HELP}\t\t\t-h: print help\n"
 
 function checkSettings(){
@@ -93,7 +100,7 @@ function checkSettings(){
 
 if [[ $# -gt 2 ]] ; then
    if [ -n $3 ] ; then
-      if [ "$3" == "-t" ] ; then
+      if [ "$3" == "-ns" ] || [ "$3" == "-s" ] ; then
          checkSettings
          exit 0
       fi
@@ -107,21 +114,27 @@ function timestamp(){
 
 function convertToCsv(){
    #https://www.unix.com/shell-programming-and-scripting/156328-how-convert-xls-file-csv.html
-   printf "converting to csv...\n"
+   if [[ "$silent" == "false" ]] ; then
+      printf "converting to csv...\n"
+   fi
    xls2csv "$1" > "$2"
 
-   #printf "prepping data...\n"
-   #dos2unix $2
 }
 
 function prepForSplit(){
-   printf "clearing control characters...\n"
+   if [[ "$silent" == "false" ]] ; then
+      printf "clearing control characters...\n"
+   fi
    sed -i 's/[[:cntrl:]]//g' "$1"
 
-   printf "converting to lower case...\n"
+   if [[ "$silent" == "false" ]] ; then
+      printf "converting to lower case...\n"
+   fi
    cat "$1" | tr A-Z a-z > "$2"
 
-   printf "removing header lines...\n"
+   if [[ "$silent" == "false" ]] ; then
+      printf "removing header lines...\n"
+   fi
    sed -i '/^"list call".*/d' "$2"
 
    if [ $debug == "false" ] ; then
@@ -130,20 +143,27 @@ function prepForSplit(){
 }
 
 function splitOldAndNew(){
-   printf "splitting old and new items...\n"
-   csplit -f "$SAFERSPLIT_PREFIX" "$1" '/^"cas.*/'
+   if [[ "$silent" == "false" ]] ; then
+      printf "splitting old and new items...\n"
+   fi
+   csplit -s -f "$SAFERSPLIT_PREFIX" "$1" '/^"cas.*/'
+   # this ensures that no files without .tmp are in temp
    mv "$SAFEROLD" "$SAFEROLD_TMP"
    mv "$SAFERNEW" "$SAFERNEW_TMP"
    # this ensures that no files without .tmp are in temp
 }
 
 function processNewData(){
-   printf "processing new data...\n"
+   if [[ "$silent" == "false" ]] ; then
+      printf "processing new data...\n"
+   fi
 
    #this removes the header line from the new split file
    echo "$(tail -n +2 "$1")" > "$1"
 
-   printf "removing redundant data...\n"
+   if [[ "$silent" == "false" ]] ; then
+      printf "removing redundant data...\n"
+   fi
    #this file is mainly a log of items that have been added
    #this removes those entries and leaves the ones that have/will be deleted
    sed -i '/"gr[ea]y \[square\]"/!d' "$1"
@@ -155,7 +175,9 @@ function processNewData(){
 
 
 function extractRelevantOldData(){
-   printf "extracting relevant old data...\n"
+   if [[ "$silent" == "false" ]] ; then
+      printf "extracting relevant old data...\n"
+   fi
    > $3
 
    #created a reduced file consisting only of the parts we need
@@ -171,7 +193,9 @@ function extractRelevantOldData(){
 }
 
 function extractRelevantNewData(){
-   printf "extracting relevant new data...\n"
+   if [[ "$silent" == "false" ]] ; then
+      printf "extracting relevant new data...\n"
+   fi
    > $3
    #created a reduced file consisting only of the parts we need
    awk -f $1 $2 >> $3
@@ -182,20 +206,23 @@ function extractRelevantNewData(){
 }
 
 function joinOldAndNew(){
-   printf "rejoining old and new items...\n"
+   if [[ "$silent" == "false" ]] ; then
+      printf "rejoining old and new items...\n"
+   fi
    cat $1 $2 > $3
 
    if [ $debug == "false" ] ; then
       rm "$1"
       rm "$2"
-   else
-      #this gives us a "before" file to look at
-      cat $3 > "$SAFERB4_TMP"
    fi
+   #this gives us a "before" file to look at
+   cat $3 > "$SAFERB4_TMP"
 }
 
 function cleanChemicals(){
-   printf "transforming chemicals...\n"
+   if [[ "$silent" == "false" ]] ; then
+      printf "transforming chemicals...\n"
+   fi
    if [[ $debug == "true" ]] ; then
       #resets the ingredients file before starting
       #this is necessary because sed is converting the file in place
@@ -214,22 +241,25 @@ function cleanChemicals(){
             sed -i "$pattern" "$2" 
             after=$(wc -c < $2)
             removed=$((before - after))
-            printf "\tpattern %s removed %s characters\n" "$pattern" "$removed"
-         else
+            if [[ "$silent" == "false" ]] ; then
+               printf "\tpattern %s removed %s characters\n" "$pattern" "$removed"
+            fi
+         elif [[ "$silent" == "false" ]] ; then
             printf "\tskipping %s\n" "${pattern:1}"
          fi
       done < $1
       endtime=$(timestamp)
       elapsed=$((endtime - starttime))
-      #printf "elapsed: %d seconds\n" $elapsed >> $logfile
-      printf "elapsed: %d seconds\n" $elapsed 
+      if [[ "$silent" == "false" ]] ; then
+         printf "elapsed: %d seconds\n" $elapsed 
+      fi
    else
       # apply removal patterns to ingredients
       while read -r pattern;
       do
          if [[ ${pattern:0:1} != "#" ]] ; then
             sed -i "$pattern" $2
-         else
+         elif [[ "$silent" == "false" ]] ; then
             printf "skipping %s\n" "${pattern:1}"
          fi
       done < $1
@@ -237,8 +267,10 @@ function cleanChemicals(){
 }
 
 function sortOnChem(){
-   printf "sorting...\n"
-   sort "$1" > "$2"
+   if [[ "$silent" == "false" ]] ; then
+      printf "sorting...\n"
+   fi
+   LC_ALL=C sort "$1" > "$2"
 
    if [ $debug == "false" ] ; then
       rm $1
@@ -246,7 +278,9 @@ function sortOnChem(){
 }
 
 function decideScores(){
-   printf "deciding scores...\n"
+   if [[ "$silent" == "false" ]] ; then
+      printf "deciding scores...\n"
+   fi
    while read line
    do
       IFS='|'; linearr=($line); unset IFS
@@ -279,7 +313,9 @@ function decideScores(){
 }
 
 function removeDuplicates(){
-   printf "removing duplicates...\n"
+   if [[ "$silent" == "false" ]] ; then
+      printf "removing duplicates...\n"
+   fi
    uniq $1 $2
 
    if [ $debug == "false" ] ; then
@@ -288,7 +324,9 @@ function removeDuplicates(){
 }
 
 function createJson(){
-   printf "creating json...\n"
+   if [[ "$silent" == "false" ]] ; then
+      printf "creating json...\n"
+   fi
 
    echo "{" > $3
    awk -f $1 $2 >> $3
@@ -307,39 +345,33 @@ if [[ $# -gt 2 ]] ; then
          debug=false
       elif [ "$3" == "-h" ] ; then
          printf "$HELP"
-         fin=true
-      elif [ "$3" == "-s" ] ; then
-         checkSettings
-         fin=true
-      elif [ "$3" == "-t" ] ; then
-         checkSettingsNPM
-         fin=true
-      else
+         exit 0
+      elif [ "$3" != "-n" ] && [ "$3" != "-t" ] ; then
          printf "$USAGE"
-         fin=true
+         exit 1
       fi
    fi
 elif [[ $# -lt 2 ]] ; then
    printf "$USAGE"
-   fin=true
+   exit 1
 fi
 
-if [ "$fin" == "false" ] ; then
-   if [[ "$debug" == "true" ]] ; then
+if [[ "$debug" == "true" ]] ; then
+   if [[ "$silent" == "false" ]] ; then
       checkSettings
    fi
-   
-   convertToCsv "$NEWDATAPATH" "$SAFERCSVROUGH_TMP"
-   prepForSplit "$SAFERCSVROUGH_TMP" "$SAFERCSVPREPPED_TMP"
-   splitOldAndNew "$SAFERCSVPREPPED_TMP"
-   processNewData "$SAFERNEW_TMP"
-   extractRelevantOldData "$AWK_OLDEPA_TRIM" "$SAFEROLD_TMP" "$SAFEROLDTRIM_TMP"
-   extractRelevantNewData "$AWK_NEWEPA_TRIM" "$SAFERNEW_TMP" "$SAFERNEWTRIM_TMP"
-   joinOldAndNew "$SAFEROLDTRIM_TMP" "$SAFERNEWTRIM_TMP" "$SAFERJOINED_TMP"
-   cleanChemicals "$EPA_PATTERN_PATH" "$SAFERCLEAN_TMP"
-   sortOnChem "$SAFERCLEAN_TMP" "$SAFERSORTED_TMP"
-   decideScores "$SAFERSORTED_TMP" 
-   removeDuplicates "$SAFERSORTED_TMP" "$SAFERUNIQUE_TMP"
-   createJson "$AWK_EPA_JSON" "$SAFERUNIQUE_TMP" "$SAFER_JSON"
-
 fi
+
+convertToCsv "$NEWDATAPATH" "$SAFERCSVROUGH_TMP"
+prepForSplit "$SAFERCSVROUGH_TMP" "$SAFERCSVPREPPED_TMP"
+splitOldAndNew "$SAFERCSVPREPPED_TMP"
+processNewData "$SAFERNEW_TMP"
+extractRelevantOldData "$AWK_OLDEPA_TRIM" "$SAFEROLD_TMP" "$SAFEROLDTRIM_TMP"
+extractRelevantNewData "$AWK_NEWEPA_TRIM" "$SAFERNEW_TMP" "$SAFERNEWTRIM_TMP"
+joinOldAndNew "$SAFEROLDTRIM_TMP" "$SAFERNEWTRIM_TMP" "$SAFERJOINED_TMP"
+cleanChemicals "$EPA_PATTERN_PATH" "$SAFERCLEAN_TMP"
+sortOnChem "$SAFERCLEAN_TMP" "$SAFERSORTED_TMP"
+decideScores "$SAFERSORTED_TMP" 
+removeDuplicates "$SAFERSORTED_TMP" "$SAFERUNIQUE_TMP"
+createJson "$AWK_EPA_JSON" "$SAFERUNIQUE_TMP" "$SAFER_JSON"
+
