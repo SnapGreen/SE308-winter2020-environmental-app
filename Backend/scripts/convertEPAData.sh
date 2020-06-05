@@ -1,6 +1,6 @@
 #!/bin/bash
-debug=true
-silent=false
+debug="true"
+silent="false"
 
 THISPATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)"
 SETTINGS="${THISPATH}/settings.txt"
@@ -8,7 +8,7 @@ SETTINGS="${THISPATH}/settings.txt"
 if [[ $# -gt 2 ]] ; then
    if [ -n $3 ] ; then
       if [ "$3" == "-ns" ] || [ "$3" == "-n" ] || [ "$3" == "-t" ] ; then
-         silent=true
+         silent="true"
          if [ "$3" != "-t" ] ; then
             #SETTINGS="${THISPATH}/settings_npm.txt"
             SETTINGS="Backend/scripts/settings_npm.txt"
@@ -52,6 +52,7 @@ AWK_EPA_JSON="${AWKDIR}epatojson.awk"
 USAGE="\t\tUsage: ./convertEPAData.sh [OPTION] (use option -h for help)\n"
 HELP="${USAGE}\t\t**If no OPTION supplied, debug mode on (temp files remain)\n"
 HELP="${HELP}\t\t\t-b: bypass debug mode\n"
+HELP="${HELP}\t\t\t-n: test with settings relative to repo root\n"
 HELP="${HELP}\t\t\t-ns: output settings relative to repo root\n"
 HELP="${HELP}\t\t\t-s: output settings only\n"
 HELP="${HELP}\t\t\t-t: test mode (silent)\n"
